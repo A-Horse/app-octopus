@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,6 +5,8 @@ import {
   Text,
   View
 } from 'react-native';
+import {createStore, combineReducers} from 'redux';
+import { addNavigationHelpers } from 'react-navigation';
 
 import { TabNavigator } from 'react-navigation';
 
@@ -23,11 +19,46 @@ const MyApp = TabNavigator({
   },
   Notifications: {
     screen: TodoScreen,
-  },
+  }
 }, {
   tabBarOptions: {
     activeTintColor: '#e91e63',
-  },
+  }
 });
 
-AppRegistry.registerComponent('OctopusApp', () => MyApp);
+const navReducer = (state, action) => {
+  const newState = MyApp.router.getStateForAction(action, state);
+  return newState || state;
+};
+
+const appReducer = combineReducers({
+  nav: navReducer,
+});
+
+@connect(state => ({
+  nav: state.nav,
+}))
+class AppWithNavigationState extends React.Component {
+  render() {
+    return (
+      <AppNavigator navigation={addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+        })} />
+    );
+  }
+}
+
+const store = createStore(appReducer);
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
+    );
+  }
+}
+
+AppRegistry.registerComponent('OctopusApp', () => App);
