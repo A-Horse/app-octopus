@@ -7,13 +7,14 @@ import {
 } from 'react-native';
 import {createStore, combineReducers} from 'redux';
 import { addNavigationHelpers } from 'react-navigation';
+import {connect, Provider} from 'react-redux';
 
 import { TabNavigator } from 'react-navigation';
 
 import TodoScreen from './screen/Todo.js';
 import TaskScreen from './screen/Task.js';
 
-const MyApp = TabNavigator({
+const AppNavigator = TabNavigator({
   Home: {
     screen: TaskScreen,
   },
@@ -27,7 +28,7 @@ const MyApp = TabNavigator({
 });
 
 const navReducer = (state, action) => {
-  const newState = MyApp.router.getStateForAction(action, state);
+  const newState = AppNavigator.router.getStateForAction(action, state);
   return newState || state;
 };
 
@@ -36,15 +37,14 @@ const appReducer = combineReducers({
 });
 
 @connect(state => ({
-  nav: state.nav,
+  nav: state.nav
 }))
 class AppWithNavigationState extends React.Component {
   render() {
     return (
       <AppNavigator navigation={addNavigationHelpers({
-          dispatch: this.props.dispatch,
-          state: this.props.nav,
-        })} />
+                    dispatch: this.props.dispatch,
+                    state: this.props.nav})} />
     );
   }
 }
