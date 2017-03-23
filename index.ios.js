@@ -5,36 +5,16 @@ import {
   Text,
   View
 } from 'react-native';
-import {createStore, combineReducers} from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { addNavigationHelpers } from 'react-navigation';
-import {connect, Provider} from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import appReducer from './reducer';
+import AppNavigator from './navigator';
 
-import { TabNavigator } from 'react-navigation';
+import { checkLogin } from './service/auth';
 
-import TodoScreen from './screen/Todo.js';
-import TaskScreen from './screen/Task.js';
+import LoginScreen from './screen/Login';
 
-const AppNavigator = TabNavigator({
-  Home: {
-    screen: TaskScreen,
-  },
-  Notifications: {
-    screen: TodoScreen,
-  }
-}, {
-  tabBarOptions: {
-    activeTintColor: '#e91e63',
-  }
-});
-
-const navReducer = (state, action) => {
-  const newState = AppNavigator.router.getStateForAction(action, state);
-  return newState || state;
-};
-
-const appReducer = combineReducers({
-  nav: navReducer,
-});
 
 @connect(state => ({
   nav: state.nav
@@ -52,10 +32,34 @@ class AppWithNavigationState extends React.Component {
 const store = createStore(appReducer);
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {waitting: true, isLogin: false};
+  }
+
+  async componentWillMount() {
+    const isLogin = await checkLogin();
+    this.setState({isLogin, waitting: false});
+  }
+
+  renderMain() {
+    if (this.state.waitting) {
+      return this.renderLoading();
+    }
+    if (!this.state.isLogin) {
+      return <LoginScreen />
+    }
+    return <AppWithNavigationState />;
+  }
+
+  renderLoading() {
+    return <View><Text>Loading</Text></View>;
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        {this.renderMain()}
       </Provider>
     );
   }

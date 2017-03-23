@@ -7,10 +7,11 @@ import {
   Image
 } from 'react-native';
 
-export default class TodoScreen extends Component {
+
+class TodoScreen extends Component {
   static navigationOptions = {
     tabBar: {
-      label: 'Notifications',
+      label: 'Todo',
       icon: ({ tintColor }) => (
         <Image source={require('./delete.svg')} style={[styles.icon, {tintColor: tintColor}]}/>
       )
@@ -52,3 +53,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default TodoScreen;
