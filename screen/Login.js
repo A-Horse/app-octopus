@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { authRequest } from '../action/auth';
 
+import style from '../style';
+
+@connect()
 class LoginScreen extends Component {
+  state = {};
+
+  @autobind
+  login() {
+    const {dispatch} = this.props;
+    const authData = {email: this.state.email, password: this.state.password};
+    dispatch(authRequest(authData));
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Login
-        </Text>
+
+        <TextInput
+          style={style.input}
+          placeholder="Email"
+          ref="email"
+          keyboardType="email-address"
+          onChangeText={(email) => this.setState({email})}
+        />
+
+        <TextInput
+          style={style.input}
+          ref="password"
+          secureTextEntry={true}
+          placeholder="Password"
+          onChangeText={(password) => this.setState({password})}
+        />
+
+        <Button onPress={this.login.bind(this)} title="Login">Login</Button>
+
       </View>
     );
   }
@@ -19,11 +50,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
   }
 });
 

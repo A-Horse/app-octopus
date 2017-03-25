@@ -5,13 +5,20 @@ import {
   Text,
   View
 } from 'react-native';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect, Provider } from 'react-redux';
 import appReducer from './reducer';
+
+
+// TODO 不应该全部引入
+import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
+
 import AppNavigator from './navigator';
 
-import { checkLogin } from './service/auth';
+import {combineEpics, createEpicMiddleware} from 'redux-observable';
+
+
 
 import LoginScreen from './screen/Login';
 
@@ -29,40 +36,19 @@ class AppWithNavigationState extends React.Component {
   }
 }
 
-const store = createStore(appReducer);
+import rootEpic from './epic';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {waitting: true, isLogin: false};
-  }
+const epicMiddleware = createEpicMiddleware(rootEpic);
+import thunkMiddleware from 'redux-thunk';
 
-  async componentWillMount() {
-    const isLogin = await checkLogin();
-    this.setState({isLogin, waitting: false});
-  }
+const store = createStore(
+  appReducer,
+  applyMiddleware(
+    thunkMiddleware,
+    epicMiddleware
+  )
+);
 
-  renderMain() {
-    if (this.state.waitting) {
-      return this.renderLoading();
-    }
-    if (!this.state.isLogin) {
-      return <LoginScreen />
-    }
-    return <AppWithNavigationState />;
-  }
-
-  renderLoading() {
-    return <View><Text>Loading</Text></View>;
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        {this.renderMain()}
-      </Provider>
-    );
-  }
-}
+import App from './App.ios';
 
 AppRegistry.registerComponent('OctopusApp', () => App);
