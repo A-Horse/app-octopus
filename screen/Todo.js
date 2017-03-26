@@ -7,26 +7,12 @@ import {
   Image
 } from 'react-native';
 
-
 class TodoScreen extends Component {
-  static navigationOptions = {
-    tabBar: {
-      label: 'Todo',
-      icon: ({ tintColor }) => (
-        <Image source={require('./delete.svg')} style={[styles.icon, {tintColor: tintColor}]}/>
-      )
-    }
-  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native2!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
+        <Text>
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
@@ -37,10 +23,11 @@ class TodoScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    zIndex: 9999
   },
   welcome: {
     fontSize: 20,

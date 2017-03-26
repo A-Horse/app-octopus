@@ -3,7 +3,9 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NavigatorIOS,
+  Navigator
 } from 'react-native';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { addNavigationHelpers } from 'react-navigation';
@@ -18,7 +20,7 @@ import AppNavigator from './navigator';
 
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
-
+import { checkLogin } from './service/auth';
 
 import LoginScreen from './screen/Login';
 
@@ -41,6 +43,8 @@ import rootEpic from './epic';
 const epicMiddleware = createEpicMiddleware(rootEpic);
 import thunkMiddleware from 'redux-thunk';
 
+import MainSence from './Scence/Main';
+
 const store = createStore(
   appReducer,
   applyMiddleware(
@@ -49,6 +53,53 @@ const store = createStore(
   )
 );
 
-import App from './App.ios';
+import TodoScreen from './screen/Todo';
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+
+  async componentWillMount() {
+    const isLogin = await checkLogin();
+    this.setState({isLogin, waitting: false});
+  }
+
+  renderMain() {
+    if (this.state.waitting) {
+      return this.renderLoading();
+    }
+    if (!this.state.isLogin) {
+      return <LoginScreen />
+    }
+    return <MainSence />;
+  }
+
+  renderLoading() {
+    return <View><Text>Loading</Text></View>;
+  }
+
+  renderScene(route, navigator) {
+    switch (route.name) {
+      case 'login':
+        return <LoginScreen/>
+      case 'main':
+        return <AppNavigator/>
+      default:
+        return <LoginScreen/>
+    }
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigator
+          initialRoute={{name: 'main'}}
+          renderScene={this.renderScene}
+        />
+      </Provider>
+    );
+  }
+}
 
 AppRegistry.registerComponent('OctopusApp', () => App);
