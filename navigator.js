@@ -1,8 +1,10 @@
-import TodoScreen from './screen/Todo.js';
-import TaskScreen from './screen/Task.js';
-import { TabNavigator } from 'react-navigation';
+import TodoScreen from './screen/Todo';
+import TaskScreen from './screen/Task';
+import IndexScreen from './screen/Index';
+import LoginScreen from './screen/Login';
+import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation';
 
-const AppNavigator = TabNavigator({
+export const AppTabNavigator = TabNavigator({
   Home: {
     screen: TaskScreen
   },
@@ -15,4 +17,25 @@ const AppNavigator = TabNavigator({
   }
 });
 
-export default AppNavigator;
+export const AppDrawerNavigator = DrawerNavigator({
+  Home: {
+    screen: IndexScreen,
+    navigationOptions: {
+      header: {
+        visible: false
+      }
+    }
+  },
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      header: {
+        visible: false
+      }
+    }
+  },
+  Main: {
+    screen: AppTabNavigator
+  }
+
+}, { headerMode: 'screen' });

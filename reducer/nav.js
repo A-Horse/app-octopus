@@ -1,7 +1,7 @@
-import AppNavigator from '../navigator';
+import { AppDrawerNavigator } from '../navigator';
 
 const navReducer = (state, action) => {
-  const newState = AppNavigator.router.getStateForAction(action, state);
+  const newState = AppDrawerNavigator.router.getStateForAction(action, state);
   return newState || state;
 };
 

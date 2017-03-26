@@ -16,7 +16,7 @@ import appReducer from './reducer';
 // TODO 不应该全部引入
 import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
 
-import AppNavigator from './navigator';
+import { AppDrawerNavigator } from './navigator';
 
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
@@ -31,9 +31,9 @@ import LoginScreen from './screen/Login';
 class AppWithNavigationState extends React.Component {
   render() {
     return (
-      <AppNavigator navigation={addNavigationHelpers({
-                    dispatch: this.props.dispatch,
-                    state: this.props.nav})} />
+      <AppDrawerNavigator navigation={addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.nav})} />
     );
   }
 }
@@ -56,47 +56,11 @@ const store = createStore(
 import TodoScreen from './screen/Todo';
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
-  async componentWillMount() {
-    const isLogin = await checkLogin();
-    this.setState({isLogin, waitting: false});
-  }
-
-  renderMain() {
-    if (this.state.waitting) {
-      return this.renderLoading();
-    }
-    if (!this.state.isLogin) {
-      return <LoginScreen />
-    }
-    return <MainSence />;
-  }
-
-  renderLoading() {
-    return <View><Text>Loading</Text></View>;
-  }
-
-  renderScene(route, navigator) {
-    switch (route.name) {
-      case 'login':
-        return <LoginScreen/>
-      case 'main':
-        return <AppNavigator/>
-      default:
-        return <LoginScreen/>
-    }
-  }
 
   render() {
     return (
       <Provider store={store}>
-        <Navigator
-          initialRoute={{name: 'main'}}
-          renderScene={this.renderScene}
-        />
+        <AppWithNavigationState/>
       </Provider>
     );
   }
