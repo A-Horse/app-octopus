@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 @connect()
-class TodoScreen extends Component {
+class TodoList extends Component {
 
   componentWillMount() {
 
@@ -16,12 +16,12 @@ class TodoScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <Text>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        Press Cmd+R to reload,{'\n'}
+      Cmd+D or shake for dev menu
+      </Text>
+        </View>
     );
   }
 }
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TodoScreen;
+export default TodoList;
