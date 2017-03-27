@@ -1,14 +1,18 @@
+export const USER_TODO_LIST_REQUEST = 'USER_TODO_LIST_REQUEST';
+export const USER_TODO_LIST_SUCCESS = 'USER_TODO_LIST_SUCCESS';
+
 export const TODO_LIST_REQUEST = 'TODO_LIST_REQUEST';
 export const TODO_LIST_SUCCESS = 'TODO_LIST_SUCCESS';
 
-export function requestTodoList(category, page) {
+// TODO 每个 todo list 单独区分
+export function requestUserTodoList(userId, isAll = false) {
   return {
     type: TODO_LIST_REQUEST,
-    playload: {category, page}
+    playload: {userId, isAll}
   };
 }
 
-export function requestTodoListSuccess(todoList) {
+export function requestUserTodoListSuccess(todoList) {
   return {
     type: TODO_LIST_SUCCESS,
     playload: todoList

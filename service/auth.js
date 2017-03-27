@@ -1,19 +1,6 @@
 import Storage from './storage';
 import Memory from './memory';
-
 import { AUTH_DATA } from '../constant';
-
-export async function checkLogin() {
-  return !!(await Storage.get(AUTH_DATA));
-}
-
-export async function getAuthFromStorage() {
-  return await Storage.get(AUTH_DATA);
-}
-
-export async function startupFlow() {
-
-}
 
 export class Auth {
   authRead = false;
