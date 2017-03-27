@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   AppRegistry,
   StyleSheet,
@@ -7,11 +8,16 @@ import {
   Image
 } from 'react-native';
 
+
+
 @connect()
 class TodoScreen extends Component {
-
   componentWillMount() {
 
+  }
+
+  getTodoList() {
+    const { dispatch } = this.props;
   }
 
   render() {
