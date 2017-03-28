@@ -7,9 +7,7 @@ import AuthService from '../service/auth';
 export const userTodoList = action$ =>
   action$.ofType(USER_TODO_LIST_REQUEST)
   .mergeMap(action => {
-    console.log(AuthService.makeJWTHeader());
     return ajax.get(makeServerApi(
-      `user/${action.playload.userId}/todo${action.playload.isAll ? '/all' : ''}`,
-      AuthService.makeJWTHeader()
-    ), action.playload).map(response => response.response).map(requestUserTodoListSuccess);
+      `user/${action.playload.userId}/todo${action.playload.isAll ? '/all' : ''}`
+    ), AuthService.makeJWTHeader()).map(response => response.response).map(requestUserTodoListSuccess);
   }).catch(handleEpicError);
