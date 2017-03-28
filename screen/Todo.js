@@ -24,12 +24,10 @@ class TodoScreen extends Component {
   }
 
   render() {
+    // const { todos } = this.props;
     return (
       <View style={styles.container}>
-        <Text>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+
       </View>
     );
   }

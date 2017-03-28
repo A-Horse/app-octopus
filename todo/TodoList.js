@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
 
 export default class TodoList extends Component {
-  constructor() {
-
-  }
+  static propTypes = {
+    todos: React.PropTypes.array.isRequired
+  };
 
   @autobind
   renderTodo(todo) {
@@ -16,6 +17,10 @@ export default class TodoList extends Component {
   }
 
   render() {
-
+    return (
+      <View>
+        {this.renderTodos()}
+      </View>
+    );
   }
 }

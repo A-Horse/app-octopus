@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default class Todo extends Component {
-  constructor() {
-
-  }
+  static propTypes = {
+    todo: React.PropTypes.object.isRequired
+  };
 
   render() {
     const {todo} = this.props;
 
     return (
-      <div>
+      <View>
         {todo.content}
-      </div>
+      </View>
     );
   }
 }
