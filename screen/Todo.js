@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { requestUserTodoList } from '../action/todo';
+import Memory from '../service/memory';
+import { AUTH_DATA } from '../constant';
 import {
   AppRegistry,
   StyleSheet,
@@ -8,16 +11,16 @@ import {
   Image
 } from 'react-native';
 
-
-
 @connect()
 class TodoScreen extends Component {
-  componentWillMount() {
-
+  componentDidMount() {
+    this.getTodoList();
   }
 
   getTodoList() {
     const { dispatch } = this.props;
+    const userId = Memory.get(AUTH_DATA).user.id;
+    dispatch(requestUserTodoList(userId));
   }
 
   render() {

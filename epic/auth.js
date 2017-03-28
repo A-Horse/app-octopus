@@ -6,5 +6,7 @@ import { handleEpicError } from '../util/request-helper';
 export const auth = action$ =>
   action$.ofType(AUTH_REQUEST)
   .mergeMap(action => {
-    return ajax.post(makeServerApi('signin'), action.playload).map(authSuccess);
+    return ajax.post(makeServerApi('signin'), action.playload)
+      .map(response => response.response)
+      .map(authSuccess);
   }).catch(handleEpicError);

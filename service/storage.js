@@ -3,6 +3,10 @@ import {
 } from 'react-native';
 
 class Storage {
+  async clear() {
+    await AsyncStorage.clear();
+  }
+
   async get(key) {
     try {
       return await AsyncStorage.getItem(key);
@@ -20,4 +24,7 @@ class Storage {
   }
 }
 
-export default new Storage();
+const StorageService = new Storage();
+// StorageService.clear();
+
+export default StorageService;

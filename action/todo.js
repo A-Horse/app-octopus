@@ -7,14 +7,14 @@ export const TODO_LIST_SUCCESS = 'TODO_LIST_SUCCESS';
 // TODO 每个 todo list 单独区分
 export function requestUserTodoList(userId, isAll = false) {
   return {
-    type: TODO_LIST_REQUEST,
+    type: USER_TODO_LIST_REQUEST,
     playload: {userId, isAll}
   };
 }
 
 export function requestUserTodoListSuccess(todoList) {
   return {
-    type: TODO_LIST_SUCCESS,
+    type: USER_TODO_LIST_SUCCESS,
     playload: todoList
   };
 }
