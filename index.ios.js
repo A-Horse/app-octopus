@@ -24,6 +24,7 @@ import { checkLogin } from './service/auth';
 
 import LoginScreen from './screen/Login';
 
+console.log('hi');
 
 @connect(state => ({
   nav: state.nav
