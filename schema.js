@@ -1,4 +1,4 @@
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize, schema } from 'normalizr';
 
-export const todo = new Schema('todo');
-export const todos = arrayOf(todo);
+export const todo = new schema.Entity('todo');
+export const todos = new schema.Array(todo);
