@@ -3,22 +3,28 @@ import { connect } from 'react-redux';
 import { requestUserTodoList } from '../action/todo';
 import Memory from '../service/memory';
 import { AUTH_DATA } from '../constant';
+import autobind from 'autobind-decorator';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Button
 } from 'react-native';
 
 @connect()
 class TodoScreen extends Component {
   componentDidMount() {
-    this.getTodoList();
+    // this.getTodoList();
   }
 
+  @autobind
   getTodoList() {
     const { dispatch } = this.props;
+    console.log(
+      dispatch
+    );
     const userId = Memory.get(AUTH_DATA).user.id;
     dispatch(requestUserTodoList(userId));
   }
@@ -27,7 +33,7 @@ class TodoScreen extends Component {
     // const { todos } = this.props;
     return (
       <View style={styles.container}>
-
+        <Button title="hi" onPress={this.getTodoList}></Button>
       </View>
     );
   }

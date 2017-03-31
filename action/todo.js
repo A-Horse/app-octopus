@@ -13,6 +13,7 @@ export function requestUserTodoList(userId, isAll = false) {
 }
 
 export function requestUserTodoListSuccess(todoList) {
+  console.log(todoList);
   return {
     type: USER_TODO_LIST_SUCCESS,
     playload: todoList

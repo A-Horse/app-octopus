@@ -1,6 +1,6 @@
 
 // export const apiUrl = 'http://localhost:5500/api';
-export const apiUrl = 'http://www.octopus.com/api';
+export const apiUrl = 'http://127.0.0.1/api';
 
 export const JWT = "jwt";
 
