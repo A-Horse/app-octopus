@@ -9,9 +9,11 @@ import { AUTH_DATA } from '../constant';
 
 const todo = (state = {}, action) => {
   switch (action.type) {
-  case AUTH_SUCCESS:
+  case USER_TODO_LIST_SUCCESS:
+    const normalized = normalize(action.playload, todos);
     return Object.assign({}, state, {
-      userTodos: normalize(action.playload, todos)
+      userTodos: normalized.result,
+      entities: normalized.entities
     });
   default:
     return state;

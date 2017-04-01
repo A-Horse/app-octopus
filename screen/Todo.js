@@ -4,36 +4,30 @@ import { requestUserTodoList } from '../action/todo';
 import Memory from '../service/memory';
 import { AUTH_DATA } from '../constant';
 import autobind from 'autobind-decorator';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button
-} from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import R from 'ramda';
+
+import TodoLists from './todo/TodoLists';
+
 
 @connect()
 class TodoScreen extends Component {
   componentDidMount() {
-    // this.getTodoList();
+    this.getTodoList();
   }
 
   @autobind
   getTodoList() {
     const { dispatch } = this.props;
-    console.log(
-      dispatch
-    );
     const userId = Memory.get(AUTH_DATA).user.id;
-    dispatch(requestUserTodoList(userId));
+    return dispatch(requestUserTodoList(userId));
   }
 
   render() {
     // const { todos } = this.props;
     return (
       <View style={styles.container}>
-        <Button title="hi" onPress={this.getTodoList}></Button>
+        <TodoLists />
       </View>
     );
   }

@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
+
+const getListType = (state, props) => {
+  const
+};
 
 @connect()
 class TodoList extends Component {
-
   componentWillMount() {
 
   }
 
   render() {
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Text>
-        Press Cmd+R to reload,{'\n'}
-      Cmd+D or shake for dev menu
-      </Text>
-        </View>
+          Press Cmd+R to reload,{'\n'}
+          Cmd+D or shake for dev menu
+        </Text>
+      </View>
     );
   }
 }
