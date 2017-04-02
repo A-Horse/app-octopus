@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
+import { requestTodoList } from '../../action/todo';
+// import
 
 const getListType = (state, props) => {
-  const
+  // const
 };
 
 @connect()
 class TodoList extends Component {
   componentWillMount() {
+    this.getTodoList();
+  }
 
+  @autobind
+  getTodoList() {
+    const { dispatch } = this.props;
+    const userId = Memory.get(AUTH_DATA).user.id;
+    return dispatch(requestTodoList(userId, this.props.navigation.state.params));
   }
 
   render() {

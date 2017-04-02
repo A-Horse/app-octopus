@@ -18,3 +18,10 @@ export function requestUserTodoListSuccess(todoList) {
     playload: todoList
   };
 }
+
+export function requestTodoList(userId, listMeta) {
+  return {
+    type: USER_TODO_LIST_REQUEST,
+    playload: {userId, listMeta}
+  };
+}

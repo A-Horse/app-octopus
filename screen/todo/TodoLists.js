@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
 
 class TodoLists extends Component {
-  lists = [{name: 'Default', id: 1}];
+  lists = [{name: 'My Todo', id: 1, type: 'default'}];
 
   @autobind
   renderLists() {
