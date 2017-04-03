@@ -1,5 +1,5 @@
 import TodoScreen from './screen/Todo';
-import TodoListScreen from './screen/todo/TodoList';
+import TodoListScreen from './screen/todo/Todos';
 import TaskScreen from './screen/Task';
 import IndexScreen from './screen/Index';
 import LoginScreen from './screen/Login';
@@ -9,7 +9,7 @@ export const TodoDrawerNavigator = DrawerNavigator({
   Home: {
     screen: TodoScreen
   },
-  List: {
+  TodoList: {
     screen: TodoListScreen
   }
 });
@@ -47,5 +47,4 @@ export const AppDrawerNavigator = DrawerNavigator({
   Main: {
     screen: AppTabNavigator
   }
-
 }, { headerMode: 'screen' });

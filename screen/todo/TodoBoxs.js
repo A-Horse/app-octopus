@@ -3,19 +3,37 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
+import { NavigationActions } from 'react-navigation'
 
-class TodoLists extends Component {
-  lists = [{name: 'My Todo', id: 1, type: 'default'}];
+class TodoBoxs extends Component {
+  lists = [{name: 'My Todo', id: 0, type: 'default'}];
+
+  goTodoList(item) {
+    return () => {
+      console.log(
+        item, 'item'
+      );
+
+      const navigateAction = NavigationActions.navigate({
+        routeName: 'TodoList',
+        params: item
+      })
+
+      // this.props.navigation.navigate('TodoList', {x: 1, y: 2}, {});
+      this.props.navigation.dispatch(navigateAction);
+    };
+  }
 
   @autobind
   renderLists() {
     return this.lists.map(this.renderListItem);
   }
 
+  @autobind
   renderListItem(item) {
     return (
       <View key={item.id}>
-        <Text>
+        <Text onPress={this.goTodoList(item)}>
           {item.name}
         </Text>
       </View>
@@ -40,4 +58,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TodoLists;
+export default TodoBoxs;

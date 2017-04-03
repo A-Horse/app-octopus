@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
 import { requestTodoList } from '../../action/todo';
+import Memory from '../../service/memory';
+import { AUTH_DATA } from '../../constant';
 // import
 
 const getListType = (state, props) => {
@@ -10,8 +12,8 @@ const getListType = (state, props) => {
 };
 
 @connect()
-class TodoList extends Component {
-  componentWillMount() {
+class Todos extends Component {
+  componentDidMount() {
     this.getTodoList();
   }
 
@@ -25,10 +27,7 @@ class TodoList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+
       </View>
     );
   }
@@ -40,17 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
   }
 });
 
-export default TodoList;
+export default Todos;

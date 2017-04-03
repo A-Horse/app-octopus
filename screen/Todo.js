@@ -6,28 +6,27 @@ import { AUTH_DATA } from '../constant';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
+import { addNavigationHelpers } from 'react-navigation';
 
-import TodoLists from './todo/TodoLists';
+import TodoBoxs from './todo/TodoBoxs';
 
 
-@connect()
+@connect(state => ({
+  nav: state.nav,
+}))
 class TodoScreen extends Component {
   componentDidMount() {
-    this.getTodoList();
-  }
-
-  @autobind
-  getTodoList() {
-    const { dispatch } = this.props;
-    const userId = Memory.get(AUTH_DATA).user.id;
-    return dispatch(requestUserTodoList(userId));
+    console.log(this.props.navigation.state.params);
   }
 
   render() {
     // const { todos } = this.props;
     return (
       <View style={styles.container}>
-        <TodoLists />
+        <TodoBoxs navigation={addNavigationHelpers({
+            dispatch: this.props.dispatch,
+            state: this.props.nav,
+          })}/>
       </View>
     );
   }
