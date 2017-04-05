@@ -26,7 +26,8 @@ class TodoScreen extends Component {
         <TodoBoxs navigation={addNavigationHelpers({
             dispatch: this.props.dispatch,
             state: this.props.nav,
-          })}/>
+          })}
+        dispatch={this.props.dispatch}/>
       </View>
     );
   }

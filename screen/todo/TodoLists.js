@@ -4,6 +4,10 @@ import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
 
+const mapStateToProps = state => ({
+  navigation: state.navigation
+});
+@connect(mapStateToProps)
 class TodoLists extends Component {
   lists = [{name: 'My Todo', id: 1, type: 'default'}];
 
