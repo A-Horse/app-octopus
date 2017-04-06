@@ -11,8 +11,10 @@ class TodoBoxs extends Component {
   goTodoList(item) {
     return () => {
       this.props.navigator.push({
-        screen: 'octopus.PushedScreen'
-      })
+        screen: 'octopus.PushedScreen',
+        passProps: {meta: item},
+        animated: false
+      });
     };
   }
 

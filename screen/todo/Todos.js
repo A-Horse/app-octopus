@@ -6,21 +6,22 @@ import { requestTodoList } from '../../action/todo';
 import Memory from '../../service/memory';
 import { AUTH_DATA } from '../../constant';
 // import
-const mapStateToProps = state => {
-  console.log('state', state);
-  return {navigation2: state.navigation}
-};
-@connect(mapStateToProps)
+
+@connect()
 class Todos extends Component {
+  static navigatorStyle = {
+    navBarHidden: true
+  };
+
   componentDidMount() {
-    //this.getTodoList();
+    this.getTodoList();
   }
 
   @autobind
   getTodoList() {
     const { dispatch } = this.props;
-    const userId = Memory.get(AUTH_DATA).user.id;
-    return dispatch(requestTodoList(userId, {}));
+    const userId = 1;
+    // return dispatch(requestTodoList(userId, {}));
   }
 
   render() {

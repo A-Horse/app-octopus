@@ -13,7 +13,7 @@ export default class TaskScreen extends Component {
       label: 'Notifications',
       icon: ({ tintColor }) => (
         <Image
-          source={require('./delete.svg')}
+        source={require('./delete.svg')}
           style={[styles.icon, {tintColor: tintColor}]}
           />
       )

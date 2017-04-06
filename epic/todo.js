@@ -9,7 +9,6 @@ import { makeTodosUrl } from '../service/todo-helper';
 export const todos = action$ =>
   action$.ofType(TODO_LIST_REQUEST)
   .mergeMap(action => {
-    console.log(action);
     const url = makeTodosUrl(action.playload.userId, action.listMeta);
     return ajax.get(url, AuthService.makeJWTHeader())
       .map(response => response.response)
