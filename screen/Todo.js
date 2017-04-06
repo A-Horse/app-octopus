@@ -11,23 +11,17 @@ import { addNavigationHelpers } from 'react-navigation';
 import TodoBoxs from './todo/TodoBoxs';
 
 
-@connect(state => ({
-  nav: state.nav,
-}))
+@connect()
 class TodoScreen extends Component {
   componentDidMount() {
-    console.log(this.props.navigation.state.params);
+
   }
 
   render() {
     // const { todos } = this.props;
     return (
       <View style={styles.container}>
-        <TodoBoxs navigation={addNavigationHelpers({
-            dispatch: this.props.dispatch,
-            state: this.props.nav,
-          })}
-        dispatch={this.props.dispatch}/>
+        <TodoBoxs navigator={this.props.navigator}/>
       </View>
     );
   }

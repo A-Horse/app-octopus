@@ -14,7 +14,8 @@ import appReducer from './reducer';
 
 import { Navigation } from 'react-native-navigation';
 import { registerScreens } from './screens';
-registerScreens();
+
+
 
 
 // TODO 不应该全部引入
@@ -28,24 +29,6 @@ import { checkLogin } from './service/auth';
 
 import LoginScreen from './screen/Login';
 
-Navigation.startTabBasedApp({
-  tabs: [
-    {
-      label: 'One',
-      screen: 'example.FirstTabScreen', // this is a registered name for a screen
-      icon: require('../img/one.png'),
-      selectedIcon: require('../img/one_selected.png'), // iOS only
-      title: 'Screen One'
-    },
-    {
-      label: 'Two',
-      screen: 'example.SecondTabScreen',
-      icon: require('../img/two.png'),
-      selectedIcon: require('../img/two_selected.png'), // iOS only
-      title: 'Screen Two'
-    }
-  ]
-});
 
 
 // @connect(state => ({
@@ -60,6 +43,7 @@ Navigation.startTabBasedApp({
 //     );
 //   }
 // }
+
 
 import rootEpic from './epic';
 
@@ -76,6 +60,7 @@ const store = createStore(
   )
 );
 
+registerScreens(store, Provider);
 // import TodoScreen from './screen/Todo';
 
 // class App extends Component {
@@ -90,3 +75,20 @@ const store = createStore(
 // }
 
 // AppRegistry.registerComponent('OctopusApp', () => App);
+
+Navigation.startTabBasedApp({
+  tabs: [
+    {
+      label: 'One',
+      screen: 'octopus.FirstTabScreen', // this is a registered name for a screen
+      icon: require('./ic_assignment.png'),
+      selectedIcon: require('./ic_assignment.png') // iOS only
+    },
+    {
+      label: 'Two',
+      screen: 'octopus.SecondTabScreen',
+      icon: require('./ic_assignment.png'),
+      selectedIcon: require('./ic_assignment.png') // iOS only
+    }
+  ]
+});

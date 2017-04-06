@@ -13,15 +13,11 @@ const mapStateToProps = state => {
 @connect(mapStateToProps)
 class Todos extends Component {
   componentDidMount() {
-    this.getTodoList();
+    //this.getTodoList();
   }
 
   @autobind
   getTodoList() {
-    console.log(
-      'hihih',
-      this.props.navigation
-    );
     const { dispatch } = this.props;
     const userId = Memory.get(AUTH_DATA).user.id;
     return dispatch(requestTodoList(userId, {}));
@@ -30,7 +26,7 @@ class Todos extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <Text>hi222</Text>
       </View>
     );
   }

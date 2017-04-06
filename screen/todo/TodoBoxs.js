@@ -10,19 +10,9 @@ class TodoBoxs extends Component {
 
   goTodoList(item) {
     return () => {
-
-      // this.props.dispatch(NavigationActions.navigate({routeName: 'TodoList', params: item}));
-      // this.props.navigation.navigate('TodoList', {x: 1, y: 2}, {});
-      // this.props.navigation.dispatch(navigateAction);
-      this.props.navigation.navigate('Main', {}, {
-        type: "Navigate",
-        routeName: "Todo",
-        action: {
-          type: "Navigate",
-          routeName: "TodoList",
-          params: item
-        }
-      });
+      this.props.navigator.push({
+        screen: 'octopus.PushedScreen'
+      })
     };
   }
 
