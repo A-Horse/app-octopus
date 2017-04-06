@@ -6,9 +6,10 @@ import { requestTodoList } from '../../action/todo';
 import Memory from '../../service/memory';
 import { AUTH_DATA } from '../../constant';
 // import
-const mapStateToProps = state => ({
-  navigation: state.navigation
-});
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {navigation2: state.navigation}
+};
 @connect(mapStateToProps)
 class Todos extends Component {
   componentDidMount() {
@@ -18,11 +19,12 @@ class Todos extends Component {
   @autobind
   getTodoList() {
     console.log(
+      'hihih',
       this.props.navigation
     );
     const { dispatch } = this.props;
     const userId = Memory.get(AUTH_DATA).user.id;
-    return dispatch(requestTodoList(userId, this.props.navigation.state.params));
+    return dispatch(requestTodoList(userId, {}));
   }
 
   render() {
