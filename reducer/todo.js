@@ -11,10 +11,6 @@ const todo = (state = {}, action) => {
   switch (action.type) {
   case TODO_LIST_SUCCESS:
     const normalized = normalize(action.playload, todos);
-    console.log(Object.assign({}, state, {
-      userTodos: normalized.result,
-      entities: normalized.entities
-    }));
     return Object.assign({}, state, {
       userTodos: normalized.result,
       entities: normalized.entities

@@ -9,6 +9,7 @@ export function authRequest(authData) {
 }
 
 export function authSuccess(data) {
+  console.log(data, 'data');
   return {
     type: AUTH_SUCCESS,
     playload: data

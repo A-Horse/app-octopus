@@ -9,6 +9,9 @@ import LoginScreen from './screen/Login';
 
 export function registerScreens(store, Provider) {
   Navigation.registerComponent('octopus.TaskBoardsScreen', () => TaskBoardsScreen, store, Provider);
+
   Navigation.registerComponent('octopus.TodoBoxsScreen', () => TodoBoxsScreen, store, Provider);
   Navigation.registerComponent('octopus.TodosScreen', () => TodosScreen, store, Provider);
+
+  Navigation.registerComponent('octopus.LoginScreen', () => LoginScreen, store, Provider);
 }

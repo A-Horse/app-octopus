@@ -7,7 +7,6 @@ import { AUTH_DATA } from '../constant';
 const auth = (state = {}, action) => {
   switch (action.type) {
   case AUTH_SUCCESS:
-    console.log(action);
     Memory.set(AUTH_DATA, action.playload);
     Storage.set(AUTH_DATA, JSON.stringify(action.playload));
     return Object.assign({}, state,
@@ -18,3 +17,5 @@ const auth = (state = {}, action) => {
     return state;
   }
 }
+
+export default auth;
