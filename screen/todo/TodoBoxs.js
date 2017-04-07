@@ -6,6 +6,10 @@ import R from 'ramda';
 
 @connect()
 class TodoBoxs extends Component {
+  static navigatorStyle = {
+    navBarHidden: true
+  };
+
   lists = [{name: 'My Todo', id: 0, type: 'default'}];
 
   goTodoList(item) {

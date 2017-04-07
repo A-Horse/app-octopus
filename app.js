@@ -11,6 +11,7 @@ import store from './store';
 export default class App extends Component {
   constructor(props) {
     super(props);
+    // persistStore(store, {storage: AsyncStorage}, this.start).purge();
     persistStore(store, {storage: AsyncStorage}, this.start);
   }
 

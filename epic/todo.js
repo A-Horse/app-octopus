@@ -1,16 +1,17 @@
-import { USER_TODO_LIST_REQUEST, USER_TODO_LIST_SUCCESS, TODO_LIST_REQUEST, TODO_LIST_SUCCESS, requestUserTodoListSuccess, requestTodoListSuccess } from '../action/todo';
+import { TODOS_REQUEST, requestUserTodoListSuccess, requestTodosSuccess } from '../action/todo';
 import { AUTH_REQUEST, AUTH_SUCCESS, authSuccess } from '../action/auth';
 import { makeServerApi } from '../util/api-maker';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { handleEpicError } from '../util/request-helper';
 import AuthService from '../service/auth';
-import { makeTodosUrl } from '../service/todo-helper';
+import { makeTodosUrl } from '../util/todo-helper';
 
 export const todos = action$ =>
-  action$.ofType(TODO_LIST_REQUEST)
+  action$.ofType(TODOS_REQUEST)
   .mergeMap(action => {
-    const url = makeTodosUrl(action.playload.userId, action.listMeta);
+    console.log('action', action);
+    const url = makeTodosUrl(action.playload.id, action.meta);
     return ajax.get(url, AuthService.makeJWTHeader())
       .map(response => response.response)
-      .map((response) => requestTodoListSuccess(response, action.listMeta.id));
+      .map(response => requestTodosSuccess(response, action.meta.id));
   }).catch(handleEpicError);

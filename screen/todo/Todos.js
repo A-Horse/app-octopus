@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
-import { requestTodoList } from '../../action/todo';
-import Memory from '../../service/memory';
-import { AUTH_DATA } from '../../constant';
-// import
+import { StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { createSelector } from 'reselect'
+import * as todosActions from './Todos.action';
 
-@connect()
-class Todos extends Component {
-  static navigatorStyle = {
-    navBarHidden: true
+const getUserId = state => state.auth.user.id;
+
+const mapStateToProps = (state, props) => {
+  return {
+    userId: getUserId(state)
   };
+};
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(todosActions, dispatch)
+  };
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
+class Todos extends Component {
   componentDidMount() {
-    this.getTodoList();
+    this.getTodos();
   }
 
   @autobind
-  getTodoList() {
+  getTodos() {
     const { dispatch } = this.props;
-    const userId = 1;
-    // return dispatch(requestTodoList(userId, {}));
+    const userId = this.props.userId;
+    this.props.actions.getTodos(null, {userId});
   }
 
   render() {

@@ -1,16 +1,16 @@
-export const TODO_LIST_REQUEST = 'TODO_LIST_REQUEST';
-export const TODO_LIST_SUCCESS = 'TODO_LIST_SUCCESS';
+export const TODOS_REQUEST = 'TODOS_REQUEST';
+export const TODOS_SUCCESS = 'TODOS_SUCCESS';
 
-export function requestTodoList(userId, listMeta) {
+export function requestTodos(id, meta) {
   return {
-    type: TODO_LIST_REQUEST,
-    playload: {userId, listMeta}
+    type: TODOS_REQUEST,
+    playload: {id, meta}
   };
 }
 
 export function requestTodoListSuccess(todos, id) {
   return {
-    type: TODO_LIST_SUCCESS,
+    type: TODOS_SUCCESS,
     playload: {todos, id}
   }
 }
