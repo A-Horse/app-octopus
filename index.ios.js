@@ -14,7 +14,6 @@ import { connect, Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { registerScreens } from './screens';
 
-
 // TODO 不应该全部引入
 import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
 
