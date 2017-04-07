@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
-import { NavigationActions } from 'react-navigation'
 
+@connect()
 class TodoBoxs extends Component {
   lists = [{name: 'My Todo', id: 0, type: 'default'}];
 
   goTodoList(item) {
     return () => {
       this.props.navigator.push({
-        screen: 'octopus.PushedScreen',
+        screen: 'octopus.TodosScreen',
         passProps: {meta: item},
         animated: false
       });

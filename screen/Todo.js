@@ -6,7 +6,6 @@ import { AUTH_DATA } from '../constant';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
-import { addNavigationHelpers } from 'react-navigation';
 
 import TodoBoxs from './todo/TodoBoxs';
 
