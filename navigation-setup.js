@@ -1,4 +1,6 @@
 import { Navigation } from 'react-native-navigation';
+import AuthService from './service/auth';
+import store from './store';
 
 export function setupSignApp() {
   Navigation.startSingleScreenApp({
@@ -12,6 +14,7 @@ export function setupSignApp() {
 };
 
 export function setupMainApp() {
+  AuthService.loadJWTFromState(store.getState());
   Navigation.startTabBasedApp({
     tabs: [
       {

@@ -8,7 +8,7 @@ export function requestTodos(id, meta) {
   };
 }
 
-export function requestTodoListSuccess(todos, id) {
+export function requestTodosSuccess(todos, id) {
   return {
     type: TODOS_SUCCESS,
     playload: {todos, id}

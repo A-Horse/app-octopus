@@ -1,6 +1,12 @@
 import { JWT, JWTS_TOKEN } from '../constant';
 
 export class Auth {
+  jwt = null;
+
+  loadJWTFromState(state) {
+    const { auth } = state;
+    this.jwt = auth.jwt;
+  }
 
   checkLoginFromState(state) {
     const { auth } = state;
@@ -12,7 +18,7 @@ export class Auth {
 
   makeJWTHeader(header = {}) {
     const jwtObj = {};
-    jwtObj[JWTS_TOKEN] = this.authData[JWT];
+    jwtObj[JWTS_TOKEN] = this.jwt;
     return Object.assign({}, header, jwtObj);
   }
 }

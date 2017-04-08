@@ -1,20 +1,18 @@
 import { normalize } from 'normalizr';
-import { AUTH_REQUEST, AUTH_SUCCESS } from '../action/todo';
-import { USER_TODOS_REQUEST, TODOS_SUCCESS } from '../action/todo';
+import R from 'ramda';
+import { TODOS_SUCCESS } from '../action/todo';
 import { todos } from '../schema';
-import Storage from '../service/storage';
-import { JWT } from '../constant';
-import Memory from '../service/memory';
-import { AUTH_DATA } from '../constant';
 
 const todo = (state = {}, action) => {
   switch (action.type) {
   case TODOS_SUCCESS:
-    const normalized = normalize(action.playload, todos);
-    return Object.assign({}, state, {
-      userTodos: normalized.result,
-      entities: normalized.entities
-    });
+    const normalized = normalize(action.playload.todos, todos);
+    const todosResult = R.assoc(action.playload.id, normalized.result, {});
+    return {
+      ...state,
+      results: {...state.results, ...todosResult},
+      entities: {...state.entities, ...normalized.entities.todo}
+    };
   default:
     return state;
   }
