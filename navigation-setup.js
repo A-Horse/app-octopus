@@ -18,14 +18,14 @@ export function setupMainApp() {
   Navigation.startTabBasedApp({
     tabs: [
       {
-        label: 'Task',
-        screen: 'octopus.TaskBoardsScreen', // this is a registered name for a screen
+        label: 'Todo',
+        screen: 'octopus.TodoBoxsScreen',
         icon: require('./ic_assignment.png'),
         selectedIcon: require('./ic_assignment.png') // iOS only
       },
       {
-        label: 'Todo',
-        screen: 'octopus.TodoBoxsScreen',
+        label: 'Task',
+        screen: 'octopus.TaskBoardsScreen', // this is a registered name for a screen
         icon: require('./ic_assignment.png'),
         selectedIcon: require('./ic_assignment.png') // iOS only
       }

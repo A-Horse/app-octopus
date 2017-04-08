@@ -8,16 +8,21 @@ import R from 'ramda';
 class TodoBoxs extends Component {
   static navigatorStyle = {
     navBarHidden: true
-  };
+  }
+  lists = [{name: 'My Todo', id: null}]
 
-  lists = [{name: 'My Todo', id: 0, type: 'default'}];
+  componentDidMount() {
+    this.goTodoList(this.lists[0])();
+  }
 
   goTodoList(item) {
     return () => {
       this.props.navigator.push({
         screen: 'octopus.TodosScreen',
         passProps: {meta: item},
-        animated: false
+        animated: false,
+        backButtonTitle: '',
+        title: item.name
       });
     };
   }

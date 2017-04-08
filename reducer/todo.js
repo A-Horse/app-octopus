@@ -3,7 +3,13 @@ import R from 'ramda';
 import { TODOS_SUCCESS } from '../action/todo';
 import { todos } from '../schema';
 
-const todo = (state = {}, action) => {
+const todo = (
+  state = {
+    results: {},
+    entities: {}
+  },
+  action
+) => {
   switch (action.type) {
   case TODOS_SUCCESS:
     const normalized = normalize(action.playload.todos, todos);
