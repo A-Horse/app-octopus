@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import CheckBox from 'react-native-check-box'
+import { StyleSheet, View, Text } from 'react-native';
+import CheckBox from '../../component/CheckBox';
+import StarCheckBox from '../../component/StarCheckBox';
 
 export default class Todo extends Component {
   static propTypes = {
@@ -12,11 +13,11 @@ export default class Todo extends Component {
 
     return (
       <View style={styles.container}>
-        <CheckBox style={styles.checkbox} onClick={() => {}}/>
+        <CheckBox style={styles.checkbox} onClick={() => {}} />
         <Text numberOfLines={1} style={styles.content}>
           {todo.content}
         </Text>
-        <Image style={styles.boderStar} source={require('../../image/ios/ic_star_border/ic_star_border.png')} />
+        <StarCheckBox onClick={() => {}} />
       </View>
     );
   }
@@ -38,7 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   checkbox: {
-    marginTop: 4
+    marginTop: 2,
+    marginRight: 6
   },
   borderStar: {
     flex: 1

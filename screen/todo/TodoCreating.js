@@ -9,31 +9,20 @@ import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
 
-const getUserId = state => state.auth.user.id;
-const getAllTodos = (state, props) => {
-  const { meta } = props;
-  const { entities } = state.todo;
-  const todoResults = state.todo.results[meta.id] || [];
-  return todoResults.map(id => entities[id]);
-};
-
-const getTodos = createSelector([getAllTodos], R.identity);
-
 const mapStateToProps = (state, props) => {
   return {
-    userId: getUserId(state),
-    todos: getTodos(state, props)
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(todosActions, dispatch)
+
   };
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Todos extends Component {
+export default class TodoCreating extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,
@@ -81,5 +70,3 @@ const styles = StyleSheet.create({
     overflow: 'scroll'
   }
 });
-
-export default Todos;
