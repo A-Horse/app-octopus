@@ -22,38 +22,18 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class TodoCreating extends Component {
+export default class TodoEdit extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,
     navBarButtonColor: '#fff',
     navBarTextColor: '#fff'
   }
-  static navigatorButtons = {
-
-  };
-
-  componentDidMount() {
-    this.getTodos();
-  }
-
-  @autobind
-  getTodos() {
-    const userId = this.props.userId;
-    this.props.actions.getTodos(this.props.meta.id, {userId});
-  }
-
-  renderTodos() {
-    const { todos } = this.props;
-    return todos.map(todo => <Todo key={todo.id} todo={todo} />);
-  }
-
 
   render() {
     return (
         <View style={styles.container}>
-        <TodoCreater />
-        {this.renderTodos()}
+
       </View>
     );
   }

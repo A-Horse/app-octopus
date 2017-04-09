@@ -61,9 +61,10 @@ class Todos extends Component {
 
 
   render() {
+    const userId = this.props.userId;
     return (
         <View style={styles.container}>
-        <TodoCreater />
+        <TodoCreater createTodo={this.props.actions.createTodo(this.props.meta.id, {userId})} />
         {this.renderTodos()}
       </View>
     );

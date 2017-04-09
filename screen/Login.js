@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import { authRequest } from '../action/auth';
-
-import style from '../style';
+import Style from '../style';
 
 @connect()
 class LoginScreen extends Component {
@@ -22,7 +21,7 @@ class LoginScreen extends Component {
       <View style={styles.container}>
 
         <TextInput
-          style={style.input}
+          style={Style.input}
           placeholder="Email"
           ref="email"
           keyboardType="email-address"
@@ -30,7 +29,7 @@ class LoginScreen extends Component {
         />
 
         <TextInput
-          style={style.input}
+          style={Style.input}
           ref="password"
           secureTextEntry={true}
           placeholder="Password"

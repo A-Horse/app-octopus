@@ -1,10 +1,11 @@
 import { combineEpics } from 'redux-observable';
 
 import { auth } from './auth';
-import { todos } from './todo';
+import { todos, createTodo } from './todo';
 
 export default combineEpics(
   auth,
 
-  todos
+  todos,
+  createTodo
 );

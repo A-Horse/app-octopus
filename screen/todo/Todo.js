@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import CheckBox from '../../component/CheckBox';
 import StarCheckBox from '../../component/StarCheckBox';
+import Swipeout from 'react-native-swipeout';
+// var Swipeout = require('react-native-swipeout');
 
 export default class Todo extends Component {
   static propTypes = {
@@ -10,15 +12,22 @@ export default class Todo extends Component {
 
   render() {
     const {todo} = this.props;
+    var swipeoutBtns = [
+      {
+        text: 'Button'
+      }
+    ];
 
     return (
-      <View style={styles.container}>
-        <CheckBox style={styles.checkbox} onClick={() => {}} />
-        <Text numberOfLines={1} style={styles.content}>
-          {todo.content}
-        </Text>
-        <StarCheckBox onClick={() => {}} />
-      </View>
+      <Swipeout right={swipeoutBtns}>
+        <View style={styles.container}>
+          <CheckBox style={styles.checkbox} onClick={() => {}} />
+          <Text numberOfLines={1} style={styles.content}>
+            {todo.content}
+          </Text>
+          <StarCheckBox onClick={() => {}} />
+        </View>
+      </Swipeout>
     );
   }
 }

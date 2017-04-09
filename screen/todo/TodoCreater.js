@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import Todo from './Todo';
 import R from 'ramda';
 
 export default class TodoCreater extends Component {
+  state = {}
 
   @autobind
   getTodos() {
@@ -20,11 +21,27 @@ export default class TodoCreater extends Component {
     return todos.map(todo => <Todo key={todo.id} todo={todo} />);
   }
 
+  @autobind
+  onAddPress() {
+    if (!this.state.content) return this.refs.content.focus();
+    this.props.createTodo({content: this.state.content});
+    this.refs.content.clear();
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../../image/ios/ic_add/ic_add.png')} />
-        <Text style={styles.text}>Add Todo...</Text>
+        <TouchableOpacity onPress={this.onAddPress}>
+           <Image source={require('../../image/ios/ic_add/ic_add.png')} />
+        </TouchableOpacity>
+
+        <TextInput
+          style={styles.content}
+          placeholderTextColor="#000"
+          placeholder="Add Todo..."
+          ref="content"
+          onChangeText={(content) => this.setState({content})}
+        />
       </View>
     );
   }
@@ -45,7 +62,10 @@ const styles = StyleSheet.create({
     maxHeight: 46,
     alignItems: 'center'
   },
-  text: {
-    fontSize: 18
+  content: {
+    flex: 1,
+    fontSize: 16,
+    color: '#000',
+    marginTop: 3
   }
 });
