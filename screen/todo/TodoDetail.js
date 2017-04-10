@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class TodoEdit extends Component {
+export default class TodoDetail extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,

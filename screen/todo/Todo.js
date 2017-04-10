@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import CheckBox from '../../component/CheckBox';
 import StarCheckBox from '../../component/StarCheckBox';
 
@@ -8,22 +8,25 @@ export default class Todo extends Component {
     todo: React.PropTypes.object.isRequired
   };
 
+  goTodoDetail() {
+    this.props.navigator.push({
+      screen:
+    });
+  }
+
   render() {
     const {todo} = this.props;
-    var swipeoutBtns = [
-      {
-        text: 'Button'
-      }
-    ];
 
     return (
-      <View style={styles.container}>
-        <CheckBox style={styles.checkbox} onClick={() => {}} />
-        <Text numberOfLines={1} style={styles.content}>
-          {todo.content}
-        </Text>
-        <StarCheckBox onClick={() => {}} />
-      </View>
+      <TouchableOpacity onPress={}>
+        <View style={styles.container}>
+          <CheckBox style={styles.checkbox} onClick={() => {}} />
+          <Text numberOfLines={1} style={styles.content}>
+            {todo.content}
+          </Text>
+          <StarCheckBox onClick={() => {}} />
+        </View>
+      </TouchableOpacity>
     );
   }
 }
