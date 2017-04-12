@@ -27,7 +27,38 @@ export default class TodoDetail extends Component {
     navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,
     navBarButtonColor: '#fff',
-    navBarTextColor: '#fff'
+    navBarTextColor: '#fff',
+    tabBarHidden: true
+  }
+
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        icon: require('../../image/ios/ic_add/ic_add.png'),
+        id: 'action'
+      },
+      {
+        icon: require('../../image/ios/ic_add/ic_add.png'),
+        id: 'action2'
+      }
+    ]
+  }
+
+  constructor(props) {
+    super(props);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
+
+  onNavigatorEvent(event) {
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'action') {
+
+      }
+    }
+  }
+
+  openActionSheet() {
+
   }
 
   render() {
