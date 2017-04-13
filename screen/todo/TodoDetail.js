@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -17,7 +17,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    actions: bindActionCreators(todosActions, dispatch)
   };
 };
 
@@ -34,12 +34,8 @@ export default class TodoDetail extends Component {
   static navigatorButtons = {
     rightButtons: [
       {
-        icon: require('../../image/ios/ic_add/ic_add.png'),
+        icon: require('../../image/ios/ic_more_horiz/ic_more_horiz.png'),
         id: 'action'
-      },
-      {
-        icon: require('../../image/ios/ic_add/ic_add.png'),
-        id: 'action2'
       }
     ]
   }
@@ -52,13 +48,31 @@ export default class TodoDetail extends Component {
   onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') {
       if (event.id == 'action') {
-
+        this.openActionSheet();
       }
     }
   }
 
-  openActionSheet() {
+  destoryTodo() {
+    console.log('destoRY');
+    this.props.actions.destoryTodo(this.props.todo.id);
+  }
 
+  openActionSheet() {
+    const buttonTexts = ['Done', 'Delete', 'Cancel'];
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: buttonTexts,
+      cancelButtonIndex: R.findIndex(R.equals('Cancel'))(buttonTexts),
+      destructiveButtonIndex: R.findIndex(R.equals('Delete'))(buttonTexts)
+    }, (buttonIndex) => {
+      switch (buttonTexts[buttonIndex]) {
+      case 'Delete':
+        this.destoryTodo();
+        break;
+      default:
+        return;
+      }
+    });
   }
 
   render() {

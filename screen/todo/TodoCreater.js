@@ -32,7 +32,7 @@ export default class TodoCreater extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.onAddPress}>
-           <Image source={require('../../image/ios/ic_add/ic_add.png')} />
+          <Image source={require('../../image/ios/ic_add/ic_add.png')} />
         </TouchableOpacity>
 
         <TextInput
@@ -40,6 +40,8 @@ export default class TodoCreater extends Component {
           placeholderTextColor="#000"
           placeholder="Add Todo..."
           ref="content"
+          onBlur={this.props.clearNavButton}
+          onFocus={this.props.addCreateTodoButton}
           onChangeText={(content) => this.setState({content})}
         />
       </View>

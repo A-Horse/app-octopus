@@ -14,8 +14,7 @@ export default class Todo extends Component {
     this.props.navigator.push({
       screen: 'octopus.TodoDetailScreen',
       passProps: {todo: this.props.todo},
-      backButtonTitle: '',
-      title: this.props.todo.content
+      backButtonTitle: ''
     });
   }
 

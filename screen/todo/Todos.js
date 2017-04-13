@@ -40,12 +40,34 @@ class Todos extends Component {
     navBarButtonColor: '#fff',
     navBarTextColor: '#fff'
   }
-  static navigatorButtons = {
 
-  };
+  constructor(props) {
+    super(props);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
+
+  onNavigatorEvent(event) {
+    if (event.type === 'ScreenChangedEvent') {
+      this.clearNavButton();
+    }
+  }
 
   componentDidMount() {
     this.getTodos();
+  }
+
+  @autobind
+  addCreateTodoButton() {
+    this.props.navigator.setButtons({
+      rightButtons: [{title: 'Add', id: 'add'}]
+    });
+  }
+
+  @autobind
+  clearNavButton() {
+    this.props.navigator.setButtons({
+      rightButtons: []
+    });
   }
 
   @autobind
@@ -59,12 +81,13 @@ class Todos extends Component {
     return todos.map(todo => <Todo key={todo.id} todo={todo} navigator={this.props.navigator} />);
   }
 
-
   render() {
     const userId = this.props.userId;
     return (
-        <View style={styles.container}>
-        <TodoCreater createTodo={this.props.actions.createTodo(this.props.meta.id, {userId})} />
+      <View style={styles.container}>
+        <TodoCreater createTodo={this.props.actions.createTodo(this.props.meta.id, {userId})}
+          addCreateTodoButton={this.addCreateTodoButton}
+          clearNavButton={this.clearNavButton} />
         {this.renderTodos()}
       </View>
     );

@@ -31,3 +31,20 @@ export function requestCreateTodoSuccess(id, meta, data) {
     playload: {id, meta, data}
   };
 }
+
+export const DESTORY_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
+export const DESTORY_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
+
+export function requestDestroyTodo(id) {
+  return {
+    type: DESTORY_TODO_REQUEST,
+    playload: {id}
+  }
+}
+
+export function requestDestroyTodoSuccess(id) {
+  return {
+    type: DESTORY_TODO_SUCCESS,
+    playload: {id}
+  };
+}

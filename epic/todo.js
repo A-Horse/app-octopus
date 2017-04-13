@@ -1,4 +1,8 @@
-import { TODOS_REQUEST, CREATE_TODO_REQUEST,  requestTodosSuccess, requestCreateTodoSuccess } from '../action/todo';
+
+import {
+  TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST,
+  requestTodosSuccess, requestCreateTodoSuccess, requestDestroyTodoSuccess
+} from '../action/todo';
 import { makeServerApi } from '../util/api-maker';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { handleEpicError } from '../util/request-helper';
@@ -21,4 +25,13 @@ export const createTodo = action$ =>
     return ajax.post(url, action.playload.data, AuthService.makeJWTHeader())
       .map(response => response.response)
       .map(response => requestCreateTodoSuccess(action.playload.id, action.playload.meta, response));
+  }).catch(handleEpicError);
+
+export const destoryTodo = action$ =>
+  action$.ofType(DESTORY_TODO_REQUEST)
+  .mergeMap(action => {
+    return ajax.delete(makeServerApi(`todo/${action.playload.id}`), AuthService.makeJWTHeader())
+      .map(() => {
+        return requestDestroyTodoSuccess(action.playload.id);
+      });
   }).catch(handleEpicError);
