@@ -16,6 +16,10 @@ export default class TodoCreater extends Component {
     this.props.actions.getTodos(this.props.meta.id, {userId});
   }
 
+  clear() {
+    this.refs.content.clear();
+  }
+
   renderTodos() {
     const { todos } = this.props;
     return todos.map(todo => <Todo key={todo.id} todo={todo} />);
@@ -24,8 +28,6 @@ export default class TodoCreater extends Component {
   @autobind
   onAddPress() {
     this.refs.content.focus();
-    this.props.createTodo({content: this.state.content});
-    this.refs.content.clear();
   }
 
   render() {

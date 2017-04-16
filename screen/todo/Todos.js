@@ -59,8 +59,9 @@ class Todos extends Component {
 
   createTodo() {
     const userId = this.props.userId;
-    this.props.actions.createTodo(this.props.meta.id, {userId})
-    ({content: this.refs.creater.state.content});
+    this.props.actions.createTodo(this.props.meta.id, {userId})({content: this.refs.creater.state.content});
+    this.refs.creater.clear();
+    this.clearNavButton();
   }
 
   componentDidMount() {
