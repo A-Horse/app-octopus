@@ -47,9 +47,20 @@ class Todos extends Component {
   }
 
   onNavigatorEvent(event) {
-    if (event.type === 'ScreenChangedEvent') {
+    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') {
       this.clearNavButton();
     }
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'add') {
+        this.createTodo();
+      }
+    }
+  }
+
+  createTodo() {
+    const userId = this.props.userId;
+    this.props.actions.createTodo(this.props.meta.id, {userId})
+    ({content: this.refs.creater.state.content});
   }
 
   componentDidMount() {
@@ -82,11 +93,9 @@ class Todos extends Component {
   }
 
   render() {
-    const userId = this.props.userId;
     return (
       <View style={styles.container}>
-        <TodoCreater createTodo={this.props.actions.createTodo(this.props.meta.id, {userId})}
-          addCreateTodoButton={this.addCreateTodoButton}
+        <TodoCreater ref="creater" addCreateTodoButton={this.addCreateTodoButton}
           clearNavButton={this.clearNavButton} />
         {this.renderTodos()}
       </View>

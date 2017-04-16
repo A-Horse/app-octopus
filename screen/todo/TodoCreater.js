@@ -23,7 +23,7 @@ export default class TodoCreater extends Component {
 
   @autobind
   onAddPress() {
-    if (!this.state.content) return this.refs.content.focus();
+    this.refs.content.focus();
     this.props.createTodo({content: this.state.content});
     this.refs.content.clear();
   }
