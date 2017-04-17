@@ -79,7 +79,7 @@ class Todos extends Component {
   clearNavButton() {
     this.props.navigator.setButtons({
       rightButtons: []
-    });
+    })
   }
 
   @autobind
