@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, Text, TextInput, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
 import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
+import StarCheckBox from '../../component/StarCheckBox';
+import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -54,7 +56,6 @@ export default class TodoDetail extends Component {
   }
 
   destoryTodo() {
-    console.log('destoRY');
     this.props.actions.destoryTodo(this.props.todo.id);
   }
 
@@ -66,19 +67,33 @@ export default class TodoDetail extends Component {
       destructiveButtonIndex: R.findIndex(R.equals('Delete'))(buttonTexts)
     }, (buttonIndex) => {
       switch (buttonTexts[buttonIndex]) {
-      case 'Delete':
-        this.destoryTodo();
-        break;
-      default:
-        return;
+        case 'Delete':
+          this.destoryTodo();
+          break;
+        default:
+          return;
       }
     });
   }
 
+  @autobind
+  onTodoContentChange(todoContent) {
+    this.setState({todoContent});
+  }
+
   render() {
     return (
-        <View style={styles.container}>
-
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
+          <StarCheckBox
+            style={styles.star}
+            onClick={() => {}} />
+          <AutoGrowingTextInput
+            style={styles.content}
+            onChangeText={this.onTodoContentChange}
+            defaultValue={this.props.todo.content}
+          />
+        </View>
       </View>
     );
   }
@@ -93,5 +108,25 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     overflow: 'scroll'
+  },
+  contentContainer: {
+
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    backgroundColor: '#fff'
+  },
+  star: {
+    flex: 1,
+    // flexBasis: 1
+    flexGrow: 1,
+    alignItems: 'flex-start'
+  },
+  content: {
+    flex: 1,
+    textAlign: 'left',
+    // flexBasis: 2
+    flexGrow: 10,
+    alignItems: 'flex-start'
   }
 });

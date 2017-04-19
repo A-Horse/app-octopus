@@ -47,6 +47,7 @@ class Todos extends Component {
   }
 
   onNavigatorEvent(event) {
+    // TODO: maybe better way
     if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') {
       this.clearNavButton();
     }
@@ -59,6 +60,7 @@ class Todos extends Component {
 
   createTodo() {
     const userId = this.props.userId;
+    // FIXME
     this.props.actions.createTodo(this.props.meta.id, {userId})({content: this.refs.creater.state.content});
     this.refs.creater.clear();
     this.clearNavButton();

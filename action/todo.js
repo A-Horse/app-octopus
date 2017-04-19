@@ -48,3 +48,20 @@ export function requestDestroyTodoSuccess(id) {
     playload: {id}
   };
 }
+
+export const PATCH_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
+export const PATCH_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
+
+export function requesUpdateTodo(data) {
+  return {
+    type: PATCH_TODO_REQUEST,
+    playload: {id}
+  }
+}
+
+export function requesUpdateTodoSuccess(id) {
+  return {
+    type: PATCH_TODO_SUCCESS,
+    playload: {id}
+  };
+}

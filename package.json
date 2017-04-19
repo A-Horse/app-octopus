@@ -14,6 +14,7 @@
     "ramda": "^0.23.0",
     "react": "15.4.2",
     "react-native": "0.42.3",
+    "react-native-autogrow-textinput": "^3.0.1",
     "react-native-check-box": "^1.0.4",
     "react-native-navigation": "^2.0.0-experimental.277",
     "react-redux": "^5.0.3",
