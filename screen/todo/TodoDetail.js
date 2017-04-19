@@ -105,12 +105,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     backgroundColor: '#6eb8d4',
-    paddingLeft: 10,
-    paddingRight: 10,
     overflow: 'scroll'
   },
   contentContainer: {
-
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
@@ -118,14 +116,13 @@ const styles = StyleSheet.create({
   },
   star: {
     flex: 1,
-    // flexBasis: 1
     flexGrow: 1,
     alignItems: 'flex-start'
   },
   content: {
+    fontSize: 16,
     flex: 1,
     textAlign: 'left',
-    // flexBasis: 2
     flexGrow: 10,
     alignItems: 'flex-start'
   }
