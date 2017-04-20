@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, TextInput, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -94,6 +94,16 @@ export default class TodoDetail extends Component {
             defaultValue={this.props.todo.content}
           />
         </View>
+        <View>
+          <Image source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
+          <Text>Deadline</Text>
+          <DatePickerIOS
+            date={this.state.date}
+            mode="datetime"
+            timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+            onDateChange={this.onDateChange}
+          />
+        </View>
       </View>
     );
   }
@@ -112,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    backgroundColor: '#fff'
+    backgroundColor: '#96cada'
   },
   star: {
     flex: 1,
