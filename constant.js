@@ -1,7 +1,7 @@
-
 // export const apiUrl = 'http://localhost:5500/api';
 // export const apiUrl = 'http://127.0.0.1/api';
-export const apiUrl = 'http://octopus.com/api';
+// export const apiUrl = 'http://octopus.com/api';
+export const apiUrl = 'http://rpi.ngrok.octopuese.xyz/api';
 
 export const JWT = "jwt";
 
