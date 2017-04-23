@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
+import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
 import R from 'ramda';
 import Todo from './Todo';
@@ -41,6 +42,17 @@ export default class TodoDetail extends Component {
       }
     ]
   }
+
+  static defaultProps = {
+    date: new Date(),
+    timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
+  };
+
+  state = {
+    date: this.props.date,
+    timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
+  };
+
 
   constructor(props) {
     super(props);
@@ -97,11 +109,29 @@ export default class TodoDetail extends Component {
         <View>
           <Image source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
           <Text>Deadline</Text>
-          <DatePickerIOS
+          <DatePicker
+            style={{width: 200}}
             date={this.state.date}
-            mode="datetime"
-            timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-            onDateChange={this.onDateChange}
+            mode="date"
+            placeholder="select date"
+            format="YYYY-MM-DD"
+            minDate="2016-05-01"
+            maxDate="2020-06-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+              },
+              dateInput: {
+                marginLeft: 36
+              }
+              // ... You can check the source to find the other keys.
+            }}
+            onDateChange={(date) => {this.setState({date: date})}}
           />
         </View>
       </View>
