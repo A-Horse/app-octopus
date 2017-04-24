@@ -106,28 +106,22 @@ export default class TodoDetail extends Component {
             defaultValue={this.props.todo.content}
           />
         </View>
-        <View>
+        <View style={styles.deallineContainer}>
           <Image source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
           <Text>Deadline</Text>
           <DatePicker
-            style={{width: 200}}
             date={this.state.date}
-            mode="date"
+            mode="datetime"
+            iconSource={require('../../image/ios/ic_date_range/ic_date_range.png')}
             placeholder="select date"
-            format="YYYY-MM-DD"
             minDate="2016-05-01"
             maxDate="2020-06-01"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
+            showIcon={false}
             customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0
-              },
               dateInput: {
-                marginLeft: 36
+                borderWidth: 0
               }
               // ... You can check the source to find the other keys.
             }}
@@ -141,29 +135,38 @@ export default class TodoDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#6eb8d4',
     overflow: 'scroll'
   },
   contentContainer: {
+    backgroundColor: '#2793c1',
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    backgroundColor: '#96cada'
+    alignItems: 'center',
+    padding: 10
   },
   star: {
     flex: 1,
     flexGrow: 1,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    width: 30
   },
   content: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "500",
     flex: 1,
     textAlign: 'left',
-    flexGrow: 10,
-    alignItems: 'flex-start'
+    flexGrow: 11,
+    alignItems: 'flex-start',
+    color: '#fff',
+    top: 1
+  },
+  deallineContainer: {
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection:'row'
   }
 });
