@@ -43,14 +43,7 @@ export default class TodoDetail extends Component {
     ]
   }
 
-  static defaultProps = {
-    date: new Date(),
-    timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
-  };
-
   state = {
-    date: this.props.date,
-    timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
   };
 
 
@@ -106,28 +99,60 @@ export default class TodoDetail extends Component {
             defaultValue={this.props.todo.content}
           />
         </View>
-        <View style={styles.deallineContainer}>
-          <Image source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
-          <Text>Deadline</Text>
-          <DatePicker
-            date={this.state.date}
-            mode="datetime"
-            iconSource={require('../../image/ios/ic_date_range/ic_date_range.png')}
-            placeholder="select date"
-            minDate="2016-05-01"
-            maxDate="2020-06-01"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            showIcon={false}
-            customStyles={{
-              dateInput: {
-                borderWidth: 0
-              }
-              // ... You can check the source to find the other keys.
-            }}
-            onDateChange={(date) => {this.setState({date: date})}}
-          />
+        <View style={styles.detailContainer}>
+          <View style={styles.deallineContainer}>
+            <Image style={styles.lineIcon} source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
+            <View style={styles.lineContent}>
+              <DatePicker
+                date={this.state.dealline}
+                mode="datetime"
+                placeholder="Dealline"
+                minDate="2016-05-01"
+                maxDate="2020-06-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                multiline={true}
+                customStyles={{
+                  dateInput: {
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
+                    borderWidth: 0
+                  }
+                }}
+                onDateChange={(date) => {this.setState({date: date})}}
+              />
+            </View>
+          </View>
+
+          <View style={styles.deallineContainer}>
+            <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+            <View style={styles.lineContent}>
+              <DatePicker
+                date={this.state.notice}
+                mode="datetime"
+                placeholder="Notice"
+                minDate="2016-05-01"
+                maxDate="2020-06-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                multiline={true}
+                customStyles={{
+                  dateInput: {
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
+                    borderWidth: 0
+                  }
+                }}
+                onDateChange={(date) => {this.setState({date: date})}}
+              />
+            </View>
+          </View>
         </View>
+
       </View>
     );
   }
@@ -146,7 +171,9 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10
+    paddingLeft: 20,
+    paddingRight: 10,
+    paddingBottom: 10
   },
   star: {
     flex: 1,
@@ -154,19 +181,35 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     width: 30
   },
+  lineIcon: {
+    marginRight: 10
+  },
+  lineContent: {
+    flex: 1,
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection:'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8'
+  },
   content: {
     fontSize: 18,
     fontWeight: "500",
-    flex: 1,
     textAlign: 'left',
     flexGrow: 11,
     alignItems: 'flex-start',
     color: '#fff',
-    top: 1
+    top: 2,
+    flexDirection: 'column'
   },
   deallineContainer: {
     flexWrap: 'wrap',
     alignItems: 'center',
     flexDirection:'row'
+  },
+  detailContainer: {
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 30
   }
 });

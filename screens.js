@@ -13,6 +13,7 @@ export function registerScreens(store, Provider) {
   Navigation.registerComponent('octopus.TodoBoxsScreen', () => TodoBoxsScreen, store, Provider);
   Navigation.registerComponent('octopus.TodosScreen', () => TodosScreen, store, Provider);
   Navigation.registerComponent('octopus.TodoDetailScreen', () => TodoDetailScreen, store, Provider);
+  // Navigation.registerComponent('octopus.TodoDetailScreen', () => TodoDetailScreen, store, Provider);
 
   Navigation.registerComponent('octopus.LoginScreen', () => LoginScreen, store, Provider);
 }
