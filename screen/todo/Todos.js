@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ListView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -48,13 +48,9 @@ class Todos extends Component {
 
   onNavigatorEvent(event) {
     // TODO: maybe better way
-    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') {
-      this.clearNavButton();
-    }
-    if (event.type == 'NavBarButtonPress') {
-      if (event.id == 'add') {
-        this.createTodo();
-      }
+    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') this.clearNavButton();
+    if (event.type === 'NavBarButtonPress') {
+      event.id === 'add' && this.createTodo();
     }
   }
 

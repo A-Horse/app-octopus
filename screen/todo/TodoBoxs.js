@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
+import * as todosActions from './Todos.action';
 
 @connect()
 class TodoBoxs extends Component {
@@ -36,6 +37,7 @@ class TodoBoxs extends Component {
   renderListItem(item) {
     return (
       <View key={item.id}>
+
         <Text onPress={this.goTodoList(item)}>
           {item.name}
         </Text>

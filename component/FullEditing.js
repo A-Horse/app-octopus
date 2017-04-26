@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, Image, ScrollView, TouchableOpacity, Text, Dimensions, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 
-import * as todosActions from './Todos.action';
+
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 
-export default class FullWrite extends Component {
+export default class FullEditing extends Component {
   static navigatorStyle = {
-    navBarBackgroundColor: '#1d92c3',
-    navBarNoBorder: true,
-    navBarButtonColor: '#fff',
-    navBarTextColor: '#fff',
+    navBarBackgroundColor: '#fef3a1',
+    navBarButtonColor: '#2591fa',
+    navBarTextColor: '#2591fa',
     tabBarHidden: true
   }
 
@@ -39,6 +38,7 @@ export default class FullWrite extends Component {
     }
   }
 
+  @autobind
   onContentChange(content) {
     this.setState({content});
   }
@@ -46,11 +46,13 @@ export default class FullWrite extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AutoGrowingTextInput
-          style={styles.content}
-          onChangeText={this.onContentChange}
-          defaultValue={this.props.content}
-          />
+        <ScrollView keyboardDismissMode='interactive'>
+            <TextInput multiline={true}
+              onChangeText={this.onContentChange}
+              defaultValue={this.props.content}
+              style={styles.content}
+            />
+        </ScrollView>
       </View>
     );
   }
@@ -62,6 +64,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   content: {
-
+    paddingTop: 5,
+    paddingRight: 20,
+    paddingLeft: 20,
+    fontSize: 18,
+    height: Dimensions.get('window').height - 60
   }
 });

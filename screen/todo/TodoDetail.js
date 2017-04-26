@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
@@ -58,6 +58,15 @@ export default class TodoDetail extends Component {
         this.openActionSheet();
       }
     }
+  }
+
+  goRemarkEditing() {
+    this.props.navigator.push({
+      screen: 'octopus.TodoRemarkScreen',
+      title: 'Remarks',
+      passProps: {content: this.props.todo.remark},
+      backButtonTitle: ''
+    });
   }
 
   destoryTodo() {
@@ -151,6 +160,14 @@ export default class TodoDetail extends Component {
               />
             </View>
           </View>
+
+          <View>
+            <TouchableOpacity onPress={() => this.goRemarkEditing()}>
+              <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+              <Text>Remarks</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
 
       </View>
