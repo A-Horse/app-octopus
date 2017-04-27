@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, TouchableOpacity, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
@@ -11,6 +11,8 @@ import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+
+
 
 const mapStateToProps = (state, props) => {
   return {
@@ -43,13 +45,13 @@ export default class TodoDetail extends Component {
     ]
   }
 
-  state = {
-  };
+  state = {};
 
 
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    console.log(SwipeableRow, SwipeableListView);
   }
 
   onNavigatorEvent(event) {

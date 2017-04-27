@@ -13,7 +13,7 @@ class TodoBoxs extends Component {
   lists = [{name: 'My Todo', id: null}]
 
   componentDidMount() {
-    this.goTodoList(this.lists[0])();
+    // this.goTodoList(this.lists[0])();
   }
 
   goTodoList(item) {
