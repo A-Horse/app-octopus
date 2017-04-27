@@ -12,8 +12,6 @@ import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
-
-
 const mapStateToProps = (state, props) => {
   return {
 
