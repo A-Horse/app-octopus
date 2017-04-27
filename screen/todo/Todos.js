@@ -9,7 +9,6 @@ import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
 
-const getUserId = state => state.auth.user.id;
 const getAllTodos = (state, props) => {
   const { meta } = props;
   const { entities } = state.todo;
@@ -21,7 +20,7 @@ const getTodos = createSelector([getAllTodos], R.identity);
 
 const mapStateToProps = (state, props) => {
   return {
-    userId: getUserId(state),
+    userId: state.auth.user.id,
     todos: getTodos(state, props)
   };
 };

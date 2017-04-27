@@ -52,16 +52,31 @@ export function requestDestroyTodoSuccess(id) {
 export const PATCH_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
 export const PATCH_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
 
-export function requesUpdateTodo(data) {
+export function requestUpdateTodo(data) {
   return {
     type: PATCH_TODO_REQUEST,
     playload: {id}
   }
 }
 
-export function requesUpdateTodoSuccess(id) {
+export function requestUpdateTodoSuccess(id) {
   return {
     type: PATCH_TODO_SUCCESS,
     playload: {id}
+  };
+}
+
+export const TODOBOX_REQUEST = 'TODOBOX_REQUEST';
+export const TODOBOX_SUCCESS = 'TODOBOX_SUCCESS';
+
+export function requestTodoBox() {
+  return {
+    type: TODOBOX_REQUEST
+  }
+}
+
+export function requestTodoBoxSuccess() {
+  return {
+    type: TODOBOX_SUCCESS
   };
 }

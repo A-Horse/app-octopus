@@ -20,3 +20,7 @@ export function destoryTodo(id) {
 export function updateTodo(data) {
   return dispatch => dispatch();
 }
+
+export function getTodoBoxs() {
+  return dispatch => dispatch();
+}
