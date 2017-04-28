@@ -12,12 +12,10 @@ const todoBox = (
 ) => {
   switch (action.type) {
   case GET_TODOBOX_SUCCESS:
-    const normalized = normalize(action.playload.todos, TodoBoxs);
-    const todosResult = R.assoc(action.playload.id, normalized.result, {});
+    const normalized = normalize(action.playload.todoBoxs, TodoBoxs);
     return {
       ...state,
-      results: {...state.results, ...todosResult},
-      entities: {...state.entities, ...normalized.entities.todo}
+      ...normalized
     };
   default:
     return state;

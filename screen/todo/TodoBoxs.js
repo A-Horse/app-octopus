@@ -6,9 +6,14 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import R from 'ramda';
 import * as todosActions from './Todos.action';
 
+const getTodoBox = (state, props) => {
+  const { entities } = state.todoBox
+};
+
 const mapStateToProps = (state, props) => {
   return {
-    userId: state.auth.user.id
+    userId: state.auth.user.id,
+    todoBoxs: state.auth.todoBox
   };
 };
 

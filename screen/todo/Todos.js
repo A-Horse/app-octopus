@@ -12,8 +12,8 @@ import * as todosActions from './Todos.action';
 
 const getAllTodos = (state, props) => {
   const { meta } = props;
-  const { entities } = state.todo;
-  const todoResults = state.todo.results[meta.id] || [];
+  const { entities, results } = state.todo;
+  const todoResults = results[meta.id] || [];
   return todoResults.map(id => entities[id]);
 };
 

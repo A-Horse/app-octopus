@@ -75,8 +75,9 @@ export function requestTodoBox() {
   }
 }
 
-export function requestTodoBoxSuccess() {
+export function requestTodoBoxSuccess(todoBoxs) {
   return {
-    type: GET_TODOBOX_SUCCESS
+    type: GET_TODOBOX_SUCCESS,
+    playload: {todoBoxs}
   };
 }

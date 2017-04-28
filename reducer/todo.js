@@ -12,7 +12,7 @@ const todo = (
 ) => {
   switch (action.type) {
   case TODOS_SUCCESS:
-    const normalized = normalize(action.playload.todos, Todos);
+    const normalized = normalize(action.playload.todoBoxs, Todos);
     const todosResult = R.assoc(action.playload.id, normalized.result, {});
     return {
       ...state,
