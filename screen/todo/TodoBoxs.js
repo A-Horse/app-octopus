@@ -7,13 +7,14 @@ import R from 'ramda';
 import * as todosActions from './Todos.action';
 
 const getTodoBox = (state, props) => {
-  const { entities } = state.todoBox
+  const { entities } = state.todoBox;
+  return R.values(entities);
 };
 
 const mapStateToProps = (state, props) => {
   return {
     userId: state.auth.user.id,
-    todoBoxs: state.auth.todoBox
+    todoBoxs: createSelector([getTodoBox], R.identity);
   };
 };
 
@@ -49,15 +50,9 @@ class TodoBoxs extends Component {
   }
 
   @autobind
-  renderLists() {
-    return this.lists.map(this.renderListItem);
-  }
-
-  @autobind
-  renderListItem(item) {
+  renderBox(box) {
     return (
       <View key={item.id}>
-
         <Text onPress={this.goTodoList(item)}>
           {item.name}
         </Text>
@@ -68,7 +63,12 @@ class TodoBoxs extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.renderLists()}
+        <ScrollView>
+          <ListView
+            dataSource={this.props.todoBoxs}
+            renderRow={this.renderBox}
+          />
+        </ScrollView>
       </View>
     );
   }
