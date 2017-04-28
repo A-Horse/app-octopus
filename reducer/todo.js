@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import R from 'ramda';
 import { TODOS_SUCCESS } from '../action/todo';
-import { todos } from '../schema';
+import { Todos } from '../schema';
 
 const todo = (
   state = {
@@ -12,7 +12,7 @@ const todo = (
 ) => {
   switch (action.type) {
   case TODOS_SUCCESS:
-    const normalized = normalize(action.playload.todos, todos);
+    const normalized = normalize(action.playload.todos, Todos);
     const todosResult = R.assoc(action.playload.id, normalized.result, {});
     return {
       ...state,

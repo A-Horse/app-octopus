@@ -66,17 +66,17 @@ export function requestUpdateTodoSuccess(id) {
   };
 }
 
-export const TODOBOX_REQUEST = 'TODOBOX_REQUEST';
-export const TODOBOX_SUCCESS = 'TODOBOX_SUCCESS';
+export const GET_TODOBOX_REQUEST = 'GET_TODOBOX_REQUEST';
+export const GET_TODOBOX_SUCCESS = 'GET_TODOBOX_SUCCESS';
 
 export function requestTodoBox() {
   return {
-    type: TODOBOX_REQUEST
+    type: GET_TODOBOX_REQUEST
   }
 }
 
 export function requestTodoBoxSuccess() {
   return {
-    type: TODOBOX_SUCCESS
+    type: GET_TODOBOX_SUCCESS
   };
 }

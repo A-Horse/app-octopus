@@ -1,5 +1,7 @@
 import { normalize, schema } from 'normalizr';
 
-export const todo = new schema.Entity('todo');
-export const todoBox = new schema.Entity('todoBox');
-export const todos = new schema.Array(todo);
+export const Todo = new schema.Entity('todo');
+export const Todos = new schema.ArrayTodo);
+
+export const TodoBox = new schema.Entity('todoBox');
+export const TodoBoxs = new schema.Array(TodoBox);
