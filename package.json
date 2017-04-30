@@ -10,6 +10,7 @@
     "autobind-decorator": "^1.3.4",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "moment": "^2.18.1",
     "normalizr": "^3.2.2",
     "ramda": "^0.23.0",
     "react": "15.4.2",

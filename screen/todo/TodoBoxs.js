@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import autobind from 'autobind-decorator';
 import { createSelector } from 'reselect';
-import { StyleSheet, Text, View, Image, Button, ScrollView, ListView } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, ScrollView, ListView } from 'react-native';
 import R from 'ramda';
+import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import * as todosActions from './Todos.action';
 
 const getTodoBox = (state, props) => {
@@ -28,7 +29,21 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 class TodoBoxs extends Component {
   static navigatorStyle = {
-    // navBarHidden: true
+    navBarBackgroundColor: '#1d92c3',
+    navBarButtonColor: '#fff',
+  }
+
+  static navigatorButtons = {
+    leftButtons: [
+      {
+        icon: require('../../image/ios/ic_pie_chart/ic_pie_chart.png'),
+        id: 'pie'
+      },
+      {
+        icon: require('../../image/ios/ic_settings/ic_settings.png'),
+        id: 'setting'
+      }
+    ]
   }
   // lists = [{name: 'My Todo', id: null}]
 
@@ -81,10 +96,25 @@ class TodoBoxs extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+
+  },
+  header: {
+    backgroundColor: '#1d92c3',
+    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    justifyContent: 'space-between'
+  },
+  headerButtons: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  headerDate: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
   scrollView: {
     flex: 1
