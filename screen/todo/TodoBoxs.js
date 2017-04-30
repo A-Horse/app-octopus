@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { createSelector } from 'reselect';
+import { StyleSheet, Text, View, Image, Button, ScrollView, ListView } from 'react-native';
 import R from 'ramda';
 import * as todosActions from './Todos.action';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
-  return R.values(entities);
+  return R.values(entities.todoBox);
 };
 
 const mapStateToProps = (state, props) => {
   return {
     userId: state.auth.user.id,
-    todoBoxs: createSelector([getTodoBox], R.identity);
+    todoBoxs: createSelector([getTodoBox], R.identity)(state, props)
   };
 };
 
@@ -27,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 class TodoBoxs extends Component {
   static navigatorStyle = {
-    navBarHidden: true
+    // navBarHidden: true
   }
   // lists = [{name: 'My Todo', id: null}]
 
@@ -52,21 +53,25 @@ class TodoBoxs extends Component {
   @autobind
   renderBox(box) {
     return (
-      <View key={item.id}>
-        <Text onPress={this.goTodoList(item)}>
-          {item.name}
+      <View key={box.id}>
+        <Text onPress={this.goTodoList(box)}>
+          {box.name}
         </Text>
       </View>
     );
   }
 
   render() {
+    var todoBoxDataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    }).cloneWithRows(this.props.todoBoxs);
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.scrollView}>
           <ListView
-            dataSource={this.props.todoBoxs}
+            dataSource={todoBoxDataSource}
             renderRow={this.renderBox}
+            enableEmptySections={true}
           />
         </ScrollView>
       </View>
@@ -80,6 +85,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  scrollView: {
+    flex: 1
   }
 });
 

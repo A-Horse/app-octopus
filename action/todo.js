@@ -21,7 +21,7 @@ export const CREATE_TODO_SUCCESS = 'CREATE_TODO_SUCCESS';
 export function requestCreateTodo(id, meta, data) {
   return {
     type: CREATE_TODO_REQUEST,
-    playload: {id, meta, data}
+    playload: {id, meta, data} // TODO: meta
   };
 }
 
@@ -69,9 +69,10 @@ export function requestUpdateTodoSuccess(id) {
 export const GET_TODOBOX_REQUEST = 'GET_TODOBOX_REQUEST';
 export const GET_TODOBOX_SUCCESS = 'GET_TODOBOX_SUCCESS';
 
-export function requestTodoBox() {
+export function requestTodoBox(meta) {
   return {
-    type: GET_TODOBOX_REQUEST
+    type: GET_TODOBOX_REQUEST,
+    meta: meta
   }
 }
 

@@ -2,7 +2,8 @@ import R from 'ramda';
 import {
   requestTodos,
   requestCreateTodo,
-  requestDestroyTodo
+  requestDestroyTodo,
+  requestTodoBox
 } from '../../action/todo';
 
 export function getTodos(id, meta) {
@@ -21,6 +22,6 @@ export function updateTodo(data) {
   return dispatch => dispatch();
 }
 
-export function getTodoBoxs() {
-  return dispatch => dispatch();
+export function getTodoBoxs(meta) {
+  return dispatch => dispatch(requestTodoBox(meta));
 }

@@ -1,5 +1,5 @@
 import {
-  TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST, TODOBOX_REQUEST,
+  TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST, GET_TODOBOX_REQUEST,
   requestTodosSuccess, requestCreateTodoSuccess, requestDestroyTodoSuccess,
   requestTodoBoxSuccess
 } from '../action/todo';
@@ -37,9 +37,9 @@ export const destoryTodo = action$ =>
   }).catch(handleEpicError);
 
 export const getTodoBoxs = action$ =>
-  action$.ofType(TODOBOX_REQUEST)
+  action$.ofType(GET_TODOBOX_REQUEST)
   .mergeMap(action => {
-    return ajax.get(makeServerApi(`user/${action.playload.meta.userId}/todo-box`), AuthService.makeJWTHeader())
+    return ajax.get(makeServerApi(`user/${action.meta.userId}/todo-box`), AuthService.makeJWTHeader())
       .map(response => response.response)
       .map(response => requestTodoBoxSuccess(response));
   }).catch(handleEpicError);
