@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator';
 import { createSelector } from 'reselect';
 import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, ScrollView, ListView } from 'react-native';
 import R from 'ramda';
+import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import * as todosActions from './Todos.action';
 
@@ -43,6 +44,11 @@ class TodoBoxs extends Component {
         icon: require('../../image/ios/ic_settings/ic_settings.png'),
         id: 'setting'
       }
+    ],
+    rightButtons: [
+      {
+        title: moment().format("D MMM ddd")
+      }
     ]
   }
   // lists = [{name: 'My Todo', id: null}]
@@ -58,7 +64,6 @@ class TodoBoxs extends Component {
       this.props.navigator.push({
         screen: 'octopus.TodosScreen',
         passProps: {meta: item},
-        animated: false,
         backButtonTitle: '',
         title: item.name
       });
@@ -67,8 +72,14 @@ class TodoBoxs extends Component {
 
   @autobind
   renderBox(box) {
+    let icon;
+    switch (box.type) {
+      case 'private':
+        icon = <Image source={require('../../image/ios/ic_account_circle/ic_account_circle.png')} />;
+    }
     return (
-      <View key={box.id}>
+      <View key={box.id} style={styles.box}>
+        {icon}
         <Text onPress={this.goTodoList(box)}>
           {box.name}
         </Text>
@@ -96,28 +107,20 @@ class TodoBoxs extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
     flex: 1,
-    backgroundColor: '#F5FCFF',
-
-  },
-  header: {
-    backgroundColor: '#1d92c3',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  headerButtons: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  headerDate: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
+    backgroundColor: '#71b8d2'
   },
   scrollView: {
-    flex: 1
+    flex: 1,
+    padding: 10
+  },
+  box: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 3
   }
 });
 
