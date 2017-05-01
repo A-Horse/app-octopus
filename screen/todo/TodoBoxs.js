@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 class TodoBoxs extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
-    navBarButtonColor: '#fff',
+    navBarButtonColor: '#fff'
   }
 
   static navigatorButtons = {
@@ -47,7 +47,10 @@ class TodoBoxs extends Component {
     ],
     rightButtons: [
       {
-        title: moment().format("D MMM ddd")
+        title: moment().format('ddd')
+      },
+      {
+        title: moment().format('D MMM')
       }
     ]
   }
@@ -75,12 +78,12 @@ class TodoBoxs extends Component {
     let icon;
     switch (box.type) {
       case 'private':
-        icon = <Image source={require('../../image/ios/ic_account_circle/ic_account_circle.png')} />;
+        icon = <Image style={styles.boxIcon} source={require('../../image/ios/ic_account_circle/ic_account_circle.png')} />;
     }
     return (
       <View key={box.id} style={styles.box}>
         {icon}
-        <Text onPress={this.goTodoList(box)}>
+        <Text style={styles.boxText} onPress={this.goTodoList(box)}>
           {box.name}
         </Text>
       </View>
@@ -121,6 +124,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 3
+  },
+  boxIcon: {
+    marginRight: 10
+  },
+  boxText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: '#555'
   }
 });
 
