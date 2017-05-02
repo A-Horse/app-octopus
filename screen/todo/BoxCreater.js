@@ -7,17 +7,10 @@ import { createSelector } from 'reselect';
 import Todo from './Todo';
 import R from 'ramda';
 
-export default class TodoCreater extends Component {
+export default class BoxCreater extends Component {
   state = {}
 
-  clear() {
-    this.refs.content.clear();
-  }
 
-  @autobind
-  onAddPress() {
-    this.refs.content.focus();
-  }
 
   render() {
     return (
@@ -26,15 +19,7 @@ export default class TodoCreater extends Component {
           <Image source={require('../../image/ios/ic_add/ic_add.png')} />
         </TouchableOpacity>
 
-        <TextInput
-          style={styles.content}
-          placeholderTextColor="#000"
-          placeholder="Add Todo..."
-          ref="content"
-          onBlur={this.props.clearNavButton}
-          onFocus={this.props.addCreateTodoButton}
-          onChangeText={(content) => this.setState({content})}
-        />
+      <Text>Add Todo Box...</Text>
       </View>
     );
   }
@@ -42,22 +27,16 @@ export default class TodoCreater extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    borderStyle: 'solid',
     borderRadius: 3,
-    borderColor: '#000',
-    marginTop: 10,
-    paddingLeft: 8,
-    paddingRight: 8,
+    marginTop: 8,
+    padding: 10,
     backgroundColor: '#fff',
-    flex: 1,
     flexDirection: 'row',
-    maxHeight: 46,
     alignItems: 'center'
   },
   content: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 18,
     color: '#000',
     marginTop: 3
   }

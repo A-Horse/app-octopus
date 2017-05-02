@@ -7,29 +7,24 @@ import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, Scr
 import R from 'ramda';
 import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
-import BoxCreater from './BoxCreater';
 import * as todosActions from './Todos.action';
 
-const getTodoBox = (state, props) => {
-  const { entities } = state.todoBox;
-  return R.values(entities.todoBox);
-};
 
 const mapStateToProps = (state, props) => {
   return {
     userId: state.auth.user.id,
-    todoBoxs: createSelector([getTodoBox], R.identity)(state, props)
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(todosActions, dispatch)
+
   };
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-class TodoBoxs extends Component {
+class Profile extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
     navBarButtonColor: '#fff'
@@ -93,10 +88,6 @@ class TodoBoxs extends Component {
     );
   }
 
-  renderBoxCreater() {
-
-  }
-
   render() {
     var todoBoxDataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -109,7 +100,6 @@ class TodoBoxs extends Component {
             renderRow={this.renderBox}
             enableEmptySections={true}
           />
-          <BoxCreater />
         </ScrollView>
       </View>
     );

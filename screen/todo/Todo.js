@@ -37,17 +37,12 @@ export default class Todo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    borderStyle: 'solid',
-    borderRadius: 3,
-    borderColor: '#000',
-    marginTop: 10,
-    paddingLeft: 8,
-    paddingRight: 8,
-    backgroundColor: '#fff',
     flex: 1,
+    borderRadius: 3,
+    padding: 10,
+    backgroundColor: '#fff',
+    marginTop: 8,
     flexDirection: 'row',
-    maxHeight: 46,
     alignItems: 'center'
   },
   checkbox: {
