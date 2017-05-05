@@ -39,7 +39,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 3,
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
     backgroundColor: '#fff',
     marginTop: 8,
     flexDirection: 'row',
