@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import CheckBox from 'react-native-check-box';
 import { Image } from 'react-native';
+import autobind from 'autobind-decorator';
 
 export default class MyCheckBox extends Component {
+
+  state = {checked: !!this.props.defaultChecked}
+
+  @autobind
+  onClick(checked) {
+    this.setState({checked: !this.state.checked});
+    this.props.onClick(this.state.checked);
+  }
 
   render() {
     return (
       <CheckBox
         style={this.props.style}
-        onClick={()=>this.props.onClick(this.props.checked)}
-        isChecked={this.props.checked}
+        onClick={this.onClick}
+        isChecked={this.state.checked}
       />
     );
   }

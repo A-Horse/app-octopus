@@ -18,17 +18,19 @@ export function requestTodosSuccess(id, todos) {
 export const CREATE_TODO_REQUEST = 'CREATE_TODO_REQUEST';
 export const CREATE_TODO_SUCCESS = 'CREATE_TODO_SUCCESS';
 
-export function requestCreateTodo(id, meta, data) {
+export function requestCreateTodo(boxId, meta, data) {
   return {
     type: CREATE_TODO_REQUEST,
-    playload: {id, meta, data} // TODO: meta
+    playload: {id: boxId, data},
+    meta
   };
 }
 
-export function requestCreateTodoSuccess(id, meta, data) {
+export function requestCreateTodoSuccess(boxId, meta, data) {
   return {
     type: CREATE_TODO_SUCCESS,
-    playload: {id, meta, data}
+    playload: {id: boxId, data},
+    meta
   };
 }
 
@@ -49,20 +51,21 @@ export function requestDestroyTodoSuccess(id) {
   };
 }
 
-export const PATCH_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
-export const PATCH_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
+export const UPDATE_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
+export const UPDATE_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
 
-export function requestUpdateTodo(data) {
+export function requestUpdateTodo(data, meta) {
   return {
-    type: PATCH_TODO_REQUEST,
-    playload: {id}
-  }
+    type: UPDATE_TODO_REQUEST,
+    playload: data,
+    meta: meta
+  };
 }
 
-export function requestUpdateTodoSuccess(id) {
+export function requestUpdateTodoSuccess(data) {
   return {
-    type: PATCH_TODO_SUCCESS,
-    playload: {id}
+    type: UPDATE_TODO_SUCCESS,
+    playload: data
   };
 }
 

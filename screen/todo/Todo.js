@@ -18,13 +18,14 @@ export default class Todo extends Component {
     });
   }
 
+
+
   render() {
     const {todo} = this.props;
-
     return (
       <TouchableOpacity onPress={this.goTodoDetail}>
         <View style={styles.container}>
-          <CheckBox style={styles.checkbox} onClick={() => {}} />
+          <CheckBox defaultChecked={todo.isDone} style={styles.checkbox} onClick={() => {}} />
           <Text numberOfLines={1} style={styles.content}>
             {todo.content}
           </Text>

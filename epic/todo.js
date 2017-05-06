@@ -1,9 +1,11 @@
 import {
   TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST, GET_TODOBOX_REQUEST,
+  UPDATE_TODO_REQUEST,
   requestTodosSuccess, requestCreateTodoSuccess, requestDestroyTodoSuccess,
   requestTodoBoxSuccess
 } from '../action/todo';
 import { makeServerApi } from '../util/api-maker';
+import {AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { handleEpicError } from '../util/request-helper';
 import AuthService from '../service/auth';
@@ -21,10 +23,10 @@ export const todos = action$ =>
 export const createTodo = action$ =>
   action$.ofType(CREATE_TODO_REQUEST)
   .mergeMap(action => {
-    const url = makeTodosUrl(action.playload.id, action.playload.meta);
+    const url = makeTodosUrl(action.playload.id, action.meta);
     return ajax.post(url, action.playload.data, AuthService.makeJWTHeader())
       .map(response => response.response)
-      .map(response => requestCreateTodoSuccess(action.playload.id, action.playload.meta, response));
+      .map(response => requestCreateTodoSuccess(action.playload.id, action.meta, response));
   }).catch(handleEpicError);
 
 export const destoryTodo = action$ =>
@@ -35,6 +37,16 @@ export const destoryTodo = action$ =>
         return requestDestroyTodoSuccess(action.playload.id);
       });
   }).catch(handleEpicError);
+
+export const updateTodo = action$ =>
+  action$.ofType(UPDATE_TODO_REQUEST)
+  .mergeMap(action => {
+
+    return new AjaxObservable({
+      method: 'PATCH',
+      url: makeServerApi(`todo/${action.meta.id}`)
+    })
+  });
 
 export const getTodoBoxs = action$ =>
   action$.ofType(GET_TODOBOX_REQUEST)
