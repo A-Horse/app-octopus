@@ -23,10 +23,10 @@ export const todos = action$ =>
 export const createTodo = action$ =>
   action$.ofType(CREATE_TODO_REQUEST)
   .mergeMap(action => {
-    const url = makeTodosUrl(action.playload.id, action.meta);
+    const url = makeTodosUrl(action.playload.boxId, action.meta);
     return ajax.post(url, action.playload.data, AuthService.makeJWTHeader())
       .map(response => response.response)
-      .map(response => requestCreateTodoSuccess(action.playload.id, action.meta, response));
+      .map(response => requestCreateTodoSuccess(action.playload.boxId, action.meta, response));
   }).catch(handleEpicError);
 
 export const destoryTodo = action$ =>
@@ -41,7 +41,7 @@ export const destoryTodo = action$ =>
 export const updateTodo = action$ =>
   action$.ofType(UPDATE_TODO_REQUEST)
   .mergeMap(action => {
-
+    const url = makeTodosUrl(action.playload.boxId, action.meta);
     return new AjaxObservable({
       method: 'PATCH',
       url: makeServerApi(`todo/${action.meta.id}`)

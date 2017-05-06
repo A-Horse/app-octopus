@@ -21,7 +21,7 @@ export const CREATE_TODO_SUCCESS = 'CREATE_TODO_SUCCESS';
 export function requestCreateTodo(boxId, meta, data) {
   return {
     type: CREATE_TODO_REQUEST,
-    playload: {id: boxId, data},
+    playload: {boxId, data},
     meta
   };
 }
