@@ -9,10 +9,8 @@ export default class MyCheckBox extends Component {
 
   @autobind
   onClick() {
-    console.log('hi', this.state.checked);
     this.setState({checked: !this.state.checked});
-    console.log('hi', this.state.checked);
-    this.props.onClick(!!this.state.checked);
+    this.props.onClick(!this.state.checked);
   }
 
   render() {

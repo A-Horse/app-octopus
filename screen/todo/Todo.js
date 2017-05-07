@@ -25,7 +25,7 @@ export default class Todo extends Component {
         <View style={styles.container}>
           <CheckBox defaultChecked={todo.isDone} style={styles.checkbox}
             onClick={(checked) => {this.props.updateTodo({isDone: checked})}} />
-          <Text numberOfLines={1} style={styles.content}>
+          <Text numberOfLines={1} style={[styles.content, {textDecorationLine: todo.isDone ? 'line-through' : 'none'}]}>
             {todo.content}
           </Text>
           <StarCheckBox onClick={() => {}} />

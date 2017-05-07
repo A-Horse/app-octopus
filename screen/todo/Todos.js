@@ -17,7 +17,7 @@ const getAllTodos = (state, props) => {
   return todoResults.map(id => entities[id]);
 };
 
-const getTodos = createSelector([getAllTodos], R.identity);
+const getTodos = createSelector([getAllTodos], R.sortBy(R.prop('isDone')));
 
 const mapStateToProps = (state, props) => {
   return {
