@@ -1,8 +1,8 @@
 import { makeServerApi } from '../util/api-maker';
 
-export function makeTodosUrl(id, meta) {
-  if (id) {
+export function makeTodosUrl(boxId, meta, todoId) {
+  if (boxId) {
     return; // TBD
   }
-  return makeServerApi(`user/${meta.userId}/todo`);
+  return makeServerApi(`user/${meta.userId}/todo${todoId ? '/' + todoId : ''}`);
 }

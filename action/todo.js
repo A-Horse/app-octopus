@@ -51,21 +51,22 @@ export function requestDestroyTodoSuccess(id) {
   };
 }
 
-export const UPDATE_TODO_REQUEST = 'DESTORY_TODO_REQUEST';
-export const UPDATE_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
+export const UPDATE_TODO_REQUEST = 'UPDATE_TODO_REQUEST';
+export const UPDATE_TODO_SUCCESS = 'UPDATE_TODO_SUCCESS';
 
-export function requestUpdateTodo(data, meta) {
+export function requestUpdateTodo(boxId, meta, data) {
   return {
     type: UPDATE_TODO_REQUEST,
     playload: data,
-    meta: meta
+    meta
   };
 }
 
-export function requestUpdateTodoSuccess(data) {
+export function requestUpdateTodoSuccess(boxId, meta, data) {
   return {
     type: UPDATE_TODO_SUCCESS,
-    playload: data
+    playload: data,
+    meta
   };
 }
 

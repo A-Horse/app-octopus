@@ -4,7 +4,9 @@ import { JWT } from '../constant';
 import Memory from '../service/memory';
 import { AUTH_DATA } from '../constant';
 
-const auth = (state = {}, action) => {
+const auth = (state = {
+  user: {}
+}, action) => {
   switch (action.type) {
   case AUTH_SUCCESS:
     return {

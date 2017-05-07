@@ -2,7 +2,7 @@ import {
   TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST, GET_TODOBOX_REQUEST,
   UPDATE_TODO_REQUEST,
   requestTodosSuccess, requestCreateTodoSuccess, requestDestroyTodoSuccess,
-  requestTodoBoxSuccess
+  requestTodoBoxSuccess, requestUpdateTodoSuccess
 } from '../action/todo';
 import { makeServerApi } from '../util/api-maker';
 import {AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
@@ -41,12 +41,15 @@ export const destoryTodo = action$ =>
 export const updateTodo = action$ =>
   action$.ofType(UPDATE_TODO_REQUEST)
   .mergeMap(action => {
-    const url = makeTodosUrl(action.playload.boxId, action.meta);
+    const url = makeTodosUrl(action.meta.boxId, action.meta, action.meta.id);
     return new AjaxObservable({
       method: 'PATCH',
-      url: makeServerApi(`todo/${action.meta.id}`)
-    })
-  });
+      url: url,
+      body: action.playload,
+      headers: Object.assign(AuthService.makeJWTHeader(), {'Content-Type': 'application/json'})
+    }).map(response => response.response)
+      .map(response => requestUpdateTodoSuccess(action.meta.boxId, action.playload.meta, response))
+  }).catch(handleEpicError);
 
 export const getTodoBoxs = action$ =>
   action$.ofType(GET_TODOBOX_REQUEST)

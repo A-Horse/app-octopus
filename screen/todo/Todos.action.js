@@ -3,7 +3,8 @@ import {
   requestTodos,
   requestCreateTodo,
   requestDestroyTodo,
-  requestTodoBox
+  requestTodoBox,
+  requestUpdateTodo
 } from '../../action/todo';
 
 export function getTodos(id, meta) {
@@ -18,8 +19,8 @@ export function destoryTodo(id) {
   return dispatch => dispatch(requestDestroyTodo(id));
 }
 
-export function updateTodo(data) {
-  return dispatch => dispatch();
+export function updateTodo(boxId, meta, data) {
+  return dispatch => dispatch(requestUpdateTodo(boxId, meta, data));
 }
 
 export function getTodoBoxs(meta) {

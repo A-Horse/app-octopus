@@ -21,6 +21,7 @@ const getTodos = createSelector([getAllTodos], R.identity);
 
 const mapStateToProps = (state, props) => {
   return {
+    user: state.auth.user,
     userId: state.auth.user.id,
     todos: getTodos(state, props)
   };
@@ -55,7 +56,7 @@ class Todos extends Component {
   }
 
   createTodo() {
-    const userId = this.props.userId;
+    const userId = this.props.user.id;
     // FIXME
     this.props.actions.createTodo(this.props.meta.id, {userId})({content: this.refs.creater.state.content});
     this.refs.creater.clear();
@@ -82,13 +83,19 @@ class Todos extends Component {
 
   @autobind
   getTodos() {
-    const userId = this.props.userId;
+    const userId = this.props.user.id;
     this.props.actions.getTodos(this.props.meta.id, {userId});
   }
 
   renderTodos() {
     const { todos } = this.props;
-    return todos.map(todo => <Todo key={todo.id} todo={todo} navigator={this.props.navigator} />);
+    const userId = this.props.user.id;
+    return todos.map(todo =>
+      <Todo boxId={this.props.meta.id} user={this.props.user}
+        key={todo.id} todo={todo} navigator={this.props.navigator}
+        updateTodo={(data) => this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
+      />
+    );
   }
 
   render() {
