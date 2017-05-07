@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 8,
     paddingRight: 8,
+    paddingTop: 8,
+    paddingBottom: 8,
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'row',
-    maxHeight: 46,
     alignItems: 'center'
   },
   content: {

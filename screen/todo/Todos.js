@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, ScrollView, ListView, SwipeableListView } from 'react-native';
+import { StyleSheet, Button, Text, View, ScrollView, ListView, SwipeableListView } from 'react-native';
+import SwipeableListViewDataSource from 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -85,25 +86,51 @@ class Todos extends Component {
     this.props.actions.getTodos(this.props.meta.id, {userId});
   }
 
-  renderTodos() {
-    const { todos } = this.props;
+  @autobind
+  renderTodo(todo) {
     const userId = this.props.user.id;
-
-    const todoDataSource =
-    return todos.map(todo =>
-      <Todo boxId={this.props.meta.id} user={this.props.user}
+    return <Todo boxId={this.props.meta.id} user={this.props.user}
         key={todo.id} todo={todo} navigator={this.props.navigator}
         updateTodo={(data) => this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
       />
+  }
+
+  @autobind
+  renderActions(todo) {
+    return <View><Button title="1"/><Button title="2"/></View>
+  }
+
+  renderTodos() {
+    const { todos } = this.props;
+    console.log(todos);
+    const todoDataSource = new SwipeableListViewDataSource({
+      getRowData: (data, sectionID, rowID) => data[sectionID][rowID],
+      getSectionHeaderData: (data, sectionID) => data[sectionID],
+      rowHasChanged: (row1, row2) => row1 !== row2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+    }).cloneWithRowsAndSections([todos]);
+    return (
+      <View>
+      <SwipeableListView
+        maxSwipeDistance={90}
+        dataSource={todoDataSource}
+        renderRow={this.renderTodo}
+        enableEmptySections={true}
+
+      />
+      </View>
     );
+    // renderQuickActions={this.renderActions}
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TodoCreater ref="creater" addCreateTodoButton={this.addCreateTodoButton}
-          clearNavButton={this.clearNavButton} />
-        {this.renderTodos()}
+        <ScrollView style={styles.scrollView}>
+          <TodoCreater ref="creater" addCreateTodoButton={this.addCreateTodoButton}
+            clearNavButton={this.clearNavButton} />
+          {this.renderTodos()}
+        </ScrollView>
       </View>
     );
   }
@@ -118,6 +145,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     overflow: 'scroll'
+  },
+  scrollView: {
+    flex: 1
   }
 });
 
