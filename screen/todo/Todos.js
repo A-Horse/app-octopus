@@ -17,7 +17,7 @@ const getAllTodos = (state, props) => {
   return todoResults.map(id => entities[id]);
 };
 
-const getTodos = createSelector([getAllTodos], R.sortBy(R.prop('isDone')));
+const getTodos = createSelector([getAllTodos], R.sort(R.prop('isDone')));
 
 const mapStateToProps = (state, props) => {
   return {
@@ -102,7 +102,6 @@ class Todos extends Component {
 
   renderTodos() {
     const { todos } = this.props;
-    console.log(todos);
     const todoDataSource = new SwipeableListViewDataSource({
       getRowData: (data, sectionID, rowID) => data[sectionID][rowID],
       getSectionHeaderData: (data, sectionID) => data[sectionID],
