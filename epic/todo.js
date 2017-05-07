@@ -23,10 +23,10 @@ export const todos = action$ =>
 export const createTodo = action$ =>
   action$.ofType(CREATE_TODO_REQUEST)
   .mergeMap(action => {
-    const url = makeTodosUrl(action.playload.boxId, action.meta);
-    return ajax.post(url, action.playload.data, AuthService.makeJWTHeader())
+    const url = makeTodosUrl(action.meta.boxId, action.meta);
+    return ajax.post(url, action.playload, AuthService.makeJWTHeader())
       .map(response => response.response)
-      .map(response => requestCreateTodoSuccess(action.playload.boxId, action.meta, response));
+      .map(response => requestCreateTodoSuccess(action.meta, response));
   }).catch(handleEpicError);
 
 export const destoryTodo = action$ =>

@@ -18,18 +18,18 @@ export function requestTodosSuccess(id, todos) {
 export const CREATE_TODO_REQUEST = 'CREATE_TODO_REQUEST';
 export const CREATE_TODO_SUCCESS = 'CREATE_TODO_SUCCESS';
 
-export function requestCreateTodo(boxId, meta, data) {
+export function requestCreateTodo(meta, data) {
   return {
     type: CREATE_TODO_REQUEST,
-    playload: {boxId, data},
+    playload: data,
     meta
   };
 }
 
-export function requestCreateTodoSuccess(boxId, meta, data) {
+export function requestCreateTodoSuccess(meta, data) {
   return {
     type: CREATE_TODO_SUCCESS,
-    playload: {id: boxId, data},
+    playload: data,
     meta
   };
 }

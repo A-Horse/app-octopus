@@ -38,9 +38,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    /* this.props.navigator.setTitle({
-     *   title: this.props.user.username
-     * });*/
+
   }
 
 

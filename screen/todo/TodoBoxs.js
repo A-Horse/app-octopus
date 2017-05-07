@@ -98,7 +98,7 @@ class TodoBoxs extends Component {
   }
 
   render() {
-    var todoBoxDataSource = new ListView.DataSource({
+    const todoBoxDataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     }).cloneWithRows(this.props.todoBoxs);
     return (

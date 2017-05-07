@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, ScrollView, ListView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ListView, SwipeableListView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
 import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
-
 
 const getAllTodos = (state, props) => {
   const { meta } = props;
@@ -57,10 +56,9 @@ class Todos extends Component {
 
   createTodo() {
     const userId = this.props.user.id;
-    // FIXME
-    this.props.actions.createTodo(this.props.meta.id, {userId})({content: this.refs.creater.state.content});
+    this.props.actions.createTodo({boxId: this.props.meta.id, userId}, {content: this.refs.creater.state.content});
     this.refs.creater.clear();
-    this.clearNavButton();
+    // this.clearNavButton();
   }
 
   componentDidMount() {
@@ -90,6 +88,8 @@ class Todos extends Component {
   renderTodos() {
     const { todos } = this.props;
     const userId = this.props.user.id;
+
+    const todoDataSource =
     return todos.map(todo =>
       <Todo boxId={this.props.meta.id} user={this.props.user}
         key={todo.id} todo={todo} navigator={this.props.navigator}

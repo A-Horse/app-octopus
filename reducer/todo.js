@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 import R from 'ramda';
-import { TODOS_SUCCESS, UPDATE_TODO_SUCCESS } from '../action/todo';
+import { TODOS_SUCCESS, CREATE_TODO_SUCCESS, UPDATE_TODO_SUCCESS } from '../action/todo';
 import { Todo, Todos } from '../schema';
 
 const todo = (
@@ -18,6 +18,15 @@ const todo = (
       ...state,
       results: {...state.results, ...todosResult},
       entities: {...state.entities, ...todosNormalized.entities.todo}
+    };
+  case CREATE_TODO_SUCCESS:
+    const createdNormalized = normalize(action.playload, Todo);
+    const newBoxResult = R.assoc(action.meta.boxId, [createdNormalized.result, ...state.results[action.meta.boxId]], {});
+    return {
+      ...state,
+      results: {...state.results, ...newBoxResult},
+      entities: {...state.entities, ...createdNormalized.entities.todo}
+
     };
   case UPDATE_TODO_SUCCESS:
     const todoNormalized = normalize(action.playload, Todo);
