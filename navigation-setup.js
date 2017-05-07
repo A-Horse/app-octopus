@@ -26,6 +26,7 @@ export function setupMainApp() {
       {
         label: 'PROFILE',
         screen: 'octopus.ProfileScreen',
+        title: 'Profile',
         icon: require('./ic_assignment.png'),
         selectedIcon: require('./ic_assignment.png') // iOS only
       },

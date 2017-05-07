@@ -7,12 +7,12 @@ import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, Scr
 import R from 'ramda';
 import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
+import { makeGravatarUrl } from '../../service/gravatar';
 
 
 const mapStateToProps = (state, props) => {
   return {
-    userId: state.auth.user.id,
-
+    user: state.auth.user
   };
 };
 
@@ -26,15 +26,21 @@ const mapDispatchToProps = (dispatch) => {
 class Profile extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: '#1d92c3',
-    navBarButtonColor: '#fff'
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff',
+
   }
 
   static navigatorButtons = {
+    rightButtons: [
 
+    ]
   }
 
   componentDidMount() {
-
+    /* this.props.navigator.setTitle({
+     *   title: this.props.user.username
+     * });*/
   }
 
 
@@ -42,7 +48,15 @@ class Profile extends Component {
 
     return (
       <View style={styles.container}>
-
+        <View style={styles.infoContainer}>
+          <Image source={{uri: makeGravatarUrl(this.props.user.email)}}
+            style={styles.avatar}/>
+          <View>
+            <Text>{this.props.user.username}</Text>
+            <Text>{this.props.user.email}</Text>
+          </View>
+          <Image source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}/>
+        </View>
       </View>
     );
   }
@@ -51,9 +65,21 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#71b8d2'
-  },
+    backgroundColor: '#71b8d2',
 
+  },
+  infoContainer: {
+    backgroundColor: '#fff',
+    borderRadius: 3,
+    padding: 8,
+    flexDirection: 'row',
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 8
+  }
 });
 
 export default Profile;
