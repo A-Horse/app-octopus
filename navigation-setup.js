@@ -6,7 +6,7 @@ export function setupSignApp() {
   Navigation.startSingleScreenApp({
     screen: {
       screen: 'octopus.LoginScreen', // unique ID registered with Navigation.registerScreen
-      title: 'Welcome', // title of the screen as appears in the nav bar (optional)
+      title: 'Login', // title of the screen as appears in the nav bar (optional)
       navigatorStyle: {}, // override the navigator style for the screen, see "Styling the navigator" below (optional)
       navigatorButtons: {} // override the nav buttons for the screen, see "Adding buttons to the navigator" below (optional)
     }
@@ -27,8 +27,8 @@ export function setupMainApp() {
         label: 'PROFILE',
         screen: 'octopus.ProfileScreen',
         title: 'Profile',
-        icon: require('./ic_assignment.png'),
-        selectedIcon: require('./ic_assignment.png') // iOS only
+        icon: require('./image/ios/ic_account_circle/ic_account_circle.png'),
+        selectedIcon: require('./image/ios/ic_account_circle/ic_account_circle.png') // iOS only
       },
       {
         label: 'TASK',

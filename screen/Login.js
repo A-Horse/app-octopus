@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
+import { NavBarBgColor, NavBarColor } from '../constant';
 import { authRequest } from '../action/auth';
+import Button from '../component/Button';
 import Style from '../style';
+import { setupMainApp } from '../navigation-setup';
 
-@connect()
+const mapStateToProps = (state, props) => {
+  return {
+    isLogin: state.auth.isLogin
+  };
+};
+
+@connect(mapStateToProps)
 class LoginScreen extends Component {
+  static navigatorStyle = {
+    navBarBackgroundColor: NavBarBgColor,
+    navBarButtonColor: '#fff',
+    navBarTextColor: NavBarColor
+  }
+
   state = {};
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLogin) {
+      setupMainApp();
+      this.props.navigator.resetTo({
+        screen: 'octopus.TodoBoxsScreen',
+      });
+    }
+  }
 
   @autobind
   login() {
@@ -20,8 +44,10 @@ class LoginScreen extends Component {
     return (
       <View style={styles.container}>
 
+        <Image source={require('../image/logo.png')} style={styles.logo}/>
+
         <TextInput
-          style={Style.input}
+          style={styles.input}
           placeholder="Email"
           ref="email"
           keyboardType="email-address"
@@ -29,15 +55,14 @@ class LoginScreen extends Component {
         />
 
         <TextInput
-          style={Style.input}
+          style={styles.input}
           ref="password"
           secureTextEntry={true}
           placeholder="Password"
           onChangeText={(password) => this.setState({password})}
         />
 
-        <Button onPress={this.login.bind(this)} title="Login">Login</Button>
-
+        <Button onPress={this.login.bind(this)} color="green">Login</Button>
       </View>
     );
   }
@@ -46,9 +71,28 @@ class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    padding: 20
+  },
+  input: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#bbb',
+    backgroundColor: 'transparent',
+    borderRadius: 4,
+    height: 40,
+    marginBottom: 10,
+    overflow: 'hidden',
+    paddingLeft: 10,
+    paddingRight: 10,
+    textAlign: 'center'
+  },
+  logo: {
+    width: 70,
+    height: 70,
+    borderRadius: 5,
+    marginBottom: 10
   }
 });
 

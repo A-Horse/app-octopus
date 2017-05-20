@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import autobind from 'autobind-decorator';
 import { createSelector } from 'reselect';
-import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, ScrollView, ListView } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, ScrollView, ListView } from 'react-native';
 import R from 'ramda';
 import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import { makeGravatarUrl } from '../../service/gravatar';
+import { clearStorage } from '../../service/storage';
+import Button from '../../component/Button';
+import { setupSignApp } from '../../navigation-setup';
+import { clearReduxStore } from '../../store';
 
 
 const mapStateToProps = (state, props) => {
@@ -41,6 +45,15 @@ class Profile extends Component {
 
   }
 
+  logout() {
+    clearStorage();
+    setupSignApp();
+    clearReduxStore();
+    this.props.navigator.resetTo({
+      screen: 'octopus.LoginScreen',
+    });
+  }
+
 
   render() {
 
@@ -54,6 +67,10 @@ class Profile extends Component {
             <Text>{this.props.user.email}</Text>
           </View>
           <Image source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}/>
+        </View>
+
+        <View style={styles.actions}>
+          <Button onPress={this.logout.bind(this)} color="green">Logout</Button>
         </View>
       </View>
     );
@@ -77,6 +94,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     marginRight: 8
+  },
+  actions: {
+    padding: 20
   }
 });
 

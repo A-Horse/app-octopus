@@ -12,7 +12,8 @@ const auth = (state = {
     return {
       ...state,
       user: action.playload.user,
-      jwt: action.playload[JWT]
+      jwt: action.playload[JWT],
+      isLogin: true
     };
   default:
     return state;

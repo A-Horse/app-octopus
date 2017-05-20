@@ -26,6 +26,10 @@ class Storage {
 }
 
 const StorageService = new Storage();
-// StorageService.clear();
+
 
 export default StorageService;
+
+export function clearStorage() {
+  StorageService.clear();
+}

@@ -21,5 +21,8 @@ const store = createStore(
 );
 registerScreens(store, Provider);
 
-
 export default store;
+
+export function clearReduxStore() {
+  store.replaceReducer(appReducer);
+}
