@@ -9,20 +9,26 @@ import appReducer from './reducer';
 import rootEpic from './epic';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
-const store = createStore(
-  appReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware,
-      epicMiddleware
-    ),
-    autoRehydrate()
-  )
-);
-registerScreens(store, Provider);
+
+let store = setupStore();
+
+function setupStore() {
+  const store = createStore(
+    appReducer,
+    compose(
+      applyMiddleware(
+        thunkMiddleware,
+        epicMiddleware
+      ),
+      autoRehydrate()
+    )
+  );
+  registerScreens(store, Provider);
+  return store;
+}
 
 export default store;
 
-export function clearReduxStore() {
-  store.replaceReducer(appReducer);
+export function initialStore() {
+  store = setupStore();
 }

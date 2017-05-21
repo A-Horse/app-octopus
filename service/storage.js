@@ -1,4 +1,3 @@
-// Deprecated
 import {
   AsyncStorage
 } from 'react-native';

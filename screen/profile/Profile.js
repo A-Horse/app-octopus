@@ -11,7 +11,7 @@ import { makeGravatarUrl } from '../../service/gravatar';
 import { clearStorage } from '../../service/storage';
 import Button from '../../component/Button';
 import { setupSignApp } from '../../navigation-setup';
-import { clearReduxStore } from '../../store';
+import { initialStore } from '../../store';
 
 
 const mapStateToProps = (state, props) => {
@@ -48,7 +48,7 @@ class Profile extends Component {
   logout() {
     clearStorage();
     setupSignApp();
-    clearReduxStore();
+    initialStore();
     this.props.navigator.resetTo({
       screen: 'octopus.LoginScreen',
     });
