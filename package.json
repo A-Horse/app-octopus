@@ -21,6 +21,7 @@
     "react-native-check-box": "^1.0.4",
     "react-native-datepicker": "^1.4.7",
     "react-native-navigation": "^2.0.0-experimental.277",
+    "react-native-push-notification": "^3.0.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-observable": "^0.14.1",

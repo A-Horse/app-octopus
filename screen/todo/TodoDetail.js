@@ -49,7 +49,6 @@ export default class TodoDetail extends Component {
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    console.log(SwipeableRow, SwipeableListView);
   }
 
   onNavigatorEvent(event) {
@@ -161,10 +160,15 @@ export default class TodoDetail extends Component {
             </View>
           </View>
 
-          <View>
+          <View style={styles.remarkContainer}>
             <TouchableOpacity onPress={() => this.goRemarkEditing()}>
               <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
-              <Text>Remarks</Text>
+              <TextInput
+                placeholder="Remarks"
+                style={styles.remark}
+                onChangeText={(text) => this.setState({text})}
+                value={this.state.text}
+              />
             </TouchableOpacity>
           </View>
 
@@ -228,5 +232,14 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 20,
     paddingRight: 30
+  },
+  remarkContainer: {
+
+  },
+  remark: {
+    flex: 1,
+    height: 40,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1
   }
 });

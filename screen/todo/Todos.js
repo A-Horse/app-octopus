@@ -42,6 +42,8 @@ class Todos extends Component {
     navBarTextColor: '#fff'
   }
 
+  todoInstances = [];
+
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -64,6 +66,11 @@ class Todos extends Component {
 
   componentDidMount() {
     this.getTodos();
+
+    setTimeout(() => {
+      this.todoInstances[0].goTodoDetail();
+    }, 500)
+
   }
 
   @autobind
@@ -90,6 +97,7 @@ class Todos extends Component {
   renderTodo(todo) {
     const userId = this.props.user.id;
     return <Todo boxId={this.props.meta.id} user={this.props.user}
+        ref={todoInstance => this.todoInstances.push(todoInstance)}
         key={todo.id} todo={todo} navigator={this.props.navigator}
         updateTodo={(data) => this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
       />
@@ -115,7 +123,6 @@ class Todos extends Component {
         dataSource={todoDataSource}
         renderRow={this.renderTodo}
         enableEmptySections={true}
-
       />
       </View>
     );
