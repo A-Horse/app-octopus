@@ -165,7 +165,7 @@ export default class TodoDetail extends Component {
             <View style={styles.remark}>
               <Text
                 style={{flex: 1, color: !this.state.remark ? '#c9c9c9' : '#000'}}>
-                {this.state.remark}
+                {!this.state.remark ? 'Remarks': this.state.remark}
               </Text>
             </View>
 
