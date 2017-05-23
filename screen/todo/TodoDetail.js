@@ -14,7 +14,7 @@ import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 const mapStateToProps = (state, props) => {
   return {
-
+    todo: state.todo.entities[props.todoId]
   };
 };
 
@@ -44,7 +44,6 @@ export default class TodoDetail extends Component {
   }
 
   state = {};
-
 
   constructor(props) {
     super(props);
@@ -129,7 +128,7 @@ export default class TodoDetail extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.setState({date: date})}}
+                onDateChange={(date) => {this.setState({dealline: date})}}
               />
             </View>
           </View>
@@ -155,22 +154,23 @@ export default class TodoDetail extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.setState({date: date})}}
+                onDateChange={date => {this.setState({date: date})}}
               />
             </View>
           </View>
 
-          <View style={styles.remarkContainer}>
-            <TouchableOpacity onPress={() => this.goRemarkEditing()}>
-              <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
-              <TextInput
-                placeholder="Remarks"
-                style={styles.remark}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-              />
-            </TouchableOpacity>
-          </View>
+
+          <TouchableOpacity style={styles.remarkContainer} onPress={() => this.goRemarkEditing()}>
+            <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+            <View style={styles.remark}>
+              <Text
+                style={{flex: 1, color: !this.state.remark ? '#c9c9c9' : '#000'}}>
+                {this.state.remark}
+              </Text>
+            </View>
+
+          </TouchableOpacity>
+
 
         </View>
 
@@ -234,12 +234,19 @@ const styles = StyleSheet.create({
     paddingRight: 30
   },
   remarkContainer: {
-
+    paddingTop: 8,
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection:'row'
   },
   remark: {
+    paddingTop: 3,
     flex: 1,
-    height: 40,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1
+    height: 100,
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection:'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8'
   }
 });

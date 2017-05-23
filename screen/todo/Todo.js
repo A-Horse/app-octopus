@@ -13,7 +13,7 @@ export default class Todo extends Component {
   goTodoDetail() {
     this.props.navigator.push({
       screen: 'octopus.TodoDetailScreen',
-      passProps: {todo: this.props.todo},
+      passProps: {todoId: this.props.todo.id},
       backButtonTitle: ''
     });
   }
