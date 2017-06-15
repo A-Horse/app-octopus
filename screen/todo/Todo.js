@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 5,
     paddingBottom: 5,
-    backgroundColor: '#fff',
+    backgroundColor: '#e8e8e8',
     marginTop: 8,
     flexDirection: 'row',
     alignItems: 'center'

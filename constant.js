@@ -13,3 +13,4 @@ export const AUTH_DATA = 'AUTH_DATA';
 
 export const NavBarBgColor = '#e35a55';
 export const NavBarColor = '#fff';
+export const ScreenBgColor = '#fff';

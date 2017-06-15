@@ -9,6 +9,7 @@ import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import BoxCreater from './BoxCreater';
 import * as todosActions from './Todos.action';
+import { ScreenBgColor } from '../../constant';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
@@ -120,7 +121,7 @@ class TodoBoxs extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#71b8d2'
+    backgroundColor: ScreenBgColor
   },
   scrollView: {
     flex: 1,

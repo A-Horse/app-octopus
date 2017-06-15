@@ -8,6 +8,7 @@ import { createSelector } from 'reselect';
 import R from 'ramda';
 import Todo from './Todo';
 import TodoCreater from './TodoCreater';
+import { ScreenBgColor } from '../../constant';
 
 import * as todosActions from './Todos.action';
 
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#6eb8d4',
+    backgroundColor: ScreenBgColor,
     paddingLeft: 10,
     paddingRight: 10,
     overflow: 'scroll'

@@ -12,6 +12,7 @@ import { clearStorage } from '../../service/storage';
 import Button from '../../component/Button';
 import { setupSignApp } from '../../navigation-setup';
 import { initialStore } from '../../store';
+import { ScreenBgColor } from '../../constant';
 
 
 const mapStateToProps = (state, props) => {
@@ -58,18 +59,19 @@ class Profile extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.infoContainer}>
-          <Image source={{uri: makeGravatarUrl(this.props.user.email)}}
-            style={styles.avatar}/>
-          <View>
-            <Text>{this.props.user.username}</Text>
-            <Text>{this.props.user.email}</Text>
+        <TouchableOpacity>
+          <View style={styles.infoContainer}>
+            <Image source={{uri: makeGravatarUrl(this.props.user.email)}}
+              style={styles.avatar}/>
+            <View>
+              <Text>{this.props.user.username}</Text>
+              <Text>{this.props.user.email}</Text>
+            </View>
+            <Image source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}/>
           </View>
-          <Image source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}/>
-        </View>
-
+        </TouchableOpacity>
         <View style={styles.actions}>
-          <Button onPress={this.logout.bind(this)} color="green">Logout</Button>
+          <Button onPress={this.logout.bind(this)} color="red" type="error">Logout</Button>
         </View>
       </View>
     );
@@ -79,7 +81,7 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#71b8d2',
+    backgroundColor: ScreenBgColor
 
   },
   infoContainer: {
@@ -87,6 +89,9 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     padding: 8,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20
   },
   avatar: {
     width: 50,
