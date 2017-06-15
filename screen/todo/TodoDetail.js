@@ -6,8 +6,6 @@ import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
 import R from 'ramda';
-import Todo from './Todo';
-import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
@@ -15,7 +13,8 @@ import { NavBarBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
-    todo: state.todo.entities[props.todoId]
+    todo: state.todo.entities[props.todoId],
+    userId: state.auth.user.id,
   };
 };
 
@@ -93,17 +92,21 @@ export default class TodoDetail extends Component {
     this.setState({todoContent});
   }
 
+
+
   render() {
+    const { todo } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.contentContainer}>
           <StarCheckBox
             style={styles.star}
-            onClick={() => {}} />
+            defaultChecked={todo.isStar}
+            onClick={(checked) => {this.props.updateTodo({isStar: checked})}} />
           <AutoGrowingTextInput
             style={styles.content}
             onChangeText={this.onTodoContentChange}
-            defaultValue={this.props.todo.content}
+            defaultValue={todo.content}
           />
         </View>
         <View style={styles.detailContainer}>

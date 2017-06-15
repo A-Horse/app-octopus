@@ -98,9 +98,11 @@ class Todos extends Component {
   renderTodo(todo) {
     const userId = this.props.user.id;
     return <Todo boxId={this.props.meta.id} user={this.props.user}
+        meta={this.props.meta}
         ref={todoInstance => this.todoInstances.push(todoInstance)}
         key={todo.id} todo={todo} navigator={this.props.navigator}
-        updateTodo={(data) => this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
+        updateTodo={(data) =>
+          this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
       />
   }
 

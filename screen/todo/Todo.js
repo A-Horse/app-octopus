@@ -13,7 +13,11 @@ export default class Todo extends Component {
   goTodoDetail() {
     this.props.navigator.push({
       screen: 'octopus.TodoDetailScreen',
-      passProps: {todoId: this.props.todo.id},
+      passProps: {
+        todoId: this.props.todo.id,
+        meta: this.props.meta,
+        updateTodo: this.props.updateTodo
+      },
       backButtonTitle: ''
     });
   }
@@ -28,7 +32,7 @@ export default class Todo extends Component {
           <Text numberOfLines={1} style={[styles.content, {textDecorationLine: todo.isDone ? 'line-through' : 'none'}]}>
             {todo.content}
           </Text>
-          <StarCheckBox onClick={() => {}} />
+          <StarCheckBox defaultChecked={todo.isStar} onClick={(checked) => {this.props.updateTodo({isStar: checked})}} />
         </View>
       </TouchableOpacity>
     );
