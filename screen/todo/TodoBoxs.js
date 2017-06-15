@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 class TodoBoxs extends Component {
   static navigatorStyle = {
-    navBarBackgroundColor: '#1d92c3',
     navBarButtonColor: '#fff'
   }
 
@@ -62,7 +61,7 @@ class TodoBoxs extends Component {
     const userId = this.props.userId;
     this.props.actions.getTodoBoxs({userId});
 
-    this.goTodoList(this.props.todoBoxs[0])()
+    // this.goTodoList(this.props.todoBoxs[0])()
   }
 
   goTodoList(item) {

@@ -11,6 +11,7 @@ import TodoCreater from './TodoCreater';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import { NavBarBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -27,7 +28,6 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class TodoDetail extends Component {
   static navigatorStyle = {
-    navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,
     navBarButtonColor: '#fff',
     navBarTextColor: '#fff',
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     overflow: 'scroll'
   },
   contentContainer: {
-    backgroundColor: '#2793c1',
+    backgroundColor: NavBarBgColor,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',

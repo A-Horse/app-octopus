@@ -8,7 +8,6 @@ import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 export default class FullEditing extends Component {
   static navigatorStyle = {
-    navBarBackgroundColor: '#fef3a1',
     navBarButtonColor: '#2591fa',
     navBarTextColor: '#2591fa',
     tabBarHidden: true

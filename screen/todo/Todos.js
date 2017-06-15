@@ -8,6 +8,7 @@ import { createSelector } from 'reselect';
 import R from 'ramda';
 import Todo from './Todo';
 import TodoCreater from './TodoCreater';
+
 import * as todosActions from './Todos.action';
 
 const getAllTodos = (state, props) => {
@@ -36,7 +37,6 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 class Todos extends Component {
   static navigatorStyle = {
-    navBarBackgroundColor: '#1d92c3',
     navBarNoBorder: true,
     navBarButtonColor: '#fff',
     navBarTextColor: '#fff'
@@ -67,9 +67,9 @@ class Todos extends Component {
   componentDidMount() {
     this.getTodos();
 
-    setTimeout(() => {
-      this.todoInstances[0].goTodoDetail();
-    }, 500)
+    // setTimeout(() => {
+    //   this.todoInstances[0].goTodoDetail();
+    // }, 500)
 
   }
 
