@@ -3,6 +3,11 @@ import { NavBarBgColor } from './constant';
 import AuthService from './service/auth';
 import store from './store';
 
+const navigatorStyle = {
+  navBarBackgroundColor: NavBarBgColor,
+  navBarNoBorder: true
+};
+
 export function setupSignApp() {
   Navigation.startSingleScreenApp({
     screen: {
@@ -19,34 +24,27 @@ export function setupMainApp() {
   AuthService.loadJWTFromState(store.getState());
   Navigation.startTabBasedApp({
     tabs: [
-
       {
         label: 'PROFILE',
         screen: 'octopus.ProfileScreen',
         title: 'Profile',
         icon: require('./image/ios/ic_account_circle/ic_account_circle.png'),
         selectedIcon: require('./image/ios/ic_account_circle/ic_account_circle.png'), // iOS only
-        navigatorStyle: {
-          navBarBackgroundColor: NavBarBgColor
-        }
+        navigatorStyle: navigatorStyle
       },
       {
         label: 'TODO',
         screen: 'octopus.TodoBoxsScreen',
         icon: require('./ic_assignment.png'),
         selectedIcon: require('./ic_assignment.png'), // iOS only
-        navigatorStyle: {
-          navBarBackgroundColor: NavBarBgColor
-        }
+        navigatorStyle: navigatorStyle
       },
       {
         label: 'TASK',
         screen: 'octopus.TaskBoardsScreen', // this is a registered name for a screen
         icon: require('./ic_assignment.png'),
         selectedIcon: require('./ic_assignment.png'), // iOS only
-        navigatorStyle: {
-          navBarBackgroundColor: NavBarBgColor
-        }
+        navigatorStyle: navigatorStyle
       }
     ],
     tabsStyle: {

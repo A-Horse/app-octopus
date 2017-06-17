@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity, Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity,
+         Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS,
+         Picker } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
@@ -9,7 +11,7 @@ import R from 'ramda';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
-import { NavBarBgColor } from '../../constant';
+import { NavBarBgColor, ScreenBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -87,13 +89,6 @@ export default class TodoDetail extends Component {
     });
   }
 
-  @autobind
-  onTodoContentChange(todoContent) {
-    this.setState({todoContent});
-  }
-
-
-
   render() {
     const { todo } = this.props;
     return (
@@ -103,14 +98,16 @@ export default class TodoDetail extends Component {
             style={styles.star}
             defaultChecked={todo.isStar}
             onClick={(checked) => {this.props.updateTodo({isStar: checked})}} />
+
           <AutoGrowingTextInput
             style={styles.content}
-            onChangeText={this.onTodoContentChange}
+            onChangeText={todoContent => this.props.updateTodo({content: todoContent})}
             defaultValue={todo.content}
           />
         </View>
         <View style={styles.detailContainer}>
-          <View style={styles.deallineContainer}>
+
+          <View style={[style.fieldContainer]}>
             <Image style={styles.lineIcon} source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
             <View style={styles.lineContent}>
               <DatePicker
@@ -131,12 +128,25 @@ export default class TodoDetail extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.setState({dealline: date})}}
+                onDateChange={(date) => {this.props.updateTodo({dealline: date})}}
               />
             </View>
           </View>
 
-          <View style={styles.deallineContainer}>
+
+          <View style={styles.fieldContainer}>
+
+            <Picker
+              selectedValue={todo.repeat}
+              onValueChange={(itemValue, itemIndex) => this.props.updateTodo({repeat: itemValue})}>
+              <Picker.Item label="Every Day" value={1} />
+              <Picker.Item label="Two Day" value={2} />
+              <Picker.Item label="Week" value={7} />
+            </Picker>
+
+          </View>
+
+          <View style={[styles.fieldContainer]}>
             <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
             <View style={styles.lineContent}>
               <DatePicker
@@ -184,14 +194,14 @@ export default class TodoDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: NavBarBgColor,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     overflow: 'scroll'
   },
   contentContainer: {
-    backgroundColor: NavBarBgColor,
+    backgroundColor: ScreenBgColor,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -226,7 +236,15 @@ const styles = StyleSheet.create({
     top: 2,
     flexDirection: 'column'
   },
+  fieldContainer: {
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection:'row'
+  },
   deallineContainer: {
+
+  },
+  repeatContainer: {
     flexWrap: 'wrap',
     alignItems: 'center',
     flexDirection:'row'
