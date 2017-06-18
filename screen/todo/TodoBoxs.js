@@ -62,7 +62,7 @@ class TodoBoxs extends Component {
     const userId = this.props.userId;
     this.props.actions.getTodoBoxs({userId});
 
-    // this.goTodoList(this.props.todoBoxs[0])()
+    this.goTodoList(this.props.todoBoxs[0])()
   }
 
   goTodoList(item) {

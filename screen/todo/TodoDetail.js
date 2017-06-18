@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity,
          Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS,
-         Picker } from 'react-native';
+         Picker, PickerIOS } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
 import { createSelector } from 'reselect';
@@ -12,6 +12,8 @@ import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
+import SelectInputIOS from 'react-native-select-input-ios';
+
 
 const mapStateToProps = (state, props) => {
   return {
@@ -107,7 +109,7 @@ export default class TodoDetail extends Component {
         </View>
         <View style={styles.detailContainer}>
 
-          <View style={[style.fieldContainer]}>
+          <View style={[styles.fieldContainer]}>
             <Image style={styles.lineIcon} source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
             <View style={styles.lineContent}>
               <DatePicker
@@ -133,16 +135,19 @@ export default class TodoDetail extends Component {
             </View>
           </View>
 
+          <SelectInputIOS
+            value={todo.repeat}
+            options={[
+              {value: 1, label: 'Every Day'},
+              {value: 2, label: 'Two Day'},
+              {value: 7, label: 'Week'},
+            ]}
+            onCancelEditing={() => console.log('onCancel')}
 
+
+
+          />
           <View style={styles.fieldContainer}>
-
-            <Picker
-              selectedValue={todo.repeat}
-              onValueChange={(itemValue, itemIndex) => this.props.updateTodo({repeat: itemValue})}>
-              <Picker.Item label="Every Day" value={1} />
-              <Picker.Item label="Two Day" value={2} />
-              <Picker.Item label="Week" value={7} />
-            </Picker>
 
           </View>
 
@@ -181,10 +186,7 @@ export default class TodoDetail extends Component {
                 {!this.state.remark ? 'Remarks': this.state.remark}
               </Text>
             </View>
-
           </TouchableOpacity>
-
-
         </View>
 
       </View>
@@ -194,7 +196,7 @@ export default class TodoDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: NavBarBgColor,
+    backgroundColor: ScreenBgColor,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',

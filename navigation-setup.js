@@ -25,18 +25,18 @@ export function setupMainApp() {
   Navigation.startTabBasedApp({
     tabs: [
       {
+        label: 'TODO',
+        screen: 'octopus.TodoBoxsScreen',
+        icon: require('./ic_assignment.png'),
+        selectedIcon: require('./ic_assignment.png'), // iOS only
+        navigatorStyle: navigatorStyle
+      },
+      {
         label: 'PROFILE',
         screen: 'octopus.ProfileScreen',
         title: 'Profile',
         icon: require('./image/ios/ic_account_circle/ic_account_circle.png'),
         selectedIcon: require('./image/ios/ic_account_circle/ic_account_circle.png'), // iOS only
-        navigatorStyle: navigatorStyle
-      },
-      {
-        label: 'TODO',
-        screen: 'octopus.TodoBoxsScreen',
-        icon: require('./ic_assignment.png'),
-        selectedIcon: require('./ic_assignment.png'), // iOS only
         navigatorStyle: navigatorStyle
       },
       {
