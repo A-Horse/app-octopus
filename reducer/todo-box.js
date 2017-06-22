@@ -12,7 +12,11 @@ const todoBox = (
 ) => {
   switch (action.type) {
   case GET_TODOBOX_SUCCESS:
-    const normalized = normalize(action.playload.todoBoxs, TodoBoxs);
+    const boxs = [
+      {name: 'My Todo', id: null, type: 'private'},
+      ...action.playload.todoBoxs
+    ]
+    const normalized = normalize(boxs, TodoBoxs);
     return {
       ...state,
       ...normalized
