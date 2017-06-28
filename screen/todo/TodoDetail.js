@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity,
-         Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS,
+import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity, TouchableHighlight,
+         Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS, Button,
          Picker } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker'
@@ -11,6 +11,7 @@ import R from 'ramda';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import moment from 'moment';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
@@ -98,6 +99,9 @@ export default class TodoDetail extends Component {
         case 'Delete':
           this.destoryTodo();
           break;
+        case 'Done':
+          this.props.updateTodo({isDone: true});
+          break;
         default:
           return;
       }
@@ -127,18 +131,20 @@ export default class TodoDetail extends Component {
           this.state.repeatTogglePicker && (
             <View style={styles.repeatPickerContainer}>
               <View style={styles.repeatPickerActions}>
-                <Button
-                  onPress={() => this.setState({repeatTogglePicker: false})}
-                  title="Cancnel"
-                  color="#841584"
-                />
-                <Button
-                  onPress={() => {this.setState({repeatTogglePicker: false}); this.props.updateTodo({repeat: this.state.repeat})}}
-                  title="Confirm"
-                  color="#841584"
-                />
+
+                <TouchableHighlight
+                  style={styles.repeatPickerActionButton}
+                  onPress={() => this.setState({repeatTogglePicker: false})}>
+                  <Text style={{fontSize: 16}}>Cancel</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={styles.repeatPickerActionButton}
+                  onPress={() => {this.setState({repeatTogglePicker: false}); this.props.updateTodo({repeat: this.state.repeat})}}>
+                  <Text style={{fontSize: 16}}>Confrim</Text>
+                </TouchableHighlight>
               </View>
               <Picker
+                selectedValue={this.state.repeat}
                 onValueChange={(value) => {this.setState({repeat: value})}}
                 style={styles.repeatPicker}>
                 <Picker.Item label="none" value={null} />
@@ -156,7 +162,7 @@ export default class TodoDetail extends Component {
             <Image style={styles.lineIcon} source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
             <View style={styles.lineContent}>
               <DatePicker
-                date={todo.dealline}
+                date={moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')}
                 mode="datetime"
                 placeholder="Dealline"
                 minDate="2016-05-01"
@@ -173,7 +179,7 @@ export default class TodoDetail extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.props.updateTodo({deadline: date})}}
+                onDateChange={(date) => {this.props.updateTodo({deadline: moment(date).valueOf()})}}
               />
             </View>
           </View>
@@ -184,7 +190,7 @@ export default class TodoDetail extends Component {
               <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
             </TouchableOpacity>
             <View style={styles.lineContent}>
-              <Text>{ this.transformRepeatValue(todo.repeat) }</Text>
+              <Text style={{height: 40, flex: 1, alignItems: 'center', justifyContent: 'center', lineHeight: 40}}>{ this.transformRepeatValue(todo.repeat) }</Text>
             </View>
           </View>
 
@@ -314,18 +320,31 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderTopColor: '#e8e8e8',
     borderStyle: 'solid',
-    borderWidth: 1,
+    borderTopWidth: 1,
     flex: 1,
     bottom: 0,
     left: 0,
     width: '100%',
-    height: 217,
+    height: 257,
     zIndex: 10,
     backgroundColor: '#fff'
   },
   repeatPickerActions: {
-    height: 30,
+    height: 40,
+    width: '100%',
     flex: 1,
-    justifyContent: 'space-between'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    borderBottomColor: '#e8e8e8',
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+  },
+  repeatPickerActionButton: {
+    width: 98,
+    height: '100%',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
