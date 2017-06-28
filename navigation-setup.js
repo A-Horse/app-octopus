@@ -12,9 +12,8 @@ export function setupSignApp() {
   Navigation.startSingleScreenApp({
     screen: {
       screen: 'octopus.LoginScreen', // unique ID registered with Navigation.registerScreen
-      title: 'Login', // title of the screen as appears in the nav bar (optional)
       navigatorStyle: {
-          navBarBackgroundColor: NavBarBgColor
+        navBarBackgroundColor: '#fff'
       }
     }
   });

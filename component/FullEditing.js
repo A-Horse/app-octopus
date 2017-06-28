@@ -3,7 +3,7 @@ import autobind from 'autobind-decorator';
 import { StyleSheet, Image, ScrollView, TouchableOpacity, Text, Dimensions, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
 
 
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 
 
 export default class FullEditing extends Component {
@@ -31,8 +31,9 @@ export default class FullEditing extends Component {
 
   onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') {
-      if (event.id == 'action') {
-
+      if (event.id == 'done') {
+        this.props.updateTodo({remark: this.state.content})
+        this.props.navigator.pop();
       }
     }
   }

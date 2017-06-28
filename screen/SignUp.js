@@ -15,7 +15,7 @@ const mapStateToProps = (state, props) => {
 };
 
 @connect(mapStateToProps)
-class LoginScreen extends Component {
+class SignUpScreen extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: NavBarBgColor,
     navBarButtonColor: '#fff',
@@ -63,7 +63,6 @@ class LoginScreen extends Component {
         />
 
         <Button onPress={this.login.bind(this)} color="green">Login</Button>
-        <Button onPress={this.login.bind(this)}>Sign Up Account</Button>
       </View>
     );
   }
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#F5FCFF',
     padding: 20
   },
   input: {
@@ -97,4 +96,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default SignUpScreen;

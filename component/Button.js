@@ -8,7 +8,7 @@ export default class OctopusButton extends Component {
     return (
       <Button
         color="#fff"
-        containerStyle={[styles.container, styles[this.props.type]]}
+        containerStyle={[styles.container, styles[this.props.color]]}
         style={[styles.button]}
         onPress={() => this.props.onPress()}>
         {this.props.children}

@@ -19,7 +19,7 @@ export default class MyCheckBox extends Component {
         style={this.props.style}
         onClick={this.onClick}
         isChecked={this.state.checked}
-        checkedImage={<Image style={{width: 23, height: 23}} source={require('../image/ios/right/right.png')}/>}
+      checkedImage={<Image style={{width: 23, height: 23}} source={require('../image/ios/right/right.png')}/>}
         unCheckedImage={<Image style={{width: 23, height: 23}} source={require('../image/ios/box/box.png')}/>}
       />
     );

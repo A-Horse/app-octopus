@@ -65,11 +65,18 @@ class Profile extends Component {
               style={styles.avatar}/>
             <View>
               <Text>{this.props.user.username}</Text>
-              <Text>{this.props.user.email}</Text>
             </View>
             <Image source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}/>
           </View>
         </TouchableOpacity>
+
+        <View>
+          <View>
+            <Text>Change Password</Text>
+
+          </View>
+        </View>
+
         <View style={styles.actions}>
           <Button onPress={this.logout.bind(this)} color="red" type="error">Logout</Button>
         </View>

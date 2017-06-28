@@ -86,3 +86,20 @@ export function requestTodoBoxSuccess(todoBoxs) {
     playload: {todoBoxs}
   };
 }
+
+export const CREATE_TODOBOX_REQUEST = 'CREATE_TODOBOX_REQUEST';
+export const CREATE_TODOBOX_SUCCESS = 'CREATE_TODOBOX_SUCCESS';
+
+export function requestCreateTodoBox(meta) {
+  return {
+    type: CREATE_TODOBOX_REQUEST,
+    meta: meta
+  }
+}
+
+export function createTodoBoxSuccess(playload) {
+  return {
+    type: CREATE_TODOBOX_SUCCESS,
+    playload: playload
+  };
+}

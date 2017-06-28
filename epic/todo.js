@@ -1,8 +1,10 @@
 import {
   TODOS_REQUEST, CREATE_TODO_REQUEST, DESTORY_TODO_REQUEST, GET_TODOBOX_REQUEST,
   UPDATE_TODO_REQUEST,
+  CREATE_TODOBOX_REQUEST,
   requestTodosSuccess, requestCreateTodoSuccess, requestDestroyTodoSuccess,
-  requestTodoBoxSuccess, requestUpdateTodoSuccess
+  requestTodoBoxSuccess, requestUpdateTodoSuccess,
+  createTodoBoxSuccess
 } from '../action/todo';
 import { makeServerApi } from '../util/api-maker';
 import {AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
@@ -54,7 +56,15 @@ export const updateTodo = action$ =>
 export const getTodoBoxs = action$ =>
   action$.ofType(GET_TODOBOX_REQUEST)
   .mergeMap(action => {
-    return ajax.get(makeServerApi(`user/${action.meta.userId}/todo-box`), AuthService.makeJWTHeader())
+    return ajax.get(makeServerApi(`t/user/${action.meta.userId}/todo-box`), AuthService.makeJWTHeader())
       .map(response => response.response)
       .map(response => requestTodoBoxSuccess(response));
+  }).catch(handleEpicError);
+
+export const createTodoBox = action$ =>
+  action$.ofType(CREATE_TODOBOX_REQUEST)
+  .mergeMap(action => {
+    return ajax.post(makeServerApi(`t/todo-box`), action.playload, AuthService.makeJWTHeader())
+      .map(response => response.response)
+      .map(response => createTodoBoxSuccess(response));
   }).catch(handleEpicError);

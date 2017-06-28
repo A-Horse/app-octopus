@@ -19,7 +19,7 @@ export default class BoxCreater extends Component {
           <Image source={require('../../image/ios/ic_add/ic_add.png')} />
         </TouchableOpacity>
 
-      <Text>Add Todo Box...</Text>
+        <Text>Add Todo Box...</Text>
       </View>
     );
   }

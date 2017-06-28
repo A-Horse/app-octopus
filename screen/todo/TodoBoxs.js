@@ -7,7 +7,7 @@ import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Button, Scr
 import R from 'ramda';
 import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
-import BoxCreater from './BoxCreater';
+import BoxCreaterToggle from './BoxCreaterToggle';
 import * as todosActions from './Todos.action';
 import { ScreenBgColor } from '../../constant';
 
@@ -111,7 +111,7 @@ class TodoBoxs extends Component {
             renderRow={this.renderBox}
             enableEmptySections={true}
           />
-          <BoxCreater />
+          <BoxCreaterToggle />
         </ScrollView>
       </View>
     );

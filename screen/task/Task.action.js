@@ -4,7 +4,7 @@ import {
   requestCreateTodo,
   requestDestroyTodo,
   requestTodoBox,
-  requestCreateTodoBox,
+  createTodoBox,
   requestUpdateTodo
 } from '../../action/todo';
 
@@ -30,4 +30,8 @@ export function getTodoBoxs(meta) {
 
 export function createTodoBox(meta) {
   return dispatch => dispatch(requestTodoBox(meta));
+}
+
+export function createTodoBox(data) {
+  return dispatch => dispatch(createTodo(data));
 }
