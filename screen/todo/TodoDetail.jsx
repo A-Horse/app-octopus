@@ -1,27 +1,39 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
-import { StyleSheet, SwipeableRow, SwipeableListView, TouchableOpacity, TouchableHighlight,
-         Image, Text, TextInput, DatePickerIOS, View, ActionSheetIOS, Button,
-         Picker } from 'react-native';
-import { bindActionCreators } from 'redux';
-import DatePicker from 'react-native-datepicker'
-import { createSelector } from 'reselect';
-import R from 'ramda';
-import * as todosActions from './Todos.action';
-import StarCheckBox from '../../component/StarCheckBox';
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
-import moment from 'moment';
-import { NavBarBgColor, ScreenBgColor } from '../../constant';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import autobind from "autobind-decorator";
+import {
+  StyleSheet,
+  SwipeableRow,
+  SwipeableListView,
+  TouchableOpacity,
+  TouchableHighlight,
+  Image,
+  Text,
+  TextInput,
+  DatePickerIOS,
+  View,
+  ActionSheetIOS,
+  Button,
+  Picker
+} from "react-native";
+import { bindActionCreators } from "redux";
+import DatePicker from "react-native-datepicker";
+import { createSelector } from "reselect";
+import R from "ramda";
+import * as todosActions from "./Todos.action";
+import StarCheckBox from "../../component/StarCheckBox";
+import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
+import moment from "moment";
+import { NavBarBgColor, ScreenBgColor } from "../../constant";
 
 const mapStateToProps = (state, props) => {
   return {
     todo: state.todo.entities[props.todoId],
-    userId: state.auth.user.id,
+    userId: state.auth.user.id
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(todosActions, dispatch)
   };
@@ -31,19 +43,19 @@ const mapDispatchToProps = (dispatch) => {
 export default class TodoDetail extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
-    navBarButtonColor: '#fff',
-    navBarTextColor: '#fff',
+    navBarButtonColor: "#fff",
+    navBarTextColor: "#fff",
     tabBarHidden: true
-  }
+  };
 
   static navigatorButtons = {
     rightButtons: [
       {
-        icon: require('../../image/ios/ic_more_horiz/ic_more_horiz.png'),
-        id: 'action'
+        icon: require("../../image/ios/ic_more_horiz/ic_more_horiz.png"),
+        id: "action"
       }
     ]
-  }
+  };
 
   state = {};
 
@@ -53,8 +65,8 @@ export default class TodoDetail extends Component {
   }
 
   onNavigatorEvent(event) {
-    if (event.type == 'NavBarButtonPress') {
-      if (event.id == 'action') {
+    if (event.type == "NavBarButtonPress") {
+      if (event.id == "action") {
         this.openActionSheet();
       }
     }
@@ -67,20 +79,23 @@ export default class TodoDetail extends Component {
 
   transformRepeatValue(value) {
     return {
-      null: 'Repeat',
-      0: 'repeat day number',
-      1: 'Every Day',
-      2: 'Two day',
-      7: 'Week'
+      null: "Repeat",
+      0: "repeat day number",
+      1: "Every Day",
+      2: "Two day",
+      7: "Week"
     }[value];
   }
 
   goRemarkEditing() {
     this.props.navigator.push({
-      screen: 'octopus.TodoRemarkScreen',
-      title: 'Remarks',
-      passProps: {content: this.props.todo.remark, updateTodo: this.props.updateTodo},
-      backButtonTitle: ''
+      screen: "octopus.TodoRemarkScreen",
+      title: "Remarks",
+      passProps: {
+        content: this.props.todo.remark,
+        updateTodo: this.props.updateTodo
+      },
+      backButtonTitle: ""
     });
   }
 
@@ -89,23 +104,26 @@ export default class TodoDetail extends Component {
   }
 
   openActionSheet() {
-    const buttonTexts = ['Done', 'Delete', 'Cancel'];
-    ActionSheetIOS.showActionSheetWithOptions({
-      options: buttonTexts,
-      cancelButtonIndex: R.findIndex(R.equals('Cancel'))(buttonTexts),
-      destructiveButtonIndex: R.findIndex(R.equals('Delete'))(buttonTexts)
-    }, (buttonIndex) => {
-      switch (buttonTexts[buttonIndex]) {
-        case 'Delete':
-          this.destoryTodo();
-          break;
-        case 'Done':
-          this.props.updateTodo({isDone: true});
-          break;
-        default:
-          return;
+    const buttonTexts = ["Done", "Delete", "Cancel"];
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: buttonTexts,
+        cancelButtonIndex: R.findIndex(R.equals("Cancel"))(buttonTexts),
+        destructiveButtonIndex: R.findIndex(R.equals("Delete"))(buttonTexts)
+      },
+      buttonIndex => {
+        switch (buttonTexts[buttonIndex]) {
+          case "Delete":
+            this.destoryTodo();
+            break;
+          case "Done":
+            this.props.updateTodo({ isDone: true });
+            break;
+          default:
+            return;
+        }
       }
-    });
+    );
   }
 
   render() {
@@ -117,52 +135,62 @@ export default class TodoDetail extends Component {
           <StarCheckBox
             style={styles.star}
             defaultChecked={todo.isStar}
-            onClick={(checked) => {this.props.updateTodo({isStar: checked})}} />
+            onClick={checked => {
+              this.props.updateTodo({ isStar: checked });
+            }}
+          />
 
           <AutoGrowingTextInput
             style={styles.content}
-            onChangeText={todoContent => this.props.updateTodo({content: todoContent})}
+            onChangeText={todoContent =>
+              this.props.updateTodo({ content: todoContent })}
             value={todo.content}
             defaultValue={todo.content}
           />
         </View>
 
-        {
-          this.state.repeatTogglePicker && (
-            <View style={styles.repeatPickerContainer}>
-              <View style={styles.repeatPickerActions}>
-
-                <TouchableHighlight
-                  style={styles.repeatPickerActionButton}
-                  onPress={() => this.setState({repeatTogglePicker: false})}>
-                  <Text style={{fontSize: 16}}>Cancel</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.repeatPickerActionButton}
-                  onPress={() => {this.setState({repeatTogglePicker: false}); this.props.updateTodo({repeat: this.state.repeat})}}>
-                  <Text style={{fontSize: 16}}>Confrim</Text>
-                </TouchableHighlight>
-              </View>
-              <Picker
-                selectedValue={this.state.repeat}
-                onValueChange={(value) => {this.setState({repeat: value})}}
-                style={styles.repeatPicker}>
-                <Picker.Item label="none" value={null} />
-                <Picker.Item label="Every Day" value={1} />
-                <Picker.Item label="Two Day" value={2} />
-                <Picker.Item label="Every Week" value={7} />
-              </Picker>
+        {this.state.repeatTogglePicker &&
+          <View style={styles.repeatPickerContainer}>
+            <View style={styles.repeatPickerActions}>
+              <TouchableHighlight
+                style={styles.repeatPickerActionButton}
+                onPress={() => this.setState({ repeatTogglePicker: false })}
+              >
+                <Text style={{ fontSize: 16 }}>Cancel</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.repeatPickerActionButton}
+                onPress={() => {
+                  this.setState({ repeatTogglePicker: false });
+                  this.props.updateTodo({ repeat: this.state.repeat });
+                }}
+              >
+                <Text style={{ fontSize: 16 }}>Confrim</Text>
+              </TouchableHighlight>
             </View>
-          )
-        }
-
+            <Picker
+              selectedValue={this.state.repeat}
+              onValueChange={value => {
+                this.setState({ repeat: value });
+              }}
+              style={styles.repeatPicker}
+            >
+              <Picker.Item label="none" value={null} />
+              <Picker.Item label="Every Day" value={1} />
+              <Picker.Item label="Two Day" value={2} />
+              <Picker.Item label="Every Week" value={7} />
+            </Picker>
+          </View>}
 
         <View style={styles.detailContainer}>
           <View style={[styles.fieldContainer]}>
-            <Image style={styles.lineIcon} source={require('../../image/ios/ic_date_range/ic_date_range.png')}/>
+            <Image
+              style={styles.lineIcon}
+              source={require("../../image/ios/ic_date_range/ic_date_range.png")}
+            />
             <View style={styles.lineContent}>
               <DatePicker
-                date={moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')}
+                date={moment(todo.deadline).format("YYYY-MM-DD hh:mm:ss")}
                 mode="datetime"
                 placeholder="Dealline"
                 minDate="2016-05-01"
@@ -173,30 +201,46 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    flexWrap: 'wrap',
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
                     borderWidth: 0
                   }
                 }}
-                onDateChange={(date) => {this.props.updateTodo({deadline: moment(date).valueOf()})}}
+                onDateChange={date => {
+                  this.props.updateTodo({ deadline: moment(date).valueOf() });
+                }}
               />
             </View>
           </View>
 
-
           <View style={styles.fieldContainer}>
             <TouchableOpacity onPress={() => this.showRepeatPicker()}>
-              <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+              <Image
+                style={styles.lineIcon}
+                source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+              />
             </TouchableOpacity>
             <View style={styles.lineContent}>
-              <Text style={{height: 40, flex: 1, alignItems: 'center', justifyContent: 'center', lineHeight: 40}}>{ this.transformRepeatValue(todo.repeat) }</Text>
+              <Text
+                style={{
+                  height: 40,
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight: 40
+                }}
+              >
+                {this.transformRepeatValue(todo.repeat)}
+              </Text>
             </View>
           </View>
 
-
           <View style={[styles.fieldContainer]}>
-            <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+            <Image
+              style={styles.lineIcon}
+              source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+            />
             <View style={styles.lineContent}>
               <DatePicker
                 date={todo.noticeTime}
@@ -210,29 +254,35 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    flexWrap: 'wrap',
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
                     borderWidth: 0
                   }
                 }}
-                onDateChange={date => this.props.updateTodo({noticeTime: date})}
+                onDateChange={date =>
+                  this.props.updateTodo({ noticeTime: date })}
               />
             </View>
           </View>
 
-
-          <TouchableOpacity style={styles.remarkContainer} onPress={() => this.goRemarkEditing()}>
-            <Image style={styles.lineIcon} source={require('../../image/ios/ic_notifications/ic_notifications.png')}/>
+          <TouchableOpacity
+            style={styles.remarkContainer}
+            onPress={() => this.goRemarkEditing()}
+          >
+            <Image
+              style={styles.lineIcon}
+              source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+            />
             <View style={styles.remark}>
               <Text
-                style={{flex: 1, color: !todo.remark ? '#c9c9c9' : '#000'}}>
-                {!todo.remark ? 'Remarks': todo.remark}
+                style={{ flex: 1, color: !todo.remark ? "#c9c9c9" : "#000" }}
+              >
+                {!todo.remark ? "Remarks" : todo.remark}
               </Text>
             </View>
           </TouchableOpacity>
         </View>
-
       </View>
     );
   }
@@ -242,16 +292,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: ScreenBgColor,
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    overflow: 'scroll',
-    height: '100%',
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    overflow: "scroll",
+    height: "100%"
   },
   contentContainer: {
     backgroundColor: NavBarBgColor,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
     paddingLeft: 20,
     paddingRight: 10,
     paddingBottom: 10
@@ -259,7 +309,7 @@ const styles = StyleSheet.create({
   star: {
     flex: 1,
     flexGrow: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     width: 30
   },
   lineIcon: {
@@ -267,31 +317,31 @@ const styles = StyleSheet.create({
   },
   lineContent: {
     flex: 1,
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection:'row',
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    borderBottomColor: "#e8e8e8"
   },
   content: {
     fontSize: 18,
     fontWeight: "500",
-    textAlign: 'left',
+    textAlign: "left",
     flexGrow: 11,
-    alignItems: 'flex-start',
-    color: '#fff',
+    alignItems: "flex-start",
+    color: "#fff",
     top: 2,
-    flexDirection: 'column'
+    flexDirection: "column"
   },
   fieldContainer: {
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection:'row'
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row"
   },
   repeatContainer: {
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection:'row'
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row"
   },
   detailContainer: {
     paddingTop: 10,
@@ -300,51 +350,49 @@ const styles = StyleSheet.create({
   },
   remarkContainer: {
     paddingTop: 8,
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    flexDirection:'row'
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flexDirection: "row"
   },
   remark: {
     paddingTop: 3,
     flex: 1,
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    flexDirection:'row',
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    borderBottomColor: "#e8e8e8"
   },
-  repeatPicker: {
-
-  },
+  repeatPicker: {},
   repeatPickerContainer: {
-    position: 'absolute',
-    borderTopColor: '#e8e8e8',
-    borderStyle: 'solid',
+    position: "absolute",
+    borderTopColor: "#e8e8e8",
+    borderStyle: "solid",
     borderTopWidth: 1,
     flex: 1,
     bottom: 0,
     left: 0,
-    width: '100%',
+    width: "100%",
     height: 257,
     zIndex: 10,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff"
   },
   repeatPickerActions: {
     height: 40,
-    width: '100%',
+    width: "100%",
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-    borderBottomColor: '#e8e8e8',
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    overflow: "hidden",
+    borderBottomColor: "#e8e8e8",
+    borderStyle: "solid",
+    borderBottomWidth: 1
   },
   repeatPickerActionButton: {
     width: 98,
-    height: '100%',
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center'
+    height: "100%",
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
