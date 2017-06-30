@@ -10,12 +10,10 @@ import { setupMainApp } from '../navigation-setup';
 import R from 'ramda';
 
 const mapStateToProps = (state, props) => {
-  return {
-
-  };
+  return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     signup: function(data) {
       return dispatch(signupRequest(data));
@@ -23,48 +21,48 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 class SignUpScreen extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
     navBarBackgroundColor: NavBarBgColor,
     navBarButtonColor: '#fff',
     navBarTextColor: NavBarColor
-  }
+  };
 
-  state = {}
+  state = {};
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLogin) {
       setupMainApp();
       this.props.navigator.resetTo({
-        screen: 'octopus.TodoBoxsScreen',
+        screen: 'octopus.TodoBoxsScreen'
       });
     }
   }
 
   signin() {
-    this.props.signup(R.pick(['email', 'username', 'password'], this.state))
+    this.props.signup(R.pick(['email', 'username', 'password'], this.state));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../image/logo.png')} style={styles.logo}/>
+        <Image source={require('../image/logo.png')} style={styles.logo} />
 
         <TextInput
           style={styles.input}
           placeholder="Email"
           ref="email"
           keyboardType="email-address"
-          onChangeText={(email) => this.setState({email})}
+          onChangeText={email => this.setState({ email })}
         />
 
         <TextInput
           style={styles.input}
           placeholder="username"
           ref="username"
-          onChangeText={(username) => this.setState({username})}
+          onChangeText={username => this.setState({ username })}
         />
 
         <TextInput
@@ -72,7 +70,7 @@ class SignUpScreen extends Component {
           ref="password"
           secureTextEntry={true}
           placeholder="Password"
-          onChangeText={(password) => this.setState({password})}
+          onChangeText={password => this.setState({ password })}
         />
 
         <TextInput
@@ -80,9 +78,11 @@ class SignUpScreen extends Component {
           ref="repeat"
           secureTextEntry={true}
           placeholder="Repeat Password"
-          onChangeText={(repeat) => this.setState({repeat})}
+          onChangeText={repeat => this.setState({ repeat })}
         />
-        <Button onPress={this.onSignUpPress} color="green">Sign Up</Button>
+        <Button onPress={this.onSignUpPress} color="green">
+          Sign Up
+        </Button>
       </View>
     );
   }

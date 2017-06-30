@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
-import { StyleSheet, Button, Text, View, ScrollView, ListView, SwipeableListView } from 'react-native';
-import SwipeableListViewDataSource from 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource';
-import { bindActionCreators } from 'redux';
-import { createSelector } from 'reselect';
-import R from 'ramda';
-import Todo from './Todo';
-import TodoCreater from './TodoCreater';
-import { ScreenBgColor } from '../../constant';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import autobind from "autobind-decorator";
+import {
+  StyleSheet,
+  Button,
+  Text,
+  View,
+  ScrollView,
+  ListView,
+  SwipeableListView
+} from "react-native";
+import SwipeableListViewDataSource from "react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource";
+import { bindActionCreators } from "redux";
+import { createSelector } from "reselect";
+import R from "ramda";
+import Todo from "./Todo";
+import TodoCreater from "./TodoCreater";
+import { ScreenBgColor } from "../../constant";
 
-import * as todosActions from './Todos.action';
+import * as todosActions from "./Todos.action";
 
 const getAllTodos = (state, props) => {
   const { meta } = props;
@@ -19,7 +27,7 @@ const getAllTodos = (state, props) => {
   return todoResults.map(id => entities[id]);
 };
 
-const getTodos = createSelector([getAllTodos], R.sort(R.prop('isDone')));
+const getTodos = createSelector([getAllTodos], R.sort(R.prop("isDone")));
 
 const mapStateToProps = (state, props) => {
   return {
@@ -29,7 +37,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(todosActions, dispatch)
   };
@@ -39,9 +47,9 @@ const mapDispatchToProps = (dispatch) => {
 class Todos extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
-    navBarButtonColor: '#fff',
-    navBarTextColor: '#fff'
-  }
+    navBarButtonColor: "#fff",
+    navBarTextColor: "#fff"
+  };
 
   todoInstances = [];
 
@@ -52,15 +60,19 @@ class Todos extends Component {
 
   onNavigatorEvent(event) {
     // TODO: maybe better way
-    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') this.clearNavButton();
-    if (event.type === 'NavBarButtonPress') {
-      event.id === 'add' && this.createTodo();
+    if (event.type === "ScreenChangedEvent" && event.id === "willAppear")
+      this.clearNavButton();
+    if (event.type === "NavBarButtonPress") {
+      event.id === "add" && this.createTodo();
     }
   }
 
   createTodo() {
     const userId = this.props.user.id;
-    this.props.actions.createTodo({boxId: this.props.meta.id, userId}, {content: this.refs.creater.state.content});
+    this.props.actions.createTodo(
+      { boxId: this.props.meta.id, userId },
+      { content: this.refs.creater.state.content }
+    );
     this.refs.creater.clear();
     // this.clearNavButton();
   }
@@ -70,14 +82,13 @@ class Todos extends Component {
 
     setTimeout(() => {
       this.todoInstances[0].goTodoDetail();
-    }, 500)
-
+    }, 500);
   }
 
   @autobind
   addCreateTodoButton() {
     this.props.navigator.setButtons({
-      rightButtons: [{title: 'Add', id: 'add'}]
+      rightButtons: [{ title: "Add", id: "add" }]
     });
   }
 
@@ -91,24 +102,39 @@ class Todos extends Component {
   @autobind
   getTodos() {
     const userId = this.props.user.id;
-    this.props.actions.getTodos(this.props.meta.id, {userId});
+    this.props.actions.getTodos(this.props.meta.id, { userId });
   }
 
   @autobind
   renderTodo(todo) {
     const userId = this.props.user.id;
-    return <Todo boxId={this.props.meta.id} user={this.props.user}
+    return (
+      <Todo
+        boxId={this.props.meta.id}
+        user={this.props.user}
         meta={this.props.meta}
         ref={todoInstance => this.todoInstances.push(todoInstance)}
-        key={todo.id} todo={todo} navigator={this.props.navigator}
-        updateTodo={(data) =>
-          this.props.actions.updateTodo(this.props.meta.id, {userId, id: todo.id}, data)}
+        key={todo.id}
+        todo={todo}
+        navigator={this.props.navigator}
+        updateTodo={data =>
+          this.props.actions.updateTodo(
+            this.props.meta.id,
+            { userId, id: todo.id },
+            data
+          )}
       />
+    );
   }
 
   @autobind
   renderActions(todo) {
-    return <View><Button title="1"/><Button title="2"/></View>
+    return (
+      <View>
+        <Button title="1" />
+        <Button title="2" />
+      </View>
+    );
   }
 
   renderTodos() {
@@ -117,16 +143,16 @@ class Todos extends Component {
       getRowData: (data, sectionID, rowID) => data[sectionID][rowID],
       getSectionHeaderData: (data, sectionID) => data[sectionID],
       rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2
     }).cloneWithRowsAndSections([todos]);
     return (
       <View>
-      <SwipeableListView
-        maxSwipeDistance={90}
-        dataSource={todoDataSource}
-        renderRow={this.renderTodo}
-        enableEmptySections={true}
-      />
+        <SwipeableListView
+          maxSwipeDistance={90}
+          dataSource={todoDataSource}
+          renderRow={this.renderTodo}
+          enableEmptySections={true}
+        />
       </View>
     );
     // renderQuickActions={this.renderActions}
@@ -136,8 +162,11 @@ class Todos extends Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <TodoCreater ref="creater" addCreateTodoButton={this.addCreateTodoButton}
-            clearNavButton={this.clearNavButton} />
+          <TodoCreater
+            ref="creater"
+            addCreateTodoButton={this.addCreateTodoButton}
+            clearNavButton={this.clearNavButton}
+          />
           {this.renderTodos()}
         </ScrollView>
       </View>
@@ -148,12 +177,12 @@ class Todos extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    flexDirection: "column",
+    justifyContent: "flex-start",
     backgroundColor: ScreenBgColor,
     paddingLeft: 10,
     paddingRight: 10,
-    overflow: 'scroll'
+    overflow: "scroll"
   },
   scrollView: {
     flex: 1
