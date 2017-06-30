@@ -36,7 +36,7 @@ class LoginScreen extends Component {
 
   @autobind
   login() {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     const authData = {email: this.state.email, password: this.state.password};
     dispatch(authRequest(authData));
   }
@@ -52,7 +52,7 @@ class LoginScreen extends Component {
           placeholder="Email"
           ref="email"
           keyboardType="email-address"
-          onChangeText={(email) => this.setState({email})}
+          onChangeText={email => this.setState({email})}
         />
 
         <TextInput
@@ -60,7 +60,7 @@ class LoginScreen extends Component {
           ref="password"
           secureTextEntry={true}
           placeholder="Password"
-          onChangeText={(password) => this.setState({password})}
+          onChangeText={password => this.setState({password})}
         />
 
         <Button onPress={this.login.bind(this)} color="green">Login</Button>
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderStyle: 'solid',
+    borderWidth: 0,
     borderBottomWidth: 1,
     borderColor: '#bbb',
     backgroundColor: 'transparent',
