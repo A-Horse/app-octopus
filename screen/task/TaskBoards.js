@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import autobind from "autobind-decorator";
-import { createSelector } from "reselect";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import autobind from 'autobind-decorator';
+import { createSelector } from 'reselect';
 import {
   StyleSheet,
   Text,
@@ -13,10 +13,10 @@ import {
   Button,
   ScrollView,
   ListView
-} from "react-native";
-import R from "ramda";
-import moment from "moment";
-import * as todosActions from "./Todos.action";
+} from 'react-native';
+import R from 'ramda';
+import moment from 'moment';
+import * as todosActions from './Todos.action';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
@@ -53,7 +53,7 @@ class TaskBoards extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#71b8d2"
+    backgroundColor: '#71b8d2'
   }
 });
 

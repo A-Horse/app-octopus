@@ -1,65 +1,65 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from 'react-native-navigation';
 
-import TodoBoxsScreen from "./screen/todo/TodoBoxs";
-import TodosScreen from "./screen/todo/Todos";
-import TodoDetailScreen from "./screen/todo/TodoDetail";
-import TaskBoardsScreen from "./screen/Task";
+import TodoBoxsScreen from './screen/todo/TodoBoxs';
+import TodosScreen from './screen/todo/Todos';
+import TodoDetailScreen from './screen/todo/TodoDetail';
+import TaskBoardsScreen from './screen/Task';
 
-import FullEditingScreen from "./component/FullEditing";
+import FullEditingScreen from './component/FullEditing';
 
-import ProfileScreen from "./screen/profile/Profile";
+import ProfileScreen from './screen/profile/Profile';
 
-import LoginScreen from "./screen/Login";
-import SignUpScreen from "./screen/SignUp";
+import LoginScreen from './screen/Login';
+import SignUpScreen from './screen/SignUp';
 
 export function registerScreens(store, Provider) {
   Navigation.registerComponent(
-    "octopus.TaskBoardsScreen",
+    'octopus.TaskBoardsScreen',
     () => TaskBoardsScreen,
     store,
     Provider
   );
 
   Navigation.registerComponent(
-    "octopus.TodoBoxsScreen",
+    'octopus.TodoBoxsScreen',
     () => TodoBoxsScreen,
     store,
     Provider
   );
   Navigation.registerComponent(
-    "octopus.TodosScreen",
+    'octopus.TodosScreen',
     () => TodosScreen,
     store,
     Provider
   );
   Navigation.registerComponent(
-    "octopus.TodoDetailScreen",
+    'octopus.TodoDetailScreen',
     () => TodoDetailScreen,
     store,
     Provider
   );
   Navigation.registerComponent(
-    "octopus.TodoRemarkScreen",
+    'octopus.TodoRemarkScreen',
     () => FullEditingScreen,
     store,
     Provider
   );
 
   Navigation.registerComponent(
-    "octopus.ProfileScreen",
+    'octopus.ProfileScreen',
     () => ProfileScreen,
     store,
     Provider
   );
 
   Navigation.registerComponent(
-    "octopus.LoginScreen",
+    'octopus.LoginScreen',
     () => LoginScreen,
     store,
     Provider
   );
   Navigation.registerComponent(
-    "octopus.SignUpScreen",
+    'octopus.SignUpScreen',
     () => SignUpScreen,
     store,
     Provider

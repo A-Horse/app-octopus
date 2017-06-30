@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 import {
   StyleSheet,
   Button,
@@ -9,16 +9,16 @@ import {
   ScrollView,
   ListView,
   SwipeableListView
-} from "react-native";
-import SwipeableListViewDataSource from "react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource";
-import { bindActionCreators } from "redux";
-import { createSelector } from "reselect";
-import R from "ramda";
-import Todo from "./Todo";
-import TodoCreater from "./TodoCreater";
-import { ScreenBgColor } from "../../constant";
+} from 'react-native';
+import SwipeableListViewDataSource from 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource';
+import { bindActionCreators } from 'redux';
+import { createSelector } from 'reselect';
+import R from 'ramda';
+import Todo from './Todo';
+import TodoCreater from './TodoCreater';
+import { ScreenBgColor } from '../../constant';
 
-import * as todosActions from "./Todos.action";
+import * as todosActions from './Todos.action';
 
 const getAllTodos = (state, props) => {
   const { meta } = props;
@@ -27,7 +27,7 @@ const getAllTodos = (state, props) => {
   return todoResults.map(id => entities[id]);
 };
 
-const getTodos = createSelector([getAllTodos], R.sort(R.prop("isDone")));
+const getTodos = createSelector([getAllTodos], R.sort(R.prop('isDone')));
 
 const mapStateToProps = (state, props) => {
   return {
@@ -47,8 +47,8 @@ const mapDispatchToProps = dispatch => {
 class Todos extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
-    navBarButtonColor: "#fff",
-    navBarTextColor: "#fff"
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff'
   };
 
   todoInstances = [];
@@ -60,10 +60,10 @@ class Todos extends Component {
 
   onNavigatorEvent(event) {
     // TODO: maybe better way
-    if (event.type === "ScreenChangedEvent" && event.id === "willAppear")
+    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear')
       this.clearNavButton();
-    if (event.type === "NavBarButtonPress") {
-      event.id === "add" && this.createTodo();
+    if (event.type === 'NavBarButtonPress') {
+      event.id === 'add' && this.createTodo();
     }
   }
 
@@ -88,7 +88,7 @@ class Todos extends Component {
   @autobind
   addCreateTodoButton() {
     this.props.navigator.setButtons({
-      rightButtons: [{ title: "Add", id: "add" }]
+      rightButtons: [{ title: 'Add', id: 'add' }]
     });
   }
 
@@ -177,12 +177,12 @@ class Todos extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     backgroundColor: ScreenBgColor,
     paddingLeft: 10,
     paddingRight: 10,
-    overflow: "scroll"
+    overflow: 'scroll'
   },
   scrollView: {
     flex: 1

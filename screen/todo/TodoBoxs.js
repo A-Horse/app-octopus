@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import autobind from "autobind-decorator";
-import { createSelector } from "reselect";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import autobind from 'autobind-decorator';
+import { createSelector } from 'reselect';
 import {
   StyleSheet,
   Text,
@@ -13,13 +13,13 @@ import {
   Button,
   ScrollView,
   ListView
-} from "react-native";
-import R from "ramda";
-import moment from "moment";
-import { getWeekDayName, getMonthDay, getMonth } from "../../service/date";
-import BoxCreaterToggle from "./BoxCreaterToggle";
-import * as todosActions from "./Todos.action";
-import { ScreenBgColor } from "../../constant";
+} from 'react-native';
+import R from 'ramda';
+import moment from 'moment';
+import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
+import BoxCreaterToggle from './BoxCreaterToggle';
+import * as todosActions from './Todos.action';
+import { ScreenBgColor } from '../../constant';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
@@ -42,26 +42,26 @@ const mapDispatchToProps = dispatch => {
 @connect(mapStateToProps, mapDispatchToProps)
 class TodoBoxs extends Component {
   static navigatorStyle = {
-    navBarButtonColor: "#fff"
+    navBarButtonColor: '#fff'
   };
 
   static navigatorButtons = {
     leftButtons: [
       {
-        icon: require("../../image/ios/ic_pie_chart/ic_pie_chart.png"),
-        id: "pie"
+        icon: require('../../image/ios/ic_pie_chart/ic_pie_chart.png'),
+        id: 'pie'
       },
       {
-        icon: require("../../image/ios/ic_settings/ic_settings.png"),
-        id: "setting"
+        icon: require('../../image/ios/ic_settings/ic_settings.png'),
+        id: 'setting'
       }
     ],
     rightButtons: [
       {
-        title: moment().format("ddd")
+        title: moment().format('ddd')
       },
       {
-        title: moment().format("D MMM")
+        title: moment().format('D MMM')
       }
     ]
   };
@@ -78,9 +78,9 @@ class TodoBoxs extends Component {
   goTodoList(item) {
     return () => {
       this.props.navigator.push({
-        screen: "octopus.TodosScreen",
+        screen: 'octopus.TodosScreen',
         passProps: { meta: item },
-        backButtonTitle: "",
+        backButtonTitle: '',
         title: item.name
       });
     };
@@ -90,11 +90,11 @@ class TodoBoxs extends Component {
   renderBox(box) {
     let icon;
     switch (box.type) {
-      case "private":
+      case 'private':
         icon = (
           <Image
             style={styles.boxIcon}
-            source={require("../../image/ios/ic_account_circle/ic_account_circle.png")}
+            source={require('../../image/ios/ic_account_circle/ic_account_circle.png')}
           />
         );
     }
@@ -142,9 +142,9 @@ const styles = StyleSheet.create({
   },
   box: {
     flex: 1,
-    alignItems: "center",
-    flexDirection: "row",
-    backgroundColor: "#fff",
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
     padding: 10,
     borderRadius: 3
   },
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
   },
   boxText: {
     fontSize: 18,
-    fontWeight: "400",
-    color: "#555"
+    fontWeight: '400',
+    color: '#555'
   }
 });
 

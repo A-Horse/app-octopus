@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
 import {
   StyleSheet,
   Image,
@@ -11,22 +11,22 @@ import {
   DatePickerIOS,
   View,
   ActionSheetIOS
-} from "react-native";
+} from 'react-native';
 
-import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 
 export default class FullEditing extends Component {
   static navigatorStyle = {
-    navBarButtonColor: "#fff",
-    navBarTextColor: "#fff",
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff',
     tabBarHidden: true
   };
 
   static navigatorButtons = {
     rightButtons: [
       {
-        title: "Done",
-        id: "done"
+        title: 'Done',
+        id: 'done'
       }
     ]
   };
@@ -39,8 +39,8 @@ export default class FullEditing extends Component {
   }
 
   onNavigatorEvent(event) {
-    if (event.type == "NavBarButtonPress") {
-      if (event.id == "done") {
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'done') {
         this.props.updateTodo({ remark: this.state.content });
         this.props.navigator.pop();
       }
@@ -70,7 +70,7 @@ export default class FullEditing extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fef3a1",
+    backgroundColor: '#fef3a1',
     flex: 1
   },
   content: {
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
     fontSize: 18,
-    height: Dimensions.get("window").height - 60
+    height: Dimensions.get('window').height - 60
   }
 });

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import CheckBox from "react-native-check-box";
-import { Image } from "react-native";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import CheckBox from 'react-native-check-box';
+import { Image } from 'react-native';
+import autobind from 'autobind-decorator';
 
 export default class StarCheckBox extends Component {
   state = { checked: !!this.props.defaultChecked };
@@ -19,11 +19,11 @@ export default class StarCheckBox extends Component {
         onClick={this.onClick}
         isChecked={this.state.checked}
         checkedImage={
-          <Image source={require("../image/ios/ic_star/ic_star.png")} />
+          <Image source={require('../image/ios/ic_star/ic_star.png')} />
         }
         unCheckedImage={
           <Image
-            source={require("../image/ios/ic_star_border/ic_star_border.png")}
+            source={require('../image/ios/ic_star_border/ic_star_border.png')}
           />
         }
       />

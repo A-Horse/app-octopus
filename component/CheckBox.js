@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import CheckBox from "react-native-check-box";
-import { Image } from "react-native";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import CheckBox from 'react-native-check-box';
+import { Image } from 'react-native';
+import autobind from 'autobind-decorator';
 
 export default class MyCheckBox extends Component {
   state = { checked: !!this.props.defaultChecked };
@@ -21,13 +21,13 @@ export default class MyCheckBox extends Component {
         checkedImage={
           <Image
             style={{ width: 23, height: 23 }}
-            source={require("../image/ios/right/right.png")}
+            source={require('../image/ios/right/right.png')}
           />
         }
         unCheckedImage={
           <Image
             style={{ width: 23, height: 23 }}
-            source={require("../image/ios/box/box.png")}
+            source={require('../image/ios/box/box.png')}
           />
         }
       />

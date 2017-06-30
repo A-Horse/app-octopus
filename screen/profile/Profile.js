@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import autobind from "autobind-decorator";
-import { createSelector } from "reselect";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import autobind from 'autobind-decorator';
+import { createSelector } from 'reselect';
 import {
   StyleSheet,
   Text,
@@ -12,16 +12,16 @@ import {
   TouchableOpacity,
   ScrollView,
   ListView
-} from "react-native";
-import R from "ramda";
-import moment from "moment";
-import { getWeekDayName, getMonthDay, getMonth } from "../../service/date";
-import { makeGravatarUrl } from "../../service/gravatar";
-import { clearStorage } from "../../service/storage";
-import Button from "../../component/Button";
-import { setupSignApp } from "../../navigation-setup";
-import { initialStore } from "../../store";
-import { ScreenBgColor } from "../../constant";
+} from 'react-native';
+import R from 'ramda';
+import moment from 'moment';
+import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
+import { makeGravatarUrl } from '../../service/gravatar';
+import { clearStorage } from '../../service/storage';
+import Button from '../../component/Button';
+import { setupSignApp } from '../../navigation-setup';
+import { initialStore } from '../../store';
+import { ScreenBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -36,8 +36,8 @@ const mapDispatchToProps = dispatch => {
 @connect(mapStateToProps, mapDispatchToProps)
 class Profile extends Component {
   static navigatorStyle = {
-    navBarButtonColor: "#fff",
-    navBarTextColor: "#fff"
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff'
   };
 
   static navigatorButtons = {
@@ -51,7 +51,7 @@ class Profile extends Component {
     setupSignApp();
     initialStore();
     this.props.navigator.resetTo({
-      screen: "octopus.LoginScreen"
+      screen: 'octopus.LoginScreen'
     });
   }
 
@@ -70,7 +70,7 @@ class Profile extends Component {
               </Text>
             </View>
             <Image
-              source={require("../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png")}
+              source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}
             />
           </View>
         </TouchableOpacity>
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     backgroundColor: ScreenBgColor
   },
   infoContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 3,
     padding: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 20
   },
   avatar: {

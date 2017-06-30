@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import autobind from "autobind-decorator";
-import CheckBox from "../../component/CheckBox";
-import StarCheckBox from "../../component/StarCheckBox";
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import autobind from 'autobind-decorator';
+import CheckBox from '../../component/CheckBox';
+import StarCheckBox from '../../component/StarCheckBox';
 
 export default class Todo extends Component {
   static propTypes = {
@@ -12,13 +12,13 @@ export default class Todo extends Component {
   @autobind
   goTodoDetail() {
     this.props.navigator.push({
-      screen: "octopus.TodoDetailScreen",
+      screen: 'octopus.TodoDetailScreen',
       passProps: {
         todoId: this.props.todo.id,
         meta: this.props.meta,
         updateTodo: this.props.updateTodo
       },
-      backButtonTitle: ""
+      backButtonTitle: ''
     });
   }
 
@@ -38,7 +38,7 @@ export default class Todo extends Component {
             numberOfLines={1}
             style={[
               styles.content,
-              { textDecorationLine: todo.isDone ? "line-through" : "none" }
+              { textDecorationLine: todo.isDone ? 'line-through' : 'none' }
             ]}
           >
             {todo.content}
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     marginTop: 8,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: "#e8e8e8"
+    borderBottomColor: '#e8e8e8'
   },
   checkbox: {
     marginTop: 2,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    textAlign: "left",
+    textAlign: 'left',
     fontSize: 18
   }
 });

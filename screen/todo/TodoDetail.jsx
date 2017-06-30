@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 import {
   StyleSheet,
   SwipeableRow,
@@ -15,16 +15,16 @@ import {
   ActionSheetIOS,
   Button,
   Picker
-} from "react-native";
-import { bindActionCreators } from "redux";
-import DatePicker from "react-native-datepicker";
-import { createSelector } from "reselect";
-import R from "ramda";
-import * as todosActions from "./Todos.action";
-import StarCheckBox from "../../component/StarCheckBox";
-import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
-import moment from "moment";
-import { NavBarBgColor, ScreenBgColor } from "../../constant";
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import DatePicker from 'react-native-datepicker';
+import { createSelector } from 'reselect';
+import R from 'ramda';
+import * as todosActions from './Todos.action';
+import StarCheckBox from '../../component/StarCheckBox';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
+import moment from 'moment';
+import { NavBarBgColor, ScreenBgColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -43,16 +43,16 @@ const mapDispatchToProps = dispatch => {
 export default class TodoDetail extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
-    navBarButtonColor: "#fff",
-    navBarTextColor: "#fff",
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff',
     tabBarHidden: true
   };
 
   static navigatorButtons = {
     rightButtons: [
       {
-        icon: require("../../image/ios/ic_more_horiz/ic_more_horiz.png"),
-        id: "action"
+        icon: require('../../image/ios/ic_more_horiz/ic_more_horiz.png'),
+        id: 'action'
       }
     ]
   };
@@ -65,8 +65,8 @@ export default class TodoDetail extends Component {
   }
 
   onNavigatorEvent(event) {
-    if (event.type == "NavBarButtonPress") {
-      if (event.id == "action") {
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'action') {
         this.openActionSheet();
         console.log();
       }
@@ -80,23 +80,23 @@ export default class TodoDetail extends Component {
 
   transformRepeatValue(value) {
     return {
-      null: "Repeat",
-      0: "repeat day number",
-      1: "Every Day",
-      2: "Two day",
-      7: "Week"
+      null: 'Repeat',
+      0: 'repeat day number',
+      1: 'Every Day',
+      2: 'Two day',
+      7: 'Week'
     }[value];
   }
 
   goRemarkEditing() {
     this.props.navigator.push({
-      screen: "octopus.TodoRemarkScreen",
-      title: "Remarks",
+      screen: 'octopus.TodoRemarkScreen',
+      title: 'Remarks',
       passProps: {
         content: this.props.todo.remark,
         updateTodo: this.props.updateTodo
       },
-      backButtonTitle: ""
+      backButtonTitle: ''
     });
   }
 
@@ -105,19 +105,19 @@ export default class TodoDetail extends Component {
   }
 
   openActionSheet() {
-    const buttonTexts = ["Done", "Delete", "Cancel"];
+    const buttonTexts = ['Done', 'Delete', 'Cancel'];
     ActionSheetIOS.showActionSheetWithOptions(
       {
         options: buttonTexts,
-        cancelButtonIndex: R.findIndex(R.equals("Cancel"))(buttonTexts),
-        destructiveButtonIndex: R.findIndex(R.equals("Delete"))(buttonTexts)
+        cancelButtonIndex: R.findIndex(R.equals('Cancel'))(buttonTexts),
+        destructiveButtonIndex: R.findIndex(R.equals('Delete'))(buttonTexts)
       },
       buttonIndex => {
         switch (buttonTexts[buttonIndex]) {
-          case "Delete":
+          case 'Delete':
             this.destoryTodo();
             break;
-          case "Done":
+          case 'Done':
             this.props.updateTodo({ isDone: true });
             break;
           default:
@@ -187,11 +187,11 @@ export default class TodoDetail extends Component {
           <View style={[styles.fieldContainer]}>
             <Image
               style={styles.lineIcon}
-              source={require("../../image/ios/ic_date_range/ic_date_range.png")}
+              source={require('../../image/ios/ic_date_range/ic_date_range.png')}
             />
             <View style={styles.lineContent}>
               <DatePicker
-                date={moment(todo.deadline).format("YYYY-MM-DD hh:mm:ss")}
+                date={moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')}
                 mode="datetime"
                 placeholder="Dealline"
                 minDate="2016-05-01"
@@ -202,9 +202,9 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
-                    justifyContent: "center",
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
                     borderWidth: 0
                   }
                 }}
@@ -219,7 +219,7 @@ export default class TodoDetail extends Component {
             <TouchableOpacity onPress={() => this.showRepeatPicker()}>
               <Image
                 style={styles.lineIcon}
-                source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+                source={require('../../image/ios/ic_notifications/ic_notifications.png')}
               />
             </TouchableOpacity>
             <View style={styles.lineContent}>
@@ -227,8 +227,8 @@ export default class TodoDetail extends Component {
                 style={{
                   height: 40,
                   flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   lineHeight: 40
                 }}
               >
@@ -240,7 +240,7 @@ export default class TodoDetail extends Component {
           <View style={[styles.fieldContainer]}>
             <Image
               style={styles.lineIcon}
-              source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+              source={require('../../image/ios/ic_notifications/ic_notifications.png')}
             />
             <View style={styles.lineContent}>
               <DatePicker
@@ -255,9 +255,9 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
-                    justifyContent: "center",
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
                     borderWidth: 0
                   }
                 }}
@@ -273,13 +273,13 @@ export default class TodoDetail extends Component {
           >
             <Image
               style={styles.lineIcon}
-              source={require("../../image/ios/ic_notifications/ic_notifications.png")}
+              source={require('../../image/ios/ic_notifications/ic_notifications.png')}
             />
             <View style={styles.remark}>
               <Text
-                style={{ flex: 1, color: !todo.remark ? "#c9c9c9" : "#000" }}
+                style={{ flex: 1, color: !todo.remark ? '#c9c9c9' : '#000' }}
               >
-                {!todo.remark ? "Remarks" : todo.remark}
+                {!todo.remark ? 'Remarks' : todo.remark}
               </Text>
             </View>
           </TouchableOpacity>
@@ -293,16 +293,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: ScreenBgColor,
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    overflow: "scroll",
-    height: "100%"
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    overflow: 'scroll',
+    height: '100%'
   },
   contentContainer: {
     backgroundColor: NavBarBgColor,
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingLeft: 20,
     paddingRight: 10,
     paddingBottom: 10
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
   star: {
     flex: 1,
     flexGrow: 1,
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
     width: 30
   },
   lineIcon: {
@@ -318,31 +318,31 @@ const styles = StyleSheet.create({
   },
   lineContent: {
     flex: 1,
-    flexWrap: "wrap",
-    alignItems: "center",
-    flexDirection: "row",
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: "#e8e8e8"
+    borderBottomColor: '#e8e8e8'
   },
   content: {
     fontSize: 18,
-    fontWeight: "500",
-    textAlign: "left",
+    fontWeight: '500',
+    textAlign: 'left',
     flexGrow: 11,
-    alignItems: "flex-start",
-    color: "#fff",
+    alignItems: 'flex-start',
+    color: '#fff',
     top: 2,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   fieldContainer: {
-    flexWrap: "wrap",
-    alignItems: "center",
-    flexDirection: "row"
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   repeatContainer: {
-    flexWrap: "wrap",
-    alignItems: "center",
-    flexDirection: "row"
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   detailContainer: {
     paddingTop: 10,
@@ -351,49 +351,49 @@ const styles = StyleSheet.create({
   },
   remarkContainer: {
     paddingTop: 8,
-    flexWrap: "wrap",
-    alignItems: "flex-start",
-    flexDirection: "row"
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection: 'row'
   },
   remark: {
     paddingTop: 3,
     flex: 1,
-    flexWrap: "wrap",
-    alignItems: "flex-start",
-    flexDirection: "row",
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: "#e8e8e8"
+    borderBottomColor: '#e8e8e8'
   },
   repeatPicker: {},
   repeatPickerContainer: {
-    position: "absolute",
-    borderTopColor: "#e8e8e8",
-    borderStyle: "solid",
+    position: 'absolute',
+    borderTopColor: '#e8e8e8',
+    borderStyle: 'solid',
     borderTopWidth: 1,
     flex: 1,
     bottom: 0,
     left: 0,
-    width: "100%",
+    width: '100%',
     height: 257,
     zIndex: 10,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   },
   repeatPickerActions: {
     height: 40,
-    width: "100%",
+    width: '100%',
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    overflow: "hidden",
-    borderBottomColor: "#e8e8e8",
-    borderStyle: "solid",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    borderBottomColor: '#e8e8e8',
+    borderStyle: 'solid',
     borderBottomWidth: 1
   },
   repeatPickerActionButton: {
     width: 98,
-    height: "100%",
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center"
+    height: '100%',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
