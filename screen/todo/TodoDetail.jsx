@@ -68,7 +68,6 @@ export default class TodoDetail extends Component {
     if (event.type == 'NavBarButtonPress') {
       if (event.id == 'action') {
         this.openActionSheet();
-        console.log();
       }
     }
   }
