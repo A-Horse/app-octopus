@@ -6,7 +6,7 @@ import {
   requestTodoBox,
   createTodoBox,
   requestUpdateTodo
-} from '../../action/todo';
+} from '../../action/task';
 
 export function getTodos(id, meta) {
   return dispatch => dispatch(requestTodos(id, meta));

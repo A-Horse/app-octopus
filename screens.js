@@ -4,10 +4,13 @@ import TodoBoxsScreen from './screen/todo/TodoBoxs';
 import TodosScreen from './screen/todo/Todos';
 import TodoDetailScreen from './screen/todo/TodoDetail';
 import TaskBoardsScreen from './screen/Task';
-import LoginScreen from './screen/Login';
+
 import FullEditingScreen from './component/FullEditing';
 
 import ProfileScreen from './screen/profile/Profile';
+
+import LoginScreen from './screen/Login';
+import SignUpScreen from './screen/SignUp';
 
 
 export function registerScreens(store, Provider) {
@@ -21,4 +24,5 @@ export function registerScreens(store, Provider) {
   Navigation.registerComponent('octopus.ProfileScreen', () => ProfileScreen, store, Provider);
 
   Navigation.registerComponent('octopus.LoginScreen', () => LoginScreen, store, Provider);
+  Navigation.registerComponent('octopus.SignUpScreen', () => SignUpScreen, store, Provider);
 }

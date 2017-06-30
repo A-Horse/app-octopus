@@ -1,4 +1,5 @@
-export function handleEpicError(err, caught) {
-  console.error(err, caught);
+
+export function handleEpicError(error, caught) {
+
   return caught;
 }

@@ -3,26 +3,36 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
 import { NavBarBgColor, NavBarColor } from '../constant';
-import { authRequest } from '../action/auth';
+import { authRequest, signupRequest } from '../action/auth';
 import Button from '../component/Button';
 import Style from '../style';
 import { setupMainApp } from '../navigation-setup';
+import R from 'ramda';
 
 const mapStateToProps = (state, props) => {
   return {
-    isLogin: state.auth.isLogin
+
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signup: function(data) {
+      return dispatch(signupRequest(data));
+    }
   };
 };
 
 @connect(mapStateToProps)
 class SignUpScreen extends Component {
   static navigatorStyle = {
+    navBarNoBorder: true,
     navBarBackgroundColor: NavBarBgColor,
     navBarButtonColor: '#fff',
     navBarTextColor: NavBarColor
   }
 
-  state = {};
+  state = {}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLogin) {
@@ -33,17 +43,13 @@ class SignUpScreen extends Component {
     }
   }
 
-  @autobind
-  login() {
-    const {dispatch} = this.props;
-    const authData = {email: this.state.email, password: this.state.password};
-    dispatch(authRequest(authData));
+  signin() {
+    this.props.signup(R.pick(['email', 'username', 'password'], this.state))
   }
 
   render() {
     return (
       <View style={styles.container}>
-
         <Image source={require('../image/logo.png')} style={styles.logo}/>
 
         <TextInput
@@ -56,13 +62,27 @@ class SignUpScreen extends Component {
 
         <TextInput
           style={styles.input}
+          placeholder="username"
+          ref="username"
+          onChangeText={(username) => this.setState({username})}
+        />
+
+        <TextInput
+          style={styles.input}
           ref="password"
           secureTextEntry={true}
           placeholder="Password"
           onChangeText={(password) => this.setState({password})}
         />
 
-        <Button onPress={this.login.bind(this)} color="green">Login</Button>
+        <TextInput
+          style={styles.input}
+          ref="repeat"
+          secureTextEntry={true}
+          placeholder="Repeat Password"
+          onChangeText={(repeat) => this.setState({repeat})}
+        />
+        <Button onPress={this.onSignUpPress} color="green">Sign Up</Button>
       </View>
     );
   }

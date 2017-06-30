@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { NavBarBgColor, NavBarColor } from '../constant';
 import { authRequest } from '../action/auth';
 import Button from '../component/Button';
@@ -17,6 +17,7 @@ const mapStateToProps = (state, props) => {
 @connect(mapStateToProps)
 class LoginScreen extends Component {
   static navigatorStyle = {
+    navBarNoBorder: true,
     navBarBackgroundColor: NavBarBgColor,
     navBarButtonColor: '#fff',
     navBarTextColor: NavBarColor
@@ -63,7 +64,9 @@ class LoginScreen extends Component {
         />
 
         <Button onPress={this.login.bind(this)} color="green">Login</Button>
-        <Button onPress={this.login.bind(this)}>Sign Up Account</Button>
+        <TouchableOpacity onPress={() => this.props.navigator.push({screen: 'octopus.SignUpScreen'})}>
+          <Text>Sign up account</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -78,10 +81,9 @@ const styles = StyleSheet.create({
   },
   input: {
     borderStyle: 'solid',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: '#bbb',
     backgroundColor: 'transparent',
-    borderRadius: 4,
     height: 40,
     marginBottom: 10,
     overflow: 'hidden',

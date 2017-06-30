@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
   green: {
     backgroundColor: '#9ad477'
   },
+  red: {
+    backgroundColor: '#e35a55'
+  }
   error: {
     backgroundColor: '#E53935'
   }

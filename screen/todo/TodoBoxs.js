@@ -69,7 +69,7 @@ class TodoBoxs extends Component {
     return () => {
       this.props.navigator.push({
         screen: 'octopus.TodosScreen',
-        passProps: {meta: item},
+        passProps: { meta: item },
         backButtonTitle: '',
         title: item.name
       });
@@ -81,14 +81,14 @@ class TodoBoxs extends Component {
     let icon;
     switch (box.type) {
       case 'private':
-        icon = <Image style={styles.boxIcon} source={require('../../image/ios/ic_account_circle/ic_account_circle.png')} />;
+        icon = <Image style={ styles.boxIcon } source={require('../../image/ios/ic_account_circle/ic_account_circle.png')} />;
     }
     return (
-      <TouchableOpacity onPress={this.goTodoList(box)}>
-        <View key={box.id} style={styles.box}>
-          {icon}
-          <Text style={styles.boxText}>
-            {box.name}
+      <TouchableOpacity onPress={ this.goTodoList(box) }>
+        <View key={ box.id } style={ styles.box }>
+          { icon }
+          <Text style={ styles.boxText }>
+            { box.name }
           </Text>
         </View>
       </TouchableOpacity>

@@ -14,3 +14,20 @@ export function authSuccess(data) {
     playload: data
   };
 }
+
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+
+export function signupRequest(data) {
+  return {
+    type: SIGNUP_REQUEST,
+    playload: data
+  };
+}
+
+export function signupSuccess(data) {
+  return {
+    type: SIGNUP_SUCCESS,
+    playload: data
+  };
+}
