@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
-import { NavBarBgColor, NavBarColor } from '../constant';
-import { authRequest, signupRequest } from '../action/auth';
-import Button from '../component/Button';
-import Style from '../style';
-import { setupMainApp } from '../navigation-setup';
-import R from 'ramda';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import autobind from "autobind-decorator";
+import { StyleSheet, View, Text, Image, TextInput } from "react-native";
+import { NavBarBgColor, NavBarColor } from "../constant";
+import { authRequest, signupRequest } from "../action/auth";
+import Button from "../component/Button";
+import Style from "../style";
+import { setupMainApp } from "../navigation-setup";
+import R from "ramda";
 
 const mapStateToProps = (state, props) => {
   return {};
@@ -26,7 +26,7 @@ class SignUpScreen extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
     navBarBackgroundColor: NavBarBgColor,
-    navBarButtonColor: '#fff',
+    navBarButtonColor: "#fff",
     navBarTextColor: NavBarColor
   };
 
@@ -36,19 +36,19 @@ class SignUpScreen extends Component {
     if (nextProps.isLogin) {
       setupMainApp();
       this.props.navigator.resetTo({
-        screen: 'octopus.TodoBoxsScreen'
+        screen: "octopus.TodoBoxsScreen"
       });
     }
   }
 
   signin() {
-    this.props.signup(R.pick(['email', 'username', 'password'], this.state));
+    this.props.signup(R.pick(["email", "username", "password"], this.state));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../image/logo.png')} style={styles.logo} />
+        <Image source={require("../image/logo.png")} style={styles.logo} />
 
         <TextInput
           style={styles.input}
@@ -91,22 +91,22 @@ class SignUpScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
     padding: 20
   },
   input: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 1,
-    borderColor: '#bbb',
-    backgroundColor: 'transparent',
+    borderColor: "#bbb",
+    backgroundColor: "transparent",
     borderRadius: 4,
     height: 40,
     marginBottom: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     paddingLeft: 10,
     paddingRight: 10,
-    textAlign: 'center'
+    textAlign: "center"
   },
   logo: {
     width: 70,

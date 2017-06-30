@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import Button from 'react-native-button';
+import React, { Component } from "react";
+import { StyleSheet } from "react-native";
+import Button from "react-native-button";
 
 export default class OctopusButton extends Component {
-
   render() {
     return (
       <Button
         color="#fff"
         containerStyle={[styles.container, styles[this.props.color]]}
         style={[styles.button]}
-        onPress={() => this.props.onPress()}>
+        onPress={() => this.props.onPress()}
+      >
         {this.props.children}
       </Button>
     );
@@ -19,21 +19,21 @@ export default class OctopusButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    color: '#fff'
+    color: "#fff"
   },
   container: {
-    overflow: 'hidden',
+    overflow: "hidden",
     borderRadius: 4,
     padding: 9,
-    width: '100%'
+    width: "100%"
   },
   green: {
-    backgroundColor: '#9ad477'
+    backgroundColor: "#9ad477"
   },
   red: {
-    backgroundColor: '#e35a55'
-  }
+    backgroundColor: "#e35a55"
+  },
   error: {
-    backgroundColor: '#E53935'
+    backgroundColor: "#E53935"
   }
-})
+});

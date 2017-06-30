@@ -1,4 +1,4 @@
-import R from 'ramda';
+import R from "ramda";
 import {
   requestTodos,
   requestCreateTodo,
@@ -6,7 +6,7 @@ import {
   requestTodoBox,
   requestCreateTodoBox,
   requestUpdateTodo
-} from '../../action/todo';
+} from "../../action/todo";
 
 export function getTodos(id, meta) {
   return dispatch => dispatch(requestTodos(id, meta));

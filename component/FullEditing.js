@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import autobind from 'autobind-decorator';
-import { StyleSheet, Image, ScrollView, TouchableOpacity, Text, Dimensions, TextInput, DatePickerIOS, View, ActionSheetIOS } from 'react-native';
+import React, { Component } from "react";
+import autobind from "autobind-decorator";
+import {
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+  TextInput,
+  DatePickerIOS,
+  View,
+  ActionSheetIOS
+} from "react-native";
 
-
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-
+import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
 
 export default class FullEditing extends Component {
   static navigatorStyle = {
-    navBarButtonColor: '#fff',
-    navBarTextColor: '#fff',
+    navBarButtonColor: "#fff",
+    navBarTextColor: "#fff",
     tabBarHidden: true
-  }
+  };
 
   static navigatorButtons = {
     rightButtons: [
       {
-        title: 'Done',
-        id: 'done'
+        title: "Done",
+        id: "done"
       }
     ]
-  }
+  };
 
-  state = {}
+  state = {};
 
   constructor(props) {
     super(props);
@@ -30,9 +39,9 @@ export default class FullEditing extends Component {
   }
 
   onNavigatorEvent(event) {
-    if (event.type == 'NavBarButtonPress') {
-      if (event.id == 'done') {
-        this.props.updateTodo({remark: this.state.content})
+    if (event.type == "NavBarButtonPress") {
+      if (event.id == "done") {
+        this.props.updateTodo({ remark: this.state.content });
         this.props.navigator.pop();
       }
     }
@@ -40,18 +49,19 @@ export default class FullEditing extends Component {
 
   @autobind
   onContentChange(content) {
-    this.setState({content});
+    this.setState({ content });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView keyboardDismissMode='interactive'>
-            <TextInput multiline={true}
-              onChangeText={this.onContentChange}
-              defaultValue={this.props.content}
-              style={styles.content}
-            />
+        <ScrollView keyboardDismissMode="interactive">
+          <TextInput
+            multiline={true}
+            onChangeText={this.onContentChange}
+            defaultValue={this.props.content}
+            style={styles.content}
+          />
         </ScrollView>
       </View>
     );
@@ -60,7 +70,7 @@ export default class FullEditing extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fef3a1',
+    backgroundColor: "#fef3a1",
     flex: 1
   },
   content: {
@@ -68,6 +78,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
     fontSize: 18,
-    height: Dimensions.get('window').height - 60
+    height: Dimensions.get("window").height - 60
   }
 });

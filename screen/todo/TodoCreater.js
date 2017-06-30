@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { createSelector } from 'reselect';
-import Todo from './Todo';
-import R from 'ramda';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import autobind from "autobind-decorator";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
+import { bindActionCreators } from "redux";
+import { createSelector } from "reselect";
+import Todo from "./Todo";
+import R from "ramda";
 
 export default class TodoCreater extends Component {
-  state = {}
+  state = {};
 
   clear() {
     this.refs.content.clear();
@@ -23,7 +30,7 @@ export default class TodoCreater extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.onAddPress}>
-          <Image source={require('../../image/ios/ic_add/ic_add.png')} />
+          <Image source={require("../../image/ios/ic_add/ic_add.png")} />
         </TouchableOpacity>
 
         <TextInput
@@ -33,7 +40,7 @@ export default class TodoCreater extends Component {
           ref="content"
           onBlur={this.props.clearNavButton}
           onFocus={this.props.addCreateTodoButton}
-          onChangeText={(content) => this.setState({content})}
+          onChangeText={content => this.setState({ content })}
         />
       </View>
     );
@@ -42,24 +49,24 @@ export default class TodoCreater extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    borderStyle: 'solid',
+    width: "100%",
+    borderStyle: "solid",
     borderRadius: 3,
-    borderColor: '#000',
+    borderColor: "#000",
     marginTop: 10,
     paddingLeft: 8,
     paddingRight: 8,
     paddingTop: 8,
     paddingBottom: 8,
-    backgroundColor: '#e8e8e8',
+    backgroundColor: "#e8e8e8",
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center"
   },
   content: {
     flex: 1,
     fontSize: 16,
-    color: '#000',
+    color: "#000",
     marginTop: 3
   }
 });
