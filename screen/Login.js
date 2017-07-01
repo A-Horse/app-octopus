@@ -17,7 +17,10 @@ import Toast from '../component/Toast';
 
 const mapStateToProps = (state, props) => {
   return {
-    isLogin: state.auth.isLogin
+    loginFetching: state.auth.loginFetching,
+    isLogin: state.auth.isLogin,
+    isAuthError: state.auth.isAuthError,
+    authErrorStatus: state.auth.authErrorStatus
   };
 };
 
@@ -30,20 +33,39 @@ class LoginScreen extends Component {
     navBarTextColor: NavBarColor
   };
 
-  state = {};
+  state = { authErrMsg: '' };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLogin) {
+      // TODO extract to service
       setupMainApp();
       this.props.navigator.resetTo({
         screen: 'octopus.TodoBoxsScreen'
       });
+    } else if (nextProps.isAuthError) {
+      switch (nextProps.authErrorStatus) {
+        case 401:
+          this.setState({ authErrMsg: 'Email or password not match.' });
+          this.refs.authToast.toggle();
+          break;
+        case 500:
+        case 502:
+        case 503:
+        case 504:
+        case 505:
+          this.setState({
+            authErrMsg: 'The server seems to have encountered a problem'
+          });
+          this.refs.authToast.toggle();
+          break;
+        default:
+          break;
+      }
     }
   }
 
   @autobind
   login() {
-    this.openErrorToast();
     const { dispatch } = this.props;
     const authData = { email: this.state.email, password: this.state.password };
     dispatch(authRequest(authData));
@@ -52,6 +74,8 @@ class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Toast ref="authToast" message={this.state.authErrMsg} />
+
         <Image source={require('../image/OCTOPUS.png')} style={styles.logo} />
 
         <View style={styles.inputContainer}>

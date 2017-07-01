@@ -1,8 +1,8 @@
-import React, { Component, Animated } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Image, Text } from 'react-native';
+import { StyleSheet, Image, Animated, Text } from 'react-native';
 
-const HEIGHT = HEIGHT;
+const HIDE_TOP = 100;
 
 export default class Toast extends Component {
   static propTypes = {
@@ -11,10 +11,10 @@ export default class Toast extends Component {
 
   state = {
     toastOpacity: new Animated.Value(0),
-    top: new Animated.Value(-HEIGHT)
+    top: new Animated.Value(-HIDE_TOP)
   };
 
-  openErrorToast() {
+  toggle() {
     return Animated.sequence([
       Animated.timing(this.state.top, {
         toValue: 0,
@@ -24,12 +24,13 @@ export default class Toast extends Component {
         toValue: 0.95,
         duration: 100
       }),
+      Animated.delay(1700),
       Animated.timing(this.state.toastOpacity, {
         toValue: 0,
         duration: 100
       }),
       Animated.timing(this.state.top, {
-        toValue: HEIGHT,
+        toValue: HIDE_TOP,
         duration: 0
       })
     ]).start();
@@ -60,7 +61,6 @@ export default class Toast extends Component {
 const styles = StyleSheet.create({
   toastContainer: {
     width: '80%',
-    height: HEIGHT,
     position: 'absolute',
     backgroundColor: '#333',
     zIndex: 99,
@@ -69,12 +69,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    paddingTop: 10,
+    paddingBottom: 10
   },
   toastText: {
     borderRadius: 5,
     color: '#fff',
-    marginLeft: 10
+    marginLeft: 10,
+    flex: 1,
+    flexWrap: 'wrap'
   },
   toastErrIcon: {
     width: 18,
