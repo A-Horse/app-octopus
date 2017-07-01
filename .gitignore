@@ -56,3 +56,4 @@ fastlane/screenshots
 
 yarn.lock
 tags
+.flycheck_*

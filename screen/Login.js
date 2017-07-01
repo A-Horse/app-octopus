@@ -91,10 +91,9 @@ const styles = StyleSheet.create({
     padding: 20
   },
   input: {
-    borderStyle: 'solid',
-    borderWidth: 0,
+    borderBottomStyle: 'solid',
     borderBottomWidth: 1,
-    borderColor: '#bbb',
+    borderBottomColor: '#bbb',
     backgroundColor: 'transparent',
     height: 40,
     marginBottom: 10,
