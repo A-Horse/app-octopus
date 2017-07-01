@@ -15,7 +15,7 @@ export default class Toast extends Component {
   };
 
   openErrorToast() {
-    Animated.sequence([
+    return Animated.sequence([
       Animated.timing(this.state.top, {
         toValue: 0,
         duration: 0

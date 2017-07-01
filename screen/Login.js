@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Animated,
   Image,
   TextInput,
   TouchableOpacity
@@ -14,6 +13,7 @@ import { NavBarBgColor, NavBarColor, ColorBlue } from '../constant';
 import { authRequest } from '../action/auth';
 import Button from '../component/Button';
 import { setupMainApp } from '../navigation-setup';
+import Toast from '../component/Toast';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -61,6 +61,7 @@ class LoginScreen extends Component {
             ref="email"
             keyboardType="email-address"
             onChangeText={email => this.setState({ email })}
+            returnKeyType="next"
           />
         </View>
 
@@ -70,6 +71,7 @@ class LoginScreen extends Component {
             placeholder="Password"
             ref="password"
             secureTextEntry={true}
+            returnKeyType="done"
             style={styles.input}
           />
         </View>
