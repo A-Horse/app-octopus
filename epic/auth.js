@@ -21,7 +21,7 @@ export const auth = action$ => {
       .catch((error, caught) => {
         handleEpicError(error);
         if (error.status) {
-          return Observable.of({ type: AUTH_FAILURE, error });
+          return Observable.of(authFailure(error));
         }
         throw error;
       })

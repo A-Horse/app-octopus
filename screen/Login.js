@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Animated,
   Image,
   TextInput,
   TouchableOpacity
@@ -42,25 +43,16 @@ class LoginScreen extends Component {
 
   @autobind
   login() {
+    this.openErrorToast();
     const { dispatch } = this.props;
     const authData = { email: this.state.email, password: this.state.password };
     dispatch(authRequest(authData));
   }
 
-  openErrorToast() {}
-
   render() {
     return (
       <View style={styles.container}>
         <Image source={require('../image/OCTOPUS.png')} style={styles.logo} />
-
-        <View style={styles.toastContainer}>
-          <Image
-            source={require('../image/icons/remove-red.png')}
-            style={styles.toastErrIcon}
-          />
-          <Text style={styles.toastText}>hi</Text>
-        </View>
 
         <View style={styles.inputContainer}>
           <TextInput
@@ -139,29 +131,6 @@ const styles = StyleSheet.create({
   signInLink: {
     color: ColorBlue,
     fontSize: 16
-  },
-  toastContainer: {
-    width: '80%',
-    height: 35,
-    position: 'absolute',
-    backgroundColor: '#333',
-    zIndex: 99,
-    opacity: 0.95,
-    borderRadius: 6,
-    overflow: 'hidden',
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start'
-  },
-  toastText: {
-    borderRadius: 5,
-    color: '#fff'
-  },
-  toastErrIcon: {
-    width: 18,
-    height: 18,
-    marginLeft: 20
   }
 });
 
