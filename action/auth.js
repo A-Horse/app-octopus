@@ -1,6 +1,6 @@
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-
+export const AUTH_FAILURE = 'AUTH_FAILURE';
 export function authRequest(authData) {
   return {
     type: AUTH_REQUEST,
@@ -8,10 +8,18 @@ export function authRequest(authData) {
   };
 }
 
-export function authSuccess(data) {
+export function authSuccess(playload) {
   return {
     type: AUTH_SUCCESS,
-    playload: data
+    playload
+  };
+}
+
+export function authFailure(error) {
+  return {
+    type: AUTH_FAILURE,
+    playload: error,
+    error: true
   };
 }
 

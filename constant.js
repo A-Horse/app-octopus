@@ -14,6 +14,7 @@ export const JWTS_TOKEN = 'jwts-token';
 export const AUTH_DATA = 'AUTH_DATA';
 
 export const ColorRed = '#e35a55';
+export const ColorBlue = '#4285f4';
 export const NavBarBgColor = '#e35a55';
 export const NavBarColor = '#fff';
 export const ScreenBgColor = '#fff';

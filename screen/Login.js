@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import { NavBarBgColor, NavBarColor } from '../constant';
+import { NavBarBgColor, NavBarColor, ColorBlue } from '../constant';
 import { authRequest } from '../action/auth';
 import Button from '../component/Button';
 import { setupMainApp } from '../navigation-setup';
@@ -64,7 +64,6 @@ class LoginScreen extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            multiline={false}
             onChangeText={password => this.setState({ password })}
             placeholder="Password"
             ref="password"
@@ -73,14 +72,20 @@ class LoginScreen extends Component {
           />
         </View>
 
-        <Button onPress={this.login.bind(this)} color="green">
+        <Button
+          style={styles.loginButon}
+          onPress={this.login.bind(this)}
+          color="green"
+        >
           Login
         </Button>
+
         <TouchableOpacity
+          style={styles.signInLinkContainer}
           onPress={() =>
             this.props.navigator.push({ screen: 'octopus.SignUpScreen' })}
         >
-          <Text>Sign up account</Text>
+          <Text style={styles.signInLink}>sign up account</Text>
         </TouchableOpacity>
       </View>
     );
@@ -97,22 +102,33 @@ const styles = StyleSheet.create({
     paddingRight: 20
   },
   inputContainer: {
-    width: '100%',
+    width: '80%',
     borderStyle: 'solid',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
-    marginBottom: 10
+    marginBottom: 15
   },
   input: {
-    backgroundColor: 'transparent',
     overflow: 'hidden',
-    padding: 10,
-    textAlign: 'center'
+    height: 25,
+    textAlign: 'center',
+    color: '#000',
+    fontSize: 14
   },
   logo: {
     width: 170.756,
     height: 27,
-    marginBottom: 10
+    marginBottom: 15
+  },
+  loginButon: {
+    marginTop: 10
+  },
+  signInLinkContainer: {
+    marginTop: 10
+  },
+  signInLink: {
+    color: ColorBlue,
+    fontSize: 16
   }
 });
 
