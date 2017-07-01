@@ -12,7 +12,6 @@ import {
 import { NavBarBgColor, NavBarColor } from '../constant';
 import { authRequest } from '../action/auth';
 import Button from '../component/Button';
-import Style from '../style';
 import { setupMainApp } from '../navigation-setup';
 
 const mapStateToProps = (state, props) => {
@@ -51,23 +50,28 @@ class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../image/logo.png')} style={styles.logo} />
+        <Image source={require('../image/OCTOPUS.png')} style={styles.logo} />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          ref="email"
-          keyboardType="email-address"
-          onChangeText={email => this.setState({ email })}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            ref="email"
+            keyboardType="email-address"
+            onChangeText={email => this.setState({ email })}
+          />
+        </View>
 
-        <TextInput
-          style={styles.input}
-          ref="password"
-          secureTextEntry={true}
-          placeholder="Password"
-          onChangeText={password => this.setState({ password })}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            multiline={false}
+            onChangeText={password => this.setState({ password })}
+            placeholder="Password"
+            ref="password"
+            secureTextEntry={true}
+            style={styles.input}
+          />
+        </View>
 
         <Button onPress={this.login.bind(this)} color="green">
           Login
@@ -88,24 +92,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
-    padding: 20
+    paddingTop: 0,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  inputContainer: {
+    width: '100%',
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8',
+    marginBottom: 10
   },
   input: {
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-    borderBottomColor: '#bbb',
     backgroundColor: 'transparent',
-    height: 40,
-    marginBottom: 10,
     overflow: 'hidden',
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: 10,
     textAlign: 'center'
   },
   logo: {
-    width: 70,
-    height: 70,
-    borderRadius: 5,
+    width: 170.756,
+    height: 27,
     marginBottom: 10
   }
 });
