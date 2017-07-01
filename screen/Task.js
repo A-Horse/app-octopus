@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
 
 export default class TaskScreen extends Component {
-  static navigationOptions = {
-    tabBar: {
-      label: 'Notifications',
-      icon: ({ tintColor }) =>
-        <Image
-          source={require('./delete.svg')}
-          style={[styles.icon, { tintColor: tintColor }]}
-        />
-    }
-  };
   render() {
     return (
       <View style={styles.container}>
