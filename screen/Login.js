@@ -36,7 +36,9 @@ class LoginScreen extends Component {
   state = { authErrMsg: '' };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isLogin) {
+    if (nextProps.loginFetching) {
+      return;
+    } else if (nextProps.isLogin) {
       // TODO extract to service
       setupMainApp();
       this.props.navigator.resetTo({
