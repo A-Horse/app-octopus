@@ -71,13 +71,13 @@ export default class OcPicker extends Component {
               ]}
             >
               <View style={styles.pickerActions}>
-                <TouchableHighlight
+                <TouchableOpacity
                   style={styles.pickerActionButton}
                   onPress={() => this.close()}
                 >
                   <Text style={styles.actionText}>Cancel</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
+                </TouchableOpacity>
+                <TouchableOpacity
                   style={styles.pickerActionButton}
                   onPress={() => {
                     this.setState({ value: this.state.pickerValue });
@@ -85,8 +85,10 @@ export default class OcPicker extends Component {
                     this.close();
                   }}
                 >
-                  <Text style={styles.actionText}>Confrim</Text>
-                </TouchableHighlight>
+                  <Text style={[styles.actionText, { color: '#4dce99' }]}>
+                    Confrim
+                  </Text>
+                </TouchableOpacity>
               </View>
               <Picker
                 selectedValue={this.state.pickerValue}
@@ -114,7 +116,7 @@ export default class OcPicker extends Component {
             }}
           >
             {R.compose(
-              R.path('label'),
+              R.path(['label']),
               R.find(R.propEq('value', this.state.value))
             )(this.props.options) || this.props.placeholder}
           </Text>
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
   },
   actionText: {
     fontSize: 16,
-    fontWeight: '200'
+    fontWeight: '300'
   },
   repeatPicker: {
     backgroundColor: '#fff'

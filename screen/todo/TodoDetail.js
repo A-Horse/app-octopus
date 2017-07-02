@@ -150,39 +150,6 @@ export default class TodoDetail extends Component {
           />
         </View>
 
-        {this.state.repeatTogglePicker &&
-          <View style={styles.repeatPickerContainer}>
-            <View style={styles.repeatPickerActions}>
-              <TouchableHighlight
-                style={styles.repeatPickerActionButton}
-                onPress={() => this.setState({ repeatTogglePicker: false })}
-              >
-                <Text style={{ fontSize: 16 }}>Cancel</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={styles.repeatPickerActionButton}
-                onPress={() => {
-                  this.setState({ repeatTogglePicker: false });
-                  this.props.updateTodo({ repeat: this.state.repeat });
-                }}
-              >
-                <Text style={{ fontSize: 16 }}>Confrim</Text>
-              </TouchableHighlight>
-            </View>
-            <Picker
-              selectedValue={this.state.repeat}
-              onValueChange={value => {
-                this.setState({ repeat: value });
-              }}
-              style={styles.repeatPicker}
-            >
-              <Picker.Item label="none" value={null} />
-              <Picker.Item label="Every Day" value={1} />
-              <Picker.Item label="Two Day" value={2} />
-              <Picker.Item label="Every Week" value={7} />
-            </Picker>
-          </View>}
-
         <View style={styles.detailContainer}>
           <View style={[styles.fieldContainer]}>
             <Image
@@ -237,20 +204,9 @@ export default class TodoDetail extends Component {
                 onChange={value => {
                   this.props.updateTodo({ repeat: value });
                 }}
-                value={todo.repeat}
+                value={parseInt(todo.repeat, 10)}
                 placeholder="Repeat"
               />
-              {/* <Text
-                  style={{
-                  height: 40,
-                  flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: 40
-                  }}
-                  >
-                  {this.transformRepeatValue(todo.repeat)}
-                  </Text> */}
             </View>
           </View>
 
