@@ -1,14 +1,16 @@
 export const TASKBOARDS_REQUEST = 'TASKBOARDS_REQUEST';
 export const TASKBOARDS_SUCCESS = 'TASKBOARDS_SUCCESS';
 
-export function requestTaskBoards() {
+export function requestTaskBoards(meta) {
   return {
-    type: TASKBOARDS_REQUEST
+    type: TASKBOARDS_REQUEST,
+    meta
   };
 }
 
-export function requestTaskBoardsSuccess() {
+export function requestTaskBoardsSuccess(playload) {
   return {
-    type: TASKBOARDS_SUCCESS
+    type: TASKBOARDS_SUCCESS,
+    playload
   };
 }

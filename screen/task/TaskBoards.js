@@ -7,54 +7,65 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   Image,
   TouchableOpacity,
-  Button,
   ScrollView,
   ListView
 } from 'react-native';
 import R from 'ramda';
 import moment from 'moment';
-import * as todosActions from './Todos.action';
-
-const getTodoBox = (state, props) => {
-  const { entities } = state.todoBox;
-  return R.values(entities.todoBox);
-};
+import * as taskActions from './Task.action';
 
 const mapStateToProps = (state, props) => {
   return {
     userId: state.auth.user.id,
-    todoBoxs: createSelector([getTodoBox], R.identity)(state, props)
+    boards: R.values(state.task.TaskBoards)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(todosActions, dispatch)
+    actions: bindActionCreators(taskActions, dispatch)
   };
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
 class TaskBoards extends Component {
+  static navigatorStyle = {
+    navBarButtonColor: '#fff',
+    navBarTextColor: '#fff'
+  };
+
   static navigatorButtons = {
     leftButtons: [],
     rightButtons: []
   };
 
-  componentDidMount() {}
+  componentWillMount() {
+    this.props.actions.getTaskBoards({ userId: this.props.userId });
+  }
 
   render() {
-    return <View style={styles.container} />;
+    return (
+      <View style={styles.container}>
+        {this.props.boards.map(board => {
+          <View key={board.id}>
+            <Text>
+              {board.name}
+            </Text>
+          </View>;
+        })}
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#71b8d2'
-  }
+    backgroundColor: '#fff'
+  },
+  boardContainer: {}
 });
 
 export default TaskBoards;

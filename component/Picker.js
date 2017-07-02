@@ -59,6 +59,7 @@ export default class OcPicker extends Component {
       <View>
         <Modal transparent={true} visible={this.state.modalVisible}>
           <View style={styles.container}>
+            {/* TODO Check this feature */}
             <TouchableOpacity onPress={this.close}>
               <View style={styles.blankArea} />
             </TouchableOpacity>
@@ -134,13 +135,13 @@ const styles = StyleSheet.create({
   },
   blankArea: {
     opacity: 0,
-    zIndex: 1,
-    flex: 1,
+    zIndex: 5,
     top: 0,
     left: 0,
     position: 'absolute',
     height: '100%',
-    width: '100%'
+    width: '100%',
+    backgroundColor: 'green'
   },
   pickerContainer: {
     position: 'absolute',
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
   },
   actionText: {
     fontSize: 16,
-    fontWeight: '300'
+    fontWeight: '400'
   },
   repeatPicker: {
     backgroundColor: '#fff'

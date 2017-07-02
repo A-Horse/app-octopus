@@ -68,21 +68,6 @@ export default class TodoDetail extends Component {
     }
   }
 
-  @autobind
-  showRepeatPicker() {
-    this.setState({ repeatTogglePicker: true });
-  }
-
-  transformRepeatValue(value) {
-    return {
-      null: 'Repeat',
-      0: 'repeat day number',
-      1: 'Every Day',
-      2: 'Two day',
-      7: 'Week'
-    }[value];
-  }
-
   goRemarkEditing() {
     this.props.navigator.push({
       screen: 'octopus.TodoRemarkScreen',
@@ -173,6 +158,7 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
+                    height: 30,
                     justifyContent: 'center',
                     alignItems: 'flex-start',
                     flexWrap: 'wrap',
@@ -187,12 +173,10 @@ export default class TodoDetail extends Component {
           </View>
 
           <View style={styles.fieldContainer}>
-            <TouchableOpacity onPress={() => this.showRepeatPicker()}>
-              <Image
-                style={[styles.lineIcon, { width: 20, height: 20 }]}
-                source={require('../../image/icons/repeat.png')}
-              />
-            </TouchableOpacity>
+            <Image
+              style={[styles.lineIcon, { width: 20, height: 20 }]}
+              source={require('../../image/icons/repeat.png')}
+            />
             <View style={styles.lineContent}>
               <OcPicker
                 options={[
@@ -241,7 +225,7 @@ export default class TodoDetail extends Component {
           </View>
 
           <TouchableOpacity
-            style={styles.remarkContainer}
+            style={[styles.fieldContainer, { alignItems: 'flex-start' }]}
             onPress={() => this.goRemarkEditing()}
           >
             <Image
@@ -284,7 +268,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     alignItems: 'flex-start',
-    width: 30
+    width: 30,
+    marginRight: 5
+  },
+  detailContainer: {
+    paddingLeft: 20,
+    paddingRight: 30
   },
   lineIcon: {
     marginRight: 10
@@ -295,7 +284,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    borderBottomColor: '#e8e8e8',
+    height: 30
   },
   content: {
     fontSize: 18,
@@ -310,22 +300,12 @@ const styles = StyleSheet.create({
   fieldContainer: {
     flexWrap: 'wrap',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 10
   },
   repeatContainer: {
     flexWrap: 'wrap',
     alignItems: 'center',
-    flexDirection: 'row'
-  },
-  detailContainer: {
-    paddingTop: 10,
-    paddingLeft: 20,
-    paddingRight: 30
-  },
-  remarkContainer: {
-    paddingTop: 8,
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
     flexDirection: 'row'
   },
   remark: {
@@ -335,6 +315,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    borderBottomColor: '#e8e8e8',
+    minHeight: 30
   }
 });

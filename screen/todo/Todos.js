@@ -80,9 +80,9 @@ class Todos extends Component {
   componentDidMount() {
     this.getTodos();
 
-    setTimeout(() => {
-      this.todoInstances[0].goTodoDetail();
-    }, 500);
+    /* setTimeout(() => {
+     *   this.todoInstances[0].goTodoDetail();
+     * }, 500);*/
   }
 
   @autobind
