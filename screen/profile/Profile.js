@@ -7,11 +7,9 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   Image,
   TouchableOpacity,
-  ScrollView,
-  ListView
+  TouchableHighlight
 } from 'react-native';
 import R from 'ramda';
 import moment from 'moment';
@@ -58,7 +56,7 @@ class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableHighlight>
           <View style={styles.infoContainer}>
             <Image
               source={{ uri: makeGravatarUrl(this.props.user.email) }}
@@ -73,7 +71,7 @@ class Profile extends Component {
               source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}
             />
           </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
 
         <View>
           <View>

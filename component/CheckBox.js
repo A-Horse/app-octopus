@@ -20,14 +20,14 @@ export default class MyCheckBox extends Component {
         isChecked={this.state.checked}
         checkedImage={
           <Image
-            style={{ width: 23, height: 23 }}
-            source={require('../image/ios/right/right.png')}
+            style={{ width: 21, height: 21 }}
+            source={require('../image/icons/square.png')}
           />
         }
         unCheckedImage={
           <Image
-            style={{ width: 23, height: 23 }}
-            source={require('../image/ios/box/box.png')}
+            style={{ width: 21, height: 21 }}
+            source={require('../image/icons/done.png')}
           />
         }
       />

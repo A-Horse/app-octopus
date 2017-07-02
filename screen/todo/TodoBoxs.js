@@ -7,16 +7,13 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   Image,
   TouchableOpacity,
-  Button,
   ScrollView,
   ListView
 } from 'react-native';
 import R from 'ramda';
 import moment from 'moment';
-import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import BoxCreaterToggle from './BoxCreaterToggle';
 import * as todosActions from './Todos.action';
 import { ScreenBgColor } from '../../constant';
@@ -72,7 +69,7 @@ class TodoBoxs extends Component {
     const userId = this.props.userId;
     this.props.actions.getTodoBoxs({ userId });
 
-    this.goTodoList(this.props.todoBoxs[0])();
+    // this.goTodoList(this.props.todoBoxs[0])();
   }
 
   goTodoList(item) {
