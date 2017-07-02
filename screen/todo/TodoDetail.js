@@ -57,7 +57,7 @@ export default class TodoDetail extends Component {
     ]
   };
 
-  state = {};
+  state = { content: this.props.todo.content };
 
   constructor(props) {
     super(props);
@@ -103,6 +103,11 @@ export default class TodoDetail extends Component {
     this.props.actions.destoryTodo(this.props.todo.id);
   }
 
+  updateTodo(data) {
+    this.setState(data);
+    this.props.updateTodo(data);
+  }
+
   openActionSheet() {
     const buttonTexts = ['Done', 'Delete', 'Cancel'];
     ActionSheetIOS.showActionSheetWithOptions(
@@ -143,8 +148,8 @@ export default class TodoDetail extends Component {
           <AutoGrowingTextInput
             style={styles.content}
             onChangeText={todoContent =>
-              this.props.updateTodo({ content: todoContent })}
-            value={todo.content}
+              this.updateTodo({ content: todoContent })}
+            value={this.state.content}
             defaultValue={todo.content}
           />
         </View>

@@ -9,9 +9,7 @@ import {
   Image,
   Text,
   TextInput,
-  DatePickerIOS,
   View,
-  ActionSheetIOS,
   Picker
 } from 'react-native';
 import { bindActionCreators } from 'redux';

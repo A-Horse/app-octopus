@@ -26,7 +26,7 @@ export default class Todo extends Component {
     const { todo } = this.props;
     return (
       <TouchableOpacity onPress={this.goTodoDetail}>
-        <View style={styles.container}>
+        <View style={[styles.container, { opacity: todo.isDone ? 0.8 : 1 }]}>
           <CheckBox
             defaultChecked={todo.isDone}
             style={styles.checkbox}
@@ -38,7 +38,8 @@ export default class Todo extends Component {
             numberOfLines={1}
             style={[
               styles.content,
-              { textDecorationLine: todo.isDone ? 'line-through' : 'none' }
+              { textDecorationLine: todo.isDone ? 'line-through' : 'none' },
+              { color: todo.isDone ? '#aaa' : '#333' }
             ]}
           >
             {todo.content}
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    borderBottomColor: '#f1f1f1'
   },
   checkbox: {
     marginTop: 2,

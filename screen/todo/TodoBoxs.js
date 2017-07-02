@@ -62,14 +62,12 @@ class TodoBoxs extends Component {
       }
     ]
   };
-  // lists = [{name: 'My Todo', id: null}]
 
   componentDidMount() {
-    // this.goTodoList(this.lists[0])();
     const userId = this.props.userId;
     this.props.actions.getTodoBoxs({ userId });
 
-    // this.goTodoList(this.props.todoBoxs[0])();
+    this.goTodoList(this.props.todoBoxs[0])();
   }
 
   goTodoList(item) {
@@ -85,16 +83,17 @@ class TodoBoxs extends Component {
 
   @autobind
   renderBox(box) {
-    let icon;
-    switch (box.type) {
-      case 'private':
-        icon = (
+    const icon = R.cond([
+      [
+        R.equals('only'),
+        R.always(
           <Image
             style={styles.boxIcon}
-            source={require('../../image/ios/ic_account_circle/ic_account_circle.png')}
+            source={require('../../image/icons/portrait.png')}
           />
-        );
-    }
+        )
+      ]
+    ])(box.type);
     return (
       <TouchableOpacity onPress={this.goTodoList(box)}>
         <View key={box.id} style={styles.box}>
@@ -149,8 +148,8 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   boxText: {
-    fontSize: 18,
-    fontWeight: '400',
+    fontSize: 16,
+    fontWeight: '600',
     color: '#555'
   }
 });

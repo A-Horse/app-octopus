@@ -19,11 +19,15 @@ export default class StarCheckBox extends Component {
         onClick={this.onClick}
         isChecked={this.state.checked}
         checkedImage={
-          <Image source={require('../image/ios/ic_star/ic_star.png')} />
+          <Image
+            style={{ width: 21, height: 21 }}
+            source={require('../image/icons/star.png')}
+          />
         }
         unCheckedImage={
           <Image
-            source={require('../image/ios/ic_star_border/ic_star_border.png')}
+            style={{ width: 21, height: 21 }}
+            source={require('../image/icons/star-border.png')}
           />
         }
       />

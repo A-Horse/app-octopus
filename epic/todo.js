@@ -53,26 +53,30 @@ export const destoryTodo = action$ =>
   });
 
 export const updateTodo = action$ =>
-  action$.ofType(UPDATE_TODO_REQUEST).mergeMap(action => {
-    const url = makeTodosUrl(action.meta.boxId, action.meta, action.meta.id);
-    return new AjaxObservable({
-      method: 'PATCH',
-      url: url,
-      body: action.playload,
-      headers: Object.assign(AuthService.makeJWTHeader(), {
-        'Content-Type': 'application/json'
+  action$
+    .ofType(UPDATE_TODO_REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(250)
+    .mergeMap(action => {
+      const url = makeTodosUrl(action.meta.boxId, action.meta, action.meta.id);
+      return new AjaxObservable({
+        method: 'PATCH',
+        url: url,
+        body: action.playload,
+        headers: Object.assign(AuthService.makeJWTHeader(), {
+          'Content-Type': 'application/json'
+        })
       })
-    })
-      .map(response => response.response)
-      .map(response =>
-        requestUpdateTodoSuccess(
-          action.meta.boxId,
-          action.playload.meta,
-          response
+        .map(response => response.response)
+        .map(response =>
+          requestUpdateTodoSuccess(
+            action.meta.boxId,
+            action.playload.meta,
+            response
+          )
         )
-      )
-      .catch(handleEpicError);
-  });
+        .catch(handleEpicError);
+    });
 
 export const getTodoBoxs = action$ =>
   action$.ofType(GET_TODOBOX_REQUEST).mergeMap(action => {

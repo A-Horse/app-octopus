@@ -47,7 +47,7 @@ export default class Toast extends Component {
         ]}
       >
         <Image
-          source={require('../image/icons/remove-red.png')}
+          source={require('../image/icons/remove.png')}
           style={styles.toastErrIcon}
         />
         <Text style={styles.toastText}>

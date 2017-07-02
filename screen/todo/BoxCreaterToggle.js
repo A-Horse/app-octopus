@@ -21,10 +21,13 @@ export default class BoxCreater extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.onAddPress}>
-          <Image source={require('../../image/ios/ic_add/ic_add.png')} />
+          <Image
+            style={styles.icon}
+            source={require('../../image/icons/add.png')}
+          />
         </TouchableOpacity>
 
-        <Text>Add Todo Box...</Text>
+        <Text style={styles.content}>Add Todo Box...</Text>
       </View>
     );
   }
@@ -33,16 +36,20 @@ export default class BoxCreater extends Component {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 3,
-    marginTop: 8,
+    marginTop: 2,
     padding: 10,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center'
   },
+  icon: {
+    width: 18,
+    height: 18,
+    marginRight: 9
+  },
   content: {
-    flex: 1,
-    fontSize: 18,
-    color: '#000',
-    marginTop: 3
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#777'
   }
 });
