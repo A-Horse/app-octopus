@@ -26,8 +26,8 @@ export function setupMainApp() {
       {
         label: 'TODO',
         screen: 'octopus.TodoBoxsScreen',
-        icon: require('./ic_assignment.png'),
-        selectedIcon: require('./ic_assignment.png'), // iOS only
+        icon: require('./image/icons/playlist_add_check.png'),
+        selectedIcon: require('./image/icons/playlist_add_check.png'),
         navigatorStyle: navigatorStyle
       },
       {
@@ -35,14 +35,14 @@ export function setupMainApp() {
         screen: 'octopus.ProfileScreen',
         title: 'Profile',
         icon: require('./image/ios/ic_account_circle/ic_account_circle.png'),
-        selectedIcon: require('./image/ios/ic_account_circle/ic_account_circle.png'), // iOS only
+        selectedIcon: require('./image/ios/ic_account_circle/ic_account_circle.png'),
         navigatorStyle: navigatorStyle
       },
       {
         label: 'TASK',
-        screen: 'octopus.TaskBoardsScreen', // this is a registered name for a screen
-        icon: require('./ic_assignment.png'),
-        selectedIcon: require('./ic_assignment.png'), // iOS only
+        screen: 'octopus.TaskBoardsScreen',
+        icon: require('./image/icons/ic_assignment.png'),
+        selectedIcon: require('./image/icons/ic_assignment.png'),
         navigatorStyle: navigatorStyle
       }
     ],

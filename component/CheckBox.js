@@ -21,13 +21,13 @@ export default class MyCheckBox extends Component {
         checkedImage={
           <Image
             style={{ width: 21, height: 21 }}
-            source={require('../image/icons/square.png')}
+            source={require('../image/icons/done.png')}
           />
         }
         unCheckedImage={
           <Image
             style={{ width: 21, height: 21 }}
-            source={require('../image/icons/done.png')}
+            source={require('../image/icons/square.png')}
           />
         }
       />

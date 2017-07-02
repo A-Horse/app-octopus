@@ -3,28 +3,24 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import {
   StyleSheet,
-  SwipeableRow,
-  SwipeableListView,
   TouchableOpacity,
   TouchableHighlight,
   Image,
   Text,
   TextInput,
-  DatePickerIOS,
   View,
   ActionSheetIOS,
-  Button,
   Picker
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker';
-import { createSelector } from 'reselect';
 import R from 'ramda';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import moment from 'moment';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
+import OcPicker from '../../component/Picker';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -191,11 +187,15 @@ export default class TodoDetail extends Component {
           <View style={[styles.fieldContainer]}>
             <Image
               style={styles.lineIcon}
-              source={require('../../image/ios/ic_date_range/ic_date_range.png')}
+              source={require('../../image/icons/date.png')}
             />
             <View style={styles.lineContent}>
               <DatePicker
-                date={moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')}
+                date={
+                  !!todo.deadline
+                    ? moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')
+                    : null
+                }
                 mode="datetime"
                 placeholder="Dealline"
                 minDate="2016-05-01"
@@ -222,29 +222,42 @@ export default class TodoDetail extends Component {
           <View style={styles.fieldContainer}>
             <TouchableOpacity onPress={() => this.showRepeatPicker()}>
               <Image
-                style={styles.lineIcon}
-                source={require('../../image/ios/ic_notifications/ic_notifications.png')}
+                style={[styles.lineIcon, { width: 20, height: 20 }]}
+                source={require('../../image/icons/repeat.png')}
               />
             </TouchableOpacity>
             <View style={styles.lineContent}>
-              <Text
-                style={{
+              <OcPicker
+                options={[
+                  { label: 'None', value: 0 },
+                  { label: 'Every Day', value: 1 },
+                  { label: 'Every Two Day', value: 2 },
+                  { label: 'Every Week', value: 7 }
+                ]}
+                onChange={value => {
+                  this.props.updateTodo({ repeat: value });
+                }}
+                value={todo.repeat}
+                placeholder="Repeat"
+              />
+              {/* <Text
+                  style={{
                   height: 40,
                   flex: 1,
                   alignItems: 'center',
                   justifyContent: 'center',
                   lineHeight: 40
-                }}
-              >
-                {this.transformRepeatValue(todo.repeat)}
-              </Text>
+                  }}
+                  >
+                  {this.transformRepeatValue(todo.repeat)}
+                  </Text> */}
             </View>
           </View>
 
           <View style={[styles.fieldContainer]}>
             <Image
               style={styles.lineIcon}
-              source={require('../../image/ios/ic_notifications/ic_notifications.png')}
+              source={require('../../image/icons/alert.png')}
             />
             <View style={styles.lineContent}>
               <DatePicker
@@ -277,7 +290,7 @@ export default class TodoDetail extends Component {
           >
             <Image
               style={styles.lineIcon}
-              source={require('../../image/ios/ic_notifications/ic_notifications.png')}
+              source={require('../../image/icons/remark.png')}
             />
             <View style={styles.remark}>
               <Text
@@ -367,37 +380,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8'
-  },
-  repeatPicker: {},
-  repeatPickerContainer: {
-    position: 'absolute',
-    borderTopColor: '#e8e8e8',
-    borderStyle: 'solid',
-    borderTopWidth: 1,
-    flex: 1,
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    height: 257,
-    zIndex: 10,
-    backgroundColor: '#fff'
-  },
-  repeatPickerActions: {
-    height: 40,
-    width: '100%',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-    borderBottomColor: '#e8e8e8',
-    borderStyle: 'solid',
-    borderBottomWidth: 1
-  },
-  repeatPickerActionButton: {
-    width: 98,
-    height: '100%',
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });

@@ -18,3 +18,6 @@ export const ColorBlue = '#4285f4';
 export const NavBarBgColor = '#e35a55';
 export const NavBarColor = '#fff';
 export const ScreenBgColor = '#fff';
+
+export const PlaceholderColor = '#c9c9c9';
+export const TextPrimaryColor = '#000';
