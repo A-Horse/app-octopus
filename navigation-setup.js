@@ -24,18 +24,18 @@ export function setupMainApp() {
   Navigation.startTabBasedApp({
     tabs: [
       {
+        label: 'TODO',
+        screen: 'octopus.TodoBoxsScreen',
+        icon: require('./image/icons/playlist_add_check.png'),
+        selectedIcon: require('./image/icons/playlist_add_check.png'),
+        navigatorStyle: navigatorStyle
+      },
+      {
         label: 'TASK',
         title: 'Task Boards',
         screen: 'octopus.TaskBoardsScreen',
         icon: require('./image/icons/ic_assignment.png'),
         selectedIcon: require('./image/icons/ic_assignment.png'),
-        navigatorStyle: navigatorStyle
-      },
-      {
-        label: 'TODO',
-        screen: 'octopus.TodoBoxsScreen',
-        icon: require('./image/icons/playlist_add_check.png'),
-        selectedIcon: require('./image/icons/playlist_add_check.png'),
         navigatorStyle: navigatorStyle
       },
       {

@@ -9,7 +9,8 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert
 } from 'react-native';
 import R from 'ramda';
 import moment from 'moment';
@@ -44,6 +45,7 @@ class Profile extends Component {
 
   componentDidMount() {}
 
+  @autobind
   logout() {
     clearStorage();
     setupSignApp();
@@ -53,19 +55,34 @@ class Profile extends Component {
     });
   }
 
+  @autobind
+  onLogoutPress() {
+    Alert.alert(
+      'Confirm',
+      'Are you sure logout?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'OK', onPress: this.logout }
+      ],
+      { cancelable: false }
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity>
           <View style={styles.infoContainer}>
-            <Image
-              source={{ uri: makeGravatarUrl(this.props.user.email) }}
-              style={styles.avatar}
-            />
-            <View>
-              <Text>
-                {this.props.user.username}
-              </Text>
+            <View style={styles.infoMainContainer}>
+              <Image
+                source={{ uri: makeGravatarUrl(this.props.user.email) }}
+                style={styles.avatar}
+              />
+              <View style={styles.usernameContainer}>
+                <Text>
+                  {this.props.user.username}
+                </Text>
+              </View>
             </View>
             <Image
               source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}
@@ -73,15 +90,22 @@ class Profile extends Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.field}>
-            <Image source={require('../../image/icons/key.png')} />
-            <Text>Update Password</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.fieldContainer}>
+          <TouchableOpacity>
+            <View style={styles.field}>
+              <Image
+                style={styles.fieldIcon}
+                source={require('../../image/icons/key.png')}
+              />
+              <Text>Update Password</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.fieldContainer} />
 
         <View style={styles.actions}>
-          <Button onPress={this.logout.bind(this)} color="red" type="error">
+          <Button onPress={this.onLogoutPress} color="red" type="error">
             Logout
           </Button>
         </View>
@@ -104,23 +128,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20
   },
+  infoMainContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   avatar: {
     width: 50,
     height: 50,
     borderRadius: 25,
     marginRight: 8
   },
+  usernameContainer: {
+    marginLeft: 10
+  },
   actions: {
     padding: 20
   },
-  field: {
-    flex: 1,
+  fieldContainer: {
     borderTopWidth: 1,
     borderStyle: 'solid',
-    borderColor: BorderColor,
+    borderColor: BorderColor
+  },
+  field: {
+    height: 46,
+    width: '100%',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'flex-start'
+  },
+  fieldIcon: {
+    marginLeft: 21,
+    marginRight: 12
+  },
+  fieldText: {}
 });
 
 export default Profile;
