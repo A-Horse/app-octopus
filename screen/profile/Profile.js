@@ -19,7 +19,7 @@ import { clearStorage } from '../../service/storage';
 import Button from '../../component/Button';
 import { setupSignApp } from '../../navigation-setup';
 import { initialStore } from '../../store';
-import { ScreenBgColor } from '../../constant';
+import { ScreenBgColor, BorderColor } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -56,7 +56,7 @@ class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight>
+        <TouchableOpacity>
           <View style={styles.infoContainer}>
             <Image
               source={{ uri: makeGravatarUrl(this.props.user.email) }}
@@ -71,13 +71,14 @@ class Profile extends Component {
               source={require('../../image/ios/ic_keyboard_arrow_right/ic_keyboard_arrow_right.png')}
             />
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <View>
-          <View>
-            <Text>Change Password</Text>
+        <TouchableOpacity>
+          <View style={styles.field}>
+            <Image source={require('../../image/icons/key.png')} />
+            <Text>Update Password</Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View style={styles.actions}>
           <Button onPress={this.logout.bind(this)} color="red" type="error">
@@ -111,6 +112,14 @@ const styles = StyleSheet.create({
   },
   actions: {
     padding: 20
+  },
+  field: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderStyle: 'solid',
+    borderColor: BorderColor,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 

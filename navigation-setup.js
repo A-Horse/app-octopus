@@ -25,7 +25,7 @@ export function setupMainApp() {
     tabs: [
       {
         label: 'TASK',
-        title: 'Task',
+        title: 'Task Boards',
         screen: 'octopus.TaskBoardsScreen',
         icon: require('./image/icons/ic_assignment.png'),
         selectedIcon: require('./image/icons/ic_assignment.png'),

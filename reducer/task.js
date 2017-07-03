@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import R from 'ramda';
 import { TASKBOARDS_REQUEST, TASKBOARDS_SUCCESS } from '../action/task';
-import { TodoBoxs } from '../schema';
+import { TaskBoards } from '../schema';
 
 const todo = (
   state = {
@@ -13,7 +13,7 @@ const todo = (
     case TASKBOARDS_SUCCESS:
       return {
         ...state,
-        TaskBoards: normalize(action.playload, TodoBoxs).entities.TaskBoard
+        TaskBoards: normalize(action.playload, TaskBoards).entities.TaskBoard
       };
 
     default:

@@ -8,7 +8,7 @@ export const getTaskBoards = action$ =>
   action$.ofType(TASKBOARDS_REQUEST).mergeMap(action => {
     return ajax
       .get(
-        makeServerApi(`/tk/user/${action.meta.userId}/task-boardId`),
+        makeServerApi(`/tk/user/${action.meta.userId}/task-board`),
         AuthService.makeJWTHeader()
       )
       .map(response => response.response)

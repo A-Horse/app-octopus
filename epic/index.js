@@ -8,6 +8,7 @@ import {
   getTodoBoxs,
   updateTodo
 } from './todo';
+import { getTaskBoards } from './task';
 
 export default combineEpics(
   auth,
@@ -16,5 +17,6 @@ export default combineEpics(
   createTodo,
   destoryTodo,
   getTodoBoxs,
-  updateTodo
+  updateTodo,
+  getTaskBoards
 );

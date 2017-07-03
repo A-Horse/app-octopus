@@ -8,7 +8,7 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
+  TouchableHighlight,
   ScrollView,
   ListView
 } from 'react-native';
@@ -16,7 +16,7 @@ import R from 'ramda';
 import moment from 'moment';
 import BoxCreaterToggle from './BoxCreaterToggle';
 import * as todosActions from './Todos.action';
-import { ScreenBgColor } from '../../constant';
+import { ScreenBgColor, ColorRed } from '../../constant';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
@@ -95,14 +95,19 @@ class TodoBoxs extends Component {
       ]
     ])(box.type);
     return (
-      <TouchableOpacity onPress={this.goTodoList(box)}>
+      <TouchableHighlight
+        style={{ overflow: 'hidden', borderRadius: 5 }}
+        underlayColor={ColorRed}
+        activeOpacity={0.9}
+        onPress={this.goTodoList(box)}
+      >
         <View key={box.id} style={styles.box}>
           {icon}
           <Text style={styles.boxText}>
             {box.name}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 
@@ -142,7 +147,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#fff',
     padding: 10,
-    borderRadius: 3
+    borderRadius: 5,
+    overflow: 'hidden'
   },
   boxIcon: {
     marginRight: 10
