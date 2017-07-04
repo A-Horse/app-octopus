@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
-    height: 30
+    height: 40
   },
   content: {
     fontSize: 18,
@@ -316,6 +316,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
-    minHeight: 30
+    minHeight: 40
   }
 });

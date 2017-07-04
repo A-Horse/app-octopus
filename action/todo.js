@@ -4,14 +4,14 @@ export const TODOS_SUCCESS = 'TODOS_SUCCESS';
 export function requestTodos(id, meta) {
   return {
     type: TODOS_REQUEST,
-    playload: {id, meta}
+    playload: { id, meta }
   };
 }
 
 export function requestTodosSuccess(id, todos) {
   return {
     type: TODOS_SUCCESS,
-    playload: {todos, id}
+    playload: { todos, id }
   };
 }
 
@@ -40,14 +40,14 @@ export const DESTORY_TODO_SUCCESS = 'DESTORY_TODO_SUCCESS';
 export function requestDestroyTodo(id) {
   return {
     type: DESTORY_TODO_REQUEST,
-    playload: {id}
-  }
+    playload: { id }
+  };
 }
 
 export function requestDestroyTodoSuccess(id) {
   return {
     type: DESTORY_TODO_SUCCESS,
-    playload: {id}
+    playload: { id }
   };
 }
 
@@ -77,13 +77,13 @@ export function requestTodoBox(meta) {
   return {
     type: GET_TODOBOX_REQUEST,
     meta: meta
-  }
+  };
 }
 
 export function requestTodoBoxSuccess(todoBoxs) {
   return {
     type: GET_TODOBOX_SUCCESS,
-    playload: {todoBoxs}
+    playload: { todoBoxs }
   };
 }
 
@@ -94,7 +94,7 @@ export function requestCreateTodoBox(meta) {
   return {
     type: CREATE_TODOBOX_REQUEST,
     meta: meta
-  }
+  };
 }
 
 export function createTodoBoxSuccess(playload) {

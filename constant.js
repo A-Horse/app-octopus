@@ -2,7 +2,7 @@ export const urlPrefix = 'http://www.octopuese.xyz';
 // export const urlPrefix = 'http://127.0.0.1:8888';
 
 export const apiUrl = urlPrefix + '/api';
-export const storageUrlPrefix = urlPrefix + '/storage';
+export const storageUrlPrefix = urlPrefix + '/storage/';
 
 export const DEFAULT_BOARD_COVER_SRC =
   '/static/image/board-cover/world-circle.png';

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { handleEpicError } from '../util/request-helper';
 
 export const auth = action$ => {
-  return action$.ofType(AUTH_REQUEST).switchMap(action => {
+  return action$.ofType(AUTH_REQUEST).mergeMap(action => {
     return ajax
       .post(makeServerApi('signin'), action.playload)
       .map(response => response.response)
