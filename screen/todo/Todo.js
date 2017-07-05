@@ -45,6 +45,7 @@ export default class Todo extends Component {
             {todo.content}
           </Text>
           <StarCheckBox
+            style={styles.starCheckBox}
             defaultChecked={todo.isStar}
             onClick={checked => {
               this.props.updateTodo({ isStar: checked });
@@ -59,19 +60,16 @@ export default class Todo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    marginTop: 8,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#f1f1f1'
   },
   checkbox: {
-    marginTop: 2,
-    marginRight: 6
+    marginRight: 6,
+    paddingLeft: 10,
+    paddingTop: 17,
+    paddingBottom: 5
   },
   borderStar: {
     flex: 1
@@ -79,6 +77,11 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     textAlign: 'left',
-    fontSize: 18
+    fontSize: 18,
+    paddingTop: 15,
+    paddingBottom: 5
+  },
+  starCheckBox: {
+    paddingRight: 10
   }
 });

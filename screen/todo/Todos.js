@@ -67,6 +67,7 @@ class Todos extends Component {
     }
   }
 
+  @autobind
   createTodo() {
     const userId = this.props.user.id;
     this.props.actions.createTodo(
@@ -166,6 +167,7 @@ class Todos extends Component {
             ref="creater"
             addCreateTodoButton={this.addCreateTodoButton}
             clearNavButton={this.clearNavButton}
+            createTodo={this.createTodo}
           />
           {this.renderTodos()}
         </ScrollView>

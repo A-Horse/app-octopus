@@ -30,8 +30,8 @@ export default class OcPicker extends Component {
     pickerBottom: new Animated.Value(-PICKER_HEIGHT)
   };
 
-  onChange() {
-    this.props.onChange(this.state.value);
+  onChange(value) {
+    this.props.onChange(value);
   }
 
   @autobind
@@ -112,9 +112,12 @@ export default class OcPicker extends Component {
 
         <TouchableOpacity onPress={this.open}>
           <Text
-            style={{
-              color: !!this.state.value ? TextPrimaryColor : PlaceholderColor
-            }}
+            style={[
+              {
+                color: !!this.state.value ? TextPrimaryColor : PlaceholderColor
+              },
+              this.props.style
+            ]}
           >
             {R.compose(
               R.path(['label']),

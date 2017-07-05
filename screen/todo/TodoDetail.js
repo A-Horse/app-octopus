@@ -158,7 +158,8 @@ export default class TodoDetail extends Component {
                 multiline={true}
                 customStyles={{
                   dateInput: {
-                    height: 30,
+                    height: '100%',
+                    width: '100%',
                     justifyContent: 'center',
                     alignItems: 'flex-start',
                     flexWrap: 'wrap',
@@ -188,6 +189,7 @@ export default class TodoDetail extends Component {
                 onChange={value => {
                   this.props.updateTodo({ repeat: value });
                 }}
+                style={{ width: '100%', height: '100%', lineHeight: 40 }}
                 value={parseInt(todo.repeat, 10)}
                 placeholder="Repeat"
               />
@@ -309,7 +311,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   remark: {
-    paddingTop: 3,
     flex: 1,
     flexWrap: 'wrap',
     alignItems: 'flex-start',

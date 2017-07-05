@@ -45,6 +45,7 @@ export default class TodoCreater extends Component {
             onBlur={this.props.clearNavButton}
             onFocus={this.props.addCreateTodoButton}
             onChangeText={content => this.setState({ content })}
+            onEndEditing={this.props.createTodo}
           />
         </View>
       </View>
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-    paddingTop: 7,
-    paddingBottom: 7,
+    paddingTop: 8,
+    paddingBottom: 6,
     paddingLeft: 9,
     paddingRight: 9,
     borderRadius: 5,
@@ -82,9 +83,9 @@ const styles = StyleSheet.create({
     height: 16
   },
   content: {
+    top: 1,
     flex: 1,
-    fontSize: 16,
-    color: '#000',
-    marginTop: 3
+    fontSize: 17,
+    color: '#000'
   }
 });
