@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import axios from 'axios';
 import { NavBarBgColor } from './constant';
 import AuthService from './service/auth';
 import store from './store';
@@ -21,6 +22,7 @@ export function setupSignApp() {
 
 export function setupMainApp() {
   AuthService.loadJWTFromState(store.getState());
+  AuthService.injectJWTToAxios(store.getState());
   Navigation.startTabBasedApp({
     tabs: [
       {

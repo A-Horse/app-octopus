@@ -1,3 +1,5 @@
+// TODO: rename
+import axios from 'axios';
 import { JWT, JWTS_TOKEN } from '../constant';
 
 export class Auth {
@@ -6,6 +8,11 @@ export class Auth {
   loadJWTFromState(state) {
     const { auth } = state;
     this.jwt = auth.jwt;
+  }
+
+  injectJWTToAxios(state) {
+    const { auth } = state;
+    axios.defaults.headers.common[JWTS_TOKEN] = auth.jwt;
   }
 
   checkLoginFromState(state) {
@@ -22,7 +29,6 @@ export class Auth {
     return Object.assign({}, header, jwtObj);
   }
 }
-
 
 const AuthService = new Auth();
 

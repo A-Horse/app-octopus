@@ -1,12 +1,8 @@
 import { normalize } from 'normalizr';
 import R from 'ramda';
-import {
-  TODOS_SUCCESS,
-  CREATE_TODO_SUCCESS,
-  UPDATE_TODO_REQUEST,
-  UPDATE_TODO_SUCCESS
-} from '../action/todo';
+import { CREATE_TODO_SUCCESS, UPDATE_TODO_REQUEST, UPDATE_TODO_SUCCESS } from '../action/todo';
 import { Todo, Todos } from '../schema';
+import Actions from '../action/actioner';
 
 const todo = (
   state = {
@@ -16,18 +12,15 @@ const todo = (
   action
 ) => {
   switch (action.type) {
-    case TODOS_SUCCESS:
-      const todosNormalized = normalize(action.playload.todos, Todos);
-      const todosResult = R.assoc(
-        action.playload.id,
-        todosNormalized.result,
-        {}
-      );
+    case Actions.GET_TODOLIST.SUCCESS:
+      const todosNormalized = normalize(action.playload, Todos);
+      const todosResult = R.assoc(action.meta.boxId, todosNormalized.result, {});
       return {
         ...state,
         results: { ...state.results, ...todosResult },
         entities: { ...state.entities, ...todosNormalized.entities.todo }
       };
+      break;
     case CREATE_TODO_SUCCESS:
       const createdNormalized = normalize(action.playload, Todo);
       const newBoxResult = R.assoc(

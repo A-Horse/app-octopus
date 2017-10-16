@@ -17,6 +17,7 @@ import R from 'ramda';
 import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import { ScreenBgColor } from '../../constant';
+import { makeActionRequestCollection } from '../../action/actioner';
 
 import * as todosActions from './Todos.action';
 
@@ -38,8 +39,10 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => {
+  // TODO you know
   return {
-    actions: bindActionCreators(todosActions, dispatch)
+    actions: bindActionCreators(todosActions, dispatch),
+    actions2: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
@@ -60,8 +63,9 @@ class Todos extends Component {
 
   onNavigatorEvent(event) {
     // TODO: maybe better way
-    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear')
+    if (event.type === 'ScreenChangedEvent' && event.id === 'willAppear') {
       this.clearNavButton();
+    }
     if (event.type === 'NavBarButtonPress') {
       event.id === 'add' && this.createTodo();
     }
@@ -79,7 +83,9 @@ class Todos extends Component {
   }
 
   componentDidMount() {
-    this.getTodos();
+    const userId = this.props.user.id;
+    const boxId = this.props.meta.id; // TODO rename meta.id => boxId
+    this.props.actions2.GET_TODOLIST_REQUEST({ boxId }, { userId });
 
     /* setTimeout(() => {
      *   this.todoInstances[0].goTodoDetail();
@@ -100,12 +106,9 @@ class Todos extends Component {
     });
   }
 
-  @autobind
-  getTodos() {
-    const userId = this.props.user.id;
-    this.props.actions.getTodos(this.props.meta.id, { userId });
-  }
-
+  /* @autobind
+   * getTodos() {}
+   */
   @autobind
   renderTodo(todo) {
     const userId = this.props.user.id;
@@ -119,11 +122,7 @@ class Todos extends Component {
         todo={todo}
         navigator={this.props.navigator}
         updateTodo={data =>
-          this.props.actions.updateTodo(
-            this.props.meta.id,
-            { userId, id: todo.id },
-            data
-          )}
+          this.props.actions.updateTodo(this.props.meta.id, { userId, id: todo.id }, data)}
       />
     );
   }
