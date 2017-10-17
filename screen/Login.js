@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { NavBarBgColor, NavBarColor, ColorBlue } from '../constant';
 import { authRequest } from '../action/auth';
 import Button from '../component/Button';
@@ -30,7 +23,8 @@ class LoginScreen extends Component {
     navBarNoBorder: true,
     navBarBackgroundColor: NavBarBgColor,
     navBarButtonColor: '#fff',
-    navBarTextColor: NavBarColor
+    navBarTextColor: NavBarColor,
+    topBarElevationShadowEnabled: false
   };
 
   state = { authErrMsg: '' };
@@ -102,18 +96,13 @@ class LoginScreen extends Component {
           />
         </View>
 
-        <Button
-          style={styles.loginButon}
-          onPress={this.login.bind(this)}
-          color="green"
-        >
+        <Button style={styles.loginButon} onPress={this.login.bind(this)} color="green">
           Login
         </Button>
 
         <TouchableOpacity
           style={styles.signInLinkContainer}
-          onPress={() =>
-            this.props.navigator.push({ screen: 'octopus.SignUpScreen' })}
+          onPress={() => this.props.navigator.push({ screen: 'octopus.SignUpScreen' })}
         >
           <Text style={styles.signInLink}>sign up account</Text>
         </TouchableOpacity>
