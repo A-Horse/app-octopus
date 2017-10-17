@@ -14,7 +14,6 @@ import {
   ListView
 } from 'react-native';
 import R from 'ramda';
-import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import { makeGravatarUrl } from '../../service/gravatar';
 import { clearStorage } from '../../service/storage';

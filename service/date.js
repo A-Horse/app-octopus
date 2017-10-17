@@ -1,22 +1,30 @@
-import moment from 'moment';
+import { getDay, getDate, getMonth as getMonthFns } from 'date-fns';
 
-const WeekDayName = [
-  'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-];
+const WeekDayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const MonthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
 ];
 
 export const getWeekDayName = () => {
-  return WeekDayName[moment().day()];
+  return WeekDayName[getDay()];
 };
 
 export const getMonthDay = () => {
-  return moment().get('date');
+  return getDate();
 };
 
 export const getMonth = () => {
-  return moment().get('month') + 1;
+  return getMonthFns() + 1;
 };

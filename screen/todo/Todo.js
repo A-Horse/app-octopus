@@ -3,10 +3,11 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import autobind from 'autobind-decorator';
 import CheckBox from '../../component/CheckBox';
 import StarCheckBox from '../../component/StarCheckBox';
+import PropTypes from 'prop-types';
 
 export default class Todo extends Component {
   static propTypes = {
-    todo: React.PropTypes.object.isRequired
+    todo: PropTypes.object.isRequired
   };
 
   @autobind

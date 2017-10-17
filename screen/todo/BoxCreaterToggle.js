@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
-import Todo from './Todo';
-import R from 'ramda';
 
 export default class BoxCreater extends Component {
   state = {};
@@ -21,10 +12,7 @@ export default class BoxCreater extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.onAddPress}>
-          <Image
-            style={styles.icon}
-            source={require('../../image/icons/add.png')}
-          />
+          <Image style={styles.icon} source={require('../../image/icons/add.png')} />
         </TouchableOpacity>
 
         <Text style={styles.content}>Add Todo Box...</Text>

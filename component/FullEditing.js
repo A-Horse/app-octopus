@@ -13,7 +13,7 @@ import {
   ActionSheetIOS
 } from 'react-native';
 
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
+/* import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';*/
 
 export default class FullEditing extends Component {
   static navigatorStyle = {

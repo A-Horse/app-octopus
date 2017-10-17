@@ -14,13 +14,8 @@ import {
   ListView
 } from 'react-native';
 import R from 'ramda';
-import moment from 'moment';
 import * as taskActions from './Task.action';
-import {
-  storageUrlPrefix,
-  urlPrefix,
-  DEFAULT_BOARD_COVER_SRC
-} from '../../constant';
+import { storageUrlPrefix, urlPrefix, DEFAULT_BOARD_COVER_SRC } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -65,9 +60,7 @@ class TaskBoards extends Component {
             }}
           />
           <View style={styles.boardInnerContainer}>
-            <Text style={styles.boardName}>
-              {board.name}
-            </Text>
+            <Text style={styles.boardName}>{board.name}</Text>
           </View>
         </View>
       </TouchableOpacity>

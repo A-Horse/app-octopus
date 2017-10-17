@@ -13,7 +13,6 @@ import {
   Alert
 } from 'react-native';
 import R from 'ramda';
-import moment from 'moment';
 import { getWeekDayName, getMonthDay, getMonth } from '../../service/date';
 import { makeGravatarUrl } from '../../service/gravatar';
 import { clearStorage } from '../../service/storage';
@@ -60,10 +59,7 @@ class Profile extends Component {
     Alert.alert(
       'Confirm',
       'Are you sure logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: this.logout }
-      ],
+      [{ text: 'Cancel', style: 'cancel' }, { text: 'OK', onPress: this.logout }],
       { cancelable: false }
     );
   }
@@ -79,9 +75,7 @@ class Profile extends Component {
                 style={styles.avatar}
               />
               <View style={styles.usernameContainer}>
-                <Text>
-                  {this.props.user.username}
-                </Text>
+                <Text>{this.props.user.username}</Text>
               </View>
             </View>
             <Image
@@ -93,10 +87,7 @@ class Profile extends Component {
         <View style={styles.fieldContainer}>
           <TouchableOpacity>
             <View style={styles.field}>
-              <Image
-                style={styles.fieldIcon}
-                source={require('../../image/icons/key.png')}
-              />
+              <Image style={styles.fieldIcon} source={require('../../image/icons/key.png')} />
               <Text>Update Password</Text>
             </View>
           </TouchableOpacity>

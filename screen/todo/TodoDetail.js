@@ -4,7 +4,6 @@ import autobind from 'autobind-decorator';
 import {
   StyleSheet,
   TouchableOpacity,
-  TouchableHighlight,
   Image,
   Text,
   TextInput,
@@ -17,8 +16,7 @@ import DatePicker from 'react-native-datepicker';
 import R from 'ramda';
 import * as todosActions from './Todos.action';
 import StarCheckBox from '../../component/StarCheckBox';
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-import moment from 'moment';
+import { format, getTime } from 'date-fns';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
 import OcPicker from '../../component/Picker';
 
@@ -126,10 +124,9 @@ export default class TodoDetail extends Component {
             }}
           />
 
-          <AutoGrowingTextInput
+          <TextInput
             style={styles.content}
-            onChangeText={todoContent =>
-              this.updateTodo({ content: todoContent })}
+            onChangeText={todoContent => this.updateTodo({ content: todoContent })}
             value={this.state.content}
             defaultValue={todo.content}
           />
@@ -137,17 +134,10 @@ export default class TodoDetail extends Component {
 
         <View style={styles.detailContainer}>
           <View style={[styles.fieldContainer]}>
-            <Image
-              style={styles.lineIcon}
-              source={require('../../image/icons/date.png')}
-            />
+            <Image style={styles.lineIcon} source={require('../../image/icons/date.png')} />
             <View style={styles.lineContent}>
               <DatePicker
-                date={
-                  !!todo.deadline
-                    ? moment(todo.deadline).format('YYYY-MM-DD hh:mm:ss')
-                    : null
-                }
+                date={!!todo.deadline ? format(todo.deadline, 'YYYY-MM-DD hh:mm:ss') : null}
                 mode="datetime"
                 placeholder="Dealline"
                 minDate="2016-05-01"
@@ -167,7 +157,7 @@ export default class TodoDetail extends Component {
                   }
                 }}
                 onDateChange={date => {
-                  this.props.updateTodo({ deadline: moment(date).valueOf() });
+                  this.props.updateTodo({ deadline: getTime(date) });
                 }}
               />
             </View>
@@ -197,10 +187,7 @@ export default class TodoDetail extends Component {
           </View>
 
           <View style={[styles.fieldContainer]}>
-            <Image
-              style={styles.lineIcon}
-              source={require('../../image/icons/alert.png')}
-            />
+            <Image style={styles.lineIcon} source={require('../../image/icons/alert.png')} />
             <View style={styles.lineContent}>
               <DatePicker
                 date={todo.noticeTime}
@@ -220,8 +207,7 @@ export default class TodoDetail extends Component {
                     borderWidth: 0
                   }
                 }}
-                onDateChange={date =>
-                  this.props.updateTodo({ noticeTime: date })}
+                onDateChange={date => this.props.updateTodo({ noticeTime: date })}
               />
             </View>
           </View>
@@ -230,14 +216,9 @@ export default class TodoDetail extends Component {
             style={[styles.fieldContainer, { alignItems: 'flex-start' }]}
             onPress={() => this.goRemarkEditing()}
           >
-            <Image
-              style={styles.lineIcon}
-              source={require('../../image/icons/remark.png')}
-            />
+            <Image style={styles.lineIcon} source={require('../../image/icons/remark.png')} />
             <View style={styles.remark}>
-              <Text
-                style={{ flex: 1, color: !todo.remark ? '#c9c9c9' : '#000' }}
-              >
+              <Text style={{ flex: 1, color: !todo.remark ? '#c9c9c9' : '#000' }}>
                 {!todo.remark ? 'Remarks' : todo.remark}
               </Text>
             </View>

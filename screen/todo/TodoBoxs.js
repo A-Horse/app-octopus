@@ -13,7 +13,7 @@ import {
   ListView
 } from 'react-native';
 import R from 'ramda';
-import moment from 'moment';
+import { format } from 'date-fns';
 import BoxCreaterToggle from './BoxCreaterToggle';
 import * as todosActions from './Todos.action';
 import { ScreenBgColor, ColorRed } from '../../constant';
@@ -55,10 +55,10 @@ class TodoBoxs extends Component {
     ],
     rightButtons: [
       {
-        title: moment().format('ddd')
+        title: format(new Date(), 'ddd')
       },
       {
-        title: moment().format('D MMM')
+        title: format(new Date(), 'D MMM')
       }
     ]
   };
@@ -87,10 +87,7 @@ class TodoBoxs extends Component {
       [
         R.equals('only'),
         R.always(
-          <Image
-            style={styles.boxIcon}
-            source={require('../../image/icons/portrait.png')}
-          />
+          <Image style={styles.boxIcon} source={require('../../image/icons/portrait.png')} />
         )
       ]
     ])(box.type);
@@ -103,9 +100,7 @@ class TodoBoxs extends Component {
       >
         <View key={box.id} style={styles.box}>
           {icon}
-          <Text style={styles.boxText}>
-            {box.name}
-          </Text>
+          <Text style={styles.boxText}>{box.name}</Text>
         </View>
       </TouchableHighlight>
     );

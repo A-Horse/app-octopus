@@ -1,4 +1,4 @@
-    /**
+/**
  * Copyright (c) 2015-present, Facebook, Inc.
  * All rights reserved.
  *
@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-# import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
 
