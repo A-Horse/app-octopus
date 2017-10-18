@@ -1,11 +1,21 @@
-// export const urlPrefix = 'http://www.octopuese.xyz';
-export const urlPrefix = 'http://127.0.0.1:8888';
+import { Platform } from 'react-native';
 
-export const apiUrl = urlPrefix + '/api';
-export const storageUrlPrefix = urlPrefix + '/storage/';
+let endpoint;
+if (__DEV__) {
+  if (Platform.OS === 'android') {
+    endpoint = 'http://192.168.232.201:8888';
+  } else {
+    endpoint = 'http://127.0.0.1:8888';
+  }
+} else {
+  endpoint = 'http://www.octopuese.xyz';
+}
+export const endpointUrl = endpoint;
 
-export const DEFAULT_BOARD_COVER_SRC =
-  '/static/image/board-cover/world-circle.png';
+export const apiUrl = endpoint + '/api';
+export const storageUrlPrefix = endpoint + '/storage/';
+
+export const DEFAULT_BOARD_COVER_SRC = '/static/image/board-cover/world-circle.png';
 
 export const JWT = 'jwt';
 

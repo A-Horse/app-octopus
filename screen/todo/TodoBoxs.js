@@ -10,6 +10,7 @@ import {
   Image,
   TouchableHighlight,
   ScrollView,
+  FlatList,
   ListView
 } from 'react-native';
 import R from 'ramda';
@@ -82,7 +83,7 @@ class TodoBoxs extends Component {
   }
 
   @autobind
-  renderBox(box) {
+  renderBox({ item }) {
     const icon = R.cond([
       [
         R.equals('only'),
@@ -90,38 +91,31 @@ class TodoBoxs extends Component {
           <Image style={styles.boxIcon} source={require('../../image/icons/portrait.png')} />
         )
       ]
-    ])(box.type);
+    ])(item.type);
     return (
       <TouchableHighlight
         style={{ overflow: 'hidden', borderRadius: 5 }}
         underlayColor={ColorRed}
         activeOpacity={0.9}
-        onPress={this.goTodoList(box)}
+        onPress={this.goTodoList(item)}
       >
-        <View key={box.id} style={styles.box}>
+        <View style={styles.box}>
           {icon}
-          <Text style={styles.boxText}>{box.name}</Text>
+          <Text style={styles.boxText}>{item.name}</Text>
         </View>
       </TouchableHighlight>
     );
   }
 
-  renderBoxCreater() {}
-
   render() {
-    const todoBoxDataSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    }).cloneWithRows(this.props.todoBoxs);
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          <ListView
-            dataSource={todoBoxDataSource}
-            renderRow={this.renderBox}
-            enableEmptySections={true}
-          />
-          <BoxCreaterToggle />
-        </ScrollView>
+        <BoxCreaterToggle />
+        <FlatList
+          data={this.props.todoBoxs}
+          renderItem={this.renderBox}
+          keyExtractor={item => item.id}
+        />
       </View>
     );
   }
@@ -143,7 +137,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 5,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8'
   },
   boxIcon: {
     marginRight: 10

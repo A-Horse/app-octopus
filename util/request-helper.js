@@ -9,7 +9,7 @@ export function handleEpicError(error, caught) {
   }
 
   if (__DEV__) {
-    console.log(error, caught);
+    console.error(error, caught);
     return handleCaught();
   } else {
     if (error.status && error.status < 500) {

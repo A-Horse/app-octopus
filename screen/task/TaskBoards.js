@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import R from 'ramda';
 import * as taskActions from './Task.action';
-import { storageUrlPrefix, urlPrefix, DEFAULT_BOARD_COVER_SRC } from '../../constant';
+import { storageUrlPrefix, endpointUrl, DEFAULT_BOARD_COVER_SRC } from '../../constant';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -48,6 +48,9 @@ class TaskBoards extends Component {
 
   @autobind
   renderBoard(board) {
+    console.log(
+      !!board.cover ? storageUrlPrefix + board.cover : endpointUrl + DEFAULT_BOARD_COVER_SRC
+    );
     return (
       <TouchableOpacity>
         <View key={board.id} style={styles.boardContainer}>
@@ -56,7 +59,7 @@ class TaskBoards extends Component {
             source={{
               uri: !!board.cover
                 ? storageUrlPrefix + board.cover
-                : urlPrefix + DEFAULT_BOARD_COVER_SRC
+                : endpointUrl + DEFAULT_BOARD_COVER_SRC
             }}
           />
           <View style={styles.boardInnerContainer}>

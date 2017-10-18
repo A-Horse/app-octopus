@@ -80,19 +80,22 @@ class LoginScreen extends Component {
             placeholder="Email"
             ref="email"
             keyboardType="email-address"
+            autoCapitalize="none"
             onChangeText={email => this.setState({ email })}
+            underlineColorAndroid="transparent"
             returnKeyType="next"
           />
         </View>
 
         <View style={styles.inputContainer}>
           <TextInput
+            style={styles.input}
             onChangeText={password => this.setState({ password })}
             placeholder="Password"
             ref="password"
             secureTextEntry={true}
             returnKeyType="done"
-            style={styles.input}
+            underlineColorAndroid="transparent"
           />
         </View>
 
@@ -122,17 +125,17 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '80%',
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8',
-    marginBottom: 15
+    marginBottom: 15,
+    padding: 5
   },
   input: {
     overflow: 'hidden',
-    height: 25,
     textAlign: 'center',
     color: '#000',
-    fontSize: 14
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8',
+    padding: 5
   },
   logo: {
     width: 170.756,
