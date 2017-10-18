@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import {
-  StyleSheet,
-  SwipeableRow,
-  SwipeableListView,
-  TouchableOpacity,
-  Image,
-  Text,
-  TextInput,
-  View,
-  Picker
-} from 'react-native';
+import { StyleSheet, Image, Text, TextInput, View, Picker } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker';
-import { createSelector } from 'reselect';
 import R from 'ramda';
-import * as todosActions from './Todos.action';
-import StarCheckBox from '../../component/StarCheckBox';
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
 import { makeGravatarUrl } from '../../service/gravatar';
+import { makeActionRequestCollection } from '../../action/actioner';
 
 const mapStateToProps = (state, props) => {
-  return {};
+  return {
+    user: state.auth.user
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(todosActions, dispatch)
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
@@ -61,9 +50,10 @@ export default class TDBoxCreater extends Component {
 
   constructor(props) {
     super(props);
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
+  @autobind
   onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') {
       if (event.id === 'create') {
@@ -84,43 +74,36 @@ export default class TDBoxCreater extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     return (
       <View style={styles.container}>
-        <View>
-          <Image
-            style={styles.boxIcon}
-            source={require('../../image/ios/ic_list/ic_list.png')}
-          />
+        <View
+          style={[
+            styles.fieldContainer,
+            { borderBottomWidth: 1, borderStyle: 'solid', borderColor: '#e8e8e8', marginBottom: 10 }
+          ]}
+        >
+          <Image style={styles.fieldIcon} source={require('../../image/ios/ic_list/ic_list.png')} />
           <TextInput
-            style={styles.boxNameInput}
+            style={[styles.fieldInput]}
             ref="boxName"
             placeholder="Box Name"
+            underlineColorAndroid="transparent"
             onChangeText={boxName => this.setState({ boxName })}
           />
         </View>
 
-        <View>
-          <Text>Members</Text>
-          <View>
-            <Image
-              source={{ uri: makeGravatarUrl(this.props.user.email) }}
-              style={styles.avatar}
-            />
-            <Text>You</Text>
-            <Text style={styles.ownerTag}>Owner</Text>
+        <View style={[styles.memberFieldContainer]}>
+          <Text>Members:</Text>
+          <View style={styles.memberContainer}>
+            <Image source={{ uri: makeGravatarUrl(this.props.user.email) }} style={styles.avatar} />
+            <Text style={{ width: '60%' }}>You</Text>
+            <Text style={styles.memeberTag}>Owner</Text>
           </View>
-          <View>
-            <Image
-              style={styles.boxIcon}
-              source={require('../../image/ios/ic_add/ic_add.png')}
-            />
-          </View>
-        </View>
 
-        <View>
-          <Text>Options</Text>
-          <View>
-            <Text>Notice</Text>
+          <View style={{ marginTop: 3 }}>
+            <Image style={styles.boxIcon} source={require('../../image/ios/ic_add/ic_add.png')} />
+            <Text>Add member</Text>
           </View>
         </View>
       </View>
@@ -131,17 +114,40 @@ export default class TDBoxCreater extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: ScreenBgColor,
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    overflow: 'scroll',
-    height: '100%'
+    flex: 1
   },
-  boxIcon: {},
-  boxNameInput: {},
-  ownerTag: {
+  fieldContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    paddingLeft: 15,
+    paddingRight: 15
+  },
+  memberFieldContainer: {
+    paddingLeft: 15,
+    paddingRight: 15
+  },
+  avatar: {
+    width: 25,
+    height: 25,
+    borderRadius: 25,
+    marginRight: 8
+  },
+  fieldIcon: {
+    display: 'flex'
+  },
+  fieldInput: {
+    width: '80%'
+  },
+  memberTag: {
     backgroundColor: '#ea6e5e',
     color: '#fff',
     borderRadius: 3
+  },
+  memberContainer: {
+    flexDirection: 'row',
+    height: 30,
+    width: '100%',
+    justifyContent: 'space-between'
   }
 });

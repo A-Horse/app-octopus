@@ -15,13 +15,14 @@ import {
 } from 'react-native';
 import R from 'ramda';
 import { format } from 'date-fns';
-import BoxCreaterToggle from './BoxCreaterToggle';
+import BoxCreater from './TodoBoxCreater';
 import * as todosActions from './Todos.action';
 import { ScreenBgColor, ColorRed } from '../../constant';
+import { navigatorStyle } from '../../navigation-setup';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
-  return R.values(entities.todoBox);
+  return R.values(entities.todoBox).sort((a, b) => a.id); // let my todo top
 };
 
 const mapStateToProps = (state, props) => {
@@ -77,7 +78,8 @@ class TodoBoxs extends Component {
         screen: 'octopus.TodosScreen',
         passProps: { meta: item },
         backButtonTitle: '',
-        title: item.name
+        title: item.name,
+        navigatorStyle: navigatorStyle // for Android
       });
     };
   }
@@ -89,6 +91,12 @@ class TodoBoxs extends Component {
         R.equals('only'),
         R.always(
           <Image style={styles.boxIcon} source={require('../../image/icons/portrait.png')} />
+        )
+      ],
+      [
+        R.equals('normal'),
+        R.always(
+          <Image style={styles.boxIcon} source={require('../../image/ios/ic_list/ic_list.png')} />
         )
       ]
     ])(item.type);
@@ -107,14 +115,28 @@ class TodoBoxs extends Component {
     );
   }
 
+  @autobind
+  itemSeparatorComponent() {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '100%',
+          backgroundColor: '#f8f8f8'
+        }}
+      />
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <BoxCreaterToggle />
+        <BoxCreater navigator={this.props.navigator} />
         <FlatList
           data={this.props.todoBoxs}
           renderItem={this.renderBox}
           keyExtractor={item => item.id}
+          ItemSeparatorComponent={this.itemSeparatorComponent}
         />
       </View>
     );
@@ -137,10 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 5,
-    overflow: 'hidden',
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e8e8e8'
+    overflow: 'hidden'
   },
   boxIcon: {
     marginRight: 10

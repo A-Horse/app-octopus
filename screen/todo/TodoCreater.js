@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import R from 'ramda';
 
 export default class TodoCreater extends Component {
@@ -26,14 +19,8 @@ export default class TodoCreater extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.innerContainer}>
-          <TouchableOpacity
-            onPress={this.onAddPress}
-            style={styles.iconContainer}
-          >
-            <Image
-              style={styles.icon}
-              source={require('../../image/icons/add.png')}
-            />
+          <TouchableOpacity onPress={this.onAddPress} style={styles.iconContainer}>
+            <Image style={styles.icon} source={require('../../image/icons/add.png')} />
           </TouchableOpacity>
 
           <TextInput
@@ -70,7 +57,6 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     paddingLeft: 9,
     paddingRight: 9,
-    borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff'

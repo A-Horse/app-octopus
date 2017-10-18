@@ -4,9 +4,12 @@ import { NavBarBgColor } from './constant';
 import AuthService from './service/auth';
 import store from './store';
 
-const navigatorStyle = {
+export const navigatorStyle = {
   navBarBackgroundColor: NavBarBgColor,
-  navBarNoBorder: true
+  topBarElevationShadowEnabled: false,
+  navBarNoBorder: true,
+  navBarButtonColor: '#fff',
+  navBarTextColor: '#fff'
 };
 
 export function setupSignApp() {
@@ -14,7 +17,10 @@ export function setupSignApp() {
     screen: {
       screen: 'octopus.LoginScreen', // unique ID registered with Navigation.registerScreen
       navigatorStyle: {
-        navBarBackgroundColor: '#fff'
+        ...navigatorStyle,
+        ...{
+          navBarBackgroundColor: '#fff'
+        }
       }
     }
   });

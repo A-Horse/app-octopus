@@ -18,6 +18,7 @@ import Todo from './Todo';
 import TodoCreater from './TodoCreater';
 import { ScreenBgColor } from '../../constant';
 import { makeActionRequestCollection } from '../../action/actioner';
+import { navigatorStyle } from '../../navigation-setup';
 
 import * as todosActions from './Todos.action';
 
@@ -48,11 +49,7 @@ const mapDispatchToProps = dispatch => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Todos extends Component {
-  static navigatorStyle = {
-    navBarNoBorder: true,
-    navBarButtonColor: '#fff',
-    navBarTextColor: '#fff'
-  };
+  static navigatorStyle = navigatorStyle;
 
   todoInstances = [];
 
