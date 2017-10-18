@@ -1,5 +1,6 @@
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from '../action/auth';
 import { JWT } from '../constant';
+import Actions from '../action/actioner';
 
 const auth = (
   state = {
@@ -11,12 +12,12 @@ const auth = (
   action
 ) => {
   switch (action.type) {
-    case AUTH_REQUEST:
+    case Actions.SIGN_IN.REQUEST:
       return {
         ...state,
         loginFetching: true
       };
-    case AUTH_SUCCESS:
+    case Actions.SIGN_IN.SUCCESS:
       return {
         ...state,
         user: action.playload.user,
@@ -25,13 +26,14 @@ const auth = (
         isAuthError: false,
         loginFetching: false
       };
-    case AUTH_FAILURE:
+    case Actions.SIGN_IN.FAILURE:
+      console.log(action);
       return {
         ...state,
         isLogin: false,
         isAuthError: true,
         loginFetching: false,
-        authErrorStatus: action.playload.status
+        authErrorStatus: action.playload.response.status
       };
 
     default:

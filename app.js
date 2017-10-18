@@ -11,13 +11,14 @@ import store from './store';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    // persistStore(store, {storage: AsyncStorage}, this.start).purge();
-    persistStore(store, { storage: AsyncStorage }, this.start);
-  }
 
-  start() {
-    const state = store.getState();
-    const isLogin = AuthService.checkLoginFromState(state);
-    isLogin ? setupMainApp() : setupSignApp();
+    // clear this persist store
+    // persistStore(store, {storage: AsyncStorage}, this.start).purge();
+
+    persistStore(store, { storage: AsyncStorage }, () => {
+      const state = store.getState();
+      const isLogin = AuthService.checkLoginFromState(state);
+      isLogin ? setupMainApp() : setupSignApp();
+    });
   }
 }

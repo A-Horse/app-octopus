@@ -3,7 +3,9 @@ import { Platform } from 'react-native';
 let endpoint;
 if (__DEV__) {
   if (Platform.OS === 'android') {
-    endpoint = 'http://192.168.232.201:8888';
+    // endpoint = 'http://192.168.232.201:8888';
+    // endpoint = 'http://10.207.22.66:8888';
+    endpoint = 'http://10.0.2.2:8888';
   } else {
     endpoint = 'http://127.0.0.1:8888';
   }

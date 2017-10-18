@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { NavBarBgColor, NavBarColor, ColorBlue } from '../constant';
-import { authRequest } from '../action/auth';
 import Button from '../component/Button';
 import { setupMainApp } from '../navigation-setup';
 import Toast from '../component/Toast';
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../action/actioner';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -17,7 +19,13 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-@connect(mapStateToProps)
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+  };
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class LoginScreen extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
@@ -25,6 +33,10 @@ class LoginScreen extends Component {
     navBarButtonColor: '#fff',
     navBarTextColor: NavBarColor,
     topBarElevationShadowEnabled: false
+  };
+
+  static propTypes = {
+    actions: PropTypes.object.isRequired
   };
 
   state = { authErrMsg: '' };
@@ -62,9 +74,8 @@ class LoginScreen extends Component {
 
   @autobind
   login() {
-    const { dispatch } = this.props;
     const authData = { email: this.state.email, password: this.state.password };
-    dispatch(authRequest(authData));
+    this.props.actions.SIGN_IN_REQUEST(authData);
   }
 
   render() {
