@@ -1,22 +1,9 @@
 import { combineEpics } from 'redux-observable';
+import R from 'ramda';
 
-import { auth, signup } from './auth';
-import {
-  todos,
-  createTodo,
-  destoryTodo,
-  getTodoBoxs,
-  updateTodo
-} from './todo';
-import { getTaskBoards } from './task';
+const epicGroups = [require('./auth.epic'), require('./todo.epic'), require('./task.epic')];
+const epics = R.flatten(R.map(R.values, epicGroups));
 
-export default combineEpics(
-  auth,
-  signup,
-  todos,
-  createTodo,
-  destoryTodo,
-  getTodoBoxs,
-  updateTodo,
-  getTaskBoards
-);
+const rootEpic = combineEpics(...epics);
+
+export default rootEpic;

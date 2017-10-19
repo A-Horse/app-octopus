@@ -31,6 +31,14 @@ export const todos = action$ =>
       .catch(Actions.GET_TODOLIST.failure);
   });
 
+export const ADD_TODOBOX_REQUEST = action$ =>
+  action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap(action => {
+    return axios
+      .post(makeServerApi('/t/todo-box'), action.playload)
+      .then(response => Actions.ADD_TODOBOX.success(response.data))
+      .catch(Actions.ADD_TODOBOX.failure);
+  });
+
 export const createTodo = action$ =>
   action$.ofType(CREATE_TODO_REQUEST).mergeMap(action => {
     const url = makeTodosUrl(action.meta.boxId, action.meta);

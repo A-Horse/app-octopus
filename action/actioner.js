@@ -1,6 +1,6 @@
 import R from 'ramda';
 
-const actionNames = ['GET_TODOLIST', 'SIGN_IN'];
+const actionNames = ['GET_TODOLIST', 'SIGN_IN', 'ADD_TODOBOX'];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';

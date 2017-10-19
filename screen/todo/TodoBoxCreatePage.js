@@ -46,7 +46,7 @@ export default class TDBoxCreater extends Component {
     ]
   };
 
-  state = {};
+  state = { name: '' };
 
   constructor(props) {
     super(props);
@@ -57,20 +57,12 @@ export default class TDBoxCreater extends Component {
   onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') {
       if (event.id === 'create') {
-        this.props.actions.createTodoBox(this.getTodoBoxData());
+        this.props.actions.ADD_TODOBOX_REQUEST({ name: this.state.name.trim() });
       }
       if (event.id === 'cancel') {
         this.props.navigator.pop();
       }
     }
-  }
-
-  getTodoBoxData() {
-    return {
-      name: this.state.boxName,
-      type: this.state.boxType,
-      members: this.state.members
-    };
   }
 
   render() {
@@ -89,7 +81,7 @@ export default class TDBoxCreater extends Component {
             ref="boxName"
             placeholder="Box Name"
             underlineColorAndroid="transparent"
-            onChangeText={boxName => this.setState({ boxName })}
+            onChangeText={name => this.setState({ name })}
           />
         </View>
 

@@ -22,7 +22,7 @@ import { navigatorStyle } from '../../navigation-setup';
 
 const getTodoBox = (state, props) => {
   const { entities } = state.todoBox;
-  return R.values(entities.todoBox).sort((a, b) => a.id); // let my todo top
+  return R.values(entities).sort((a, b) => a.id); // let my todo top
 };
 
 const mapStateToProps = (state, props) => {
