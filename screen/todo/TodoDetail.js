@@ -268,7 +268,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
-    height: 40
+    height: 40,
+    overflow: 'hidden'
   },
   content: {
     fontSize: 18,

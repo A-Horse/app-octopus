@@ -12,24 +12,32 @@ export default class Todo extends Component {
     todo: PropTypes.object.isRequired
   };
 
-  @autobind
-  goTodoDetail() {
-    this.props.navigator.push({
-      screen: 'octopus.TodoDetailScreen',
-      passProps: {
-        todoId: this.props.todo.id,
-        meta: this.props.meta,
-        updateTodo: this.props.updateTodo
-      },
-      backButtonTitle: '',
-      navigatorStyle
-    });
+  constructor(props) {
+    super(props);
+    this.goTodoDetail = this.goTodoDetail.bind(this);
   }
+
+  goTodoDetail = _.throttle(
+    function() {
+      this.props.navigator.push({
+        screen: 'octopus.TodoDetailScreen',
+        passProps: {
+          todoId: this.props.todo.id,
+          meta: this.props.meta,
+          updateTodo: this.props.updateTodo
+        },
+        backButtonTitle: '',
+        navigatorStyle
+      });
+    },
+    1,
+    { trailing: false }
+  );
 
   render() {
     const { todo } = this.props;
     return (
-      <TouchableOpacity onPress={_.throttle(this.goTodoDetail, 1000)}>
+      <TouchableOpacity onPress={this.goTodoDetail}>
         <View style={[styles.container, { opacity: todo.isDone ? 0.8 : 1 }]}>
           <CheckBox
             defaultChecked={todo.isDone}

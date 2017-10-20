@@ -12,6 +12,7 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from 'react-native';
+import { Platform } from 'react-native';
 import R from 'ramda';
 import { PlaceholderColor, TextPrimaryColor } from '../constant';
 
@@ -27,7 +28,8 @@ export default class OcPicker extends Component {
     value: this.props.value,
     pickerValue: this.props.value,
     modalVisible: false,
-    pickerBottom: new Animated.Value(-PICKER_HEIGHT)
+    pickerBottom: new Animated.Value(-PICKER_HEIGHT),
+    language: 'java'
   };
 
   onChange(value) {
