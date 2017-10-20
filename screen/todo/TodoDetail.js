@@ -8,8 +8,7 @@ import {
   Text,
   TextInput,
   View,
-  ActionSheetIOS,
-  Picker
+  ActionSheetIOS
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker';
@@ -129,6 +128,7 @@ export default class TodoDetail extends Component {
             onChangeText={todoContent => this.updateTodo({ content: todoContent })}
             value={this.state.content}
             defaultValue={todo.content}
+            underlineColorAndroid="transparent"
           />
         </View>
 

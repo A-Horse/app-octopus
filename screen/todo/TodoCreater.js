@@ -7,12 +7,13 @@ export default class TodoCreater extends Component {
   state = {};
 
   clear() {
-    this.refs.content.clear();
+    this.input.clear();
+    this.input.blur();
   }
 
   @autobind
   onAddPress() {
-    this.refs.content.focus();
+    this.input.focus();
   }
 
   render() {
@@ -24,15 +25,17 @@ export default class TodoCreater extends Component {
           </TouchableOpacity>
 
           <TextInput
+            underlineColorAndroid="transparent"
             style={styles.content}
             placeholderTextColor="#999"
             placeholder="Add Todo..."
             returnKeyType="done"
-            ref="content"
+            blurOnSubmit={true}
+            ref={ref => (this.input = ref)}
+            onSubmitEditing={this.props.createTodo}
             onBlur={this.props.clearNavButton}
             onFocus={this.props.addCreateTodoButton}
             onChangeText={content => this.setState({ content })}
-            onEndEditing={this.props.createTodo}
           />
         </View>
       </View>
@@ -49,12 +52,12 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingTop: 6,
     paddingBottom: 6,
-    backgroundColor: '#e8e8e8'
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8'
   },
   innerContainer: {
     flex: 1,
-    paddingTop: 8,
-    paddingBottom: 6,
     paddingLeft: 9,
     paddingRight: 9,
     flexDirection: 'row',

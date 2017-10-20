@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { StyleSheet, Image, Text, TextInput, View, Picker } from 'react-native';
@@ -8,10 +9,13 @@ import R from 'ramda';
 import { NavBarBgColor, ScreenBgColor } from '../../constant';
 import { makeGravatarUrl } from '../../service/gravatar';
 import { makeActionRequestCollection } from '../../action/actioner';
+import { navigatorStyle } from '../../navigation-setup';
 
 const mapStateToProps = (state, props) => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    isAddTodoBoxSuccess: state.todoBox.isAddTodoBoxSuccess,
+    addedTodoBox: state.todoBox.addedTodoBox
   };
 };
 
@@ -46,11 +50,35 @@ export default class TDBoxCreater extends Component {
     ]
   };
 
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    addedTodoBox: PropTypes.object
+  };
+
   state = { name: '' };
 
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    this.props.actions.ADD_TODOBOX_FINISH(); // insure the flag clear
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.isAddTodoBoxSuccess !== this.props.isAddTodoBoxSuccess &&
+      nextProps.isAddTodoBoxSuccess
+    ) {
+      this.props.actions.ADD_TODOBOX_FINISH();
+      this.props.navigator.pop();
+      /* this.props.navigator.push({
+       *   screen: 'octopus.TodosScreen',
+       *   passProps: { meta: nextProps.addedTodoBox },
+       *   backButtonTitle: '',
+       *   title: nextProps.addedTodoBox.name,
+       *   navigatorStyle: navigatorStyle // for Android
+       * });*/
+    }
   }
 
   @autobind
@@ -66,7 +94,6 @@ export default class TDBoxCreater extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     return (
       <View style={styles.container}>
         <View

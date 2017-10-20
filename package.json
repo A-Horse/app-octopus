@@ -16,6 +16,7 @@
     "babel-preset-es2015-node": "^6.1.1",
     "blueimp-md5": "^2.7.0",
     "date-fns": "^2.0.0-alpha.7",
+    "lodash": "^4.17.4",
     "normalizr": "^3.2.2",
     "prettier": "^1.5.2",
     "ramda": "v0.24.1",

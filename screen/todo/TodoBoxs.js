@@ -16,6 +16,7 @@ import {
 import R from 'ramda';
 import { format } from 'date-fns';
 import BoxCreater from './TodoBoxCreater';
+import { makeActionRequestCollection } from '../../action/actioner';
 import * as todosActions from './Todos.action';
 import { ScreenBgColor, ColorRed } from '../../constant';
 import { navigatorStyle } from '../../navigation-setup';
@@ -68,20 +69,17 @@ class TodoBoxs extends Component {
   componentDidMount() {
     const userId = this.props.userId;
     this.props.actions.getTodoBoxs({ userId });
-
-    // this.goTodoList(this.props.todoBoxs[0])();
   }
 
+  @autobind
   goTodoList(item) {
-    return () => {
-      this.props.navigator.push({
-        screen: 'octopus.TodosScreen',
-        passProps: { meta: item },
-        backButtonTitle: '',
-        title: item.name,
-        navigatorStyle: navigatorStyle // for Android
-      });
-    };
+    this.props.navigator.push({
+      screen: 'octopus.TodosScreen',
+      passProps: { meta: item },
+      backButtonTitle: '',
+      title: item.name,
+      navigatorStyle: navigatorStyle // for Android
+    });
   }
 
   @autobind
@@ -105,7 +103,7 @@ class TodoBoxs extends Component {
         style={{ overflow: 'hidden', borderRadius: 5 }}
         underlayColor={ColorRed}
         activeOpacity={0.9}
-        onPress={this.goTodoList(item)}
+        onPress={() => this.goTodoList(item)}
       >
         <View style={styles.box}>
           {icon}

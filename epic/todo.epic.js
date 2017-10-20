@@ -2,7 +2,6 @@ import {
   CREATE_TODO_REQUEST,
   DESTORY_TODO_REQUEST,
   GET_TODOBOX_REQUEST,
-  UPDATE_TODO_REQUEST,
   CREATE_TODOBOX_REQUEST,
   requestCreateTodoSuccess,
   requestDestroyTodoSuccess,
@@ -39,14 +38,12 @@ export const ADD_TODOBOX_REQUEST = action$ =>
       .catch(Actions.ADD_TODOBOX.failure);
   });
 
-export const createTodo = action$ =>
-  action$.ofType(CREATE_TODO_REQUEST).mergeMap(action => {
-    const url = makeTodosUrl(action.meta.boxId, action.meta);
-    return ajax
-      .post(url, action.playload, AuthService.makeJWTHeader())
-      .map(response => response.response)
-      .map(response => requestCreateTodoSuccess(action.meta, response))
-      .catch(handleEpicError);
+export const ADD_TODO_REQUEST = action$ =>
+  action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
+    return axios
+      .post(makeServerApi('/t/todo'), action.playload)
+      .then(response => Actions.ADD_TODO.success(response.data))
+      .catch(Actions.ADD_TODO.failure);
   });
 
 export const destoryTodo = action$ =>
@@ -59,26 +56,16 @@ export const destoryTodo = action$ =>
       .catch(handleEpicError);
   });
 
-export const updateTodo = action$ =>
+export const UPDATE_TODO_REQUEST = action$ =>
   action$
-    .ofType(UPDATE_TODO_REQUEST)
+    .ofType(Actions.UPDATE_TODO.REQUEST)
     .distinctUntilChanged()
     .debounceTime(250)
     .mergeMap(action => {
-      const url = makeTodosUrl(action.meta.boxId, action.meta, action.meta.id);
-      return new AjaxObservable({
-        method: 'PATCH',
-        url: url,
-        body: action.playload,
-        headers: Object.assign(AuthService.makeJWTHeader(), {
-          'Content-Type': 'application/json'
-        })
-      })
-        .map(response => response.response)
-        .map(response =>
-          requestUpdateTodoSuccess(action.meta.boxId, action.playload.meta, response)
-        )
-        .catch(handleEpicError);
+      return axios
+        .patch(makeServerApi(`/t/todo/${action.playload.id}`), action.playload)
+        .then(response => Actions.UPDATE_TODO.success(response.data))
+        .catch(Actions.UPDATE_TODO.failure);
     });
 
 export const getTodoBoxs = action$ =>

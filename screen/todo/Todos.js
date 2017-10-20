@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import {
-  StyleSheet,
-  Button,
-  Text,
-  View,
-  ScrollView,
-  ListView,
-  SwipeableListView
-} from 'react-native';
-import SwipeableListViewDataSource from 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource';
+import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -19,8 +11,6 @@ import TodoCreater from './TodoCreater';
 import { ScreenBgColor } from '../../constant';
 import { makeActionRequestCollection } from '../../action/actioner';
 import { navigatorStyle } from '../../navigation-setup';
-
-import * as todosActions from './Todos.action';
 
 const getAllTodos = (state, props) => {
   const { meta } = props;
@@ -40,10 +30,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  // TODO you know
   return {
-    actions: bindActionCreators(todosActions, dispatch),
-    actions2: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
@@ -51,7 +39,10 @@ const mapDispatchToProps = dispatch => {
 class Todos extends Component {
   static navigatorStyle = navigatorStyle;
 
-  todoInstances = [];
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -71,22 +62,17 @@ class Todos extends Component {
   @autobind
   createTodo() {
     const userId = this.props.user.id;
-    this.props.actions.createTodo(
-      { boxId: this.props.meta.id, userId },
-      { content: this.refs.creater.state.content }
-    );
+    this.props.actions.ADD_TODO_REQUEST({
+      todoBoxId: this.props.meta.id,
+      content: this.refs.creater.state.content
+    });
     this.refs.creater.clear();
-    // this.clearNavButton();
   }
 
   componentDidMount() {
     const userId = this.props.user.id;
     const boxId = this.props.meta.id; // TODO rename meta.id => boxId
-    this.props.actions2.GET_TODOLIST_REQUEST({ boxId }, { userId });
-
-    /* setTimeout(() => {
-     *   this.todoInstances[0].goTodoDetail();
-     * }, 500);*/
+    this.props.actions.GET_TODOLIST_REQUEST({ boxId }, { userId });
   }
 
   @autobind
@@ -103,59 +89,8 @@ class Todos extends Component {
     });
   }
 
-  /* @autobind
-   * getTodos() {}
-   */
-  @autobind
-  renderTodo(todo) {
-    const userId = this.props.user.id;
-    return (
-      <Todo
-        boxId={this.props.meta.id}
-        user={this.props.user}
-        meta={this.props.meta}
-        ref={todoInstance => this.todoInstances.push(todoInstance)}
-        key={todo.id}
-        todo={todo}
-        navigator={this.props.navigator}
-        updateTodo={data =>
-          this.props.actions.updateTodo(this.props.meta.id, { userId, id: todo.id }, data)}
-      />
-    );
-  }
-
-  @autobind
-  renderActions(todo) {
-    return (
-      <View>
-        <Button title="1" />
-        <Button title="2" />
-      </View>
-    );
-  }
-
-  renderTodos() {
-    const { todos } = this.props;
-    const todoDataSource = new SwipeableListViewDataSource({
-      getRowData: (data, sectionID, rowID) => data[sectionID][rowID],
-      getSectionHeaderData: (data, sectionID) => data[sectionID],
-      rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-    }).cloneWithRowsAndSections([todos]);
-    return (
-      <View>
-        <SwipeableListView
-          maxSwipeDistance={90}
-          dataSource={todoDataSource}
-          renderRow={this.renderTodo}
-          enableEmptySections={true}
-        />
-      </View>
-    );
-    // renderQuickActions={this.renderActions}
-  }
-
   render() {
+    const userId = this.props.user.id;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -165,7 +100,33 @@ class Todos extends Component {
             clearNavButton={this.clearNavButton}
             createTodo={this.createTodo}
           />
-          {this.renderTodos()}
+          <View>
+            <FlatList
+              data={this.props.todos}
+              renderItem={({ item }) => (
+                <Todo
+                  boxId={this.props.meta.id}
+                  user={this.props.user}
+                  meta={this.props.meta}
+                  key={item.id}
+                  todo={item}
+                  navigator={this.props.navigator}
+                  updateTodo={data =>
+                    this.props.actions.UPDATE_TODO_REQUEST({ ...data, id: item.id })}
+                />
+              )}
+              keyExtractor={item => item.id}
+              ItemSeparatorComponent={() => (
+                <View
+                  style={{
+                    height: 1,
+                    width: '100%',
+                    backgroundColor: '#f8f8f8'
+                  }}
+                />
+              )}
+            />
+          </View>
         </ScrollView>
       </View>
     );

@@ -7,6 +7,7 @@ import Actions from '../action/actioner';
 const todoBox = (
   state = {
     todoBox: {},
+    addedTodoBox: null,
     isAddTodoBoxSuccess: false
   },
   action
@@ -22,18 +23,24 @@ const todoBox = (
       break;
     case Actions.ADD_TODOBOX.SUCCESS:
       const normalizedTodoBox = normalize(action.playload, TodoBox);
+      console.log(normalizedTodoBox);
+      const addedTodoBox = R.compose(R.head, R.values)(normalizedTodoBox.entities.todoBox);
+      console.log(addedTodoBox);
       return {
         ...state,
         entities: {
           ...state.entities,
           ...normalizedTodoBox.entities.todoBox
         },
+        addedTodoBox,
         isAddTodoBoxSuccess: true
       };
       break;
     case Actions.ADD_TODOBOX.FINISH:
+      console.log('finish');
       return {
         ...state,
+        addedTodoBox: null,
         isAddTodoBoxSuccess: false
       };
       break;

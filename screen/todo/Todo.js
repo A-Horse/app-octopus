@@ -4,6 +4,8 @@ import autobind from 'autobind-decorator';
 import CheckBox from '../../component/CheckBox';
 import StarCheckBox from '../../component/StarCheckBox';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import { navigatorStyle } from '../../navigation-setup';
 
 export default class Todo extends Component {
   static propTypes = {
@@ -19,14 +21,15 @@ export default class Todo extends Component {
         meta: this.props.meta,
         updateTodo: this.props.updateTodo
       },
-      backButtonTitle: ''
+      backButtonTitle: '',
+      navigatorStyle
     });
   }
 
   render() {
     const { todo } = this.props;
     return (
-      <TouchableOpacity onPress={this.goTodoDetail}>
+      <TouchableOpacity onPress={_.throttle(this.goTodoDetail, 1000)}>
         <View style={[styles.container, { opacity: todo.isDone ? 0.8 : 1 }]}>
           <CheckBox
             defaultChecked={todo.isDone}

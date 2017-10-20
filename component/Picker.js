@@ -57,7 +57,11 @@ export default class OcPicker extends Component {
   render() {
     return (
       <View>
-        <Modal transparent={true} visible={this.state.modalVisible}>
+        <Modal
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => this.setState({ modalVisible: false })}
+        >
           <View style={styles.container}>
             {/* TODO Check this feature */}
             <TouchableOpacity onPress={this.close}>
@@ -72,10 +76,7 @@ export default class OcPicker extends Component {
               ]}
             >
               <View style={styles.pickerActions}>
-                <TouchableOpacity
-                  style={styles.pickerActionButton}
-                  onPress={() => this.close()}
-                >
+                <TouchableOpacity style={styles.pickerActionButton} onPress={() => this.close()}>
                   <Text style={styles.actionText}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -86,9 +87,7 @@ export default class OcPicker extends Component {
                     this.close();
                   }}
                 >
-                  <Text style={[styles.actionText, { color: '#4dce99' }]}>
-                    Confrim
-                  </Text>
+                  <Text style={[styles.actionText, { color: '#4dce99' }]}>Confrim</Text>
                 </TouchableOpacity>
               </View>
               <Picker
@@ -98,13 +97,9 @@ export default class OcPicker extends Component {
                 }}
                 style={styles.repeatPicker}
               >
-                {this.props.options.map(item =>
-                  <Picker.Item
-                    key={item.value}
-                    label={item.label}
-                    value={item.value}
-                  />
-                )}
+                {this.props.options.map(item => (
+                  <Picker.Item key={item.value} label={item.label} value={item.value} />
+                ))}
               </Picker>
             </Animated.View>
           </View>
@@ -119,10 +114,9 @@ export default class OcPicker extends Component {
               this.props.style
             ]}
           >
-            {R.compose(
-              R.path(['label']),
-              R.find(R.propEq('value', this.state.value))
-            )(this.props.options) || this.props.placeholder}
+            {R.compose(R.path(['label']), R.find(R.propEq('value', this.state.value)))(
+              this.props.options
+            ) || this.props.placeholder}
           </Text>
         </TouchableOpacity>
       </View>

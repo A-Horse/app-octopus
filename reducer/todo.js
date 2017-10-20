@@ -21,11 +21,11 @@ const todo = (
         entities: { ...state.entities, ...todosNormalized.entities.todo }
       };
       break;
-    case CREATE_TODO_SUCCESS:
+    case Actions.ADD_TODO.SUCCESS:
       const createdNormalized = normalize(action.playload, Todo);
       const newBoxResult = R.assoc(
-        action.meta.boxId,
-        [createdNormalized.result, ...state.results[action.meta.boxId]],
+        action.playload.todoBoxId,
+        [createdNormalized.result, ...state.results[action.playload.todoBoxId]],
         {}
       );
       return {
@@ -33,12 +33,15 @@ const todo = (
         results: { ...state.results, ...newBoxResult },
         entities: { ...state.entities, ...createdNormalized.entities.todo }
       };
-    case UPDATE_TODO_REQUEST:
+      break;
+
+    case Actions.UPDATE_TODO.SUCCESS:
       const todoNormalized = normalize(action.playload, Todo);
       return {
         ...state,
         entities: { ...state.entities, ...todoNormalized.entities.todo }
       };
+      break;
     case UPDATE_TODO_SUCCESS:
       const createdTodoNormalized = normalize(action.playload, Todo);
       return {
