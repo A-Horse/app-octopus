@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
     width: '100%',
     borderStyle: 'solid',
     borderColor: '#000',
-    paddingLeft: 8,
+    paddingLeft: 4,
     paddingRight: 8,
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 12,
+    paddingBottom: 12,
     borderStyle: 'solid',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8'
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   iconContainer: {
-    marginRight: 5
+    marginRight: 9
   },
   icon: {
     width: 16,

@@ -164,10 +164,12 @@ export default class TodoDetail extends Component {
           </View>
 
           <View style={styles.fieldContainer}>
-            <Image
-              style={[styles.lineIcon, { width: 20, height: 20 }]}
-              source={require('../../image/icons/repeat.png')}
-            />
+            <TouchableOpacity onPress={() => this.refRepeatPicker.open()}>
+              <Image
+                style={[styles.lineIcon, { width: 20, height: 20 }]}
+                source={require('../../image/icons/repeat.png')}
+              />
+            </TouchableOpacity>
             <View style={styles.lineContent}>
               <OcPicker
                 options={[
@@ -179,6 +181,7 @@ export default class TodoDetail extends Component {
                 onChange={value => {
                   this.props.updateTodo({ repeat: value });
                 }}
+                ref={ref => (this.refRepeatPicker = ref)}
                 style={{ width: '100%', height: '100%', lineHeight: 40 }}
                 value={parseInt(todo.repeat, 10)}
                 placeholder="Repeat"
@@ -204,7 +207,8 @@ export default class TodoDetail extends Component {
                     justifyContent: 'center',
                     alignItems: 'flex-start',
                     flexWrap: 'wrap',
-                    borderWidth: 0
+                    borderWidth: 0,
+                    width: '100%'
                   }
                 }}
                 onDateChange={date => this.props.updateTodo({ noticeTime: date })}
@@ -269,7 +273,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
     height: 40,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    width: '100%'
   },
   content: {
     fontSize: 18,
@@ -299,6 +304,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e8e8e8',
-    minHeight: 40
+    minHeight: 40,
+    paddingTop: 4
   }
 });

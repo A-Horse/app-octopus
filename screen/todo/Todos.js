@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
-import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
@@ -126,6 +127,10 @@ class Todos extends Component {
                 />
               )}
             />
+            <TouchableOpacity>
+              <Icon name="playlist-add-check" size={30} color="#900" />
+              <Text>Show Done Todos</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>

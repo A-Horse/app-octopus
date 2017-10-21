@@ -30,7 +30,7 @@ export default class Todo extends Component {
         navigatorStyle
       });
     },
-    1,
+    1000,
     { trailing: false }
   );
 

@@ -58,7 +58,7 @@ export default class OcPicker extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ width: '100%' }}>
         <Modal
           transparent={true}
           visible={this.state.modalVisible}
@@ -107,7 +107,7 @@ export default class OcPicker extends Component {
           </View>
         </Modal>
 
-        <TouchableOpacity onPress={this.open}>
+        <TouchableOpacity onPress={this.open} style={{ flex: 1, width: '100%' }}>
           <Text
             style={[
               {
