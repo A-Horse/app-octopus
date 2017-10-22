@@ -127,7 +127,7 @@ class Todos extends Component {
                 />
               )}
             />
-            <TouchableOpacity>
+            <TouchableOpacity style={{ flexDirection: 'column' }}>
               <Icon name="playlist-add-check" size={30} color="#900" />
               <Text>Show Done Todos</Text>
             </TouchableOpacity>
