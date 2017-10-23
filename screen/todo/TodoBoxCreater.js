@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
@@ -11,7 +10,7 @@ import { navigatorStyle } from '../../navigation-setup';
 
 export default class BoxCreater extends Component {
   static propTypes = {
-    navigatior: propTypes.object
+    navigator: propTypes.object
   };
 
   state = {
@@ -34,7 +33,7 @@ export default class BoxCreater extends Component {
             });
           }}
         >
-          <Image style={styles.icon} source={require('../../image/icons/add.png')} />
+          <Icon style={{ paddingLeft: 1 }} name="create-new-folder" size={30} />
           <Text style={styles.content}>Add Todo Box...</Text>
         </TouchableOpacity>
       </View>
@@ -55,11 +54,6 @@ const styles = StyleSheet.create({
   touchContainer: {
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  icon: {
-    width: 18,
-    height: 18,
-    marginRight: 9
   },
   content: {
     fontSize: 16,
