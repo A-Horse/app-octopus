@@ -22,14 +22,13 @@ export class LoginScreen extends React.Component<{
   static navigationOptions = {};
 
   state = {
-    username: null,
+    email: null,
     password: null
   };
 
   onLogin = () => {
-    console.log(this.state);
-    this.actions.SIGNIN_REQUEST({
-      username: this.state.username,
+    this.props.actions.SIGNIN_REQUEST({
+      email: this.state.email,
       password: this.state.password
     });
   };
@@ -38,11 +37,12 @@ export class LoginScreen extends React.Component<{
     return (
       <View style={styles.container}>
         <View style={{ width: '100%' }}>
-          <FormLabel>Username</FormLabel>
+          <FormLabel>Email</FormLabel>
           <FormInput
             autoCapitalize="none"
+            textContentType="email"
             onChangeText={value => {
-              this.setState({ username: value });
+              this.setState({ email: value });
             }}
           />
 

@@ -14,8 +14,12 @@ export const SIGNIN = action$ => {
       return axios
         .post(`${API_BASE}/user/signin`, action.payload)
         .then(response => {
-          setupAxiosJwtHeader(response.data.token);
-          return Actions.SIGNIN.success(response.data);
+          console.log(response);
+          setupAxiosJwtHeader(response.data.jwt);
+          return Actions.SIGNIN.success({
+            token: response.data.jwt,
+            user: response.data.user
+          });
         })
         .catch(error => {
           return Actions.SIGNIN.failure(error);

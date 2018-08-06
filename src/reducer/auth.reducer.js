@@ -12,7 +12,7 @@ export function auth(state = { token: null, userId: null }, action: FSAction) {
       return {
         ...state,
         token: action.payload.token,
-        userId: action.payload.id
+        user: action.payload.user
       };
 
     default:

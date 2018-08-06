@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import { Provider } from 'react-redux';
 import { PersistorContext } from './src/component/context/PersistorContext';
 
+import NavigationService from './src/service/single/navigation.service';
 import createStore from './src/store/store';
 const { store, persistor } = createStore();
 
@@ -28,7 +29,11 @@ export default class App extends React.Component {
           <PersistorContext.Provider value={persistor}>
             <View style={styles.container}>
               {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-              <AppNavigator />
+              <AppNavigator
+                ref={navigatorRef => {
+                  NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+              />
             </View>
           </PersistorContext.Provider>
         </Provider>
