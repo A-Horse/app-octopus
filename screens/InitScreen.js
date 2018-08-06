@@ -17,7 +17,7 @@ class InitScreen extends Component<{
   componentDidMount() {}
 
   bootstrap = () => {
-    this.props.navigation.navigate(this.props.token ? 'Main' : 'SignIn');
+    this.props.navigation.navigate(this.props.token ? 'Main' : 'Login');
   };
 
   render() {

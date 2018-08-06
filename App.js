@@ -2,6 +2,8 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import { Provider } from 'react-redux';
+import { PersistorContext } from './src/component/context/PersistorContext';
 
 import createStore from './src/store/store';
 const { store, persistor } = createStore();
