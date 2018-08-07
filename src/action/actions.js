@@ -1,7 +1,7 @@
 // @flow
 import { values } from 'ramda';
 
-const actionNames = ['SIGNIN'];
+const actionNames = ['SIGNIN', 'GET_TASK_BOARD_LIST'];
 
 export const actions: { [*]: * } = actionNames.reduce((result: Object, actionName: string): {
   [string]: ActionAdapter

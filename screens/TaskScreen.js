@@ -1,3 +1,4 @@
+// flow
 import React from 'react';
 import {
   Image,
@@ -20,7 +21,9 @@ export class TaskScreen extends React.Component {
   };
 
   componentWillMount() {
-    /* this.props.actions */
+    this.props.actions.GET_TASK_BOARD_LIST_REQUEST({
+      userId: this.props.user.id
+    });
   }
 
   render() {
@@ -63,7 +66,9 @@ export class TaskScreen extends React.Component {
 
 export const TaskScreenContainer = connect(
   state => {
-    return { token: state.auth.token };
+    return {
+      user: state.auth.user
+    };
   },
   dispatch => {
     return {
