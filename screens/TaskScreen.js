@@ -8,14 +8,20 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 import { WebBrowser } from 'expo';
-
+import { makeActionRequestCollection } from '../src/action/actions';
+import { bindActionCreators } from 'redux';
 import { MonoText } from '../components/StyledText';
 
-export default class TaskScreen extends React.Component {
+export class TaskScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  componentWillMount() {
+    /* this.props.actions */
+  }
 
   render() {
     return (
@@ -53,17 +59,18 @@ export default class TaskScreen extends React.Component {
       );
     }
   }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
+
+export const TaskScreenContainer = connect(
+  state => {
+    return { token: state.auth.token };
+  },
+  dispatch => {
+    return {
+      actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    };
+  }
+)(TaskScreen);
 
 const styles = StyleSheet.create({
   container: {
