@@ -21,6 +21,7 @@ export class TaskScreen extends React.Component {
   };
 
   componentWillMount() {
+    console.log(this.props.user);
     this.props.actions.GET_TASK_BOARD_LIST_REQUEST({
       userId: this.props.user.id
     });
@@ -66,6 +67,7 @@ export class TaskScreen extends React.Component {
 
 export const TaskScreenContainer = connect(
   state => {
+    console.log(state.auth);
     return {
       user: state.auth.user
     };

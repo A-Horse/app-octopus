@@ -13,27 +13,17 @@ export const GET_TASK_BOARD_LIST = action$ => {
     ofType(Actions.GET_TASK_BOARD_LIST.REQUEST),
     mergeMap(action => {
       return axios
-        .post(`${API_BASE}/tk/user/${action.payload.userId}`, action.payload)
+        .get(`${API_BASE}/tk/user/${action.payload.userId}/task-board`)
         .then(response => {
           console.log(response);
-          setupAxiosJwtHeader(response.data.jwt);
-          return Actions.SIGNIN.success({
-            token: response.data.jwt,
-            user: response.data.user
-          });
+          return Actions.GET_TASK_BOARD_LIST.success(response.data);
         })
         .catch(error => {
-          return Actions.SIGNIN.failure(error);
+          return Actions.GET_TASK_BOARD_LIST.failure(error);
         });
     })
   );
 };
 
 export const GET_TASK_BOARD_LIST_SUCCESS = action$ =>
-  action$.pipe(
-    ofType(Actions.SIGNIN.SUCCESS),
-    tap(() => {
-      NavigationService.navigate('Main');
-    }),
-    ignoreElements()
-  );
+  action$.pipe(ofType(Actions.GET_TASK_BOARD_LIST.SUCCESS), ignoreElements());

@@ -5,8 +5,7 @@ export function auth(state = { token: null, userId: null }, action: FSAction) {
   switch (action.type) {
     case Actions.SIGNIN.REQUEST:
       return {
-        ...state,
-        username: action.payload.username
+        ...state
       };
     case Actions.SIGNIN.SUCCESS:
       return {
