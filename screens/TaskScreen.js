@@ -30,6 +30,12 @@ export class TaskScreen extends React.Component {
     });
   }
 
+  navToTaskBoard = taskBoardName => {
+    this.props.navigation.navigate('TaskBoard', {
+      taskBoardName
+    });
+  };
+
   render() {
     const boardsSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -42,7 +48,7 @@ export class TaskScreen extends React.Component {
             dataSource={boardsSource}
             renderRow={board => {
               return (
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.navToTaskBoard(board.name)}>
                   <View key={board.id} style={styles.boardContainer}>
                     <Image
                       style={styles.boardBgImg}
@@ -109,6 +115,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  contentContainer: {
+    paddingTop: 30,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
   boardContainer: {
     width: '100%',
     height: Dimensions.get('window').width * 0.9 / (16 / 9),
@@ -143,8 +154,5 @@ const styles = StyleSheet.create({
     zIndex: 1,
     top: 0,
     left: 0
-  },
-  contentContainer: {
-    paddingTop: 30
   }
 });

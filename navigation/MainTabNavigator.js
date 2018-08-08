@@ -5,22 +5,22 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import { TaskScreenContainer } from '../screens/TaskScreen';
+import { TaskBoardScreenContainer } from '../screens/TaskBoardScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: TaskScreenContainer
+const TaskStack = createStackNavigator({
+  Home: TaskScreenContainer,
+  TaskBoard: TaskBoardScreenContainer
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+TaskStack.navigationOptions = {
+  tabBarLabel: 'Task',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === 'ios' ? `ios-briefcase${focused ? '' : '-outline'}` : 'md-briefcase$-circle'
       }
     />
   )
@@ -55,7 +55,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  TaskStack,
   LinksStack,
   SettingsStack
 });
