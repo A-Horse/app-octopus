@@ -15,7 +15,6 @@ export const GET_TASK_BOARD_LIST = action$ => {
       return axios
         .get(`${API_BASE}/tk/user/${action.payload.userId}/task-board`)
         .then(response => {
-          console.log(response);
           return Actions.GET_TASK_BOARD_LIST.success(response.data);
         })
         .catch(error => {

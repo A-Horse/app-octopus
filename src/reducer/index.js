@@ -1,3 +1,4 @@
 export const reducers = {
-  ...require('./auth.reducer')
+  ...require('./auth.reducer'),
+  ...require('./task.reducer')
 };

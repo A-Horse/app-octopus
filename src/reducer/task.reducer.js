@@ -11,9 +11,9 @@ export function task(state = {}, action: FSAction) {
       };
     case Actions.GET_TASK_BOARD_LIST.SUCCESS:
       const normalizedAllBoard = normalize(action.payload, TaskBoards);
-      console.log(normalizedAllBoard);
       return {
-        ...state
+        ...state,
+        taskBoradMap: normalizedAllBoard.entities.TaskBoard
       };
     default:
       return state;

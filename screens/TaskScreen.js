@@ -7,13 +7,17 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Dimensions,
+  ListView,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
+import R from 'ramda';
 import { WebBrowser } from 'expo';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 import { MonoText } from '../components/StyledText';
+import { SERVER_BASE } from '../src/env/env';
 
 export class TaskScreen extends React.Component {
   static navigationOptions = {
@@ -21,21 +25,42 @@ export class TaskScreen extends React.Component {
   };
 
   componentWillMount() {
-    console.log(this.props.user);
     this.props.actions.GET_TASK_BOARD_LIST_REQUEST({
       userId: this.props.user.id
     });
   }
 
   render() {
+    const boardsSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    }).cloneWithRows(this.props.boards);
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+          <ListView
+            style={styles.listView}
+            dataSource={boardsSource}
+            renderRow={board => {
+              return (
+                <TouchableOpacity>
+                  <View key={board.id} style={styles.boardContainer}>
+                    <Image
+                      style={styles.boardBgImg}
+                      source={{
+                        uri: !!board.cover
+                          ? `${SERVER_BASE}storage/${board.cover}`
+                          : `${SERVER_BASE}static/image/board-cover/world-circle.png`
+                      }}
+                    />
+                    <View style={styles.boardInnerContainer}>
+                      <Text style={styles.boardName}>{board.name}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            enableEmptySections={true}
+          />
         </ScrollView>
       </View>
     );
@@ -67,9 +92,9 @@ export class TaskScreen extends React.Component {
 
 export const TaskScreenContainer = connect(
   state => {
-    console.log(state.auth);
     return {
-      user: state.auth.user
+      user: state.auth.user,
+      boards: R.values(state.task.taskBoradMap)
     };
   },
   dispatch => {
@@ -84,86 +109,42 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center'
+  boardContainer: {
+    width: '100%',
+    height: Dimensions.get('window').width * 0.9 / (16 / 9),
+    borderRadius: 5,
+    position: 'relative',
+    overflow: 'hidden',
+    marginTop: 10
+  },
+  boardInnerContainer: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    top: 0,
+    left: 0,
+    flex: 1,
+    zIndex: 10,
+    backgroundColor: 'rgba(0, 0, 0, .05)'
+  },
+  boardName: {
+    color: '#fff',
+    fontSize: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.9,
+    shadowRadius: 3,
+    padding: 8
+  },
+  boardBgImg: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    zIndex: 1,
+    top: 0,
+    left: 0
   },
   contentContainer: {
     paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50
-  },
-  homeScreenFilename: {
-    marginVertical: 7
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)'
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center'
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center'
-  },
-  navigationFilename: {
-    marginTop: 5
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center'
-  },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7'
   }
 });
