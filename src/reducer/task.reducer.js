@@ -15,6 +15,23 @@ export function task(state = {}, action: FSAction) {
         ...state,
         taskBoradMap: normalizedAllBoard.entities.TaskBoard
       };
+    case Actions.GET_TASK_BOARD.SUCCESS:
+      const normalizedAddBoard = normalize(action.payload, TaskBoard);
+      return {
+        ...state,
+        taskBoradMap: {
+          ...state.taskBoradMap,
+          ...normalizedAddBoard.entities.TaskBoard
+        },
+        taskCardMap: {
+          ...state.taskCardMap,
+          ...normalizedAddBoard.entities.TaskCard
+        },
+        taskTrackMap: {
+          ...state.taskTrackMap,
+          ...normalizedAddBoard.entities.TaskTrack
+        }
+      };
     default:
       return state;
   }

@@ -23,18 +23,13 @@ import Swiper from 'react-native-swiper';
 export class TaskBoardScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('taskBoardName', 'TaskBoard')
+      title: navigation.getParam('board', 'TaskBoard').name
     };
   };
-  componentWillMount() {
-    this.props.actions.GET_TASK_BOARD_LIST_REQUEST({
-      userId: this.props.user.id
-    });
-  }
 
-  onMomentumScrollEnd = (e, state, context) => {
-    console.log(state, context.state);
-  };
+  componentWillMount() {
+    this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
+  }
 
   render() {
     const boardsSource = new ListView.DataSource({
@@ -84,24 +79,18 @@ const styles = StyleSheet.create({
   wrapper: {},
   slide1: {
     flex: 1,
-    width: '80%',
-    marginLeft: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB'
   },
   slide2: {
     flex: 1,
-    marginLeft: -40,
-    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#97CAE5'
   },
   slide3: {
     flex: 1,
-    marginLeft: -40,
-    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#92BBD9'

@@ -30,9 +30,9 @@ export class TaskScreen extends React.Component {
     });
   }
 
-  navToTaskBoard = taskBoardName => {
+  navToTaskBoard = board => {
     this.props.navigation.navigate('TaskBoard', {
-      taskBoardName
+      board: board
     });
   };
 
@@ -48,7 +48,7 @@ export class TaskScreen extends React.Component {
             dataSource={boardsSource}
             renderRow={board => {
               return (
-                <TouchableOpacity onPress={() => this.navToTaskBoard(board.name)}>
+                <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
                   <View key={board.id} style={styles.boardContainer}>
                     <Image
                       style={styles.boardBgImg}
@@ -70,29 +70,6 @@ export class TaskScreen extends React.Component {
         </ScrollView>
       </View>
     );
-  }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
   }
 }
 

@@ -26,3 +26,15 @@ export const GET_TASK_BOARD_LIST = action$ => {
 
 export const GET_TASK_BOARD_LIST_SUCCESS = action$ =>
   action$.pipe(ofType(Actions.GET_TASK_BOARD_LIST.SUCCESS), ignoreElements());
+
+export const GET_TASK_BOARD = action$ =>
+  action$.pipe(
+    ofType(Actions.GET_TASK_BOARD.REQUEST),
+
+    mergeMap(action => {
+      return axios
+        .get(`${API_BASE}/tk/task-board/${action.payload.id}/verbose`)
+        .then(resp => Actions.GET_TASK_BOARD.success(resp.data))
+        .catch(Actions.GET_TASK_BOARD.failure);
+    })
+  );
