@@ -21,12 +21,29 @@ import { SERVER_BASE } from '../../src/env/env';
 import Swiper from 'react-native-swiper';
 
 export class Track extends React.Component {
-  componentWillMount() {
-    this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
-  }
+  componentWillMount() {}
 
   render() {
-    return <View style={styles.container} />;
+    const cardsSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    }).cloneWithRows(this.props.cards);
+
+    return (
+      <ListView
+        style={{}}
+        dataSource={cardsSource}
+        renderRow={card => {
+          return (
+            <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
+              <View style={{}}>
+                <Text>{card.content}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+        enableEmptySections={true}
+      />
+    );
   }
 }
 
@@ -39,7 +56,8 @@ export const TaskTrackContainer = connect(
       cards = track.cards.map(id => state.task.taskCardMap[id]);
     }
 
-    console.log(tracks);
+    console.log(track);
+    console.log('card', cards);
 
     return {
       user: state.auth.user,
@@ -52,7 +70,7 @@ export const TaskTrackContainer = connect(
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(TaskBoardScreen);
+)(Track);
 
 const styles = StyleSheet.create({
   container: {

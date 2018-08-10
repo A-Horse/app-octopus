@@ -43,8 +43,8 @@ export class TaskBoardScreen extends React.Component {
         >
           {this.props.tracks.map(track => {
             return (
-              <View>
-                <Track track={track} />
+              <View key={track.id}>
+                <TaskTrackContainer track={track} />
               </View>
             );
           })}
