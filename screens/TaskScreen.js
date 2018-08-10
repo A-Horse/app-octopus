@@ -77,7 +77,7 @@ export const TaskScreenContainer = connect(
   state => {
     return {
       user: state.auth.user,
-      boards: R.values(state.task.taskBoradMap)
+      boards: R.values(state.task.taskBoardMap)
     };
   },
   dispatch => {

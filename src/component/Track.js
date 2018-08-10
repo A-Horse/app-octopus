@@ -14,62 +14,37 @@ import {
 import { connect } from 'react-redux';
 import R from 'ramda';
 import { WebBrowser } from 'expo';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../../src/action/actions';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../components/StyledText';
-import { SERVER_BASE } from '../src/env/env';
+import { MonoText } from '../../components/StyledText';
+import { SERVER_BASE } from '../../src/env/env';
 import Swiper from 'react-native-swiper';
-import { TaskTrackContainer } from '../src/component/Track';
 
-export class TaskBoardScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('board', 'TaskBoard').name,
-      tabBarVisible: false
-    };
-  };
-
+export class Track extends React.Component {
   componentWillMount() {
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Swiper
-          style={styles.wrapper}
-          onMomentumScrollEnd={this.onMomentumScrollEnd}
-          showsButtons={false}
-        >
-          {this.props.tracks.map(track => {
-            return (
-              <View>
-                <Track track={track} />
-              </View>
-            );
-          })}
-        </Swiper>
-      </View>
-    );
+    return <View style={styles.container} />;
   }
 }
 
-export const TaskBoardScreenContainer = connect(
+export const TaskTrackContainer = connect(
   (state, props) => {
-    console.log(state.task.taskBoardMap[props.navigation.getParam('board').id]);
-    const board = state.task.taskBoardMap[props.navigation.getParam('board').id];
+    const track = state.task.taskTrackMap[props.track.id];
 
-    let tracks;
-    if (board && board.tracks) {
-      tracks = board.tracks.map(id => state.task.taskTrackMap[id]);
+    let cards;
+    if (track && track.cards) {
+      cards = track.cards.map(id => state.task.taskCardMap[id]);
     }
 
     console.log(tracks);
 
     return {
       user: state.auth.user,
-      board,
-      tracks: tracks || []
+      track,
+      cards
     };
   },
   dispatch => {

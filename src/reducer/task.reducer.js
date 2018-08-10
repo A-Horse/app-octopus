@@ -13,13 +13,13 @@ export function task(state = {}, action: FSAction) {
       const normalizedAllBoard = normalize(action.payload, TaskBoards);
       return {
         ...state,
-        taskBoradMap: normalizedAllBoard.entities.TaskBoard
+        taskBoardMap: normalizedAllBoard.entities.TaskBoard
       };
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedAddBoard = normalize(action.payload, TaskBoard);
       return {
         ...state,
-        taskBoradMap: {
+        taskBoardMap: {
           ...state.taskBoradMap,
           ...normalizedAddBoard.entities.TaskBoard
         },
