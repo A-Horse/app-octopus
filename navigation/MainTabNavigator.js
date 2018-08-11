@@ -14,16 +14,26 @@ const TaskStack = createStackNavigator({
   TaskBoard: TaskBoardScreenContainer
 });
 
-TaskStack.navigationOptions = {
-  tabBarLabel: 'Task',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios' ? `ios-briefcase${focused ? '' : '-outline'}` : 'md-briefcase$-circle'
-      }
-    />
-  )
+TaskStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarLabel: 'Task',
+    tabBarVisible,
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === 'ios'
+            ? `ios-briefcase${focused ? '' : '-outline'}`
+            : 'md-briefcase$-circle'
+        }
+      />
+    )
+  };
 };
 
 const LinksStack = createStackNavigator({
