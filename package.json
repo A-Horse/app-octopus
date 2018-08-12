@@ -15,6 +15,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "axios": "^0.18.0",
+    "date-fns": "^2.0.0-alpha.16",
     "eslint": "4.16.0",
     "expo": "29.0.0",
     "normalizr": "^3.2.4",
@@ -22,6 +23,8 @@
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
+    "react-native-modal": "^6.5.0",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.9.3",
     "react-redux": "^5.0.7",

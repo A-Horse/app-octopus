@@ -55,7 +55,7 @@ export class TaskScreen extends React.Component {
                       source={{
                         uri: !!board.cover
                           ? `${SERVER_BASE}storage/${board.cover}`
-                          : `${SERVER_BASE}static/image/board-cover/world-circle.png`
+                          : `${SERVER_BASE}static/image/board-cover/default-cover.png`
                       }}
                     />
                     <View style={styles.boardInnerContainer}>

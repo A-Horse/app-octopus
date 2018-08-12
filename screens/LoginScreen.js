@@ -46,7 +46,6 @@ export class LoginScreen extends React.Component<{
             }}
           />
 
-          <FormLabel>Password</FormLabel>
           <FormInput
             secureTextEntry={true}
             autoCapitalize="none"

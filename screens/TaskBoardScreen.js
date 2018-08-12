@@ -29,6 +29,10 @@ export class TaskBoardScreen extends React.Component {
     };
   };
 
+  state = {
+    selectedIndex: 0
+  };
+
   componentWillMount() {
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
   }
@@ -36,19 +40,20 @@ export class TaskBoardScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Swiper
-          style={styles.wrapper}
-          onMomentumScrollEnd={this.onMomentumScrollEnd}
-          showsButtons={false}
-        >
-          {this.props.tracks.map(track => {
-            return (
-              <View key={track.id}>
-                <TaskTrackContainer track={track} />
-              </View>
-            );
-          })}
-        </Swiper>
+        {this.props.tracks.length && (
+          <Swiper
+            style={styles.wrapper}
+            key={`${this.props.board.id}-${this.props.board.name}`}
+            automaticallyAdjustContentInsets={true}
+            showsButtons={false}
+            horizonta={true}
+            showsPagination={true}
+          >
+            {this.props.tracks.map(track => {
+              return <TaskTrackContainer key={track.id} track={track} />;
+            })}
+          </Swiper>
+        )}
       </View>
     );
   }
@@ -56,15 +61,16 @@ export class TaskBoardScreen extends React.Component {
 
 export const TaskBoardScreenContainer = connect(
   (state, props) => {
-    console.log(state.task.taskBoardMap[props.navigation.getParam('board').id]);
     const board = state.task.taskBoardMap[props.navigation.getParam('board').id];
 
     let tracks;
     if (board && board.tracks) {
-      tracks = board.tracks.map(id => state.task.taskTrackMap[id]);
+      tracks = board.tracks
+        .map(id => state.task.taskTrackMap[id])
+        .sort((a, b) => a.index > b.index);
     }
 
-    console.log(tracks);
+    console.log('tracks', tracks);
 
     return {
       user: state.auth.user,
@@ -85,24 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   wrapper: {},
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
-  },
   text: {
     color: '#fff',
     fontSize: 30,

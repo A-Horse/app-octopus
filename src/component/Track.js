@@ -19,6 +19,8 @@ import { bindActionCreators } from 'redux';
 import { MonoText } from '../../components/StyledText';
 import { SERVER_BASE } from '../../src/env/env';
 import Swiper from 'react-native-swiper';
+import { TaskCard } from './TaskCard';
+import { TaskCardCreater } from './TaskCardCreater';
 
 export class Track extends React.Component {
   componentWillMount() {}
@@ -29,20 +31,21 @@ export class Track extends React.Component {
     }).cloneWithRows(this.props.cards);
 
     return (
-      <ListView
-        style={{}}
-        dataSource={cardsSource}
-        renderRow={card => {
-          return (
-            <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
-              <View style={styles.cardContainer}>
-                <Text>{card.content}</Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-        enableEmptySections={true}
-      />
+      <View sytle={styles.container}>
+        <View style={styles.innerContainer}>
+          <ScrollView style={styles.scrollContainer}>
+            <ListView
+              style={{}}
+              dataSource={cardsSource}
+              renderRow={card => {
+                return <TaskCard card={card} />;
+              }}
+              enableEmptySections={true}
+            />
+            <TaskCardCreater />
+          </ScrollView>
+        </View>
+      </View>
     );
   }
 }
@@ -55,9 +58,6 @@ export const TaskTrackContainer = connect(
     if (track && track.cards) {
       cards = track.cards.map(id => state.task.taskCardMap[id]);
     }
-
-    console.log(track);
-    console.log('card', cards);
 
     return {
       user: state.auth.user,
@@ -77,7 +77,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  innerContainer: {
+    backgroundColor: '#e8e8e8',
+    padding: 20,
+    margin: 20,
+    borderRadius: 5
+  },
+  scrollContainer: {},
   cardContainer: {
-    backgroundColor: '#f8f8f8'
+    backgroundColor: '#f8f8f8',
+    marginBottom: 5
   }
 });
