@@ -40,7 +40,7 @@ export class LoginScreen extends React.Component<{
           <FormLabel>Email</FormLabel>
           <FormInput
             autoCapitalize="none"
-            textContentType="email"
+            textContentType="text"
             onChangeText={value => {
               this.setState({ email: value });
             }}

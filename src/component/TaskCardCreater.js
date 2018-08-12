@@ -53,6 +53,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
         <TouchableOpacity onPress={this.toggleModal}>
           <AppText style={styles.text}>Add Task...</AppText>
         </TouchableOpacity>
+
         <Modal style={{ margin: 0 }} isVisible={this.state.isModalVisible}>
           <View style={styles.modalContainer}>
             <View style={styles.modalHeader}>
@@ -61,27 +62,38 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   name="ios-close"
                   size={35}
                   style={[{ fontWeight: 900 }]}
-                  color="blue"
+                  color="#177efb"
                 />
               </TouchableOpacity>
-              <AppText style={{ fontSize: 20 }}>Add Task</AppText>
+              <AppText style={{ fontSize: 16, color: '#177efb' }}>Done</AppText>
             </View>
 
             <View>
               <FormInput
+                containerStyle={{ margin: 0, padding: 0, marginLeft: 0, marginRight: 0 }}
+                inputStyle={{ width: '100%' }}
+                autoFocus
                 autoCapitalize="none"
                 textContentType="email"
+                multiline={true}
                 placeholder="What do you want to do"
                 onChangeText={value => {
                   this.setState({ email: value });
                 }}
               />
 
-              <View>
+              <View style={{}}>
                 <TouchableOpacity
-                  style={{ marginLeft: 10, width: '100%' }}
+                  style={styles.listItemTouchable}
                   onPress={this.showDateTimePicker}
                 >
+                  <Icon.Ionicons
+                    name="ios-clock"
+                    size={26}
+                    style={[{ fontWeight: 900 }]}
+                    color="#999"
+                  />
+
                   <AppText
                     style={{
                       color: this.state.deadline ? '#333' : '#bbb',
@@ -93,8 +105,14 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   >
                     {this.state.deadline
                       ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
-                      : '任务deadline'}
+                      : 'deadline'}
                   </AppText>
+                  <Icon.Ionicons
+                    name="ios-arrow-forward"
+                    size={26}
+                    style={[{ fontWeight: 900 }]}
+                    color="#999"
+                  />
                 </TouchableOpacity>
                 <DateTimePicker
                   mode="datetime"
@@ -127,19 +145,24 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     height: '100%',
-    width: '100%',
     backgroundColor: '#fff',
     margin: 0,
     paddingTop: 20,
-    padding: 20
+    padding: 10
   },
   modalHeader: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    height: 50
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 50,
+    paddingLeft: 20,
+    paddingRight: 20
   },
-  closeIcon: {
-    position: 'absolute',
-    left: 10
+  closeIcon: {},
+  listItemTouchable: {
+    width: '100%',
+    height: 60,
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
   }
 });
