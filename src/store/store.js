@@ -21,7 +21,10 @@ function setupStore() {
 
   const store = createStore(
     persistedReducer,
-    compose(applyMiddleware(epicMiddleware, logger), reduxReset())
+    compose(
+      applyMiddleware(epicMiddleware, logger),
+      reduxReset()
+    )
   );
 
   return { store, epicMiddleware };

@@ -50,7 +50,7 @@ export class TaskBoardScreen extends React.Component {
             showsPagination={true}
           >
             {this.props.tracks.map(track => {
-              return <TaskTrackContainer key={track.id} track={track} />;
+              return <TaskTrackContainer key={track.id} track={track} board={this.props.board} />;
             })}
           </Swiper>
         )}
@@ -69,8 +69,6 @@ export const TaskBoardScreenContainer = connect(
         .map(id => state.task.taskTrackMap[id])
         .sort((a, b) => a.index > b.index);
     }
-
-    console.log('tracks', tracks);
 
     return {
       user: state.auth.user,

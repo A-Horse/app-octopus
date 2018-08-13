@@ -24,12 +24,26 @@ import { AppText } from './AppText';
 import Modal from 'react-native-modal';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import RNPickerSelect from 'react-native-picker-select';
+
+const CardTypes = [
+  {
+    label: 'Todo Task',
+    value: 'TODO_TASK'
+  },
+  {
+    label: 'Story Task',
+    value: 'STORY_TASK'
+  }
+];
 
 export class TaskCardCreater extends React.PureComponent<{}> {
   state = {
     isModalVisible: false,
     isDateTimePickerVisible: false,
-    deadline: null
+    title: null,
+    deadline: null,
+    type: 'STORY_TASK'
   };
 
   componentWillMount() {}
@@ -45,6 +59,14 @@ export class TaskCardCreater extends React.PureComponent<{}> {
   handleDatePicked = date => {
     this.setState({ deadline: date.getTime() });
     this.hideDateTimePicker();
+  };
+
+  onDone = () => {
+    this.props.onSubmit({
+      title: this.state.title,
+      deadline: this.state.deadline,
+      type: this.state.type
+    });
   };
 
   render() {
@@ -65,7 +87,9 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   color="#177efb"
                 />
               </TouchableOpacity>
-              <AppText style={{ fontSize: 16, color: '#177efb' }}>Done</AppText>
+              <TouchableOpacity onPress={this.onDone}>
+                <AppText style={{ fontSize: 16, color: '#177efb' }}>Done</AppText>
+              </TouchableOpacity>
             </View>
 
             <View>
@@ -78,7 +102,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 multiline={true}
                 placeholder="What do you want to do"
                 onChangeText={value => {
-                  this.setState({ email: value });
+                  this.setState({ title: value });
                 }}
               />
 
@@ -90,12 +114,13 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   <Icon.Ionicons
                     name="ios-clock"
                     size={26}
-                    style={[{ fontWeight: 900 }]}
+                    style={[{ flexShrink: 0, fontWeight: 900 }]}
                     color="#999"
                   />
 
                   <AppText
                     style={{
+                      flex: 20,
                       color: this.state.deadline ? '#333' : '#bbb',
                       fontSize: 16,
                       letterSpacing: 1.3,
@@ -110,7 +135,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   <Icon.Ionicons
                     name="ios-arrow-forward"
                     size={26}
-                    style={[{ fontWeight: 900 }]}
+                    style={[{ flexShrink: 0, fontWeight: 900 }]}
                     color="#999"
                   />
                 </TouchableOpacity>
@@ -120,6 +145,24 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                   isVisible={this.state.isDateTimePickerVisible}
                   onConfirm={this.handleDatePicked}
                   onCancel={this.hideDateTimePicker}
+                />
+              </View>
+
+              <View>
+                <RNPickerSelect
+                  hideIcon={true}
+                  placeholder={{
+                    label: 'Select a type...',
+                    value: null
+                  }}
+                  items={CardTypes}
+                  onValueChange={value => {
+                    this.setState({
+                      favSport: value
+                    });
+                  }}
+                  style={{}}
+                  value={this.state.favSport}
                 />
               </View>
             </View>
@@ -148,21 +191,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     margin: 0,
     paddingTop: 20,
-    padding: 10
+    padding: 18
   },
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 50,
-    paddingLeft: 20,
-    paddingRight: 20
+    height: 50
   },
   closeIcon: {},
   listItemTouchable: {
     width: '100%',
     height: 60,
     justifyContent: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row'
   }
 });

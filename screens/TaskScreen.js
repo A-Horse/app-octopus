@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   boardContainer: {
     width: '100%',
-    height: Dimensions.get('window').width * 0.9 / (16 / 9),
+    height: (Dimensions.get('window').width * 0.9) / (16 / 9),
     borderRadius: 5,
     position: 'relative',
     overflow: 'hidden',

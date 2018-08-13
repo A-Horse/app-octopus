@@ -1,4 +1,4 @@
-// flow
+// @flow
 import React from 'react';
 import {
   Image,
@@ -22,8 +22,19 @@ import Swiper from 'react-native-swiper';
 import { TaskCard } from './TaskCard';
 import { TaskCardCreater } from './TaskCardCreater';
 
-export class Track extends React.Component {
+export class Track extends React.Component<{
+  boards: any
+}> {
   componentWillMount() {}
+
+  addTask = ({ title, deadline }) => {
+    this.props.actions.ADD_TASK_CARD_REQUEST({
+      boardId: this.props.board.id,
+      trackId: this.props.track.id,
+      title,
+      deadline
+    });
+  };
 
   render() {
     const cardsSource = new ListView.DataSource({
@@ -42,7 +53,7 @@ export class Track extends React.Component {
               }}
               enableEmptySections={true}
             />
-            <TaskCardCreater />
+            <TaskCardCreater onSubmit={this.addTask} />
           </ScrollView>
         </View>
       </View>

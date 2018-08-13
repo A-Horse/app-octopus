@@ -16,7 +16,7 @@
     "@expo/samples": "2.1.1",
     "axios": "^0.18.0",
     "date-fns": "^2.0.0-alpha.16",
-    "eslint": "4.16.0",
+    "eslint": "^4.19.1",
     "expo": "29.0.0",
     "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
@@ -25,6 +25,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-modal": "^6.5.0",
     "react-native-modal-datetime-picker": "^6.0.0",
+    "react-native-picker-select": "^4.2.0",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.9.3",
     "react-redux": "^5.0.7",
@@ -38,11 +39,14 @@
     "rxjs": "^6.2.2"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.78.0",
     "jest-expo": "29.0.0",
+    "prettier": "^1.14.2",
+    "prettier-eslint": "^8.8.2",
     "react-native-scripts": "^1.14.0"
   }
 }
