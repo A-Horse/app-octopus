@@ -67,6 +67,11 @@ export class TaskCardCreater extends React.PureComponent<{}> {
       deadline: this.state.deadline,
       type: this.state.type
     });
+    this.setState({
+      isModalVisible: false,
+      title: null,
+      deadline: null
+    });
   };
 
   render() {

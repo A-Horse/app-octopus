@@ -32,6 +32,23 @@ export function task(state = {}, action: FSAction) {
           ...normalizedAddBoard.entities.TaskTrack
         }
       };
+
+    case Actions.ADD_TASK_CARD.REQUEST:
+      return {
+        ...state
+        /* addTodoFetching: true */
+      };
+    case Actions.ADD_TASK_CARD.SUCCESS:
+      return {
+        ...state
+        /* addTodoFetching: false */
+      };
+    case Actions.ADD_TASK_CARD.FAILURE:
+      return {
+        ...state
+        /* addTodoFetching: false */
+      };
+
     default:
       return state;
   }
