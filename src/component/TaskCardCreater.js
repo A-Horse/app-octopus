@@ -74,6 +74,10 @@ export class TaskCardCreater extends React.PureComponent<{}> {
     });
   };
 
+  showTaskTypePicker = () => {
+    this.picker.togglePicker();
+  };
+
   render() {
     return (
       <View>
@@ -93,7 +97,9 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onDone}>
-                <AppText style={{ fontSize: 16, color: '#177efb' }}>Done</AppText>
+                <AppText style={{ fontSize: 16, fontWeight: '500', color: '#177efb' }}>
+                  Done
+                </AppText>
               </TouchableOpacity>
             </View>
 
@@ -103,7 +109,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 inputStyle={{ width: '100%' }}
                 autoFocus
                 autoCapitalize="none"
-                textContentType="email"
+                textContentType="text"
                 multiline={true}
                 placeholder="What do you want to do"
                 onChangeText={value => {
@@ -111,16 +117,16 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 }}
               />
 
-              <View style={{}}>
+              <View style={{ marginTop: 20, borderBottomColor: '#ccc', borderBottomWidth: 1 }}>
                 <TouchableOpacity
                   style={styles.listItemTouchable}
                   onPress={this.showDateTimePicker}
                 >
                   <Icon.Ionicons
                     name="ios-clock"
-                    size={26}
+                    size={24}
                     style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#999"
+                    color="#158cb8"
                   />
 
                   <AppText
@@ -128,14 +134,14 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                       flex: 20,
                       color: this.state.deadline ? '#333' : '#bbb',
                       fontSize: 16,
-                      letterSpacing: 1.3,
                       fontWeight: '400',
-                      marginLeft: 1
+                      marginLeft: 1,
+                      paddingLeft: 10
                     }}
                   >
                     {this.state.deadline
                       ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
-                      : 'deadline'}
+                      : 'Deadline'}
                   </AppText>
                   <Icon.Ionicons
                     name="ios-arrow-forward"
@@ -153,22 +159,54 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 />
               </View>
 
-              <View>
-                <RNPickerSelect
-                  hideIcon={true}
-                  placeholder={{
-                    label: 'Select a type...',
-                    value: null
-                  }}
-                  items={CardTypes}
-                  onValueChange={value => {
-                    this.setState({
-                      favSport: value
-                    });
-                  }}
-                  style={{}}
-                  value={this.state.favSport}
-                />
+              <View style={{ marginTop: 20, borderBottomColor: '#ccc', borderBottomWidth: 1 }}>
+                <TouchableOpacity
+                  style={styles.listItemTouchable}
+                  onPress={this.showTaskTypePicker}
+                >
+                  <Icon.Ionicons
+                    name="ios-locate"
+                    size={24}
+                    style={[{ flexShrink: 0, fontWeight: 900 }]}
+                    color="#158cb8"
+                  />
+
+                  <RNPickerSelect
+                    hideIcon={true}
+                    placeholder={{
+                      label: 'Select a type...',
+                      value: null
+                    }}
+                    ref={el => {
+                      this.picker = el;
+                    }}
+                    items={CardTypes}
+                    onValueChange={value => {
+                      this.setState({
+                        type: value
+                      });
+                    }}
+                    style={{
+                      viewContainer: {
+                        alignSelf: 'center',
+                        flex: 20,
+                        paddingLeft: 10
+                      },
+                      inputIOS: {
+                        fontSize: 16,
+                        fontWeight: '400',
+                        marginLeft: 1
+                      }
+                    }}
+                    value={this.state.type}
+                  />
+                  <Icon.Ionicons
+                    name="ios-arrow-forward"
+                    size={26}
+                    style={[{ flexShrink: 0, fontWeight: 900 }]}
+                    color="#999"
+                  />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -207,7 +245,7 @@ const styles = StyleSheet.create({
   closeIcon: {},
   listItemTouchable: {
     width: '100%',
-    height: 60,
+    height: 40,
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row'
