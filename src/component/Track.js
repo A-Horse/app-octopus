@@ -89,14 +89,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   innerContainer: {
-    backgroundColor: '#e8e8e8',
+    backgroundColor: '#e9676b',
     padding: 20,
     margin: 20,
     borderRadius: 5
   },
-  scrollContainer: {},
-  cardContainer: {
-    backgroundColor: '#f8f8f8',
-    marginBottom: 5
-  }
+  scrollContainer: {}
 });
