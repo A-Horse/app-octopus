@@ -39,7 +39,7 @@ export class TaskBoardScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.tracks.length && (
+        {this.props.tracks.length ? (
           <Swiper
             style={styles.wrapper}
             key={`${this.props.board.id}-${this.props.board.name}`}
@@ -52,6 +52,10 @@ export class TaskBoardScreen extends React.Component {
               return <TaskTrackContainer key={track.id} track={track} board={this.props.board} />;
             })}
           </Swiper>
+        ) : (
+          <View>
+            <Text>hi</Text>
+          </View>
         )}
       </View>
     );

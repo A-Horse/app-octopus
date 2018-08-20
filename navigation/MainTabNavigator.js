@@ -26,11 +26,7 @@ TaskStack.navigationOptions = ({ navigation }) => {
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-briefcase${focused ? '' : '-outline'}`
-            : 'md-briefcase$-circle'
-        }
+        name={Platform.OS === 'ios' ? `ios-briefcase${focused ? '' : '-outline'}` : 'md-filing'}
       />
     )
   };

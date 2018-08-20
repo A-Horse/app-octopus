@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Platform } from 'react-native';
 
 export class AppText extends React.Component {
   render() {
-    return <Text {...this.props} style={[this.props.style, { fontFamily: 'PingFang TC' }]} />;
+    const fontFamily = Platform.OS === 'ios' ? 'PingFang TC' : '';
+    return <Text {...this.props} style={[this.props.style, { fontFamily }]} />;
   }
 }
