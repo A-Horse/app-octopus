@@ -20,7 +20,7 @@ export function task(state = {}, action: FSAction) {
       return {
         ...state,
         taskBoardMap: {
-          ...state.taskBoradMap,
+          ...state.taskBoardMap,
           ...normalizedAddBoard.entities.TaskBoard
         },
         taskCardMap: {
