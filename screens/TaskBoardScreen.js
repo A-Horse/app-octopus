@@ -24,8 +24,7 @@ import { TaskTrackContainer } from '../src/component/Track';
 export class TaskBoardScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('board', 'TaskBoard').name,
-      tabBarVisible: false
+      title: navigation.getParam('board', 'TaskBoard').name
     };
   };
 

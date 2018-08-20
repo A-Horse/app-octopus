@@ -126,7 +126,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                     name="ios-clock"
                     size={24}
                     style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#158cb8"
+                    color="#e9676b"
                   />
 
                   <AppText
@@ -195,6 +195,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                       inputIOS: {
                         fontSize: 16,
                         fontWeight: '400',
+                        color: '#333',
                         marginLeft: 1
                       }
                     }}
@@ -225,8 +226,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   text: {
-    color: '#333',
-    paddingLeft: 2
+    color: '#fff',
+    paddingLeft: 2,
+    fontWeight: '500'
   },
   modalContainer: {
     flex: 1,
