@@ -20,6 +20,7 @@ import { MonoText } from '../components/StyledText';
 import { SERVER_BASE } from '../src/env/env';
 import Swiper from 'react-native-swiper';
 import { TaskTrackContainer } from '../src/component/Track';
+import { DoubleBounce } from 'react-native-loader';
 
 export class TaskBoardScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -53,8 +54,8 @@ export class TaskBoardScreen extends React.Component {
             })}
           </Swiper>
         ) : (
-          <View>
-            <Text>hi</Text>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <DoubleBounce size={20} color="#e9676b" />
           </View>
         )}
       </View>
@@ -89,7 +90,7 @@ export const TaskBoardScreenContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#e8e8e8'
   },
   wrapper: {},
   text: {

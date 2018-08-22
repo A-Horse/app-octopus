@@ -228,7 +228,8 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
     paddingLeft: 2,
-    fontWeight: '500'
+    fontWeight: '500',
+    marginTop: 10
   },
   modalContainer: {
     flex: 1,

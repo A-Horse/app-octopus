@@ -21,6 +21,7 @@ import { SERVER_BASE } from '../../src/env/env';
 import Swiper from 'react-native-swiper';
 import { TaskCard } from './TaskCard';
 import { TaskCardCreater } from './TaskCardCreater';
+import { TrackEmpty } from './TrackEmpty';
 
 export class Track extends React.Component<{
   boards: any
@@ -45,6 +46,10 @@ export class Track extends React.Component<{
       <View sytle={styles.container}>
         <View style={styles.innerContainer}>
           <ScrollView style={styles.scrollContainer}>
+            <View>
+              <Text style={styles.trackName}>◉ {this.props.track.name}</Text>
+            </View>
+
             <ListView
               style={{}}
               dataSource={cardsSource}
@@ -53,6 +58,8 @@ export class Track extends React.Component<{
               }}
               enableEmptySections={true}
             />
+
+            {!this.props.cards.length && <TrackEmpty />}
             <TaskCardCreater onSubmit={this.addTask} />
           </ScrollView>
         </View>
@@ -87,6 +94,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  trackName: {
+    color: '#fff',
+    fontWeight: '500',
+    fontSize: 17,
+    marginBottom: 10
   },
   innerContainer: {
     backgroundColor: '#e9676b',
