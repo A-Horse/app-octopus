@@ -18,7 +18,7 @@ import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 import { MonoText } from '../components/StyledText';
 import { SERVER_BASE } from '../src/env/env';
-import Swiper from 'react-native-swiper';
+import Swiper from '../src/component/Swiper';
 import { TaskTrackContainer } from '../src/component/Track';
 import { DoubleBounce } from 'react-native-loader';
 
@@ -32,8 +32,12 @@ export class TaskBoardScreen extends React.Component {
   state = {
     selectedIndex: 0
   };
+  contentWidth: number;
 
   componentWillMount() {
+    const { width, height } = Dimensions.get('window');
+    this.width = width - 40;
+
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
   }
 
@@ -54,7 +58,13 @@ export class TaskBoardScreen extends React.Component {
             })}
           </Swiper>
         ) : (
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
             <DoubleBounce size={20} color="#e9676b" />
           </View>
         )}

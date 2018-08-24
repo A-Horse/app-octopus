@@ -14,6 +14,10 @@ const TaskStack = createStackNavigator({
   TaskBoard: TaskBoardScreenContainer
 });
 
+const TodoStack = createStackNavigator({
+  Home: TodoScreenContainer
+});
+
 TaskStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
