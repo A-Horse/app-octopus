@@ -148,7 +148,7 @@ export default class extends Component {
     showsVerticalScrollIndicator: false,
     bounces: false,
     scrollsToTop: false,
-    removeClippedSubviews: true,
+    removeClippedSubviews: false,
     automaticallyAdjustContentInsets: false,
     showsPagination: true,
     showsButtons: false,
@@ -683,7 +683,7 @@ export default class extends Component {
     const loopVal = loop ? 1 : 0;
     let pages = [];
 
-    const pageStyle = [{ width: width, height: height }, styles.slide];
+    const pageStyle = [{ width: width - 40, height: height }, styles.slide];
     const pageStyleLoading = {
       width,
       height,

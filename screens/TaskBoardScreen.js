@@ -30,22 +30,29 @@ export class TaskBoardScreen extends React.Component {
   };
 
   state = {
-    selectedIndex: 0
+    hidden: false
   };
-  contentWidth: number;
 
   componentWillMount() {
-    const { width, height } = Dimensions.get('window');
-    this.width = width - 40;
-
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
   }
 
+  componentWillUnmount() {
+    this.setState({ hidden: true });
+  }
+
   render() {
+    console.log(this.props);
     return (
       <View style={styles.container}>
-        {this.props.tracks.length ? (
+        {this.props.tracks.length && !this.state.hidden ? (
           <Swiper
+            scrollViewStyle={{
+              width: Dimensions.get('window').width - 40,
+              overflow: 'visible',
+              alignSelf: 'center'
+            }}
+            loop={false}
             style={styles.wrapper}
             key={`${this.props.board.id}-${this.props.board.name}`}
             automaticallyAdjustContentInsets={true}

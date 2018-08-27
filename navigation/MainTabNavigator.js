@@ -8,6 +8,7 @@ import { TaskScreenContainer } from '../screens/TaskScreen';
 import { TaskBoardScreenContainer } from '../screens/TaskBoardScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import { TodoScreenContainer } from '../screens/TodoScreen';
 
 const TaskStack = createStackNavigator({
   Home: TaskScreenContainer,

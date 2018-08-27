@@ -43,7 +43,7 @@ export class Track extends React.Component<{
     }).cloneWithRows(this.props.cards);
 
     return (
-      <View sytle={styles.container}>
+      <View style={styles.container}>
         <View style={styles.innerContainer}>
           <ScrollView style={styles.scrollContainer}>
             <View>
@@ -93,7 +93,8 @@ export const TaskTrackContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: 'transparent',
+    padding: 10
   },
   trackName: {
     color: '#fff',
@@ -104,7 +105,6 @@ const styles = StyleSheet.create({
   innerContainer: {
     backgroundColor: '#e9676b',
     padding: 20,
-    margin: 20,
     borderRadius: 5
   },
   scrollContainer: {}
