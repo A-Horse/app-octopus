@@ -42,7 +42,6 @@ export class TaskCardDetailScreen extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         {this.props.tracks.length && !this.state.hidden ? (
