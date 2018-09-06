@@ -48,6 +48,7 @@ export class TaskScreen extends React.Component {
           <ListView
             style={styles.listView}
             dataSource={boardsSource}
+            removeClippedSubviews={false}
             renderRow={board => {
               return (
                 <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
@@ -97,15 +98,17 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 10,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+    paddingBottom: 30
   },
   boardContainer: {
-    width: '100%',
-    height: Dimensions.get('window').width * 0.9 / (16 / 9),
+    width: '90%',
+    height: (Dimensions.get('window').width - 40) * 0.9 / (16 / 9),
     borderRadius: 5,
     position: 'relative',
     overflow: 'hidden',
-    marginTop: 10
+    marginTop: 10,
+    alignSelf: 'flex-end'
   },
   boardInnerContainer: {
     position: 'absolute',

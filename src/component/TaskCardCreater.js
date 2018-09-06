@@ -92,7 +92,7 @@ export class TaskCardCreater extends React.PureComponent<{}> {
                 <Icon.Ionicons
                   name="ios-close"
                   size={35}
-                  style={[{ fontWeight: 900 }]}
+                  style={[{ fontWeight: 900, padding: 5, margin: -5 }]}
                   color="#177efb"
                 />
               </TouchableOpacity>

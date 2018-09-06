@@ -9,6 +9,7 @@ import { TaskBoardScreenContainer } from '../screens/TaskBoardScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { TodoScreenContainer } from '../screens/TodoScreen';
+import { ProfileScreenContainer } from '../screens/ProfileScreen';
 
 const TaskStack = createStackNavigator({
   Home: TaskScreenContainer,
@@ -52,7 +53,7 @@ LinksStack.navigationOptions = {
 };
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
+  Settings: ProfileScreenContainer
 });
 
 SettingsStack.navigationOptions = {
