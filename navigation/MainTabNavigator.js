@@ -10,10 +10,12 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { TodoScreenContainer } from '../screens/TodoScreen';
 import { ProfileScreenContainer } from '../screens/ProfileScreen';
+import { TaskCardDetailScreenContainer } from '../screens/TaskCardDetailScreen';
 
 const TaskStack = createStackNavigator({
   Home: TaskScreenContainer,
-  TaskBoard: TaskBoardScreenContainer
+  TaskBoard: TaskBoardScreenContainer,
+  TaskCard: TaskCardDetailScreenContainer
 });
 
 const TodoStack = createStackNavigator({

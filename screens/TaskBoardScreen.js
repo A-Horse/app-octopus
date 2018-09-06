@@ -61,7 +61,14 @@ export class TaskBoardScreen extends React.Component {
             showsPagination={true}
           >
             {this.props.tracks.map(track => {
-              return <TaskTrackContainer key={track.id} track={track} board={this.props.board} />;
+              return (
+                <TaskTrackContainer
+                  key={track.id}
+                  track={track}
+                  board={this.props.board}
+                  navigation={this.props.navigation}
+                />
+              );
             })}
           </Swiper>
         ) : (

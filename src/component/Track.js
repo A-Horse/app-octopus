@@ -24,7 +24,8 @@ import { TaskCardCreater } from './TaskCardCreater';
 import { TrackEmpty } from './TrackEmpty';
 
 export class Track extends React.Component<{
-  boards: any
+  boards: any,
+  navigation: any
 }> {
   componentWillMount() {}
 
@@ -34,6 +35,12 @@ export class Track extends React.Component<{
       trackId: this.props.track.id,
       title,
       deadline
+    });
+  };
+
+  onCardPress = card => {
+    this.props.navigation.navigate('TaskCard', {
+      card
     });
   };
 
@@ -54,7 +61,7 @@ export class Track extends React.Component<{
               style={{}}
               dataSource={cardsSource}
               renderRow={card => {
-                return <TaskCard card={card} />;
+                return <TaskCard onPress={() => this.onCardPress(card)} card={card} />;
               }}
               enableEmptySections={true}
             />

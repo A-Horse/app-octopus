@@ -22,13 +22,14 @@ import Swiper from 'react-native-swiper';
 import { AppText } from './AppText';
 
 export class TaskCard extends React.PureComponent<{
-  card: Card
+  card: Card,
+  onPress: any
 }> {
   componentWillMount() {}
 
   render() {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this.props.onPress}>
         <View style={styles.container}>
           <AppText style={styles.cardTitle}>{this.props.card.title}</AppText>
         </View>
