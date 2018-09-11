@@ -5,7 +5,7 @@ import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
 
 import { ofType } from 'redux-observable';
-import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
+import { mergeMap, tap, map, ignoreElements } from 'rxjs/operators';
 
 export const SIGNIN = action$ => {
   return action$.pipe(
@@ -34,4 +34,12 @@ export const SIGNIN_SUCCESS = action$ =>
       NavigationService.navigate('Main');
     }),
     ignoreElements()
+  );
+
+export const LOGOUT_REQUEST = action$ =>
+  action$.pipe(
+    ofType(Actions.LOGOUT.REQUEST),
+    map(() => ({
+      type: 'RESET'
+    }))
   );

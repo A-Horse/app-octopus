@@ -5,7 +5,16 @@ import R from 'ramda';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
-import { ScrollView, StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
+import {
+  ScrollView,
+  SectionList,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Image
+} from 'react-native';
+import { Button } from 'react-native-elements';
 
 function makeGravatarHash(email) {
   return md5(email.trim().toLowerCase());
@@ -13,14 +22,21 @@ function makeGravatarHash(email) {
 
 const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
 
+const sections = {};
+
 function makeGravatarUrl(email, size) {
   const urlQuery = size ? makeGravatarHash(email) + `?s=${size}` : makeGravatarHash(email);
   return gravatarUrlBase.concat(urlQuery);
 }
 
-export class ProfileScreen extends React.Component {
+export class ProfileScreen extends React.Component<{}> {
   static navigationOptions = {
     title: 'Profile'
+  };
+
+  logout = () => {
+    this.props.navigation.navigate('Login');
+    this.props.actions.LOGOUT_REQUEST();
   };
 
   render() {
@@ -39,6 +55,12 @@ export class ProfileScreen extends React.Component {
             </View>
           </View>
         </TouchableOpacity>
+        <Button
+          icon={{ name: 'logout', type: 'material-community' }}
+          title="Logout"
+          color="#260246"
+          onPress={this.logout}
+        />
       </ScrollView>
     );
   }
