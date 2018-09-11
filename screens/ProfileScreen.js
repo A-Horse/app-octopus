@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import md5 from 'blueimp-md5';
 import R from 'ramda';
