@@ -29,23 +29,17 @@ export class TaskBoardScreen extends React.Component {
     };
   };
 
-  state = {
-    hidden: false
-  };
-
   componentWillMount() {
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.navigation.getParam('board').id });
   }
 
-  componentWillUnmount() {
-    this.setState({ hidden: true });
-  }
+  componentWillUnmount() {}
 
   render() {
     console.log(this.props);
     return (
       <View style={styles.container}>
-        {this.props.tracks.length && !this.state.hidden ? (
+        {this.props.tracks.length ? (
           <Swiper
             scrollViewStyle={{
               width: Dimensions.get('window').width - 40,
@@ -114,7 +108,8 @@ export const TaskBoardScreenContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#e8e8e8',
+    overflow: 'hidden'
   },
   wrapper: {},
   text: {

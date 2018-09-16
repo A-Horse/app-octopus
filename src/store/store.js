@@ -21,23 +21,18 @@ function setupStore() {
 
   const store = createStore(
     persistedReducer,
-    compose(
-      applyMiddleware(epicMiddleware, logger),
-      reduxReset()
-    )
+    compose(applyMiddleware(epicMiddleware, logger), reduxReset())
   );
 
   return { store, epicMiddleware };
 }
 
-export default () => {
-  const { store, epicMiddleware } = setupStore();
+const storeAndEpicMiddleware = setupStore();
 
-  const persistor = persistStore(store, null, () => {});
+export const persistor = persistStore(storeAndEpicMiddleware.store, null, () => {});
 
-  /* store.dispatch({ type: 'RESET' });
-   * persistor.purge();
-   */
-  epicMiddleware.run(rootEpic);
-  return { store, persistor };
-};
+/* store.dispatch({ type: 'RESET' });
+ * persistor.purge();
+ */
+storeAndEpicMiddleware.epicMiddleware.run(rootEpic);
+export const store = storeAndEpicMiddleware.store;

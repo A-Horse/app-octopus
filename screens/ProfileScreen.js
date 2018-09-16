@@ -14,7 +14,7 @@ import {
   View,
   Image
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, List, ListItem } from 'react-native-elements';
 
 function makeGravatarHash(email) {
   return md5(email.trim().toLowerCase());
@@ -55,6 +55,17 @@ export class ProfileScreen extends React.Component<{}> {
             </View>
           </View>
         </TouchableOpacity>
+
+        <List containerStyle={{ marginBottom: 20 }}>
+          <ListItem
+            key="setting"
+            title={'App setting'}
+            onPress={() => {
+              this.props.navigation.navigate('Settings');
+            }}
+          />
+        </List>
+
         <Button
           icon={{ name: 'logout', type: 'material-community' }}
           title="Logout"

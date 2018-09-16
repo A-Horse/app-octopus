@@ -6,8 +6,7 @@ import { Provider } from 'react-redux';
 import { PersistorContext } from './src/component/context/PersistorContext';
 
 import NavigationService from './src/service/single/navigation.service';
-import createStore from './src/store/store';
-const { store, persistor } = createStore();
+import { store, persistor } from './src/store/store';
 
 export default class App extends React.Component {
   state = {

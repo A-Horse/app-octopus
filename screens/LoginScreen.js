@@ -26,12 +26,18 @@ export class LoginScreen extends React.Component<{
     password: null
   };
 
+  componentWillMount() {}
+
   onLogin = () => {
     this.props.actions.SIGNIN_REQUEST({
       email: this.state.email,
       password: this.state.password
     });
   };
+
+  isValid(): boolean {
+    return this.state.email && this.state.password;
+  }
 
   render() {
     return (
@@ -46,6 +52,7 @@ export class LoginScreen extends React.Component<{
             }}
           />
 
+          <FormLabel>Password</FormLabel>
           <FormInput
             secureTextEntry={true}
             autoCapitalize="none"
@@ -58,8 +65,10 @@ export class LoginScreen extends React.Component<{
 
         <Button
           icon={{ name: 'login', type: 'material-community' }}
+          style={styles.submitButton}
           title="Login"
-          color="#260246"
+          backgroundColor={this.isValid() ? '#44a2df' : '#e8e8e8'}
+          borderRadius={3}
           onPress={this.onLogin}
         />
       </View>
@@ -86,5 +95,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
     paddingTop: 100
+  },
+  submitButton: {
+    marginTop: 20,
+    borderRadius: 5
   }
 });

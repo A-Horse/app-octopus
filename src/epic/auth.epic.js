@@ -3,6 +3,7 @@ import axios from 'axios';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
+import { persistor } from '../store/store';
 
 import { ofType } from 'redux-observable';
 import { mergeMap, tap, map, ignoreElements } from 'rxjs/operators';
@@ -37,6 +38,15 @@ export const SIGNIN_SUCCESS = action$ =>
   );
 
 export const LOGOUT_REQUEST = action$ =>
+  action$.pipe(
+    ofType(Actions.LOGOUT.REQUEST),
+    tap(() => {
+      persistor.purge();
+    }),
+    ignoreElements()
+  );
+
+export const LOGOUT_REQUEST2 = action$ =>
   action$.pipe(
     ofType(Actions.LOGOUT.REQUEST),
     map(() => ({
