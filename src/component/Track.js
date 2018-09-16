@@ -52,12 +52,13 @@ export class Track extends React.Component<{
     return (
       <View style={styles.container}>
         <View style={styles.innerContainer}>
-          <ScrollView style={styles.scrollContainer}>
+          <ScrollView removeClippedSubviews={false} style={styles.scrollContainer}>
             <View>
               <Text style={styles.trackName}>◉ {this.props.track.name}</Text>
             </View>
 
             <ListView
+              removeClippedSubviews={false}
               style={{}}
               dataSource={cardsSource}
               renderRow={card => {
