@@ -9,11 +9,11 @@ import {
   TouchableOpacity,
   Dimensions,
   ListView,
-  View
+  View,
+  Modal
 } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
-import { Icon } from 'expo';
 import { makeActionRequestCollection } from '../../src/action/actions';
 import format from 'date-fns/format';
 import { bindActionCreators } from 'redux';
@@ -21,10 +21,10 @@ import { MonoText } from '../../components/StyledText';
 import { SERVER_BASE } from '../../src/env/env';
 import Swiper from 'react-native-swiper';
 import { AppText } from './AppText';
-import Modal from 'react-native-modal';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import RNPickerSelect from 'react-native-picker-select';
+import { Icon } from 'expo';
 
 const CardTypes = [
   {
@@ -81,137 +81,10 @@ export class TaskCardCreater extends React.PureComponent<{}> {
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={this.toggleModal}>
+        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={this.props.onPress}>
+          <Icon.FontAwesome name="plus" size={18} style={[{ marginTop: 10, marginRight: 3 }]} color="#fff" />
           <AppText style={styles.text}>Add Task...</AppText>
         </TouchableOpacity>
-
-        <Modal style={{ margin: 0 }} isVisible={this.state.isModalVisible}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalHeader}>
-              <TouchableOpacity style={styles.closeIcon} onPress={this.toggleModal}>
-                <Icon.Ionicons
-                  name="ios-close"
-                  size={35}
-                  style={[{ fontWeight: 900, padding: 5, margin: -5 }]}
-                  color="#177efb"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.onDone}>
-                <AppText style={{ fontSize: 16, fontWeight: '500', color: '#177efb' }}>
-                  Done
-                </AppText>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <FormInput
-                containerStyle={{ margin: 0, padding: 0, marginLeft: 0, marginRight: 0 }}
-                inputStyle={{ width: '100%' }}
-                autoFocus
-                autoCapitalize="none"
-                textContentType="text"
-                multiline={true}
-                placeholder="What do you want to do"
-                onChangeText={value => {
-                  this.setState({ title: value });
-                }}
-              />
-
-              <View style={{ marginTop: 20, borderBottomColor: '#ccc', borderBottomWidth: 1 }}>
-                <TouchableOpacity
-                  style={styles.listItemTouchable}
-                  onPress={this.showDateTimePicker}
-                >
-                  <Icon.Ionicons
-                    name="ios-clock"
-                    size={24}
-                    style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#e9676b"
-                  />
-
-                  <AppText
-                    style={{
-                      flex: 20,
-                      color: this.state.deadline ? '#333' : '#bbb',
-                      fontSize: 16,
-                      fontWeight: '400',
-                      marginLeft: 1,
-                      paddingLeft: 10
-                    }}
-                  >
-                    {this.state.deadline
-                      ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
-                      : 'Deadline'}
-                  </AppText>
-                  <Icon.Ionicons
-                    name="ios-arrow-forward"
-                    size={26}
-                    style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#999"
-                  />
-                </TouchableOpacity>
-                <DateTimePicker
-                  mode="datetime"
-                  date={this.state.deadline ? new Date(this.state.deadline) : new Date()}
-                  isVisible={this.state.isDateTimePickerVisible}
-                  onConfirm={this.handleDatePicked}
-                  onCancel={this.hideDateTimePicker}
-                />
-              </View>
-
-              <View style={{ marginTop: 20, borderBottomColor: '#ccc', borderBottomWidth: 1 }}>
-                <TouchableOpacity
-                  style={styles.listItemTouchable}
-                  onPress={this.showTaskTypePicker}
-                >
-                  <Icon.Ionicons
-                    name="ios-locate"
-                    size={24}
-                    style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#158cb8"
-                  />
-
-                  <RNPickerSelect
-                    hideIcon={true}
-                    placeholder={{
-                      label: 'Select a type...',
-                      value: null
-                    }}
-                    ref={el => {
-                      this.picker = el;
-                    }}
-                    items={CardTypes}
-                    onValueChange={value => {
-                      this.setState({
-                        type: value
-                      });
-                    }}
-                    style={{
-                      viewContainer: {
-                        alignSelf: 'center',
-                        flex: 20,
-                        paddingLeft: 10
-                      },
-                      inputIOS: {
-                        fontSize: 16,
-                        fontWeight: '400',
-                        color: '#333',
-                        marginLeft: 1
-                      }
-                    }}
-                    value={this.state.type}
-                  />
-                  <Icon.Ionicons
-                    name="ios-arrow-forward"
-                    size={26}
-                    style={[{ flexShrink: 0, fontWeight: 900 }]}
-                    color="#999"
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Modal>
       </View>
     );
   }

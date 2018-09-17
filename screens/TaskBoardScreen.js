@@ -25,7 +25,8 @@ import { DoubleBounce } from 'react-native-loader';
 export class TaskBoardScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('board', 'TaskBoard').name
+      title: navigation.getParam('board', 'TaskBoard').name,
+      headerBackTitle: ' '
     };
   };
 
@@ -36,7 +37,6 @@ export class TaskBoardScreen extends React.Component {
   componentWillUnmount() {}
 
   render() {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         {this.props.tracks.length ? (
@@ -87,9 +87,7 @@ export const TaskBoardScreenContainer = connect(
 
     let tracks;
     if (board && board.tracks) {
-      tracks = board.tracks
-        .map(id => state.task.taskTrackMap[id])
-        .sort((a, b) => a.index > b.index);
+      tracks = board.tracks.map(id => state.task.taskTrackMap[id]).sort((a, b) => a.index > b.index);
     }
 
     return {

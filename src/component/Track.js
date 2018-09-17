@@ -44,6 +44,13 @@ export class Track extends React.Component<{
     });
   };
 
+  goToCreate = () => {
+    this.props.navigation.navigate('TaskCreate', {
+      board: this.props.board,
+      track: this.props.track
+    });
+  };
+
   render() {
     const cardsSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -68,7 +75,7 @@ export class Track extends React.Component<{
             />
 
             {!this.props.cards.length && <TrackEmpty />}
-            <TaskCardCreater onSubmit={this.addTask} />
+            <TaskCardCreater onPress={this.goToCreate} onSubmit={this.addTask} />
           </ScrollView>
         </View>
       </View>

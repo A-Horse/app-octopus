@@ -11,11 +11,13 @@ import SettingsScreen from '../screens/SettingsScreen';
 import { TodoScreenContainer } from '../screens/TodoScreen';
 import { ProfileScreenContainer } from '../screens/ProfileScreen';
 import { TaskCardDetailScreenContainer } from '../screens/TaskCardDetailScreen';
+import { TaskCreaterScreenContainer } from '../screens/TaskCreaterScreen';
 
 const TaskStack = createStackNavigator({
   Home: TaskScreenContainer,
   TaskBoard: TaskBoardScreenContainer,
-  TaskCard: TaskCardDetailScreenContainer
+  TaskCard: TaskCardDetailScreenContainer,
+  TaskCreate: TaskCreaterScreenContainer
 });
 
 const TodoStack = createStackNavigator({
@@ -47,10 +49,7 @@ const LinksStack = createStackNavigator({
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'} />
   )
 };
 

@@ -47,6 +47,7 @@ export class LoginScreen extends React.Component<{
           <FormInput
             autoCapitalize="none"
             textContentType="text"
+            spellCheck={false}
             onChangeText={value => {
               this.setState({ email: value });
             }}
@@ -57,6 +58,7 @@ export class LoginScreen extends React.Component<{
             secureTextEntry={true}
             autoCapitalize="none"
             textContentType="password"
+            spellCheck={false}
             onChangeText={value => {
               this.setState({ password: value });
             }}
