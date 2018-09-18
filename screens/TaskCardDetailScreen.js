@@ -25,7 +25,7 @@ import { DoubleBounce } from 'react-native-loader';
 export class TaskCardDetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'CARD',
+      title: navigation.getParam('card').title,
       headerBackTitle: null
     };
   };
