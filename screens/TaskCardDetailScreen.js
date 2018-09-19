@@ -44,7 +44,13 @@ export class TaskCardDetailScreen extends React.Component {
     return (
       <View style={styles.container}>
         <FormInput
-          containerStyle={{ borderBottomColor: '#e8e8e8', paddingBottom: 6, marginTop: 12 }}
+          containerStyle={{
+            borderBottomWidth: 0,
+            padding: 6,
+            marginTop: 12,
+            backgroundColor: '#e8e8e8',
+            borderRadius: 3
+          }}
           placeholder="What do you want to do"
           defaultValue={this.props.card.title}
           onChangeText={value => {
