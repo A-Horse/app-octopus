@@ -84,11 +84,13 @@ export class TaskCreaterScreen extends React.Component {
       deadline: this.state.deadline,
       type: this.state.type
     });
+
     /* this.setState({
      *   isModalVisible: false,
      *   title: null,
      *   deadline: null
      * }); */
+
     this.props.navigation.pop();
   };
 
