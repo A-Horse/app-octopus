@@ -21,11 +21,13 @@ import { SERVER_BASE } from '../src/env/env';
 import Swiper from '../src/component/Swiper';
 import { TaskTrackContainer } from '../src/component/Track';
 import { DoubleBounce } from 'react-native-loader';
+import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
 export class TaskCardDetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('card').title,
+      /* title: navigation.getParam('card').title, */
+      titke: null,
       headerBackTitle: null
     };
   };
@@ -41,7 +43,14 @@ export class TaskCardDetailScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Task</Text>
+        <FormInput
+          containerStyle={{ borderBottomColor: '#e8e8e8', paddingBottom: 6, marginTop: 12 }}
+          placeholder="What do you want to do"
+          defaultValue={this.props.card.title}
+          onChangeText={value => {
+            this.setState({ title: value });
+          }}
+        />
       </View>
     );
   }
@@ -49,7 +58,11 @@ export class TaskCardDetailScreen extends React.Component {
 
 export const TaskCardDetailScreenContainer = connect(
   (state, props) => {
-    return {};
+    const cardId = props.navigation.getParam('card').id;
+    const card = state.task.taskCardMap[cardId] || {};
+    return {
+      card
+    };
   },
   dispatch => {
     return {
@@ -61,6 +74,6 @@ export const TaskCardDetailScreenContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#fff'
   }
 });
