@@ -40,6 +40,13 @@ export class TaskCardDetailScreen extends React.Component {
 
   componentWillUnmount() {}
 
+  updateCard(data) {
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.id,
+      ...data
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -47,14 +54,35 @@ export class TaskCardDetailScreen extends React.Component {
           containerStyle={{
             borderBottomWidth: 0,
             padding: 6,
+            paddingLeft: 12,
+            paddingRight: 12,
             marginTop: 12,
             backgroundColor: '#e8e8e8',
-            borderRadius: 3
+            borderRadius: 6
           }}
+          inputStyle={{
+            width: '100%'
+          }}
+          multiline={true}
           placeholder="What do you want to do"
           defaultValue={this.props.card.title}
           onChangeText={value => {
             this.setState({ title: value });
+            this.updateCard({ title: value });
+          }}
+        />
+
+        <FormLabel style={{ marginTop: 12 }}>Remarks</FormLabel>
+
+        <FormInput
+          containerStyle={{
+            borderBottomWidth: 0
+          }}
+          placeholder="write remarks..."
+          defaultValue={this.props.card.content}
+          onChangeText={value => {
+            this.setState({ title: value });
+            this.updateCard({ title: value });
           }}
         />
       </View>

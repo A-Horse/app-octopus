@@ -6,7 +6,7 @@ import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
 
 import { ofType } from 'redux-observable';
-import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
+import { mergeMap, tap, switchMap, debounceTime, ignoreElements } from 'rxjs/operators';
 
 export const GET_TASK_BOARD_LIST = action$ => {
   return action$.pipe(
@@ -46,5 +46,17 @@ export const ADD_TASK_CARD = action$ =>
         .post(`${API_BASE}/task-card`, action.payload)
         .then(Actions.ADD_TASK_CARD.success)
         .catch(Actions.ADD_TASK_CARD.failure);
+    })
+  );
+
+export const UPDATE_TASK_CARD = action$ =>
+  action$.pipe(
+    ofType(Actions.UPDATE_TASK_CARD.REQUEST),
+    debounceTime(300),
+    switchMap(action => {
+      return axios
+        .patch(`${API_BASE}/task-card/${action.payload.id}`, action.payload)
+        .then(Actions.UPDATE_TASK_CARD.success)
+        .catch(Actions.UPDATE_TASK_CARD.failure);
     })
   );
