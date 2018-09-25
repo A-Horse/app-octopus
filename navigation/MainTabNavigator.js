@@ -33,12 +33,7 @@ TaskStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Task',
     tabBarVisible,
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? `ios-paper${focused ? '' : '-outline'}` : 'md-filing'}
-      />
-    )
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'tasks'} />
   };
 };
 
@@ -48,9 +43,7 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'} />
-  )
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'thermometer-1'} />
 };
 
 const SettingsStack = createStackNavigator({
@@ -67,12 +60,7 @@ SettingsStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarVisible,
     tabBarLabel: 'Profile',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-      />
-    )
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'user-circle'} />
   };
 };
 
