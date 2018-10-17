@@ -9,6 +9,7 @@ import { TaskBoardScreenContainer } from '../screens/TaskBoardScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { TodoScreenContainer } from '../screens/TodoScreen';
+import { TodoBoxScreenContainer } from '../screens/TodoBoxScreen';
 import { ProfileScreenContainer } from '../screens/ProfileScreen';
 import { TaskCardDetailScreenContainer } from '../screens/TaskCardDetailScreen';
 import { TaskCreaterScreenContainer } from '../screens/TaskCreaterScreen';
@@ -21,8 +22,21 @@ const TaskStack = createStackNavigator({
 });
 
 const TodoStack = createStackNavigator({
-  Home: TodoScreenContainer
+  TodoBox: TodoBoxScreenContainer,
+  Todo: TodoScreenContainer
 });
+
+TodoStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarLabel: 'Todo',
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'check-square'} />
+  };
+};
 
 TaskStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
@@ -66,6 +80,6 @@ SettingsStack.navigationOptions = ({ navigation }) => {
 
 export default createBottomTabNavigator({
   TaskStack,
-  LinksStack,
+  TodoStack,
   SettingsStack
 });
