@@ -9,16 +9,17 @@ import { MonoText } from '../components/StyledText';
 import { AppRegistry, TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 
 class TodoBox extends React.Component<{
-  todoBox: any
+  todoBox: any,
+  onPress: any
 }> {
   render() {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this.props.onPress} style={{ flexDirection: 'row' }}>
         <Icon.FontAwesome
           name={this.props.todoBox.iconName}
           size={26}
           style={{ marginBottom: -3 }}
-          color={todoBox.iconColor}
+          color={this.props.todoBox.iconColor}
         />
         <Text style={{}}>{this.props.todoBox.name}</Text>
       </TouchableOpacity>
@@ -53,7 +54,7 @@ export class TodoBoxScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList data={todoBoxs} renderItem={({ item }) => <TodoBox todoBox={item} />} />
+        <FlatList data={this.todoBoxs} renderItem={({ item }) => <TodoBox todoBox={item} />} />
       </View>
     );
   }
