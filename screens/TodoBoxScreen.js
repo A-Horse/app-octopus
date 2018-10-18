@@ -14,14 +14,28 @@ class TodoBox extends React.Component<{
 }> {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={{ flexDirection: 'row' }}>
-        <Icon.FontAwesome
-          name={this.props.todoBox.iconName}
-          size={26}
-          style={{ marginBottom: -3 }}
-          color={this.props.todoBox.iconColor}
-        />
-        <Text style={{}}>{this.props.todoBox.name}</Text>
+      <TouchableOpacity
+        onPress={this.props.onPress}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingLeft: 12,
+          paddingRight: 12,
+          paddingBottom: 12,
+          paddingTop: 12,
+          borderBottomWidth: 0.5,
+          borderBottomColor: '#e8e8e8'
+        }}
+      >
+        <View style={{ width: 40 }}>
+          <Icon.FontAwesome
+            name={this.props.todoBox.iconName}
+            size={26}
+            style={{ marginBottom: -3 }}
+            color={this.props.todoBox.iconColor}
+          />
+        </View>
+        <Text style={{ fontSize: 19 }}>{this.props.todoBox.name}</Text>
       </TouchableOpacity>
     );
   }
@@ -51,10 +65,17 @@ export class TodoBoxScreen extends React.Component {
 
   componentWillMount() {}
 
+  onTodoBoxPress = () => {
+    /* this.props.navigation; */
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <FlatList data={this.todoBoxs} renderItem={({ item }) => <TodoBox todoBox={item} />} />
+        <FlatList
+          data={this.todoBoxs}
+          renderItem={({ item }) => <TodoBox onPress={this.onTodoBoxPress} todoBox={item} />}
+        />
       </View>
     );
   }
@@ -74,6 +95,6 @@ export const TodoBoxScreenContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#f8f8f8'
   }
 });

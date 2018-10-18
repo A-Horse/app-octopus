@@ -26,9 +26,10 @@ export class TodoScreen extends React.Component {
   state = {
     selectedIndex: 0
   };
-  contentWidth: number;
 
-  componentWillMount() {}
+  componentWillMount() {
+    this.props.actions.GET_TODOBOX_REQUEST({ todoBoxId: this.props.todoBoxId });
+  }
 
   render() {
     return (
@@ -41,7 +42,11 @@ export class TodoScreen extends React.Component {
 
 export const TodoScreenContainer = connect(
   (state, props) => {
-    return {};
+    const todoBoxId = props.navigation.getParam('todoBoxId', '@user');
+
+    return {
+      todoBoxId
+    };
   },
   dispatch => {
     return {
