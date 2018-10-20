@@ -15,7 +15,7 @@ class TodoBox extends React.Component<{
   render() {
     return (
       <TouchableOpacity
-        onPress={this.props.onPress}
+        onPress={() => this.props.onPress(this.props.todoBox)}
         style={{
           flexDirection: 'row',
           alignItems: 'center',
@@ -50,12 +50,14 @@ export class TodoBoxScreen extends React.Component {
 
   todoBoxs = [
     {
+      id: '@user',
       key: '@user',
       name: 'Your Todo',
       iconColor: '#333',
       iconName: 'address-book'
     },
     {
+      id: '@task',
       key: '@task',
       name: 'Task Todo',
       iconColor: '#333',
@@ -65,8 +67,11 @@ export class TodoBoxScreen extends React.Component {
 
   componentWillMount() {}
 
-  onTodoBoxPress = () => {
-    /* this.props.navigation; */
+  onTodoBoxPress = todoBox => {
+    console.log('todoBox', todoBox);
+    this.props.navigation.navigate('Todo', {
+      todoBox: todoBox
+    });
   };
 
   render() {

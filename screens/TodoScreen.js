@@ -16,10 +16,10 @@ import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 
-export class TodoScreen extends React.Component {
+export class TodoScreen extends React.Component<{ todoBoxId: string }> {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('board', 'TaskBoard').name
+      title: navigation.getParam('todoBox').name
     };
   };
 
@@ -35,6 +35,7 @@ export class TodoScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>hi</Text>
+        <Text>{this.props.todoBoxId}</Text>
       </View>
     );
   }
@@ -42,7 +43,7 @@ export class TodoScreen extends React.Component {
 
 export const TodoScreenContainer = connect(
   (state, props) => {
-    const todoBoxId = props.navigation.getParam('todoBoxId', '@user');
+    const todoBoxId = props.navigation.getParam('todoBox').id;
 
     return {
       todoBoxId
