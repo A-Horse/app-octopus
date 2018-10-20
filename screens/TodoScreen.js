@@ -16,6 +16,18 @@ import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 
+class TodoItem extends React.Component<{ todo: any }> {
+  render() {
+    return (
+      <TouchableOpacity>
+        <View>
+          <Text>{this.props.todo.content}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
+
 export class TodoScreen extends React.Component<{ todoBoxId: string }> {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -34,8 +46,11 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>hi</Text>
-        <Text>{this.props.todoBoxId}</Text>
+        <FlatList
+          keyExtractor={item => String(item.id)}
+          data={this.props.todos}
+          renderItem={({ item }) => <TodoItem todo={item} />}
+        />
       </View>
     );
   }
@@ -44,9 +59,11 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
 export const TodoScreenContainer = connect(
   (state, props) => {
     const todoBoxId = props.navigation.getParam('todoBox').id;
+    const todos = state.todo[todoBoxId] || [];
 
     return {
-      todoBoxId
+      todoBoxId,
+      todos
     };
   },
   dispatch => {
