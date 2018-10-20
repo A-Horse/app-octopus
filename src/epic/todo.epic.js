@@ -10,7 +10,6 @@ import { mergeMap, map, tap, switchMap, debounceTime, ignoreElements } from 'rxj
 export const GET_TODOBOX = (action$, state$) => {
   return action$.pipe(
     ofType(Actions.GET_TODOBOX.REQUEST),
-    /* mergeMap(state$), */
     mergeMap(action => {
       return state$.pipe(
         map(state => state.auth.user.id),
