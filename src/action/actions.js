@@ -9,6 +9,7 @@ const actionNames = [
   'UPDATE_TASK_CARD',
 
   'GET_TODOBOX',
+  'UPDATE_TODO',
 
   'LOGOUT'
 ];

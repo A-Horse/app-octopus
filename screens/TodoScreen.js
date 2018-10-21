@@ -15,12 +15,20 @@ import {
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
+import { CheckBox } from '../components/CheckBox';
 
 class TodoItem extends React.Component<{ todo: any }> {
+  onChange = (isDone: boolean) => {
+    this.props.onTodoDoneChange({
+      id: this.props.todo.id,
+      isDone
+    });
+  };
   render() {
     return (
       <TouchableOpacity>
         <View>
+          <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.props.onTodoDoneChange} />
           <Text>{this.props.todo.content}</Text>
         </View>
       </TouchableOpacity>
@@ -42,6 +50,13 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
   componentWillMount() {
     this.props.actions.GET_TODOBOX_REQUEST({ todoBoxId: this.props.todoBoxId });
   }
+
+  onTodoDoneChange = (todoId: string, isDone: boolean) => {
+    this.props.actions.UPDATE_TODO_REQUEST({
+      id,
+      isDone
+    });
+  };
 
   render() {
     return (
