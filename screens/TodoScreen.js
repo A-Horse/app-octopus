@@ -24,11 +24,12 @@ class TodoItem extends React.Component<{ todo: any }> {
       isDone
     });
   };
+
   render() {
     return (
       <TouchableOpacity>
         <View>
-          <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.props.onTodoDoneChange} />
+          <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.onChange} />
           <Text>{this.props.todo.content}</Text>
         </View>
       </TouchableOpacity>
@@ -52,10 +53,13 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
   }
 
   onTodoDoneChange = (todoId: string, isDone: boolean) => {
-    this.props.actions.UPDATE_TODO_REQUEST({
-      id,
-      isDone
-    });
+    this.props.actions.UPDATE_TODO_REQUEST(
+      {
+        id: todoId,
+        isDone
+      },
+      { todoBoxId: this.props.todoBoxId }
+    );
   };
 
   render() {
@@ -64,7 +68,7 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
         <FlatList
           keyExtractor={item => String(item.id)}
           data={this.props.todos}
-          renderItem={({ item }) => <TodoItem todo={item} />}
+          renderItem={({ item }) => <TodoItem onTodoDoneChange={this.onTodoDoneChange} todo={item} />}
         />
       </View>
     );

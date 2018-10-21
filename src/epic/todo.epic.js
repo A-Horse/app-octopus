@@ -5,17 +5,19 @@ import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
 
 import { ofType } from 'redux-observable';
-import { mergeMap, map, tap, switchMap, debounceTime, ignoreElements } from 'rxjs/operators';
+import { mergeMap, map, tap, take, switchMap, debounceTime, ignoreElements } from 'rxjs/operators';
 
-export const UPDATE_TODO = action$ => {
-  return actions$.pipe(ofType(Actions.UPDATE_TODO.REQUEST));
-};
+/* export const UPDATE_TODO = action$ => {
+ *   return action$.pipe(ofType(Actions.UPDATE_TODO.REQUEST));
+ * };
+ *  */
 
 export const GET_TODOBOX = (action$, state$) => {
   return action$.pipe(
     ofType(Actions.GET_TODOBOX.REQUEST),
     mergeMap(action => {
       return state$.pipe(
+        take(1),
         map(state => state.auth.user.id),
         mergeMap(userId => {
           let apiUrl;
