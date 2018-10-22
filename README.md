@@ -15,3 +15,6 @@ it will be build native app
 `expo build ios`
 ### android
 `expo build android`
+
+## design
+Thanks for @Ming design
