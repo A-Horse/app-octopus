@@ -15,7 +15,7 @@ export function todo(state = { token: null, userId: null }, action: FSAction) {
 
     case Actions.UPDATE_TODO.REQUEST: {
       const todos = state[action.meta.todoBoxId] || [];
-      const index = R.findIndex(R.propEq(action.payload.id))(todos);
+      const index = R.findIndex(R.propEq('id', action.payload.id))(todos);
       return {
         ...state,
         [action.meta.todoBoxId]: R.update(
