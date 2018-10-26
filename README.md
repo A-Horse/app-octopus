@@ -15,9 +15,9 @@ use expo for start toolkit.
 it will be build native app
 
 ### ios
-`expo build ios`
+`expo build:ios`
 ### android
-`expo build android`
+`expo build:android`
 
 ## design
 Thanks for @Ming design
