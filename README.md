@@ -1,6 +1,9 @@
 # octopus app
 > development by React native
 
+![Haseo](./assets/images/icon-small.png)
+
+
 ## development
 ### start
 
