@@ -52,11 +52,10 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
     this.props.actions.GET_TODOBOX_REQUEST({ todoBoxId: this.props.todoBoxId });
   }
 
-  onTodoDoneChange = (todoId: string, isDone: boolean) => {
+  onTodoDoneChange = (todoItem: any) => {
     this.props.actions.UPDATE_TODO_REQUEST(
       {
-        id: todoId,
-        isDone
+        ...todoItem
       },
       { todoBoxId: this.props.todoBoxId }
     );
