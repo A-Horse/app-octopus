@@ -28,9 +28,21 @@ class TodoItem extends React.Component<{ todo: any }> {
   render() {
     return (
       <TouchableOpacity>
-        <View>
-          <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.onChange} />
-          <Text>{this.props.todo.content}</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+          }}
+        >
+          <View style={{ flexShrink: 0 }}>
+            <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.onChange} />
+          </View>
+          <Text numberOfLines={1} style={{ textAlign: 'left', flexShrink: 10 }}>
+            {this.props.todo.content}
+          </Text>
         </View>
       </TouchableOpacity>
     );
