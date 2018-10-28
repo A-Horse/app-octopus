@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { MonoText } from '../components/StyledText';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import { Input } from '../src/component/Input';
 
 export class LoginScreen extends React.Component<{
   actions: any
@@ -36,8 +37,7 @@ export class LoginScreen extends React.Component<{
       <View style={styles.container}>
         <Image style={{ width: 100, height: 100 }} source={require('../assets/images/icon-small.png')} />
         <View style={{ width: '100%' }}>
-          <FormLabel>Email</FormLabel>
-          <FormInput
+          <Input
             autoCapitalize="none"
             textContentType="text"
             spellCheck={false}
