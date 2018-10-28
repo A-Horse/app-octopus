@@ -1,14 +1,6 @@
 // @flow
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -42,6 +34,7 @@ export class LoginScreen extends React.Component<{
   render() {
     return (
       <View style={styles.container}>
+        <Image style={{ width: 100, height: 100 }} source={require('../assets/images/icon-small.png')} />
         <View style={{ width: '100%' }}>
           <FormLabel>Email</FormLabel>
           <FormInput
