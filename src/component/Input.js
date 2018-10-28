@@ -17,8 +17,8 @@ export class Input extends React.Component<{
         {this.props.icon && (
           <Icon.FontAwesome
             name={this.props.icon}
-            size={23}
-            style={{ marginBottom: -3, position: 'absolute', top: 12, left: 12 }}
+            size={18}
+            style={{ marginBottom: -3, position: 'absolute', top: 14.5, left: 13 }}
             color={this.props.iconColor || '#999'}
           />
         )}

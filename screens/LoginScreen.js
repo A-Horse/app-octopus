@@ -33,6 +33,8 @@ export class LoginScreen extends React.Component<{
   render() {
     return (
       <View style={styles.container}>
+        <View style={{ height: 30, width: 10, backgroundColor: '#ee3f30' }} />
+        <Text style={{ color: '#ee3f30', fontWeight: '900' }}>Login</Text>
         <Image style={{ width: 100, height: 100 }} source={require('../assets/images/icon-small.png')} />
         <View style={{ width: '100%' }}>
           <Input
