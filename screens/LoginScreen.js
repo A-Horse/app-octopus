@@ -1,12 +1,10 @@
 // @flow
 import React from 'react';
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../components/StyledText';
 import { makeActionRequestCollection } from '../src/action/actions';
-import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Input } from '../src/component/Input';
 
 export class LoginScreen extends React.Component<{
@@ -38,21 +36,22 @@ export class LoginScreen extends React.Component<{
         <Image style={{ width: 100, height: 100 }} source={require('../assets/images/icon-small.png')} />
         <View style={{ width: '100%' }}>
           <Input
-            autoCapitalize="none"
-            textContentType="text"
-            spellCheck={false}
-            onChangeText={value => {
+            icon="envelope-o"
+            iconColor="#868989"
+            style={{ marginBottom: 18 }}
+            placeholder="Email"
+            onChange={value => {
               this.setState({ email: value });
             }}
           />
 
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry={true}
-            autoCapitalize="none"
+          <Input
+            icon="key"
+            iconColor="#868989"
+            style={{ marginBottom: 18 }}
+            placeholder="Password"
             textContentType="password"
-            spellCheck={false}
-            onChangeText={value => {
+            onChange={value => {
               this.setState({ password: value });
             }}
           />
