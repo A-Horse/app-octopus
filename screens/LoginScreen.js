@@ -4,17 +4,23 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../src/action/actions';
-import { Button } from 'react-native-elements';
+import { Button } from '../src/component/Button';
 import { Input } from '../src/component/Input';
 
-export class LoginScreen extends React.Component<{
-  actions: any
-}> {
+export class LoginScreen extends React.Component<
+  {
+    actions: any
+  },
+  {
+    email: string,
+    password: string
+  }
+> {
   static navigationOptions = {};
 
   state = {
-    email: null,
-    password: null
+    email: '',
+    password: ''
   };
 
   componentWillMount() {}
@@ -59,14 +65,7 @@ export class LoginScreen extends React.Component<{
           />
         </View>
 
-        <Button
-          icon={{ name: 'login', type: 'material-community' }}
-          style={styles.submitButton}
-          title="Login"
-          backgroundColor={this.isValid() ? '#44a2df' : '#e8e8e8'}
-          borderRadius={3}
-          onPress={this.onLogin}
-        />
+        <Button icon="sign-in" style={{}} title="Login" onPress={this.onLogin} />
       </View>
     );
   }
@@ -91,9 +90,5 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
     paddingTop: 100
-  },
-  submitButton: {
-    marginTop: 20,
-    borderRadius: 5
   }
 });

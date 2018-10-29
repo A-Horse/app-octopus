@@ -1,17 +1,6 @@
-// flow
+// @flow
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  ListView,
-  FlatList,
-  View
-} from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
@@ -49,15 +38,11 @@ class TodoItem extends React.Component<{ todo: any }> {
   }
 }
 
-export class TodoScreen extends React.Component<{ todoBoxId: string }> {
+export class TodoScreen extends React.Component<{ todoBoxId: string, unDoneTodos: Todo[], doneTodos: Todo[] }, {}> {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('todoBox').name
     };
-  };
-
-  state = {
-    selectedIndex: 0
   };
 
   componentWillMount() {
@@ -78,7 +63,7 @@ export class TodoScreen extends React.Component<{ todoBoxId: string }> {
       <View style={styles.container}>
         <FlatList
           keyExtractor={item => String(item.id)}
-          data={this.props.todos}
+          data={this.props.unDoneTodos}
           renderItem={({ item }) => <TodoItem onTodoDoneChange={this.onTodoDoneChange} todo={item} />}
         />
       </View>
@@ -91,9 +76,14 @@ export const TodoScreenContainer = connect(
     const todoBoxId = props.navigation.getParam('todoBox').id;
     const todos = state.todo[todoBoxId] || [];
 
+    const doneTodos = todos.filter(todo => todo.isDone);
+    const unDoneTodos = todos.filter(todo => !todo.isDone);
+
     return {
       todoBoxId,
-      todos
+      todos,
+      doneTodos,
+      unDoneTodos
     };
   },
   dispatch => {

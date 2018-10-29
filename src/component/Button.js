@@ -22,7 +22,7 @@ export class Button extends React.Component<{
             color={this.props.iconColor || '#999'}
           />
         )}
-        <RNButton onPress={this.props.onPress} title={this.props.title} color="#841584" />
+        <RNButton style={{ padding: 20 }} onPress={this.props.onPress} title={this.props.title} />
       </View>
     );
   }
