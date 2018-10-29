@@ -1,24 +1,10 @@
 // @flow
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  ListView,
-  View
-} from 'react-native';
+import { ScrollView, StyleSheet, Text, ListView, View } from 'react-native';
 import { connect } from 'react-redux';
-import R from 'ramda';
-import { WebBrowser } from 'expo';
+
 import { makeActionRequestCollection } from '../../src/action/actions';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../../components/StyledText';
-import { SERVER_BASE } from '../../src/env/env';
-import Swiper from 'react-native-swiper';
 import { TaskCard } from './TaskCard';
 import { TaskCardCreater } from './TaskCardCreater';
 import { TrackEmpty } from './TrackEmpty';
