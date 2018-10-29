@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../src/action/actions';
@@ -73,7 +73,7 @@ export class LoginScreen extends React.Component<{
 }
 
 export default connect(
-  state => {
+  () => {
     return {};
   },
   dispatch => {
