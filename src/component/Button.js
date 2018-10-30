@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, Button as RNButton } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
 export class Button extends React.Component<{
@@ -22,7 +22,9 @@ export class Button extends React.Component<{
             color={this.props.iconColor || '#999'}
           />
         )}
-        <RNButton style={{ padding: 20 }} onPress={this.props.onPress} title={this.props.title} />
+        <TouchableOpacity style={{ padding: 20 }} onPress={this.props.onPress}>
+          {this.props.title}
+        </TouchableOpacity>
       </View>
     );
   }
