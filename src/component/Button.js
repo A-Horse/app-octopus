@@ -22,7 +22,13 @@ export class Button extends React.Component<{
             color={this.props.iconColor || '#999'}
           />
         )}
-        <TouchableOpacity style={{ padding: 20 }} onPress={this.props.onPress}>
+        <TouchableOpacity
+          style={{
+            padding: 10,
+            paddingLeft: !!this.props.icon ? 25 : 10
+          }}
+          onPress={this.props.onPress}
+        >
           {this.props.title}
         </TouchableOpacity>
       </View>

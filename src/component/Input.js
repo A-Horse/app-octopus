@@ -2,7 +2,6 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 import { Icon } from 'expo';
-import R from 'ramda';
 
 export class Input extends React.Component<{
   placeholder: string,

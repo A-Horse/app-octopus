@@ -1,41 +1,8 @@
 // flow
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  ListView,
-  View,
-  Modal
-} from 'react-native';
-import { connect } from 'react-redux';
-import R from 'ramda';
-import { makeActionRequestCollection } from '../../src/action/actions';
-import format from 'date-fns/format';
-import { bindActionCreators } from 'redux';
-import { MonoText } from '../../components/StyledText';
-import { SERVER_BASE } from '../../src/env/env';
-import Swiper from 'react-native-swiper';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { AppText } from './AppText';
-import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'expo';
-
-const CardTypes = [
-  {
-    label: 'Todo Task',
-    value: 'TODO_TASK'
-  },
-  {
-    label: 'Story Task',
-    value: 'STORY_TASK'
-  }
-];
 
 export class TaskCardCreater extends React.PureComponent<{}> {
   state = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Platform } from 'react-native';
+import { Text, View } from 'react-native';
 import { Icon } from 'expo';
 
 export class TrackEmpty extends React.Component {
@@ -21,12 +21,7 @@ export class TrackEmpty extends React.Component {
             marginTop: 20
           }}
         >
-          <Icon.Ionicons
-            name={'ios-filing-outline'}
-            size={26}
-            style={{ marginBottom: -3 }}
-            color={'#fff'}
-          />
+          <Icon.Ionicons name={'ios-filing-outline'} size={26} style={{ marginBottom: -3 }} color={'#fff'} />
           <Text style={{ color: '#fff' }}>No Task Now</Text>
         </View>
       </View>

@@ -2,12 +2,12 @@
  * react-native-swiper
  * @author leecade<leecade@163.com>
  */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
   View,
-  ViewPropTypes,
   ScrollView,
   Dimensions,
   TouchableOpacity,
@@ -241,8 +241,7 @@ export default class extends Component {
       initState.height = height;
     }
 
-    initState.offset[initState.dir] =
-      initState.dir === 'y' ? height * props.index : width * props.index;
+    initState.offset[initState.dir] = initState.dir === 'y' ? height * props.index : width * props.index;
 
     this.internals = {
       ...this.internals,
@@ -314,9 +313,7 @@ export default class extends Component {
     this.autoplayTimer = setTimeout(() => {
       if (
         !this.props.loop &&
-        (this.props.autoplayDirection
-          ? this.state.index === this.state.total - 1
-          : this.state.index === 0)
+        (this.props.autoplayDirection ? this.state.index === this.state.total - 1 : this.state.index === 0)
       )
         return this.setState({ autoplayEnd: true });
 
@@ -551,17 +548,12 @@ export default class extends Component {
     );
     for (let i = 0; i < this.state.total; i++) {
       dots.push(
-        i === this.state.index
-          ? React.cloneElement(ActiveDot, { key: i })
-          : React.cloneElement(Dot, { key: i })
+        i === this.state.index ? React.cloneElement(ActiveDot, { key: i }) : React.cloneElement(Dot, { key: i })
       );
     }
 
     return (
-      <View
-        pointerEvents="none"
-        style={[styles['pagination_' + this.state.dir], this.props.paginationStyle]}
-      >
+      <View pointerEvents="none" style={[styles['pagination_' + this.state.dir], this.props.paginationStyle]}>
         {dots}
       </View>
     );
@@ -570,9 +562,7 @@ export default class extends Component {
   renderTitle = () => {
     const child = this.props.children[this.state.index];
     const title = child && child.props && child.props.title;
-    return title ? (
-      <View style={styles.title}>{this.props.children[this.state.index].props.title}</View>
-    ) : null;
+    return title ? <View style={styles.title}>{this.props.children[this.state.index].props.title}</View> : null;
   };
 
   renderNextButton = () => {
@@ -583,10 +573,7 @@ export default class extends Component {
     }
 
     return (
-      <TouchableOpacity
-        onPress={() => button !== null && this.scrollBy(1)}
-        disabled={this.props.disableNextButton}
-      >
+      <TouchableOpacity onPress={() => button !== null && this.scrollBy(1)} disabled={this.props.disableNextButton}>
         <View>{button}</View>
       </TouchableOpacity>
     );
@@ -664,8 +651,6 @@ export default class extends Component {
    * @return {object} react-dom
    */
   render() {
-    const state = this.state;
-    const props = this.props;
     const { index, total, width, height } = this.state;
     const {
       children,
@@ -735,8 +720,7 @@ export default class extends Component {
     return (
       <View style={[styles.container, containerStyle]} onLayout={this.onLayout}>
         {this.renderScrollView(pages)}
-        {showsPagination &&
-          (renderPagination ? renderPagination(index, total, this) : this.renderPagination())}
+        {showsPagination && (renderPagination ? renderPagination(index, total, this) : this.renderPagination())}
         {this.renderTitle()}
         {showsButtons && this.renderButtons()}
       </View>
