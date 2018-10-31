@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { Icon } from 'expo';
 
 export class Button extends React.Component<{
@@ -13,25 +13,36 @@ export class Button extends React.Component<{
 }> {
   render() {
     return (
-      <View>
+      <TouchableOpacity
+        style={[
+          {
+            padding: 10,
+            paddingRight: 30,
+            paddingLeft: 20,
+            width: 100,
+            height: 40,
+            borderColor: 'transparent',
+            backgroundColor: '#ff886a',
+            borderRadius: 20,
+            paddingLeft: !!this.props.icon ? 25 : 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row'
+          },
+          this.props.style
+        ]}
+        onPress={this.props.onPress}
+      >
         {this.props.icon && (
           <Icon.FontAwesome
             name={this.props.icon}
             size={18}
-            style={{ marginBottom: -3, position: 'absolute', top: 14.5, left: 13 }}
-            color={this.props.iconColor || '#999'}
+            style={{ marginRight: 10 }}
+            color={this.props.iconColor || '#fff'}
           />
         )}
-        <TouchableOpacity
-          style={{
-            padding: 10,
-            paddingLeft: !!this.props.icon ? 25 : 10
-          }}
-          onPress={this.props.onPress}
-        >
-          {this.props.title}
-        </TouchableOpacity>
-      </View>
+        <Text style={{ color: '#fff', fontWeight: '500' }}>{this.props.title}</Text>
+      </TouchableOpacity>
     );
   }
 }

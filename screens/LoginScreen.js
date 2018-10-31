@@ -39,11 +39,8 @@ export class LoginScreen extends React.Component<
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <View style={{ height: 30, width: 10, backgroundColor: '#ee3f30' }} />
-          <Text style={{ color: '#ee3f30', fontWeight: '900' }}>Login</Text>
-          <Image style={{ width: 100, height: 100 }} source={require('../assets/images/icon-small.png')} />
-        </View>
+        <Image style={{ width: 70, height: 70, marginLeft: -8 }} source={require('../assets/images/icon-small.png')} />
+        <Text style={{ color: '#f36954', fontWeight: '900', fontSize: 30, marginBottom: 30 }}>LOGIN</Text>
 
         <View style={{ width: '100%' }}>
           <Input
@@ -68,7 +65,7 @@ export class LoginScreen extends React.Component<
           />
         </View>
 
-        <Button icon="sign-in" style={{}} title="Login" onPress={this.onLogin} />
+        <Button icon="sign-in" style={{ alignSelf: 'flex-end' }} title="Login" onPress={this.onLogin} />
       </View>
     );
   }
