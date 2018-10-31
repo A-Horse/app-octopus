@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, FlatList, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';

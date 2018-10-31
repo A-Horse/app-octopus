@@ -5,15 +5,7 @@ import R from 'ramda';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
-import {
-  ScrollView,
-  SectionList,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
 
 function makeGravatarHash(email) {
@@ -21,8 +13,6 @@ function makeGravatarHash(email) {
 }
 
 const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
-
-const sections = {};
 
 function makeGravatarUrl(email, size) {
   const urlQuery = size ? makeGravatarHash(email) + `?s=${size}` : makeGravatarHash(email);
@@ -45,10 +35,7 @@ export class ProfileScreen extends React.Component<{}> {
         <TouchableOpacity>
           <View style={styles.infoContainer}>
             <View style={styles.infoMainContainer}>
-              <Image
-                source={{ uri: makeGravatarUrl(this.props.user.email) }}
-                style={styles.avatar}
-              />
+              <Image source={{ uri: makeGravatarUrl(this.props.user.email) }} style={styles.avatar} />
               <View style={styles.usernameContainer}>
                 <Text>{this.props.user.username}</Text>
               </View>
