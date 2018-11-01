@@ -7,11 +7,24 @@ import { bindActionCreators } from 'redux';
 import { CheckBox } from '../components/CheckBox';
 
 class TodoItem extends React.Component<{ todo: any }> {
+  state = { tempIsDone: false };
+  setTimeoutTimer;
+
+  componentDidUpdate(prevProps) {
+    if (this.props.todo.isDone !== prevProps.todo.isDone) {
+      this.setState({ tempIsDone: this.props.todo.isDone });
+    }
+  }
+
   onChange = (isDone: boolean) => {
-    this.props.onTodoDoneChange({
-      id: this.props.todo.id,
-      isDone
-    });
+    clearTimeout(this.setTimeoutTimer);
+    this.setState({ tempIsDone: isDone });
+    this.setTimeoutTimer = setTimeout(() => {
+      this.props.onTodoDoneChange({
+        id: this.props.todo.id,
+        isDone
+      });
+    }, 3000);
   };
 
   render() {
@@ -27,7 +40,7 @@ class TodoItem extends React.Component<{ todo: any }> {
           }}
         >
           <View style={{ flexShrink: 0 }}>
-            <CheckBox isChecked={Boolean(this.props.todo.isDone)} onChange={this.onChange} />
+            <CheckBox isChecked={Boolean(this.state.tempIsDone)} onChange={this.onChange} />
           </View>
           <Text numberOfLines={1} style={{ textAlign: 'left', flexShrink: 10 }}>
             {this.props.todo.content}
