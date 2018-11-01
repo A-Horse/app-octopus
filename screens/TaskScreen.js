@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { SERVER_BASE } from '../src/env/env';
 
 export class TaskScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({}) => {
     return {
       title: 'Projects'
     };

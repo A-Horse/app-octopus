@@ -1,12 +1,10 @@
 // flow
 import React from 'react';
 import { connect } from 'react-redux';
-import R from 'ramda';
-import { Icon, WebBrowser } from 'expo';
+import { Icon } from 'expo';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../components/StyledText';
-import { AppRegistry, TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 
 class TodoBox extends React.Component<{
   todoBox: any,
@@ -87,7 +85,7 @@ export class TodoBoxScreen extends React.Component {
 }
 
 export const TodoBoxScreenContainer = connect(
-  (state, props) => {
+  state => {
     return {};
   },
   dispatch => {
