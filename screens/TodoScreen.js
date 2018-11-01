@@ -24,7 +24,7 @@ class TodoItem extends React.Component<{ todo: any }> {
         id: this.props.todo.id,
         isDone
       });
-    }, 3000);
+    }, 2000);
   };
 
   render() {
