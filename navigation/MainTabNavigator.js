@@ -67,8 +67,17 @@ SettingsStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-export default createBottomTabNavigator({
-  TaskStack,
-  TodoStack,
-  SettingsStack
-});
+export default createBottomTabNavigator(
+  {
+    TaskStack,
+    TodoStack,
+    SettingsStack
+  },
+  {
+    tabBarOptions: {
+      labelStyle: {
+        color: '#999'
+      }
+    }
+  }
+);
