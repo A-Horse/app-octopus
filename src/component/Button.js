@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { Icon } from 'expo';
 
 export class Button extends React.Component<{

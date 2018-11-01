@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import md5 from 'blueimp-md5';
-import R from 'ramda';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
