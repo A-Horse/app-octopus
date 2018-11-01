@@ -1,22 +1,10 @@
 // flow
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  ListView,
-  View
-} from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, Dimensions, ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
-import { WebBrowser } from 'expo';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../components/StyledText';
 import { SERVER_BASE } from '../src/env/env';
 
 export class TaskScreen extends React.Component {
@@ -103,7 +91,7 @@ const styles = StyleSheet.create({
   },
   boardContainer: {
     width: '90%',
-    height: (Dimensions.get('window').width - 40) * 0.9 / (16 / 9),
+    height: ((Dimensions.get('window').width - 40) * 0.9) / (16 / 9),
     borderRadius: 5,
     position: 'relative',
     overflow: 'hidden',

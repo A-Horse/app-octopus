@@ -62,6 +62,7 @@ export class Track extends React.Component<{
 
             {!this.props.cards.length && <TrackEmpty />}
             <TaskCardCreater onPress={this.goToCreate} onSubmit={this.addTask} />
+            <View style={{ height: 20 }} />
           </ScrollView>
         </View>
       </View>
