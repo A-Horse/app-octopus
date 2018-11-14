@@ -1,4 +1,4 @@
-// flow
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'expo';
@@ -40,7 +40,7 @@ class TodoBox extends React.Component<{
 }
 
 export class TodoBoxScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = () => {
     return {
       title: 'Todo'
     };
@@ -85,7 +85,7 @@ export class TodoBoxScreen extends React.Component {
 }
 
 export const TodoBoxScreenContainer = connect(
-  state => {
+  () => {
     return {};
   },
   dispatch => {

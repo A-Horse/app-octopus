@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 import { CheckBox } from '../components/CheckBox';
+import { TodoCreaterToggle } from '../src/component/TodoCreaterToggle';
 
 class TodoItem extends React.Component<{ todo: any }> {
   state = { tempIsDone: false };
@@ -62,7 +63,7 @@ export class TodoScreen extends React.Component<{ todoBoxId: string, unDoneTodos
     this.props.actions.GET_TODOBOX_REQUEST({ todoBoxId: this.props.todoBoxId });
   }
 
-  onTodoDoneChange = (todoItem: any) => {
+  handleTodoDoneChange = (todoItem: any) => {
     this.props.actions.UPDATE_TODO_REQUEST(
       {
         ...todoItem
@@ -71,13 +72,20 @@ export class TodoScreen extends React.Component<{ todoBoxId: string, unDoneTodos
     );
   };
 
+  handleOpenCreateTodo = () => {
+    this.props.navigation.navigate('TodoCreater', {
+      todoBox: navigation.getParam('todoBox')
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
+        <TodoCreaterToggle onPress={this.handleOpenCreateTodo} />
         <FlatList
           keyExtractor={item => String(item.id)}
           data={this.props.unDoneTodos}
-          renderItem={({ item }) => <TodoItem onTodoDoneChange={this.onTodoDoneChange} todo={item} />}
+          renderItem={({ item }) => <TodoItem onTodoDoneChange={this.handleTodoDoneChange} todo={item} />}
         />
       </View>
     );

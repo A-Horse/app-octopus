@@ -31,6 +31,7 @@ export class Input extends React.Component<{
             padding: 10,
             paddingLeft: this.props.icon ? 43 : 10
           }}
+          selectionColor={'#999'}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
           spellCheck={false}

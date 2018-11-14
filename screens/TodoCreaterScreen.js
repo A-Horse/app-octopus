@@ -1,27 +1,18 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ListView, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
 import { Icon } from 'expo';
 import { makeActionRequestCollection } from '../src/action/actions';
 import format from 'date-fns/format';
 import { bindActionCreators } from 'redux';
+import { MonoText } from '../components/StyledText';
+import { SERVER_BASE } from '../src/env/env';
 import { AppText } from '../src/component/AppText';
 import { FormInput } from 'react-native-elements';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import RNPickerSelect from 'react-native-picker-select';
-
-const CardTypes = [
-  {
-    label: 'Todo Task',
-    value: 'TODO'
-  },
-  {
-    label: 'Story Task',
-    value: 'STORY'
-  }
-];
 
 export class TaskCreaterScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -71,12 +62,6 @@ export class TaskCreaterScreen extends React.Component {
       type: this.state.type
     });
 
-    /* this.setState({
-     *   isModalVisible: false,
-     *   title: null,
-     *   deadline: null
-     * }); */
-
     this.props.navigation.pop();
   };
 
@@ -85,9 +70,6 @@ export class TaskCreaterScreen extends React.Component {
   };
 
   render() {
-    const boardsSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    }).cloneWithRows(this.props.boards);
     return (
       <View style={styles.container}>
         <FormInput
