@@ -66,7 +66,6 @@ export class TodoBoxScreen extends React.Component {
   componentWillMount() {}
 
   onTodoBoxPress = todoBox => {
-    console.log('todoBox', todoBox);
     this.props.navigation.navigate('Todo', {
       todoBox: todoBox
     });

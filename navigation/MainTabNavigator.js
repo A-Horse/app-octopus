@@ -29,9 +29,9 @@ TodoStack.navigationOptions = ({ navigation }) => {
   if (navigation.state.index > 0) {
     tabBarVisible = false;
   }
-
   return {
     tabBarLabel: 'Todo',
+    tabBarVisible,
     tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'check-square'} />
   };
 };

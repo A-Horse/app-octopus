@@ -1,4 +1,4 @@
-import React from 'react';
+// @flow
 import { createSwitchNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';

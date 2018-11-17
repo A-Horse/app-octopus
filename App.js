@@ -7,6 +7,10 @@ import { PersistorContext } from './src/component/context/PersistorContext';
 
 import NavigationService from './src/service/single/navigation.service';
 import { store, persistor } from './src/store/store';
+import { setupAxiosIntercetor } from './src/helper/http-intercetor';
+import Promise from 'es6-promise';
+
+setupAxiosIntercetor();
 
 export default class App extends React.Component {
   state = {
