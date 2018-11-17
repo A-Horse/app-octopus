@@ -41,14 +41,14 @@ export class TaskScreen extends React.Component {
               return (
                 <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
                   <View key={board.id} style={styles.boardContainer}>
-                    <Image
-                      style={styles.boardBgImg}
-                      source={{
-                        uri: !!board.cover
-                          ? `${SERVER_BASE}storage/${board.cover}`
-                          : `${SERVER_BASE}static/image/board-cover/default-cover.png`
-                      }}
-                    />
+                    {!!board.cover && (
+                      <Image
+                        style={styles.boardBgImg}
+                        source={{
+                          uri: `${SERVER_BASE}storage/${board.cover}`
+                        }}
+                      />
+                    )}
                     <View style={styles.boardInnerContainer}>
                       <Text style={styles.boardName}>{board.name}</Text>
                     </View>
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   boardContainer: {
+    backgroundColor: '#bbb',
     width: '90%',
     height: ((Dimensions.get('window').width - 40) * 0.9) / (16 / 9),
     borderRadius: 5,

@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 import { ScrollView, StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
-import { Button, List, ListItem } from 'react-native-elements';
+import { List, ListItem } from 'react-native-elements';
+import { Button } from '../src/component/Button';
 
 function makeGravatarHash(email) {
   return md5(email.trim().toLowerCase());
@@ -52,12 +53,7 @@ export class ProfileScreen extends React.Component<{}> {
           />
         </List>
 
-        <Button
-          icon={{ name: 'logout', type: 'material-community' }}
-          title="Logout"
-          color="#260246"
-          onPress={this.logout}
-        />
+        <Button icon="sign-out" style={{ alignSelf: 'flex-end' }} title="Login" onPress={this.logout} />
       </ScrollView>
     );
   }
