@@ -14,7 +14,7 @@ class TodoCreaterScreen extends React.Component {
       title: null,
       headerBackTitle: ' ',
       headerRight: (
-        <TouchableOpacity style={{ marginRight: 18 }} onPress={() => params.onDone()}>
+        <TouchableOpacity style={{ marginRight: 18 }} onPress={() => params.handldeDone()}>
           <Text style={{ color: '#ef3d2c', fontSize: 18, fontWeight: '700' }}>Done</Text>
         </TouchableOpacity>
       )
@@ -24,30 +24,23 @@ class TodoCreaterScreen extends React.Component {
   state = {
     isModalVisible: false,
     isDateTimePickerVisible: false,
-    context: '',
+    content: '',
     deadline: null
   };
 
   componentWillMount() {
     this.props.navigation.setParams({
-      onDone: this.onDone
+      handldeDone: this.handldeDone
     });
   }
 
+  handldeDone = () => {
+    this.props.actions.ADD_TODO_REQUEST({
+      content: this.state.content
+    });
+  };
+
   componentDidMount() {}
-
-  showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
-
-  hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-
-  handleDatePicked = date => {
-    this.setState({ deadline: date.getTime() });
-    this.hideDateTimePicker();
-  };
-
-  showTaskTypePicker = () => {
-    this.picker.togglePicker();
-  };
 
   render() {
     return (
@@ -56,7 +49,7 @@ class TodoCreaterScreen extends React.Component {
           containerStyle={{ borderBottomColor: '#e8e8e8', paddingBottom: 6, marginTop: 12 }}
           placeholder="What do you want to do"
           onChangeText={value => {
-            this.setState({ context: value });
+            this.setState({ content: value });
           }}
         />
       </View>
