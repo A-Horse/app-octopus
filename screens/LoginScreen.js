@@ -65,7 +65,7 @@ export class LoginScreen extends React.Component<
           />
         </View>
 
-        <Button icon="sign-in" style={{ alignSelf: 'flex-end' }} title="Login" onPress={this.onLogin} />
+        <Button round={true} icon="sign-in" style={{ alignSelf: 'flex-end' }} title="Login" onPress={this.onLogin} />
       </View>
     );
   }

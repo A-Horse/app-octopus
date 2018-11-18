@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { ScrollView, StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { Button } from '../src/component/Button';
+import { Icon } from 'expo';
 
 function makeGravatarHash(email) {
   return md5(email.trim().toLowerCase());
@@ -35,7 +36,10 @@ export class ProfileScreen extends React.Component<{}> {
         <TouchableOpacity>
           <View style={styles.infoContainer}>
             <View style={styles.infoMainContainer}>
-              <Image source={{ uri: makeGravatarUrl(this.props.user.email) }} style={styles.avatar} />
+              <Image
+                source={{ uri: makeGravatarUrl(this.props.user.email), cache: 'only-if-cached' }}
+                style={styles.avatar}
+              />
               <View style={styles.usernameContainer}>
                 <Text>{this.props.user.username}</Text>
               </View>
@@ -43,8 +47,10 @@ export class ProfileScreen extends React.Component<{}> {
           </View>
         </TouchableOpacity>
 
-        <List containerStyle={{ marginBottom: 20 }}>
+        <List containerStyle={{ marginBottom: 20, borderTopColor: '#eee' }}>
           <ListItem
+            containerStyle={{ borderBottomColor: '#eee', paddingLeft: 5 }}
+            leftIcon={<Icon.FontAwesome name={'user-secret'} size={22} style={{ marginRight: 8 }} color={'#999'} />}
             key="setting"
             title={'App setting'}
             onPress={() => {
@@ -53,7 +59,9 @@ export class ProfileScreen extends React.Component<{}> {
           />
         </List>
 
-        <Button icon="sign-out" style={{ alignSelf: 'flex-end' }} title="Login" onPress={this.logout} />
+        <View style={[styles.bottomArea]}>
+          <Button icon="sign-out" style={{ width: '100%' }} title="Logout" onPress={this.logout} />
+        </View>
       </ScrollView>
     );
   }
@@ -85,7 +93,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 2
   },
   avatar: {
     width: 50,
@@ -99,5 +110,9 @@ const styles = StyleSheet.create({
   },
   usernameContainer: {
     marginLeft: 10
+  },
+  bottomArea: {
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });

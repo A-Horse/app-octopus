@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   boardContainer: {
-    backgroundColor: '#bbb',
+    backgroundColor: '#ddd',
     width: '90%',
     height: ((Dimensions.get('window').width - 40) * 0.9) / (16 / 9),
     borderRadius: 5,
