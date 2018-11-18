@@ -74,7 +74,7 @@ export class TodoScreen extends React.Component<{ todoBoxId: string, unDoneTodos
 
   handleOpenCreateTodo = () => {
     this.props.navigation.navigate('TodoCreater', {
-      todoBox: navigation.getParam('todoBox')
+      todoBox: this.props.navigation.getParam('todoBox')
     });
   };
 

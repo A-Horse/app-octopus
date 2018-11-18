@@ -7,14 +7,13 @@ import { Icon } from 'expo';
 import { makeActionRequestCollection } from '../src/action/actions';
 import format from 'date-fns/format';
 import { bindActionCreators } from 'redux';
-import { MonoText } from '../components/StyledText';
-import { SERVER_BASE } from '../src/env/env';
+
 import { AppText } from '../src/component/AppText';
 import { FormInput } from 'react-native-elements';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import RNPickerSelect from 'react-native-picker-select';
 
-export class TaskCreaterScreen extends React.Component {
+export class TodoCreaterScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
@@ -171,7 +170,7 @@ export const TaskCreaterScreenContainer = connect(
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(TaskCreaterScreen);
+)(TodoCreaterScreen);
 
 const styles = StyleSheet.create({
   container: {
