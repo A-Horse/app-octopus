@@ -51,14 +51,14 @@ export class TodoBoxScreen extends React.Component {
       id: '@user',
       key: '@user',
       name: 'Your Todo',
-      iconColor: '#333',
+      iconColor: '#32ace1',
       iconName: 'address-book'
     },
     {
       id: '@task',
       key: '@task',
       name: 'Task Todo',
-      iconColor: '#333',
+      iconColor: '#22467a',
       iconName: 'tasks'
     }
   ];

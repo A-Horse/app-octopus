@@ -117,6 +117,7 @@ export const TodoScreenContainer = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#e8e8e8',
+    paddingTop: 12
   }
 });

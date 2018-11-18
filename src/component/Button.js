@@ -14,7 +14,9 @@ export class Button extends React.Component<{
   round: boolean
 }> {
   render() {
-    const height: number = R.path(['style', 'height'], this.props);
+    const defaultHeight = 40;
+    const height: number = parseInt(R.path(['style', 'height'], this.props) || defaultHeight, 10);
+    console.log(height);
     const borderRadius = this.props.round ? height / 2 : 3;
     return (
       <TouchableOpacity
