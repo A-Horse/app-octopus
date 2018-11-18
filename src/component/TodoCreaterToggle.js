@@ -1,6 +1,6 @@
 // flow
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Icon } from 'expo';
 
 export class TodoCreaterToggle extends React.Component<{
