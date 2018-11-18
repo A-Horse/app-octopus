@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app-octopus",
+    "name": "octopus work",
     "description": "A very interesting project.",
     "slug": "app-octopus",
     "privacy": "public",
@@ -17,9 +17,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "org.fwchen.octopus",
       "supportsTablet": false
