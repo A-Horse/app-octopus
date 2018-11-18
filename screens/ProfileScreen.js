@@ -37,7 +37,7 @@ export class ProfileScreen extends React.Component<{}> {
           <View style={styles.infoContainer}>
             <View style={styles.infoMainContainer}>
               <Image
-                source={{ uri: makeGravatarUrl(this.props.user.email), cache: 'only-if-cached' }}
+                source={{ uri: makeGravatarUrl(this.props.user.email), cache: 'force-cache' }}
                 style={styles.avatar}
               />
               <View style={styles.usernameContainer}>

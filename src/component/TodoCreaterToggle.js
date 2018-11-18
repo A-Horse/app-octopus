@@ -20,18 +20,18 @@ export class TodoCreaterToggle extends React.Component<{
             borderWidth: 1,
             borderColor: 'white',
             width: 100,
-            height: 40,
-            borderRadius: 6,
+            height: 35,
+            borderRadius: 8,
             backgroundColor: 'white',
             shadowColor: '#999',
             shadowOffset: { width: 0, height: 0 },
             shadowOpacity: 0.9,
-            shadowRadius: 12
+            shadowRadius: 3
           }}
           onPress={this.props.onPress}
         >
-          <Icon.FontAwesome name="plus" size={22} style={[{ marginTop: 10, marginRight: 3 }]} color="#999" />
-          <Text>Add Todo</Text>
+          <Icon.FontAwesome name="plus" size={20} style={[{ marginTop: 2, marginRight: 3 }]} color="#6a91ab" />
+          <Text style={{ color: '#6a91ab', fontWeight: '600' }}>Add Todo</Text>
         </TouchableOpacity>
       </View>
     );
