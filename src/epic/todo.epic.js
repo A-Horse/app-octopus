@@ -9,6 +9,20 @@ import { mergeMap, map, take } from 'rxjs/operators';
  * };
  *  */
 
+export const ADD_TODO = action$ => {
+  return action$.pipe(
+    ofType(Actions.ADD_TODO.REQUEST),
+    mergeMap(action => {
+      return axios
+        .post(`${API_BASE}/t/todo`, action.payload)
+        .then(response => {
+          return Actions.ADD_TODO.success(response.data);
+        })
+        .catch(Actions.ADD_TODO.failure);
+    })
+  );
+};
+
 export const GET_TODOBOX = (action$, state$) => {
   return action$.pipe(
     ofType(Actions.GET_TODOBOX.REQUEST),
