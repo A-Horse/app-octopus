@@ -1,11 +1,8 @@
 import Actions from '../action/actions';
 import axios from 'axios';
-import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import { API_BASE } from '../env/env';
-import NavigationService from '../service/single/navigation.service';
-
 import { ofType } from 'redux-observable';
-import { mergeMap, map, tap, take, switchMap, debounceTime, ignoreElements } from 'rxjs/operators';
+import { mergeMap, map, take } from 'rxjs/operators';
 
 /* export const UPDATE_TODO = action$ => {
  *   return action$.pipe(ofType(Actions.UPDATE_TODO.REQUEST));

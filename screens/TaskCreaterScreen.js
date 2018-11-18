@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ListView, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
 import { Icon } from 'expo';
@@ -31,7 +31,7 @@ export class TaskCreaterScreen extends React.Component {
       headerBackTitle: ' ',
       headerRight: (
         <TouchableOpacity style={{ marginRight: 18 }} onPress={() => params.onDone()}>
-          <Text style={{ color: '#41adf5', fontSize: 18 }}>Done</Text>
+          <Text style={{ color: '#ef3d2c', fontSize: 18 }}>Done</Text>
         </TouchableOpacity>
       )
     };
@@ -85,9 +85,6 @@ export class TaskCreaterScreen extends React.Component {
   };
 
   render() {
-    const boardsSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    }).cloneWithRows(this.props.boards);
     return (
       <View style={styles.container}>
         <FormInput

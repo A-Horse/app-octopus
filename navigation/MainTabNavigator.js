@@ -11,7 +11,7 @@ import { TodoBoxScreenContainer } from '../screens/TodoBoxScreen';
 import { ProfileScreenContainer } from '../screens/ProfileScreen';
 import { TaskCardDetailScreenContainer } from '../screens/TaskCardDetailScreen';
 import { TaskCreaterScreenContainer } from '../screens/TaskCreaterScreen';
-import { TodoCreaterScreenContainer } from '../screens/TodoCreaterScreenContainer';
+import { TodoCreaterScreenContainer } from '../screens/TodoCreaterScreen';
 
 const TaskStack = createStackNavigator({
   Home: TaskScreenContainer,

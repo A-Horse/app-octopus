@@ -15,7 +15,7 @@ class TodoCreaterScreen extends React.Component {
       headerBackTitle: ' ',
       headerRight: (
         <TouchableOpacity style={{ marginRight: 18 }} onPress={() => params.onDone()}>
-          <Text style={{ color: '#41adf5', fontSize: 18 }}>Done</Text>
+          <Text style={{ color: '#ef3d2c', fontSize: 18, fontWeight: '700' }}>Done</Text>
         </TouchableOpacity>
       )
     };
@@ -24,9 +24,8 @@ class TodoCreaterScreen extends React.Component {
   state = {
     isModalVisible: false,
     isDateTimePickerVisible: false,
-    title: null,
-    deadline: null,
-    type: 'STORY_TASK'
+    context: '',
+    deadline: null
   };
 
   componentWillMount() {
@@ -57,7 +56,7 @@ class TodoCreaterScreen extends React.Component {
           containerStyle={{ borderBottomColor: '#e8e8e8', paddingBottom: 6, marginTop: 12 }}
           placeholder="What do you want to do"
           onChangeText={value => {
-            this.setState({ title: value });
+            this.setState({ context: value });
           }}
         />
       </View>
