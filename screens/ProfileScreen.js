@@ -31,7 +31,8 @@ export class ProfileScreen extends React.Component<{}> {
   };
 
   render() {
-    // TODO <Image/> cache 有问题
+    // TODO <Image/> cache 有问题，现在是都 load 缓存
+    // TODO 做成那种先 load 缓存，然后继续加载并替换的
     return (
       <ScrollView style={styles.container}>
         <TouchableOpacity>

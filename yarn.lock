@@ -6403,10 +6403,6 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-fast-image@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-5.1.1.tgz#2595323a926ade0b3a37bd627eb55e3ebf67598b"
-
 react-native-gesture-handler@1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.9.tgz#ddec4d19d51cb6fb54df6eca792ebd76aaef083f"
@@ -6419,7 +6415,7 @@ react-native-loader@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.2.1.tgz#e08589a89cfcd076595b9301c1d618f54da73329"
 
-"react-native-maps@github:expo/react-native-maps#v0.22.1-exp.0":
+react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
