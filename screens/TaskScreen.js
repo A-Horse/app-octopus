@@ -45,7 +45,8 @@ export class TaskScreen extends React.Component {
                       <Image
                         style={styles.boardBgImg}
                         source={{
-                          uri: `${SERVER_BASE}storage/${board.cover}`
+                          uri: `${SERVER_BASE}storage/${board.cover}`,
+                          cache: 'force-cache'
                         }}
                       />
                     )}

@@ -31,6 +31,7 @@ export class ProfileScreen extends React.Component<{}> {
   };
 
   render() {
+    // TODO <Image/> cache 有问题
     return (
       <ScrollView style={styles.container}>
         <TouchableOpacity>
