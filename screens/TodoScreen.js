@@ -37,7 +37,8 @@ class TodoItem extends React.Component<{ todo: any }> {
             flexDirection: 'row',
             flexWrap: 'nowrap',
             justifyContent: 'flex-start',
-            alignItems: 'center'
+            alignItems: 'center',
+            backgroundColor: 'white'
           }}
         >
           <View style={{ flexShrink: 0 }}>
