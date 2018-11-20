@@ -11,7 +11,8 @@ import { reducers } from '../reducer';
 import rootEpic from '../epic';
 
 const persistConfig = {
-  key: 'octopus',
+  key: 'root',
+  keyPrefix: '',
   storage
 };
 
@@ -21,7 +22,10 @@ function setupStore() {
 
   const store = createStore(
     persistedReducer,
-    compose(applyMiddleware(epicMiddleware, logger), reduxReset())
+    compose(
+      applyMiddleware(epicMiddleware, logger),
+      reduxReset()
+    )
   );
 
   return { store, epicMiddleware };
