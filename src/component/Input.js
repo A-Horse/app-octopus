@@ -38,7 +38,7 @@ export class Input extends React.Component<{
           secureTextEntry={this.props.textContentType === 'password'}
           placeholder={this.props.placeholder}
           onChangeText={value => this.props.onChange(value)}
-          textContentType={this.props.textContentType || 'text'}
+          textContentType={this.props.textContentType || 'none'}
         />
       </View>
     );

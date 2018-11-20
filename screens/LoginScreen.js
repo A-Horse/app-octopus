@@ -48,6 +48,7 @@ export class LoginScreen extends React.Component<
             iconColor="#868989"
             style={{ marginBottom: 18 }}
             placeholder="Email"
+            textContentType="emailAddress"
             onChange={value => {
               this.setState({ email: value });
             }}
