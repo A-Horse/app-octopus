@@ -33,14 +33,14 @@ export class LoginScreen extends React.Component<
   };
 
   isValid(): boolean {
-    return this.state.email && this.state.password;
+    return !!this.state.email && !!this.state.password;
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Image style={{ width: 70, height: 70, marginLeft: -8 }} source={require('../assets/images/icon-small.png')} />
-        <Text style={{ color: '#f36954', fontWeight: '900', fontSize: 30, marginBottom: 30 }}>LOGIN</Text>
+        <Text style={{ color: '#f36954', fontWeight: '900', fontSize: 30, marginBottom: 30 }}>Login</Text>
 
         <View style={{ width: '100%' }}>
           <Input

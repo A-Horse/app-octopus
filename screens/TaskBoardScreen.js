@@ -1,4 +1,4 @@
-// flow
+// @flow
 import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import { connect } from 'react-redux';
