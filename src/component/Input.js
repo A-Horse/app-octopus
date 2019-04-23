@@ -1,15 +1,15 @@
-// @flow
+//      
 import React from 'react';
 import { TextInput, View } from 'react-native';
 import { Icon } from 'expo';
 
-export class Input extends React.Component<{
-  placeholder: string,
-  style: any,
-  textContentType: any,
-  icon: string,
-  iconColor: string
-}> {
+export class Input extends React.Component  
+                      
+             
+                       
+               
+                   
+   {
   render() {
     return (
       <View style={[{ borderWidth: 1, borderRadius: 6, borderColor: '#e8e8e8', height: 50 }, this.props.style]}>

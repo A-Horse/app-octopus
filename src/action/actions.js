@@ -1,4 +1,3 @@
-// @flow
 import { values } from 'ramda';
 
 const actionNames = [
@@ -15,9 +14,7 @@ const actionNames = [
   'LOGOUT'
 ];
 
-export const actions: { [*]: * } = actionNames.reduce((result: Object, actionName: string): {
-  [string]: ActionAdapter
-} => {
+export const actions = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';
   const SUCCESS_SYMBOL = actionName + '_SUCCESS';
   const FAILURE_SYMBOL = actionName + '_FAILURE';

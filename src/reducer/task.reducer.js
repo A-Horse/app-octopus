@@ -1,9 +1,9 @@
-// @flow
+//      
 import Actions from '../action/actions';
 import { normalize } from 'normalizr';
 import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from '../schema';
 
-export function task(state = {}, action: FSAction) {
+export function task(state = {}, action          ) {
   switch (action.type) {
     case Actions.GET_TASK_BOARD_LIST.REQUEST:
       return {

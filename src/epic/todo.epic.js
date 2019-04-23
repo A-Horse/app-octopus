@@ -4,11 +4,6 @@ import { API_BASE } from '../env/env';
 import { ofType } from 'redux-observable';
 import { mergeMap, map, take } from 'rxjs/operators';
 
-/* export const UPDATE_TODO = action$ => {
- *   return action$.pipe(ofType(Actions.UPDATE_TODO.REQUEST));
- * };
- *  */
-
 export const ADD_TODO = action$ => {
   return action$.pipe(
     ofType(Actions.ADD_TODO.REQUEST),

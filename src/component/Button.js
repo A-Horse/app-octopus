@@ -1,21 +1,21 @@
-// @flow
+//      
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { Icon } from 'expo';
 import R from 'ramda';
 
-export class Button extends React.Component<{
-  onPress: any,
-  style: any,
-  title: string,
-  backgroundColor: string,
-  icon: string,
-  iconColor: string,
-  round: boolean
-}> {
+export class Button extends React.Component  
+               
+             
+                
+                          
+               
+                    
+                
+   {
   render() {
     const defaultHeight = 40;
-    const height: number = parseInt(R.path(['style', 'height'], this.props) || defaultHeight, 10);
+    const height         = parseInt(R.path(['style', 'height'], this.props) || defaultHeight, 10);
     console.log(height);
     const borderRadius = this.props.round ? height / 2 : 3;
     return (

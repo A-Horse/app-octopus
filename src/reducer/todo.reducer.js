@@ -1,8 +1,8 @@
-// @flow
+//      
 import Actions from '../action/actions';
 import R from 'ramda';
 
-export function todo(state = { token: null, userId: null }, action: FSAction) {
+export function todo(state = { token: null, userId: null }, action          ) {
   switch (action.type) {
     case Actions.GET_TODOBOX.SUCCESS: {
       const todoBoxId = action.payload.id;

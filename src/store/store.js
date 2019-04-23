@@ -1,4 +1,4 @@
-// @flow
+//      
 import { compose, createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { persistStore, persistReducer } from 'redux-persist';

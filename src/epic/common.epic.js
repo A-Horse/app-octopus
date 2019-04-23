@@ -1,4 +1,3 @@
-// @flow
 import Actions from '../action/actions';
 import axios from 'axios';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';

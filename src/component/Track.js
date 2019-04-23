@@ -1,4 +1,4 @@
-// @flow
+//      
 import React from 'react';
 import { ScrollView, StyleSheet, Text, ListView, View } from 'react-native';
 import { connect } from 'react-redux';
@@ -9,10 +9,10 @@ import { TaskCard } from './TaskCard';
 import { TaskCardCreater } from './TaskCardCreater';
 import { TrackEmpty } from './TrackEmpty';
 
-export class Track extends React.Component<{
-  boards: any,
-  navigation: any
-}> {
+export class Track extends React.Component  
+              
+                 
+   {
   componentWillMount() {}
 
   addTask = ({ title, deadline }) => {
