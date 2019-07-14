@@ -9,6 +9,7 @@
     "build:ios": "expo build:ios",
     "build:android": "expo build:android",
     "ios": "expo start --ios",
+    "proxy": "mitmproxy  -p 8888 --mode reverse:http://127.0.0.1:5500",
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll"
   },
