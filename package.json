@@ -23,11 +23,13 @@
     "date-fns": "^2.0.0-alpha.16",
     "es6-promise": "^4.2.5",
     "eslint": "^4.19.1",
-    "expo": "^31.0.0",
+    "expo": "^33.0.0",
+    "expo-asset": "^5.0.1",
+    "expo-permissions": "^5.0.1",
     "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-check-box": "^2.1.6",
     "react-native-elements": "^0.19.1",
     "react-native-loader": "^1.2.1",
@@ -35,7 +37,7 @@
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-picker-select": "^4.2.0",
     "react-native-swiper": "^1.5.13",
-    "react-navigation": "^2.18.2",
+    "react-navigation": "^3.0.9",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-devtools": "^3.4.1",
@@ -47,6 +49,9 @@
     "rxjs": "^6.2.2"
   },
   "devDependencies": {
+    "@types/expo": "^32.0.13",
+    "@types/node": "^12.6.2",
+    "@types/react-native": "^0.57.65",
     "babel-eslint": "^8.2.6",
     "babel-preset-expo": "^5.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
@@ -56,6 +61,7 @@
     "jest-expo": "^33.0.2",
     "prettier": "^1.14.2",
     "prettier-eslint": "^8.8.2",
-    "react-native-scripts": "^2.0.1"
+    "react-native-scripts": "^2.0.1",
+    "typescript": "^3.5.3"
   }
 }

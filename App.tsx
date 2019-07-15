@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
@@ -8,11 +8,11 @@ import { PersistorContext } from './src/component/context/PersistorContext';
 import NavigationService from './src/service/single/navigation.service';
 import { store, persistor } from './src/store/store';
 import { setupAxiosIntercetor } from './src/helper/http-intercetor';
-import Promise from 'es6-promise';
+
 
 setupAxiosIntercetor();
 
-export default class App extends React.Component {
+export default class App extends Component<any, any> {
   state = {
     isLoadingComplete: false
   };

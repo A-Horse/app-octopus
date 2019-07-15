@@ -4,8 +4,12 @@ import { createSwitchNavigator } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import LoginScreen from '../screens/LoginScreen';
 import { InitScreenContainer } from '../screens/InitScreen';
+import {
+  createStackNavigator,
+  createAppContainer
+} from 'react-navigation';
 
-export default createSwitchNavigator(
+export default createAppContainer(createSwitchNavigator(
   {
     Main: MainTabNavigator,
     Login: LoginScreen,
@@ -14,4 +18,4 @@ export default createSwitchNavigator(
   {
     initialRouteName: 'Init'
   }
-);
+));
