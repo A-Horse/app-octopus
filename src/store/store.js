@@ -13,6 +13,8 @@ import rootEpic from '../epic';
 const persistConfig = {
   key: 'root',
   keyPrefix: '',
+  timeout: 30000,
+  debounce: 100,
   storage
 };
 
