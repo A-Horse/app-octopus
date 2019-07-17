@@ -1,13 +1,12 @@
-// flow
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, Dimensions, ListView, View } from 'react-native';
+import React, { Component } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, Dimensions, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
 import { makeActionRequestCollection } from '../src/action/actions';
 import { bindActionCreators } from 'redux';
 import { SERVER_BASE } from '../src/env/env';
 
-export class TaskScreen extends React.Component {
+export class TaskScreen extends Component<any, any> {
   static navigationOptions = ({}) => {
     return {
       title: 'Projects'
@@ -27,20 +26,17 @@ export class TaskScreen extends React.Component {
   };
 
   render() {
-    const boardsSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    }).cloneWithRows(this.props.boards);
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <ListView
+          <FlatList
             style={styles.listView}
-            dataSource={boardsSource}
+            data={this.props.boards}
             removeClippedSubviews={false}
-            renderRow={board => {
+            renderItem={board => {
               return (
-                <TouchableOpacity onPress={() => this.navToTaskBoard(board)}>
-                  <View key={board.id} style={styles.boardContainer}>
+                <TouchableOpacity  key={board.id} onPress={() => this.navToTaskBoard(board)}>
+                  <View style={styles.boardContainer}>
                     {!!board.cover && (
                       <Image
                         style={styles.boardBgImg}
@@ -57,7 +53,6 @@ export class TaskScreen extends React.Component {
                 </TouchableOpacity>
               );
             }}
-            enableEmptySections={true}
           />
         </ScrollView>
       </View>

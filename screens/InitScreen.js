@@ -1,11 +1,8 @@
-// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, View } from 'react-native';
 
-class InitScreen extends Component<{
-  token: string
-}> {
+class InitScreen extends Component {
   constructor(props) {
     super(props);
     this.bootstrap();
