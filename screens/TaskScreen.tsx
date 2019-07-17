@@ -30,24 +30,25 @@ export class TaskScreen extends Component<any, any> {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <FlatList
-            style={styles.listView}
             data={this.props.boards}
             removeClippedSubviews={false}
-            renderItem={board => {
+            keyExtractor={(item: any) => item.id}
+            renderItem={({item}: any) => {
+              console.log(item);
               return (
-                <TouchableOpacity  key={board.id} onPress={() => this.navToTaskBoard(board)}>
+                <TouchableOpacity key={item.id} onPress={() => this.navToTaskBoard(item)}>
                   <View style={styles.boardContainer}>
-                    {!!board.cover && (
+                    {!!item.cover && (
                       <Image
                         style={styles.boardBgImg}
                         source={{
-                          uri: `${SERVER_BASE}storage/${board.cover}`,
+                          uri: `${SERVER_BASE}storage/${item.cover}`,
                           cache: 'force-cache'
                         }}
                       />
                     )}
                     <View style={styles.boardInnerContainer}>
-                      <Text style={styles.boardName}>{board.name}</Text>
+                      <Text style={styles.boardName}>{item.name}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
