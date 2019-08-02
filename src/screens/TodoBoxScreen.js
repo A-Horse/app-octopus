@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'expo';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
 import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 

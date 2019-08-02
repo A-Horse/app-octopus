@@ -2,10 +2,10 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
-import Swiper from '../src/component/Swiper';
-import { TaskTrackContainer } from '../src/component/Track';
+import Swiper from '../component/Swiper';
+import { TaskTrackContainer } from '../component/Track';
 import { DoubleBounce } from 'react-native-loader';
 
 export class TaskBoardScreen extends React.Component {

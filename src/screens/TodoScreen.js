@@ -2,10 +2,10 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
-import { CheckBox } from '../components/CheckBox';
-import { TodoCreaterToggle } from '../src/component/TodoCreaterToggle';
+import { CheckBox } from '../../components/CheckBox';
+import { TodoCreaterToggle } from '../component/TodoCreaterToggle';
 
 class TodoItem extends React.Component<{ todo: any }> {
   state = { tempIsDone: false };

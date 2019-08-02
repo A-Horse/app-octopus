@@ -4,7 +4,6 @@ import MainTabNavigator from './MainTabNavigator';
 import LoginScreen from '../screens/LoginScreen';
 import { InitScreenContainer } from '../screens/InitScreen';
 import {
-  createStackNavigator,
   createAppContainer
 } from 'react-navigation';
 

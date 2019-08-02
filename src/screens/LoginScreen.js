@@ -1,21 +1,12 @@
-// @flow
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { makeActionRequestCollection } from '../src/action/actions';
-import { Button } from '../src/component/Button';
-import { Input } from '../src/component/Input';
+import { makeActionRequestCollection } from '../action/actions';
+import { Button } from '../component/Button';
+import { Input } from '../component/Input';
 
-export class LoginScreen extends React.Component<
-  {
-    actions: any
-  },
-  {
-    email: string,
-    password: string
-  }
-> {
+export class LoginScreen extends React.Component {
   static navigationOptions = {};
 
   state = {

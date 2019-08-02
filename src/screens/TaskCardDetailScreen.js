@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
 import { FormLabel, FormInput } from 'react-native-elements';
 

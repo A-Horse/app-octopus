@@ -1,12 +1,11 @@
-// @flow
 import React from 'react';
 import md5 from 'blueimp-md5';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
 import { ScrollView, StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-import { Button } from '../src/component/Button';
+import { Button } from '../component/Button';
 import { Icon } from 'expo';
 
 function makeGravatarHash(email) {
@@ -20,7 +19,7 @@ function makeGravatarUrl(email, size) {
   return gravatarUrlBase.concat(urlQuery);
 }
 
-export class ProfileScreen extends React.Component<{}> {
+export class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: 'Profile'
   };

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, Dimensions, FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import R from 'ramda';
-import { makeActionRequestCollection } from '../src/action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
-import { SERVER_BASE } from '../src/env/env';
+import { SERVER_BASE } from '../env/env';
 
 export class TaskScreen extends Component<any, any> {
   static navigationOptions = ({}) => {
