@@ -23,7 +23,7 @@
     "date-fns": "^2.0.0-alpha.16",
     "es6-promise": "^4.2.5",
     "eslint": "^4.19.1",
-    "expo": "^33.0.0",
+    "expo": "^46.0.14",
     "expo-asset": "^5.0.1",
     "expo-permissions": "^5.0.1",
     "normalizr": "^3.2.4",
